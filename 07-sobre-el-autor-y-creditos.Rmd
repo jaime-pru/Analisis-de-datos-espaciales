@@ -1,0 +1,20 @@
+# Sobre el autor {-}
+
+<div style="text-align: justify">
+
+Jaime A. Prudencio Vázquez [ORCID](https://orcid.org/0000-0001-5866-1280)[Google Académico](https://scholar.google.com/citations?user=p083DDsAAAAJ&hl=es) es docente universitario desde 2013 en las Área de Investigación, Métodos cuantitativos, Economía Política y Economía Regional. Cursó sus estudios de maestría y doctorado en la Universidad Nacional Autónoma de México, en el campo de Economía Urbana y Regional.  
+
+Ha impartido talleres sobre análisis de datos espaciales y econometría espacial, tanto en el ámbito universitario como en el marco del Encuentro Nacional sobre Desarrollo Regional de la Asociación Mexicana de Ciencias para el Desarrollo Regional (AMECIDER).  
+
+Entre 2012 y 2015 colaboró como investigador asociado en el Centro de Estudios para el Desarrollo Alternativo, A. C. Ha participado, primero como becario y luego como académico, en diversos proyectos de investigación gestionados por la Coordinación de Investigación Científica de la UNAM para instituciones como INFONAVIT, BANCOMEXT y el Consejo de Investigación y Evaluación de la Política Social (CIEPS) del Estado de México.
+
+Actualmente es profesor visitante en el [Departamento de Economía, Área de Relaciones Productivas en México](https://rpm-uam.blogspot.com/) de la [Universidad Autónoma Metropolitana Unidad Azcapotzalco](https://www.azc.uam.mx/) con actividad docente en la Licenciatura en Economía en el Área de Concentración de Economía de la Innovación: empresas, redes y territorio.  
+
+Entre sus intereses de investigación se encuentran: Productividad laboral de la manufactura y desarrollo regional; Ciudades, economías de aglomeración y productividad laboral; Disparidad regiones y su medición, temas en los que cuenta con trabajos publicados.
+
+Correo electrónico: japv@azc.uam.mx. [Twitter](https://twitter.com/jaime_pru).
+
+
+El autor agradece a Montserrat Romero Martínez (vmrm@azc.uam.mx) y a Alvaro Martínez Rodríguez (amr@azc.uam.mx), ayudantes en el Área de Relaciones Productivas, quienes se encargaron respectivamente de la revisión de los materiales preliminares de este libro y de su edición para su publicación en línea con [Bookdown](https://bookdown.org/) en GitHub. 
+
+Ciudad de México, enero de 2022.

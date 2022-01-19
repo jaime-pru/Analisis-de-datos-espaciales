@@ -1,0 +1,6 @@
+Package: placeholder
+Type: Book
+Title: Análisis de datos espaciales con R: manejo, visualización y modelos econométricos
+Version: 0.0.1
+Remotes: rstudio/bookdown
+Corro la contrucción

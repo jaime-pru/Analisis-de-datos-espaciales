@@ -1,0 +1,629 @@
+# Mapas coropléticos en R
+
+## Datos y datos espaciales
+<div style="text-align: justify">
+De forma reciente, la información georreferenciada y los Sistemas de Información Geográfica (SIG) se han vuelto un instrumento de primer orden para el análisis y la presentación de fenómenos asociados al espacio territorial. Por ejemplo, los [Tableros de la Universidad Johns Hopkins](https://coronavirus.jhu.edu/map.html) sobre la pandemia por COVID19, o los del [Gobierno de México y CentroGeo](https://coronavirus.gob.mx/datos/) han estado constantemente en los medios de comunicación.
+
+En este capítulo apuntamos algunas de las características básicas de los datos y los los datos espaciales y buscamos brindar algunos elementos generales que te permitan familiarizarte con ese tipo de información y usarla para analizar fenómenos socioterritoriales. 
+
+Los datos son valores, números o registros originados a partir de un proceso de recolección y procesamiento. Sirven para diversos propósitos, tales como el análisis científico y la toma de decisiones. Los datos se originan a partir de mediciones de conjuntos de objetos de la realidad. En estadística, ese conjunto de objetos de los que nos interesa saber ciertas cosas es denominado población y la información de sus rasgos o características es denominada *variable* o *atributo*. Así, las variables son medidas o características de los elementos que conforman la población.  
+
+Las variables pueden ser medidas o información sobre cualidades de los objetos (hombre o mujer, viejo o joven, enfermo o sano, por ejemplo) o bien, medidas o información sobre cantidades o elementos numéricos y las llamamos respectivamente *variables cualitativas* y *variables cuantitativas*. Te recomendamos revisar [este breve material](https://bit.ly/JHU-Data) para comprender más a fondo qué son los datos.
+
+Un tipo particular de datos son lo que denominamos datos espaciales. La realidad es continua y compleja. Muchos fenómenos tienen un referente territorial, es decir, se desarrollan y ocurren en un determinado lugar. Los datos espaciales implican un esfuerzo de abstracción, es decir, de simplificación de la realidad. Este proceso de abstracción consiste en "reducir o dividir esta continuidad en entidades numéricas discretas, observables y susceptibles de medición matemática" (así, un dato espacial podría definirse como la) "observación de una variable asociada a una localización del espacio geográfico" [@Chasco2003,p. 17].  
+
+Esxiten dos tipos de datos espaciales:
+
+i. **Datos vectoriales**: es una forma de representación de la realidad que consiste en el uso de puntos, líneas y polígonos para recoger una parte de la realidad.  
+ii. **Datos ráster**: son imágenes del territorio provenientes de instrumentos ópticos (cámaras montadas en drones, helicópteros o avionetas, o incluso sensores en satélites) que almacenan determinados valores en una retícula de cuadros o pixeles que forman la imagen.[^1]
+
+Los datos espaciales se caracterizan por poseer tres componentes: localización, atributos y tiempo. Hay otro aspecto relacionado con la información espacial denominado *calidad del dato geoespacial*, que se refiere a que nuestro conjunto de información cumpla los requisitos necesarios para satisfacer la necesidad para la que se recabó, es decir, que sea útil para resolver la pregunta que motivó su recolección o uso.
+
+El material aquí desarrollado se sirve de información espacial de tipo vectorial. Diversos formatos sirven para almacenar información de tipo vectorial, tales como Shape, GeoJSON, GeoPackage o KML (*Keyhole Markup Language*). No obstante, los *shapefiles* son aún los más comunes. 
+
+Los archivos vectoriales de tipo [SHP](https://desktop.arcgis.com/es/arcmap/10.3/manage-data/shapefiles/what-is-a-shapefile.htm) fueron desarrollados por [ESRI](https://es.wikipedia.org/wiki/Esri), empresa dedicada a la cosultoría de fenómenos territoriales. Almacenar información vectorial en un archivo SHP implica usar en realidad tres archivos diferentes:  
+
+i) Archivo con extensión *.shp*: es un archivo que almacena las entidades espaciales representadas ya sea a través de puntos, líneas o polígonos.  
+ii) Archivo con extensión *.dbf (data base file)*: contiene los atributos o variables de cada objeto espacial contenido en el archivo shp.  
+ii) Archivo con extensión *.shx (index file)*: archivo que sirve de vínculo entre los dos previos.  
+
+Los tres archivos[^2] llevan todos el mismo nombre y deben estar en el mismo directorio (carpeta) para poder funcionar correctamente, es decir, para que sean leídos por el sistema de cómputo. Para que comprendas esto a cabalidad, [descarga el conjunto de información espacial](https://bit.ly/covidSHP) que usaremos aquí. Tras descomprimir la carpeta verás que contiene, al menos, los siguientes archivos:
+
+i)  covid_zmvm.shp
+ii) covid_zmvm.shx
+iii) covid_zmvm.dbf
+
+------------------------------------------------------------------------
+
+**Ejercicio**
+ 
+ Revisa la carpeta descargada y descomprimida para responder a lo siguiente:
+ 
+ i. ¿Cuáles son las extensiones de los otros archivos del mismo nombre? 
+ 
+ ii. ¿Para qué sirven esos archivos?  
+ 
+----------------------------------------------------------------------
+
+Como señalamos, la exploración y representación de la información a través de mapas es no sólo una herramienta muy útil y potente, sino que se ha popularizado en los últimos años gracias no sólo a la mayor disponibilidad de información georreferenciada, sino a la facilidad con la que ahora se puede acceder a software para la gestión y manipulación de este tipo de información.  
+
+Existen diversas herramientas para el análisis de información espacial y su representación, entre ellos se cuentan las alternativas de ESRI: ArcGIS y ArcMap. No obstante, el precio de una licencia individual es considerablemente alto, convirtiéndolos en inaccesibles a las mayorías. Una alternativa cada vez más popular es el programa [QGIS](https://es.wikipedia.org/wiki/QGIS), una iniciativa de software libre de la [Fundación OSGeo](https://www.osgeo.org/), o bien, otra posibilidad es el intuitivo programa de Luc Anselin (Universidad de Chicago, Centro para las Ciencias de Datos Espaciales) y su equipo para iniciarse en el análisis espacial, [GeoDa](https://geodacenter.github.io/).
+
+Además, la popularidad de R como plataforma de análisis ha hecho que múltiples entusiastas programadores interesados en el análisis espacial desarrollaran paquetes enfocados en el tratamiento y representación de información georreferenciada para esta plataforma. Además de ser libre, entre las ventajas que tiene usar R como Sistema de Información Goegráfica y como espacio para el tratamiento de datos espaciales, es que se puede tener no sólo un pleno control de la edición de los materiales cartográficos, sino que permite un entorno de trabajo integrado. En el resto del capítulo se presenta de forma introductoria la manera en que R, a través de algunos paquetes, se puede convertir en un espacio de edición de mapas.  
+
+## Los paquetes
+<div style="text-align: justify">
+Para la elaboración de mapas temáticos en R requeriremos de los siguientes paquetes:
+
+-   `sf`: según se lee en la documentación de este paquete, ofrece "soporte para funciones simples, una forma estandarizada de codificar datos vectoriales espaciales. Se une a `GDAL` para leer y escribir datos, a `GEOS` para operaciones geométricas y a `PROJ` para conversiones de proyección y transformaciones de datum".  
+-   `tmap`: este paquete permite crear mapas temáticos, es decir, "mapas geográficos en los que se visualizan distribuciones de datos espaciales". Este paquete ofrece un "enfoque flexible, basado en capas y fácil de usar", según se indica en la ayuda del paquete.  
+-   `RColorBrewer`: este paquete proporciona esquemas de color para mapas y gráficos diversos que fueron diseñados por la célebre cartógrafa estadounidense [Cynthia Brewer](https://es.wikipedia.org/wiki/Cynthia_Brewer).  
+-   `cartogram`: permite elaborar un tipo de mapa denominado [cartograma](https://es.wikipedia.org/wiki/Cartograma).
+
+Instale estos paquetes como es usual:
+
+```{r, eval = FALSE}
+install.packages(c("sf","tmap", "RColorBrewer", "cartogram" ))
+```
+
+Para cargar los paquetes recién instaldos procedemos como es habitual.
+
+```{r message=FALSE, warning=FALSE}
+library(sf)
+library(tmap)
+library(RColorBrewer)
+library(cartogram)
+```
+
+## Carga de la base de datos geográfica
+<div style="text-align: justify">
+La base de datos a utilizar es la misma que la del capítulo anterior, es decir, información de la primera ola de la pandemia por COVID19 en la Zona Metropolitana del Valle de México y algunas variables sociodemográficas y económicas; no obstante, ahora haremos uso del *shapefile* (recuerde, tres archivos: .shp, .dbf y .shx). Debemos cargar la geometría asociada a nuestra base de datos, el archivo con extensión .shp, para ello hay que usar la función `st_read()` del paquete `sf`:
+
+```{r message=FALSE, warning=FALSE}
+zmvm_cov_sf <-sf::st_read("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
+```
+
+Nota cómo aparece en tu entorno de trabajo el objeto solicitado, `zmvm_cov_sf`, ¿logras ver qué tipo de objeto es? Tener esto en mente te ayudará a comprender que dependiendo del tipo de objeto con el que interactuas en R habrá determinadas funciones que podrás usar. Así como hay algunas funciones que nos permiten familiarizarnos con los objetos de tipo `dataframe`, las hay para el caso de los objetos de tipo `sf` (*simple features*). La función `st_crs()` nos ofrece información sobre el sistema de coordenadas de referencia, *coordinate reference system* (crs), de la capa cargada:
+
+```{r}
+st_crs(zmvm_cov_sf)
+```
+
+De la mañana de información, nota cómo la proyección de nuestra base de datos geográfica es la Cónica Conforme de Labert, *Lambert_Conformal_Conic*. Revisa [esta entrada](https://rpm-uam.blogspot.com/2020/09/sistemas-de-referencia-coordenadas-crs.html) del Blog de Relaciones Productivas en México para aprender más sobre sistemas de coordenadas de referencia.  
+
+Usando la función `graphics::plot()` es posible elaborar una primera representación de algunas de las variables de nuestra base, sólo para darnos cuenta de que ahora tratamos con información espcial, es decir, objetos espaciales (alcaldías y municipios) a los que se asocian determinados atributos o variables.
+
+```{r}
+plot(zmvm_cov_sf)
+```
+
+## Mapas coropléticos básicos
+<div style="text-align: justify">
+Los mapas temáticos en R se construyen con el paquete `tmap`. La lógica de la construcción de mapas con `tmap` es semejante a la de `ggplot2`: se usan "capas" o enunciados para completar diferentes elementos del mapa. Así, para construir un mapa completo habrá que indicar, la mayor parte de las veces, tres elementos: la geometría de origen, función `tm_shape()`, los límites internos de las formas utilizadas, función `tm_borders()`, y la manera en que han de ser rellenados los polígonos, función `tm_fill()`.  
+
+Así, la elaboración de nuestro mapa implica un segmento de código con tres elementos:
+
+```{r eval=FALSE}
+tmap::tm_shape("capa shp origen de la información")+
+  tmap::tm_borders("elementos de edición del borde interno")+
+  tmap::tm_fill("elementos de edición del relleno y representación de la variable")
+```
+
+Resulta evidente que el segmento de código anterior arrojará un error en la consola, pues hay que especificar los argumentos del caso. Así, para representar nuestra información usando los tres elementos para la variable `pos_hab`, número de casos positivos de COVID19 por cada mil habitantes:
+
+```{r}
+tmap::tm_shape(shp=zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab")
+```
+
+Nota cómo dentro de la función de borde se encuentran operando argumentos por defecto, es decir, que sin indicar ningún argumento específico (como tipo de borde o ancho), arroja un resultado. Sobre dichos argumentos volveremos después.
+
+------------------------------------------------------------------------
+
+**Ejercicio**
+
+Prueba eliminando alternativamente una de las funciones de la triada anterior. ¿Qué resultado obtienes con cada combinación?
+
+------------------------------------------------------------------------
+
+Alternativamente, una manera rápida de suplir las funciones de borde y relleno es sustituirlas con la función `tm_polygons()`
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_polygons(col="pos_hab")
+```
+
+La función `tm_polygons()` representará la variable indicada en el argumento `col=`. Además, tanto en esta función como en la de relleno, `tm_fill()`, el método de clasificación es el método o estilo estético o "bonito" en el que los cortes o categorías se dividen en números enteros siempre que sea posible y los espacia uniformemente (argumento `style = "pretty"`).  
+
+Con los elementos anteriores tienes ya las bases y la lógica para construir mapas temáticos en R, lo demás no son más que elementos de personalización para cada una de las funciones previas, además de la incorporación de funciones adicionales para elaborar mapas mucho más profesionales.
+
+Te recomendamos consultar el espléndido material [Geocomputation with R](https://geocompr.robinlovelace.net/) de @Lovelace2019 y todo lo relacionado con el paquete `tmap` en [*tmap: Thematic Maps in R*](https://www.jstatsoft.org/article/view/v084i06)[@Tennekes2018]
+
+
+## Personalización
+
+### Argumentos de personalización dentro de la función de relleno
+
+#### Paleta de colores
+<div style="text-align: justify">
+Nos concentraremos ahora en revisar cómo podemos hacer "mapas a la medida", es decir, personalizar prácticamente cada parte del mapa, desde la gama cromática hasta títulos y leyendas. Comencemos revisando las posibilidades de personalización dentro de la función de relleno, `tm_fill()`. Veremos primero cómo cambiar la paleta de colores de relleno a través del argumento `palette=`. Por defecto, los colores corresponden a una gama cromática de rojos, pero podemos cambiarla a una de color naranja:
+
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", palette = "Oranges")
+```
+
+------------------------------------------------------------------------
+
+**Ejercicio**
+
+Prueba cambiar el esquema de colores por aquellos que sean de tu gusto, ¿cuáles son los colores admitidos por R dentro del argumento de paleta?
+
+------------------------------------------------------------------------
+
+Una manera alternativa de cambiar la paleta de colores consiste en fijar un color para la clase inicial y uno para la clase final, a manera de anclas, es decir. Para ello nos servimos de un vector:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", palette = c("blue","red"))
+```
+
+O para tener una escala divergente, insertamos otro color en el centro:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", palette = c("blue","white", "red"))
+```
+
+No obstante, la manera más profesional de visualizar la información a través de una gama de colores adecuada es a través de las propuestas de especialistas, como la cartógrafa estadounidense [Cynthia Brewer](https://es.wikipedia.org/wiki/Cynthia_Brewer), quien diseñó toda una serie de propuestas para la representación de información espacial en función del tipo de variable a representar y del número de categorías deseadas.
+
+En R, se cuenta con el paquete `RColorBrewer` que permite, siguiendo los principios de la célebre cartógrafa, elegir entre una amplia gama de posibilidades de paletas de colores. El paquete permite crear un esquema de colores personalizado indicando los "colores ancla" y el número de categorías.  
+
+Primero usaremos la función `brewer.pal()` para obtener una gama de colores que van del azul al verde, clasificados en seis categorías. El resultado aparece en código hexagesimal:
+
+```{r}
+RColorBrewer::brewer.pal(6,"BuGn")
+```
+
+Los códigos hexagesimales poco nos dicen sobre colores, entonces, para visualizarlos hemos de usar la función `display.brewer.pal()`
+
+```{r}
+RColorBrewer::display.brewer.pal(6,"BuGn")
+```
+
+Ahora, ya que tenemos una paleta que luce más estética, podemos aplicarla a nuestro mapa:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", palette = "BuGn" )
+```
+
+------------------------------------------------------------------------
+
+**Ejercicio**
+
+i.  Solicita ayuda del paquete `RColorBrewer` para ver los diferentes tipos de paletas (con las que se (secuenciales, divergentes y cualitativas) e intenta hacer algunos mapas con dichas paletas.
+
+ii. Ejecuta el siguiente segmento de código para explorar una aplicación con `shiny`, otro paquete más de R, que te permitirá ver todas las posibilidades de paletas creadas por Brewer.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+install.packages("shiny","shinyjs")#Instala Shiny y sus dependencias
+tmaptools::palette_explorer() #Lanza la aplicación de Shiny para mostrar las paletas Brewer
+#El modo estatico del libro no permite que se pueda correr este codigo, no obstante, con R en ejecución no existe ningún problema
+```
+------------------------------------------------------------------------
+
+#### Leyenda
+<div style="text-align: justify">
+Para modificar la forma en que aparece la leyenda, el argumento del caso es `title=`. Por ejemplo:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", title = "Casos positivos COVID19")
+```
+
+Podemos también agregar elementos informativos adicionales a nuestro mapa, como un histograma, a través del argumento lógico `legend.hist=`:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", title = "Casos positivos COVID19",legend.hist = TRUE)
+```
+
+#### Mapas de clasificación
+<div style="text-align: justify">
+Quizá el elemento de personalización más importante tiene que ver con el método de clasificación de la variable que busca ser representada en el mapa. Todas las alternativas de cómo deben construirse las categorías resultado de la clasificación deben ser especificadas dentro de la función `tm_fill()`. 
+
+Hay diferentes métodos de clasificación y, por tanto, diferentes tipos de mapas. Podemos organizar dichos tipos de mapas de coropletas en tres grandes familias, tal como se muestra en el cuadro 2.1:
+
+<div style="text-align: left">
+
++--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
+| Familia                                    | Objetivo                                                                                                | Tipos de mapa                |
++============================================+=========================================================================================================+==============================+
+| Clasificación común                        | Conocer la distribución espacial del atributo de interés a través de diversos métodos de clasificación. | -   Cuantiles                |
+|                                            |                                                                                                         |                              |
+|                                            |                                                                                                         | -   Intervalos iguales       |
+|                                            |                                                                                                         |                              |
+|                                            |                                                                                                         | -   Cortes naturales o Jenks |
+|                                            |                                                                                                         |                              |
+|                                            |                                                                                                         | -   Cortes estéticos         |
++--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
+| Clasificación especial                     | Conocer si la variable presenta algún valor atípico y representar su ubicación.                         | -   Percentiles              |
+|                                            |                                                                                                         |                              |
+|                                            |                                                                                                         | -   Desviación estándar      |
+|                                            |                                                                                                         |                              |
+|                                            |                                                                                                         | -   Caja                     |
++:--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
+| Clasificación por categorías preexistentes | Conocer la distribución espacial de una categoría predefinida.                                          | -   Valores únicos           |
++--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
+
+:Cuadro 2.1. Formas de clasificación de familias de mapas 
+
+<div style="text-align: justify">
+Todos estos tipos de mapas pueden ser fácilmente invocados en un programa como GeoDa o QGIS, sin embargo, en R no todos están disponibles y a veces la construcción de alguno de ellos exige algunos fundamentos de programación. A pesar de ello, R ofrece bastantes alternativas sencillas para construir mapas de clasificación común.
+
+---------------------------------------------------------------------
+
+**Ejercicio**
+
+Ve a la ayuda de la función `tm_fill()`, identifica el argumento `style=`, sigue la documentación sugerida y responde:\
+
+i. ¿Cuántos métodos de clasificación ofrece R?\
+
+ii. ¿En qué consiste el método de clasificación de k-medias?\
+
+iii. ¿En el trabajo de quiénes está basado el método de clasificación `fisher`?.
+
+---------------------------------------------------------------------
+
+Los mapas que es posible construir en R sin mayores complicaciones se muestran en el cuadro 2.2, así como los valores que debe indicar en el argumento del caso:
+
++--------------------------+-----------------------------------+
+| Tipo de mapa             | Argumento `tmap::tm_fill(style=)` |
++==========================+===================================+
+| Cuantiles                | -   `style=quantile`              |
++--------------------------+-----------------------------------+
+| Intervalos iguales       | -   `style=equal`                 |
++--------------------------+-----------------------------------+
+| Cortes naturales o Jenks | -   `style=jenks`                 |
++--------------------------+-----------------------------------+
+| Cortes estéticos         | -   `style=pretty`                |
++--------------------------+-----------------------------------+
+
+: Cuadro 2.2. Tipos de mapas
+
+
+Como se dijo, los mapas de clasificación común quedarán indicados en los argumentos de la función `tm_fill()`. Para construir un mapa de 5 cuantiles (quintiles), que es la opción por defecto para el número de categorías:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf) +
+  tmap::tm_borders()+
+  tmap::tm_layout(title = "Mapa de cuantiles", title.position = c("center", "bottom"))+
+  tmap::tm_fill("pos_hab", style = "quantile", title = "Casos positivos")
+  
+```
+
+Si deseas cambiar el número de categorías, por ejemplo a cuatro, deberás indicar explícitamente su número en el el argumento `n=`:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf) +
+  tmap:: tm_borders()+
+  tmap::tm_layout(title = "Mapa de cuantiles", title.position = c("center", "bottom"))+
+  tmap::tm_fill("pos_hab", n= 4, style = "quantile", title = "Casos positivos")
+```
+
+------------------------------------------------------------------------
+
+**Ejercicios**
+
+Construye:
+
+i. Un mapa de Jenks con 6 categorías.  
+
+ii. Un mapa de intervalos iguales con cuatro categorías.  
+
+iii. Un mapa a partir de la clasificación por clusters jerárquicos.  
+
+------------------------------------------------------------------------
+
+### Argumentos de personalización del borde
+<div style="text-align: justify">
+Se dijo antes que a pesar de no haber especificado argumento alguno en la función de borde, en ésta operan argumentos por defecto. Es momento de modificar dichos argumentos. Las opciones de borde se especifican dentro de  `tm_border()` donde es posible modificar el color (`col`), grosor (`lwd`) y tipo de borde (`lty`):
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_fill("pos_hab")+
+  tmap::tm_borders(col="black",lwd=2, lty = 3)
+  
+```
+
+------------------------------------------------------------------------
+
+**Ejercicio**
+
+Solicita ayuda de la función `tm_fill()` y explora de qué otro modo puedes colocar los bordes. Haga algunos mapas para la variable `def_hab` cambiando el tipo de borde.
+
+------------------------------------------------------------------------
+
+## Función para elementos de diseño de salida, `tm_layout()`
+<div style="text-align: justify">
+Con la combinación de las funciones previamente descritas se puede generar un mapa básico, además, dentro de ellas es posible personalizar múltiples elementos. No obstante, un diseño más adecuado y profesional es logrado a través de la función `tm_layout()`, que abarca, entre otras cosas, la posición de la leyenda, el título principal del mapa y tamaños de fuente. Veamos cómo opera.  
+
+Para cambiar la posición de la leyenda, los argumentos deben colocarse dentro de la función, `tm_layout()`, a través de un vector que indique tanto la orientación vertical como la horizontal de la leyenda. Para la orientación horizontal: `"left"`,`"right"` o `"center"` y para la vertical: `"top"`, `"center"` o `"bottom"`, tal que:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_fill("pos_hab")+
+  tmap::tm_borders()+
+  tmap::tm_layout(legend.position = c("right", "bottom"))
+```
+
+Para posicionar la leyenda fuera del mapa, dentro de la función `tm_layout()` usa el argumento lógico `legend.outside` y si se deseas especificar la posición, el argumento será `legend.outside.position` que tomará los valores tipo texto de `"top"`, `"bottom"`, `"right"` o `"left"`. Por ejemplo:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_fill("pos_hab")+
+  tmap::tm_borders()+
+  tmap::tm_layout(legend.outside = TRUE,legend.outside.position = "left")
+```
+
+Para personalizar el título dentro del mapa, en la función `tm_layout()` hay que agregar el argumento `title=` y para la posición: `title.position=`:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", title = "Casos positivos COVID19")+
+  tmap::tm_layout(title = "Casos positivos COVID19 por cada mil habitales", title.position = c("center","top"))
+```
+
+O bien, si queremos el título afuera del mapa, con un tamaño de fuente diferente y centrado:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+ tmap:: tm_borders()+
+  tmap::tm_fill("pos_hab", title = "Ingreso 2010")+
+  tmap::tm_layout(main.title = "Casos positivos COVID19 por cada mil habitantes", main.title.position = "center", title.size = 1.3)
+```
+
+## Mapa base interactivo
+<div style="text-align: justify">
+En R es posible añadir a nuestros mapas temáticos un mapa base para dar contexto a nuestra representación. Para ello, es necesario activar una suerte de "modo interactivo", para ser más exactos, lo que activamos es el *modo de visualización* para poder desplazarnos sobre los mapas. Para cambiar el modo de visualización:
+
+```{r}
+tmap::tmap_mode("view")
+```
+
+La función que permite agregar mapas base es `tm_basemap()`.
+
+------------------------------------------------------------------------
+
+**Ejercicio**
+
+¿Cuántos tipos de mapas base es posible usar en R? Revisa la ayuda de la función y familiarízate con sus argumentos.
+
+------------------------------------------------------------------------
+
+De los argumentos para el mapa base, dos son los básicos: el servidor de donde tomaremos el mapa (consejo: ya dentro de los argumentos de la función, escribe `providers$` y observarás todas las opciones disponibles) y transparencia (argumento `alpha=`) que toma valores de 0 a 1, este argumento altera tanto la transparencia del mapa base cuando es usado dentro de la función `tm_basemap()`, como la transparencia de la información representada si se usa dentro de la función `tm_fill()`:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab", alpha=0.7)+
+  tmap::tm_basemap(providers$OpenStreetMap,alpha = 0.5)
+```
+  
+  
+Una vez que has terminado de trabajar con mapas base es necesario desactivar el modo de visualización y regresar al modo estático:
+
+```{r}
+tmap::tmap_mode("plot")
+```
+
+## Cartograma
+<div style="text-align: justify">
+Un cartograma deforma la geometría de las áreas de interés en figuras cuyo tamaño depende de la magnitud de la variable que se desee representar. Para elaborar un cartograma con circulos, debemos primero generar la geometría deformada por la variable para luego rellenarla. Para tal efecto, usamos la función `cartogram_dorling()` que nos permitirá generar un nuevo objeto que contiene las geometrías deformadas. Luego, usaremos dicha geometría como argumento de `tm_shape()`. Veamos.
+
+Primero creamos la nueva geometría circular:
+
+```{r}
+cartograma.circulos <- cartogram::cartogram_dorling(zmvm_cov_sf,"pos_hab")
+class(cartograma.circulos)
+```
+
+Hay que tener en cuenta que la función sólo admite variables no negativas. Ahora bien, este objeto recién creado será usado tal como lo hemos hecho antes:
+
+```{r}
+tmap::tm_shape(cartograma.circulos) +
+  tmap::tm_borders()+
+  tmap:: tm_fill("pos_hab")
+```
+
+Otro tipo de cartograma, más estético, es aquel que garantiza la contigüidad entre las unidades espaciales. Se procede de forma semejante a lo hecho antes, sólo que ahora usamos la función `cartogram_cont()`:
+
+```{r message=FALSE}
+cartograma.cont <- cartogram_cont(zmvm_cov_sf,"pos_hab")
+```
+
+Ahora, usamos esta información para construir nuestro cartograma:
+```{r}
+tmap::tm_shape(cartograma.cont) +
+  tmap::tm_fill("pos_hab") +
+ tmap:: tm_borders()
+```
+
+## Centroides o coordenadas geométricas (punto medio)
+
+En el [blog de mappingGIS](https://mappinggis.com/2018/09/como-calcular-las-coordenadas-de-una-geometria-con-qgis/) encontramos la siguiente definición de punto medio:
+
+> Toda geometría vectorial (punto, línea o polígono) contiene un punto central denominado centroide.
+
+Calcular el centroide de una geometría suele ser una tarea habitual cuando se trabaja con información espacial. Para crear una nueva capa que contenga los centroides de nuestra geometría usamos en R la función `st_centroid()`. La función generará una nueva serie de archivos SHP que contendrán el conjunto de variables de la base de datos y los centroides:
+
+```{r warning=FALSE}
+zmvm_cntrds <- st_centroid(zmvm_cov_sf)
+summary(zmvm_cntrds)
+```
+
+El conjunto de datos recién creado y que contiene los centroides puede ser representado agregando otra "capa" con la función `tm_shape()`. En el ejemplo, sólo se superponen las dos capas: la de los polígonos originales y la de los centroides:
+
+```{r}
+tm_shape(zmvm_cov_sf) +
+  tm_borders() +
+  tm_shape(zmvm_cntrds) +
+  tm_dots()
+```
+
+Como pudo notarlo, hemos agregado otra función que define la forma en que ha de representarse la capa de los centroides: `tm_dots()`. Ahí, es posible especificar la manera en que deseamos que aparezcan los centroides, por ejemplo, en color rojo y más grandes:
+
+```{r}
+tm_shape(zmvm_cov_sf) +
+  tm_borders() +
+  tm_shape(zmvm_cntrds) +
+  tm_dots(size=0.2,col="red")
+```
+
+Para guardar la capa que contiene los centroides en un nuevo archivo SHP, usamos las siguientes líneas de código:
+
+```{r eval=FALSE}
+st_write(obj=zmvm_cntrds, "zmvm_cntrds", driver = "ESRI Shapefile")
+```
+
+Como siempre, se recomienda revisar la documentación de ayuda de la función `st_write()` para conocer todos los detalles de los argumentos.
+
+## Tópico adicional: Mapas de clasificación especial (elementos de programación)
+<div style="text-align: justify">
+
+### Una palabra de advertencia
+En esta sección se construyen dos tipos de mapas de clasificación especial, es decir, destinados a hacer notar los valores atípicos. No obstante, la construcción de dichos mapas en R supone cierto conocimiento sobre programación que está fuera del alcance de estas notas. Si deseas profundizar en el aprendizaje de programación en R, el libro de Roger D. Peng, [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) es un excelente material, particularmente el [capítulo 14 dedicado a las funciones en R](https://bookdown.org/rdpeng/rprogdatascience/functions.html) @Peng2015.
+
+Con esta advertencia, llevamos a cabo la exposición de esta sección, esperando motivarte para que tu mismo profundices en los tópicos de programación.
+
+### Mapa de intervalos personalizados
+<div style="text-align: justify">
+
+Se señaló antes que, hasta donde tenemos conocimiento, en R no es posible construir mapas de clasificación especial con `tmap` a través de las opciones de estilo, no obstante, con algunos elementos de programación es posible solventar esta tarea. En esta sección nos servimos del código proporcionado por Luc Anselin y su equipo quienes, en un esfuerzo de difusión del conocimiento sobre el uso de estas herramientas, pone a nuestra disposición una basta cantidad de materiales en la página del [Center for Spatial Data Science](https://spatial.uchicago.edu/) de la Universidad de Chicago. @AnselinMorrison2018
+
+Para construir un mapa de intervalos definidos por el usuario, hay que recurrir al argumento `breaks=` dentro de la función `tm_fill()`. Para definir los intervalos de forma adecuada, se recomienda mirar las características resumen de la variable de interés, en este caso el número de casos positivos por COVID19 por cada mil habitantes, `pos_hab`:
+
+```{r}
+summary(zmvm_cov_sf$pos_hab)
+```
+
+Esto nos permitirá conocer los valores que toma la variable de interés y pensar la manera en que deseamos delimitar las categorías de nuestro mapa. Supongamos que deseamos 6 categorías y, dado el rango de nuestra variable (valores entre 1.720 y 22.7), podemos fijar los cortes de los intervalos en 2.0, 6.0, 12., 18.0 y 24.0; además, se requiere incluir también un mínimo y máximo, digamos 1.0 y 25.0, para las categorías.
+
+La información, tanto de los cortes como de los máximos y mínimos deber ser especifica en forma de vector: `c(1.0, 2.0, 6.0, 12., 18.0,  24.0, 25.0)`. Debemos además especificar la paleta de colores que deseamos usar, atendiendo a lo dicho antes, usaremos una paleta con tres anclas: del amarillo, al naranja y al café:`YlOrBr`:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf) +
+  tmap::tm_borders()+
+  tmap::tm_fill("pos_hab",title="Casos positivos covid",breaks=c(1.0, 2.0, 6.0, 12., 18.0,  24.0, 25.0),palette="YlOrBr")+
+  tm_layout(title = "Cortes personalizados", title.position = c("center","top"))
+```
+
+### Mapas de valores extremos
+
+#### Mapa de percentiles
+<div style="text-align: justify">
+Un mapa de percentiles es un tipo espacial de mapa de cuantiles en el que se especifican seis categorías: 0-1%,1-10%, 10-50%,50-90%,90-99% y 99-100%. Para poder construirlo, en R debemos llevar a cabo los siguientes pasos:
+
+i)  Extraer la variable de nuestro arreglo de datos.  
+ii) Calcular los percentiles de nuestro interés, es decir, 0,0.01,0.1,0.5,0.9,0.99,1.0.  
+iii) Construir el mapa con base en los intervalos definidos a través de la función `tm_fill()`.
+
+Para el paso i, lo primero será construir una función que llamaremos `get.var`, que tendrá dos argumentos, `varnom` y `df`, el primero indicará, entre comillas, el nombre de la variable a utilizar y el segundo indicará la base de la que proviene. Esta función permite que, al extraer la variable de la base, se eliminen los "aspectos espaciales" asociadas a ella. Esta función sólo se requiere construir una vez.
+
+```{r}
+get.var <- function(varnom,df) {#Definición de la función
+  v <- df[varnom] %>% st_set_geometry(NULL) #Extracción de la variable de interés y remoción de sus características geográficas
+  v <- unname(v[,1]) #Selección de la columna del data frame extraído que contiene la variable de interés y elimina su nombre pues sólo queremos un vector.
+  return(v) #Resultado de la función: la variable como vector sin sus características espaciales
+}
+```
+
+Ahora, echando mano de la función creada extraeremos la variable de interés sin sus aspectos espaciales:
+
+```{r}
+pos_hab<-get.var("pos_hab",zmvm_cov_sf)
+pos_hab
+```
+
+Para el paso ii, hemos de crear un objeto en el que se guarden los percentiles de interés, un vector de 6 elementos:
+
+```{r}
+percentiles <- c(0,.01,.1,.5,.9,.99,1)
+```
+
+Ahora, se calculan y guardan valores de los percentiles con base en el par de objetos creados, `percentiles` y `pos_hab`, es decir, obtendremos los valores de la variable `pos_hab` en los percentiles de interés:
+
+```{r}
+varperc <- quantile(pos_hab,percentiles)
+varperc
+```
+
+Ahora, en el paso iii, la construcción del mapa de percentiles es posible uniendo todos los elementos:
+
+```{r}
+tmap::tm_shape(zmvm_cov_sf)+
+  tmap::tm_fill("pos_hab",title="Índice de marginación 2010", breaks=varperc, palette="-RdBu",labels=c("< 1%", "1% - %10", "10% - 50%", "50% - 90%","90% - 99%", "> 99%"))+
+  tmap::tm_borders() +
+  tmap::tm_layout(title = "Mapa de percentiles", title.position = c("center","bottom"))
+```
+
+### Construcción de una función personalizada para hacer mapas de percentiles
+<div style="text-align: justify">
+Con el camino que hemos seguido, es posible ahorrarnos muchos pasos y crear nuestra propia función (que opera en el entorno de trabajo activo de la sesión) para construir mapas de percentiles. Nuestra función se llamará `percentmap()`. Nuestra función tendrá los siguientes argumentos: 
+
+* `varnom`: nombre de la variable (cadena, entre comillas).
+* `df`: base de datos que contiene el variable.
+* `legtitle`: titulo de la leyenda del mapa.
+* `mtitle`: título del mapa.
+
+Para crear la función:
+
+```{r}
+  percentmap <- function(varnom,df,titulo.leyenda=NA,titulo.principal="Mapa de percentiles"){ #Definición de la función y sus argumentos
+  #Elementos preliminares
+  percent <- c(0,.01,.1,.5,.9,.99,1) #Vector que contiene los percentiles de interés para el mapa
+  var <- get.var(varnom,df) #Extracción de la variable de la base de datos con la función anterior
+  varperc <- quantile(var,percent) #Cálculo de los percentiles de la variable extraída
+  #Especificaciones del mapa
+  tm_shape(df) +
+     tm_fill(varnom,title=titulo.leyenda,breaks=varperc,palette="-RdBu", labels=c("< 1%", "1% - %10", "10% - 50%", "50% - 90%","90% - 99%", "> 99%"))  +
+  tm_borders() +
+  tm_layout(title = titulo.principal, title.position = c("center","bottom"))
+}
+```
+
+La función que hemos creado para hacer nuestros mapas tiene cuatro argumentos: `varnom`,`df`,`legtitle` y `mtitle`. Los dos últimos tienen valores por omisión, lo que significa que no es necesario especificarlos al usar la función. Los dos primeros no tienen valor por omisión, por lo que será forzoso especificar dichos argumentos.
+
+Ahora, invocando nuestra propia función e indicando los argumentos forzosos, `varnom` y `df` tenemos que:
+
+```{r}
+percentmap("pos_hab",zmvm_cov_sf)
+```
+
+Podemos, como es obvio, cambiar los dos argumentos dados por omisión:
+
+```{r}
+percentmap("pos_hab",zmvm_cov_sf, titulo.leyenda = "Categorías", titulo.principal = "El título que yo quiera" )
+```
+
+Los capítulos 1 y 2 de este libro, constituyen lo que suele ser denominado Análisis Exploratorio de Datos, (*Exploratory Data Analysis*, EDA). El [capítulo 1](https://www.itl.nist.gov/div898/handbook/eda/eda.htm) del *e-Handbook of Statistical Methods* expone con detalle esta concepción en el análisis de información @Croarkin2014. Además, [capítulo 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) del ya citado libro *R for Data Science* también explica con detalle el enfoque EDA usando R.
+
+En el siguiente capítulo continuamos con la exploración de la información, pero incorporando una **estructura de relaciones en el espacio**, por lo que a dicho enfoque se le conoce como Análisis Exploratorio de Datos Espaciales. En dicho capítulo será de nuestro interés particular un rasgo que suele estar presente en la información georreferenciada: la autocorrelación espacial.  
+
+
+
+
+[^1]:Vistita el [perfil de Inatagram](https://www.instagram.com/maxartechnologies/) de la empresa _Maxar technologies_ para mirar impresionantes y bellas imágenes satelitales. Empresas como ésta y otras se dedican a capturar y comercializar imágenes del territorio en formato ráster.
+
+[^2]: Adicionalmente, es usual encontrar otros tipos de archivo: i) *prj*, que almacena la información relativa a la proyección cartográfica y ii) *cpg*, que especifica la página de códigos para identificar el juego de caracteres que se utilizará. Para más información de los tipos y formatos de archivos vectoriales visite [esta página](https://www.loc.gov/preservation/digital/formats/fdd/fdd000280.shtml) de la librería del congreso de los Estados Unidos y [esta entrada](https://mappinggis.com/2013/11/los-formatos-gis-vectoriales-mas-populares/) de MappingGIS.

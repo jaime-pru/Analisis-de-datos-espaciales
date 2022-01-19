@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 R: Una introducción desde la exploración de información | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</title>
+<meta name="author" content="Jaime Alberto Prudencio Vázquez">
+<meta name="generator" content="bookdown 0.24.1 with bs4_book()">
+<meta property="og:title" content="1 R: Una introducción desde la exploración de información | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 R: Una introducción desde la exploración de información | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><meta name="description" content="1.1 R: Lenguaje de programación y plataforma de análisis  R es un lenguaje de programación orientado a objetos, libre y de código abierto y además un ambiente enfocado al análisis estadístico y...">
+<meta property="og:description" content="1.1 R: Lenguaje de programación y plataforma de análisis  R es un lenguaje de programación orientado a objetos, libre y de código abierto y además un ambiente enfocado al análisis estadístico y...">
+<meta name="twitter:description" content="1.1 R: Lenguaje de programación y plataforma de análisis  R es un lenguaje de programación orientado a objetos, libre y de código abierto y además un ambiente enfocado al análisis estadístico y...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prólogo</a></li>
+<li><a class="active" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-una-introducción-desde-la-exploración-de-información" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> R: Una introducción desde la exploración de información<a class="anchor" aria-label="anchor" href="#r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h1>
+<div id="r-lenguaje-de-programación-y-plataforma-de-análisis" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> R: Lenguaje de programación y plataforma de análisis<a class="anchor" aria-label="anchor" href="#r-lenguaje-de-programaci%C3%B3n-y-plataforma-de-an%C3%A1lisis"><i class="fas fa-link"></i></a>
+</h2>
+<div style="text-align: justify">
+<p>R es un lenguaje de programación orientado a objetos, libre y de código abierto y además un ambiente enfocado al análisis estadístico y gráfico. Que sea libre significa, a diferencia de otros programas, que cualquier persona puede usarlo, redistribuirlo o modificarlo, sin necesidad de contar con una licencia pago.</p>
+<blockquote>
+<p>R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS. Fuente:  <a href="http://cran.r-project.org">http://cran.r-project.org</a><br></p>
+</blockquote>
+<p>Usar R en lugar de otras plataformas que requieren licencia pago es recomendable al menos por tres razones:</p>
+<ol style="list-style-type: lower-roman">
+<li>Es libre: en contraste con otros populares programas informáticos como lo es STATA, del que una licencia sencilla ronda los 100 dólares por año.<br>
+</li>
+<li>R no es sólo un software, también es un lenguaje de programación; así, al aprenderlo se obtiene un resultado doble. De modo que cuando llegues a manejarlo con profundidad, puedes crear tus propias librerías. No sólo sirve para hacer análisis gráfico y estadístico, con el puedes hacer páginas web, ser usado como Sistema de Información Geográfica e incluso para escribir libros, como éste que ahora estas leyendo.</li>
+<li>Es un lenguaje con un amplio soporte, es decir, con multitud de guías y materiales para el autoaprendizaje.</li>
+</ol>
+<p>A lo largo de este libro usaremos R a través de <a href="https://es.wikipedia.org/wiki/RStudio"><em>RStudio</em></a>, un entorno de desarrollo integrado o IDE por sus siglas en inglés. Así que, lo primero será descargar e instalar R y luego descargar e instalar RStudio.</p>
+<p>R puede ser descargado de <a href="https://www.r-project.org/">aquí</a>. Al seleccionar <em>“download R”</em> hay que elegir cualquier CRAN Mirror (del inglés <em>Comprehensive R Archive Network</em> que son repositorios que contienen una copia del código base de R y sus paquetes). México tiene dos, puedes elegir cualquiera.</p>
+<p>En tanto, R Studio puede ser desargado de <a href="https://www.rstudio.com/">aquí</a>. Ve a la sección <em>“Download”</em> en la parte superior y elije la versión gratuita. El navegador debería seleccionar la versión adecuada para tu equipo, sino es así, selecciona del listado que aparece en la parte inferior. También puedes consultar <a href="https://youtu.be/zlnm1jLWLeE">este video</a> para seguir paso a paso la instalación de ambos programas.</p>
+<p>Al abrir RStudio se mostrará una pantalla como la que aparece en la figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (<em>New file</em>, parte superior izquierda de la pantalla) para que se despliegue.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="recursos%20intro/Figura_1-Entorno.jpg" alt="Panel principal" width="100%"><p class="caption">
+Figura 1.1: Panel principal
+</p>
+</div>
+<p>Las citadas cuatro secciones son:</p>
+<ul>
+<li>Fuente u origen (<em>source</em>): esta sección, zona superior izquierda, aparecerá una vez que des clic en <em>New script</em>. Aquí podrás escribir las líneas de código de tu proyecto y guardarlas para consultarlas cuando lo desees, visualizarás tus bases de datos organizadas en pestañas y varios otros elementos.</li>
+<li>Consola: localizada en la parte inferior izquierda, es donde aparece el puntero o <em>prompt</em> (&gt;); este es el espacio en el que se insertarán o escribirán las líneas de código para ser ejecutadas por R y en donde se mostrarán parte de los resultados. Cuando el <em>prompt</em> aparezca, R está listo para recibir tus instrucciones.</li>
+<li>Archivo: en el espacio inferior derecho aparecen una serie de pestañas que muestran las carpetas y archivos de tu equipo, las gráficas realizadas y los paquetes disponibles, así como la ayuda de R y de sus paquetes.</li>
+<li>Ambiente: por último el área superior derecha, mostrará las variables creadas, bases de datos cargadas y todos los objetos activos en la sesión de R. Esta sección contiene otras dos pestañas: historial y conexiones. La primera ofrece una memoria de todas las instrucciones escritas en la consola, en tanto, la segunda le será útil cuando haga trabajo colaborativo a través de, por ejemplo, GitHub.</li>
+</ul>
+</div>
+<div id="códigos-objetos-paquetes" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Códigos, objetos, paquetes<a class="anchor" aria-label="anchor" href="#c%C3%B3digos-objetos-paquetes"><i class="fas fa-link"></i></a>
+</h2>
+<div id="código" class="section level3" number="1.2.1">
+<h3>
+<span class="header-section-number">1.2.1</span> Código<a class="anchor" aria-label="anchor" href="#c%C3%B3digo"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Los programas informáticos están construidos a partir de código, éste puede ser entendido como un lenguaje a partir del cual se dan las instrucciones a la computadora para que realice alguna acción. Como en todo lenguaje, un aspecto sustantivo es la sintaxis y la ortografía, es decir, el orden y la corrección en la forma en que uno se comunica con el sistema de cómputo, de modo que si se escribe alguna instrucción de forma incorrecta o incompleta (faltas de ortografía o errores de sintaxis) la instrucción no se ejecutará.</p>
+<p>En este sentido, se debe señalar que R es sensible al uso de mayúsculas y minúsculas, esto quiere decir para nuestro programa no es lo mismo Árbol y árbol. Además, en este programa constantemente estará usando paréntesis y comas en las instrucciones, por lo que hay que poner especial atención para no olvidar colocar alguno de ellos en la sentencia escrita. Otro elemento importante son las llamadas “palabras clave”, <em>Keywords</em>. Éstas son palabras reservadas, es decir, palabras con un significado especial para R y que hacen referencia a instrucciones que pertenecen a la estructura base del programa R por lo que no está recomendado su uso. Algunos ejemplos de palabras reservadas son son: <em>if</em>, <em>else</em>, <em>break</em>. Además, el nombre de las variables no debe comenzar con caracteres especiales (&amp;,#,$,%) o números.</p>
+</div>
+<div id="objetos-operadores-y-tipos-de-variables" class="section level3" number="1.2.2">
+<h3>
+<span class="header-section-number">1.2.2</span> Objetos, operadores y tipos de variables<a class="anchor" aria-label="anchor" href="#objetos-operadores-y-tipos-de-variables"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Si bien R es tremendamente potente, puede incluso utilizarse como simple calculadora. Los operadores matemáticos que pueden emplearse en R se muestran en la figura 1.2:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="recursos%20intro/Figura_2-Operadores.jpg" alt="Operadores" width="120%"><p class="caption">
+Figura 1.2: Operadores
+</p>
+</div>
+<p>De esta forma sí colocas en la consola el número <code>5</code> seguido del signo aritmético correspondiente, por ejemplo un signo de más, <code>+</code>, y luego otro número, R devolverá el resultado de la operación:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">5</span><span class="op">+</span><span class="fl">10</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>En R, todos los elementos con los que se interactúa son denominados objetos (por eso se dice que es un lenguaje de programación orientado a objetos), los hay de distintas clases y cada clase se puede identificar por un nombre. Los objetos más comunes en R son: constantes, variables, vectores, listas, matrices y arreglos de datos (<em>data frames</em>). Éstos últimos los hay en diferentes versiones dependiendo de algunas de sus características.</p>
+<p>Los objetos pueden contener diferentes tipos de información como: números enteros (<em>integer</em>), valores numéricos (<em>numeric</em>), números complejos (<em>complex</em>) o valores lógicos (<em>logic</em>) y de cadena/texto (<em>character</em>). Distinguir entre los tipos de información que contiene cada objeto es importante para conocer las operaciones que se pueden hacer entre ellos. Por ejemplo, no es posible hacer operaciones matemáticas con variables tipo <em>character</em> ya que no tiene sentido sumar aritméticamente “casa” y “azul”, pero sí es posible concatenarlos.</p>
+<p>Para crear objetos, en R se utiliza el singo “menor que” seguido de un guion para formar una suerte de flecha que apunta a la izquierda, <code>&lt;-</code>, éste singo es llamado <strong>operador de asignación</strong> y precisamente asigna contenido a objetos, es decir, con el operador <code>&lt;-</code> creamos un objeto que tendrá determinado contenido. Ve a la sección consola de tu entorno de trabajo e ingresa las siguientes líneas de instrucciones (o simplemente da click en el ícono de copiar que aparece en la esquina superior derecha del cuadro que contiene el código):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="co">#Numérico</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"Hello World"</span> <span class="co">#Carácter </span>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span> <span class="co"># Lógico</span></code></pre></div>
+<p>Tras haber escrito estas líneas de código notarás que en la sección superior derecha de RStudio aparecen, en la pestaña de ambiente, los tres objetos creados, cada uno con un nombre y contenido diferente entre ellos: <code>x</code> es un objeto numérico, <code>y</code> es una cadena de texto o carácter y <code>z</code> contiene un valor lógico. Basta con escribir el nombre del objeto en la consola para ver su contenido.</p>
+<p>Ahora, vuelve a crear un objeto de nombre <code>x</code> que contenga el resultado de la suma de 5+10:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">+</span><span class="fl">10</span></code></pre></div>
+<p>Como es posible identificar, si en una sesión de R se utiliza dos veces el mismo nombre para una variable, se sobrescribe la información asignada a esa variable, es decir, sólo permanece el último valor asignado: <code>x</code> ya no contiene la primera asignación, 3, solamente la última, 15.</p>
+<p>Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: La función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto <code>y</code> es de tipo carácter y su contenido es la expresión “Hello World”.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>##  chr "Hello World"</code></pre>
+<div id="vectores" class="section level4" number="1.2.2.1">
+<h4>
+<span class="header-section-number">1.2.2.1</span> Vectores<a class="anchor" aria-label="anchor" href="#vectores"><i class="fas fa-link"></i></a>
+</h4>
+<div style="text-align: justify">
+<p>Los vectores son una forma de almacenar más de un elemento en un objeto y dichos elementos no tienen que ser necesariamente del mismo tipo, aunque es importante tener en cuenta que no es recomendable combinar diferentes tipos de objetos porque se pueden alterar las clases de cada uno de los elementos originales. Cuando se quiere crear un vector que contiene cadenas de texto, cada cadena (palabra u oración) se debe poner entre comillas, como se ilustra a continuación:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"v"</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>## [1] "a" "v"</code></pre>
+<p>El uso de vectores es útil para modificar las etiquetas de una gráfica o bien los encabezados de una tabla, ya que R tomará los valores de texto almacenados en el vector para utilizarlos en la forma deseada. Aquí se muestran otros tipos de objetos en un vector:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"v"</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>## [1] "a" "v"</code></pre>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">+</span><span class="fl">5i</span>,<span class="fl">3</span><span class="op">+</span><span class="fl">2i</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>## [1] 4+5i 3+2i</code></pre>
+<p>Imagina que deseas crear un vector numérico con una secuencia numérica del 1 al 10. Para hacerlo, deberías proceder como:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>Es decir, no fue necesario insertar en el vector cada uno de los 10 números, sino que la secuencia continua (del 1 al 10) se señaló con los dos puntos.</p>
+</div>
+<div id="matrices" class="section level4" number="1.2.2.2">
+<h4>
+<span class="header-section-number">1.2.2.2</span> Matrices<a class="anchor" aria-label="anchor" href="#matrices"><i class="fas fa-link"></i></a>
+</h4>
+<div style="text-align: justify">
+<p>Las matrices son un tipo de objeto que se distingue porque entre sus propiedades está el de tener dimensión (filas y columnas). Se puede generar una matriz en R con la función <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> y se procede como:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,nrow <span class="op">=</span> <span class="fl">2</span>,ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<p>Las funciones, tanto las previamente citadas como esta, requieren que el usuario indique <strong>argumentos</strong> que son los elementos que aparecen entre paréntesis. La función <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> requirió indicar varios: los datos que forman el contenido que tendrá la matriz,<code>data=</code>, el número de filas , <code>nrow=</code> y el número de columnas, <code>ncol=</code>. Recuerda: toda función requiere especificar determinados argumentos para que pueda funcionar.</p>
+<p>Alternativamente se pueden construir matrices a partir de vectores. Para ello, se pueden usar las funciones <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> y <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code>. Primero creamos dos vectores, <code>x</code> y <code>y</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y</span><span class="op">&lt;-</span><span class="fl">10</span><span class="op">:</span><span class="fl">12</span>
+<span class="va">y</span></code></pre></div>
+<pre><code>## [1] 10 11 12</code></pre>
+<p>La función <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> permite “unir por columna” (<em>column bind</em>) y <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> que “une por fila” (<em>row bind</em>). Así, con los vectores previamente construidos podemos tener dos matrices diferentes, esto dependerá si las unimos por fila:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>##      x  y
+## [1,] 1 10
+## [2,] 2 11
+## [3,] 3 12</code></pre>
+<p>o columna:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>##   [,1] [,2] [,3]
+## x    1    2    3
+## y   10   11   12</code></pre>
+</div>
+<div id="factores" class="section level4" number="1.2.2.3">
+<h4>
+<span class="header-section-number">1.2.2.3</span> Factores<a class="anchor" aria-label="anchor" href="#factores"><i class="fas fa-link"></i></a>
+</h4>
+<div style="text-align: justify">
+<p>Son un tipo especial de vectores y son utilizados para representar información categórica, lo que permite organizarla en niveles para analizarla mejor:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span>,<span class="st">"no"</span>,<span class="st">"no"</span>,<span class="st">"yes"</span>,<span class="st">"no"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>## [1] yes no  no  yes no 
+## Levels: no yes</code></pre>
+<p>Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como “masculino” y “femenido”, es decir, es recomendable almacenar la información como factor.</p>
+</div>
+<div id="data-frame-o-arreglo-de-datos" class="section level4" number="1.2.2.4">
+<h4>
+<span class="header-section-number">1.2.2.4</span> <em>Data frame</em> o arreglo de datos<a class="anchor" aria-label="anchor" href="#data-frame-o-arreglo-de-datos"><i class="fas fa-link"></i></a>
+</h4>
+<div style="text-align: justify">
+<p>Esta estructura de datos es la más usada para realizar análisis en R. Son estructuras de datos de dos dimensiones, es decir, están compuestas por filas y columnas. Los renglones de un <em>data frame</em> admiten datos de distintos tipos, pero sus columnas tienen la restricción de contener datos sólo de un tipo. Para comprender mejor esto piensa en un <em>data frame</em> como si de una hoja de cálculo se tratara: los renglones representan casos, individuos u observaciones, mientras que las columnas representan atributos, rasgos o variables. Una columna con la variable “ingreso” deberá ser del mismo tipo para todos los casos, por ejemplo un valor numérico, en tanto, para el caso o individuo 1 (fila 1) tendremos información relativa no sólo al ingreso, sino al sexo, estatura y edad, es decir, variables categóricas, numéricas y enteros, respectivamente.</p>
+<p>Cuando arribemos un poco más adelante al proceso de importación de información al entorno de trabajo se presentará cómo luce un arreglo de datos de estas características.</p>
+</div>
+</div>
+<div id="paquetes" class="section level3" number="1.2.3">
+<h3>
+<span class="header-section-number">1.2.3</span> Paquetes<a class="anchor" aria-label="anchor" href="#paquetes"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Se dijo que R es un programa especializado en el análisis estadístico y la representación gráfica, pero R no sólo se limita a lo que ofrece cuando lo descarga por primera vez. Uno de los elementos que hace de R una potente herramienta es la posibilidad de ampliar su potencial a través de la instalación de paquetes que expanden sus funciones básicas. Existen paquetes de R para múltiples campos disciplinares y especialidades, por ejemplo estas notas se sirven de los paquetes especializados en el análisis espacial, como se observará en los capítulos subsecuentes. De momento mencionemos sólo un par:</p>
+<ul>
+<li>
+<code>tmap</code>: ofrece un enfoque flexible, basado en capas y fácil de usar para crear mapas temáticos.<br>
+</li>
+<li>
+<code>spatialreg</code>: paquete para la elaboración de regresiones con componentes espaciales.</li>
+</ul>
+<p>Para poder hacer uso de los paquetes que amplían el potencial de R es necesario descargarlos, instalarlos y, en cada sesión de trabajo, llamarlos. Para la descarga e instalación podemos ir a Archivo (<em>File</em>) en la cinta de menú que se localiza en la parte superior de tu entorno de trabajo y seleccionar <em>tools/install package</em>. A continuación, deberás colocar el nombre del paquete deseado y dar click en <em>instalar</em>. O bien, alternativamente, puedes ir a la sección de Archivo, en la zona inferior derecha, seleccionar la pestaña <em>Packages</em> y a continuación el ícono de <em>Install</em>. Una tercera manera de instalar paquetes es desde la consola (sección inferior izquierda), para instalar un paquete a la vez:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tmap"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"spatialreg"</span><span class="op">)</span></code></pre></div>
+<p>O bien, varios paquetes a la vez:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tmap"</span>, <span class="st">"spatialreg"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Tras el proceso de instalación, en tu consola, R informará sobre el resultado de la instalación y te ofrecerá algunos datos sobre la ubicación del paquete en tu equipo. Para poder hacer uso de los paquetes no basta con descargarlos e instalarlos, es necesario “llamarlos” en cada sesión de trabajo de R para ser utilizados. Para ello deberás usar la función <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> y como argumento el nombre del paquete:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="solicitar-ayuda-de-un-paquete-o-función-de-r" class="section level3" number="1.2.4">
+<h3>
+<span class="header-section-number">1.2.4</span> Solicitar ayuda de un paquete o función de R<a class="anchor" aria-label="anchor" href="#solicitar-ayuda-de-un-paquete-o-funci%C3%B3n-de-r"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Cada uno de los paquetes y funciones de R está acompañado por materiales de referencia que explican con detalle su uso, así como los diferentes argumentos en el caso de las funciones. Para solicitar ayuda en R puedes recurrir a la función <code>help()</code> e indicar como argumento el nombre de la función:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">tmap</span><span class="op">)</span></code></pre></div>
+<p>Alternativamente, para solicitar ayuda puedes escribir dos signos de interrogación y el nombre del paquete o función:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="op">?</span><span class="va">ggplot</span></code></pre></div>
+<p>También puedes buscar ayuda de una función específica, por ejemplo, de las funciones para crear una matriz (<code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code>)o para calcular una media (<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>):</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></code></pre></div>
+<p>En la cinta de menú, en la sección ayuda, <em>Help</em>, encontrarás una serie de materiales muy útiles para familiarizarse con los paquetes instalados. Estos materiales reciben el nombre de “hojas de trucos”, <em>Cheatsheet</em>. Se recomienda ampliamente revisar cada uno de ellos. Además, R es un programa con un sin número de entusiastas usuarios y con un amplio soporte técnico por lo que cuando te encuentres con una dificultad para usar algún paquete o función puedes remitite al sitio de <a href="https://www.r-project.org/help.html">Ayuda del R</a>, o bien, a alguno de los repositorios especializados para presentar y resolver dudas como <a href="https://es.stackoverflow.com/">Stackoverflow</a>. Para ilustrar esto, ingresa al sitio de Stackoverflow y coloca en la búsqueda “histograma en R”.</p>
+</div>
+</div>
+<div id="cargar-bases-de-datos" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Cargar bases de datos<a class="anchor" aria-label="anchor" href="#cargar-bases-de-datos"><i class="fas fa-link"></i></a>
+</h2>
+<div style="text-align: justify">
+<p>En R hay algunas bases de datos que acompañan los paquetes que han sido instalados y sirven para ilustrar su funcionamiento. Las bases precargadas se pueden observar con la siguiente función:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Verás una nueva pestaña en la sección de <em>Fuente</em> con el nombre de las bases y una breve descripción. Para cargar alguna de ellas basta introducir su nombre como argumento de la función <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>, por ejemplo:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">CO2</span><span class="op">)</span></code></pre></div>
+<div id="cargar-un-archivo-de-excel-xls-xslx" class="section level3" number="1.3.1">
+<h3>
+<span class="header-section-number">1.3.1</span> Cargar un archivo de Excel (xls, xslx)<a class="anchor" aria-label="anchor" href="#cargar-un-archivo-de-excel-xls-xslx"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+
+<p><code>tidyverse</code> es un conjunto de paquetes diseñados especialmente para la Ciencia de Datos. Algunos de los paquetes de la familia <code>tidyverse</code> que usaremos aquí y un poco más adelante son:<br>
+* <code>ggplot2</code>: es un sistema para crear gráficos basado en la llamada gramática de las gráficas.<br>
+* <code>dplyr</code>: proporciona una serie de funciones para manipulación de datos. * <code>readr</code>: permite leer datos rectangualres provenientes de múltiples formatos.</p>
+<p>Como más adelante usaremos otros de los paquetes de la familia <code>tidyverse</code> instalaremos todos en este momento:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
+<p>Si deseas aprender cómo usar con detalle los paquetes de la familia <code>tidyverse</code> y elementos básicos de Ciencia de Datos, el libro de Hadley Wickham y Garrett Grolemund, <a href="https://r4ds.had.co.nz/index.html">R for Data Science</a> es una magnífica opción.</p>
+<p>Utilizando el paquete <code>readxl</code> de la familia <code>tidyverse</code> es posible cargar una base de datos en el formato de la popular hoja de cálculo de Microsoft Office. A partir de aquí introduciremos una notación particular al usar una función en R, lo que te permitirá recordar a qué paquete pertenece dicha función. La notación es: “paquete :: función()”, es decir, primero se colocará el nombre del paquete y, separado por dos pares de dos puntos, en el nombre de la función que pertenece a dicho paquete (resulta claro que los paquetes están entonces integrados por múltiples funciones).</p>
+<p>Sigamos los siguientes pasos para cargar la base de datos <a href="https://bit.ly/covid_zmvm"><code>covid_zmvm.xlsx</code></a> que contiene información de los casos positivos y defunciones por COVID19 en los municipios de la Zona Metropolitana del Valle de México durante la primera ola de la pandemia, entre marzo a septiembre de 2020, así como múltiples variables sociodemográficas y económicas.</p>
+<p>Llamemos específicamente al paquete que nos interesa:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: package 'readxl' was built under R version 4.1.2</code></pre>
+<p>La función para cargar un libro de Excel es <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> y el argumento indispensable es la ruta o directorio donde está almacenado nuestro libro, el nombre y extensión del mismo, <code>path</code>. Creemos pues el objeto <code>covid_zmvm</code>:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>path<span class="op">=</span><span class="st">"base de datos\\covid_zmvm.xlsx"</span><span class="op">)</span></code></pre></div>
+<p>Para que puedas cargar satisfactoriamente la base, deberás sustituir la ruta por el directorio en el que está almacenado el archivo en tu equipo de cómputo. Una función útil para generar la cadena de texto de la ruta es <code><a href="https://rdrr.io/r/base/file.choose.html">file.choose()</a></code>, del paquete <code>base</code> de R. Lleva a la consola el código:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/file.choose.html">file.choose</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>y presiona <em>enter</em>, verás que aparece un cuadro de diálogo en el que deberás seleccionar el archivo deseado y luego pulsar “abrir”. El resultado aparecerá en tu consola como una cadena de texto entre comillas. Usa esa información para leer la base <code>covid_zmvm</code>.</p>
+<p>Revisa la ayuda de la función <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> para comprender todos los argumentos con los que puede operar la función y que te permitirán personalizar la carga de la base de datos en caso de que tengas múltiples hojas en el libro de Excel o desees rangos personalizados para importar.</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>¿Quién es el autor o autora del paquete <code>readxl</code>?</p></li>
+<li><p>Descarga la hoja de trucos del paquete desde el sitio de tidyverse y responde, ¿el paquete sirve sólo para cargar información o es posible escribir y almacenar bases de datos con él?</p></li>
+</ol>
+<hr>
+</div>
+<div id="cargar-archivos-separados-por-comas-csv" class="section level3" number="1.3.2">
+<h3>
+<span class="header-section-number">1.3.2</span> Cargar archivos separados por comas (csv)<a class="anchor" aria-label="anchor" href="#cargar-archivos-separados-por-comas-csv"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+
+<p>Alternativamente, es posible que la base que deseemos cargar se encuentre en un formato diferente, por ejemplo, una base de datos con valores separados por comas (<em>coma separate values</em>, CSV). Para cargar una base en dicho formato, usaremos el paquete <code>readr</code>, que forma parte del paquete <code>utils</code></p>
+<p>Llama el paquete a tu entorno de trabajo:</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: package 'readr' was built under R version 4.1.2</code></pre>
+<p>Con la función anterior, <code><a href="https://rdrr.io/r/base/file.choose.html">file.choose()</a></code> obtendremos la cadena de texto que indica la ruta del archivo a cargar:</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ruta</span> <span class="op">&lt;-</span> <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/file.choose.html">file.choose</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Y, finalmente, cargamos la información con la función <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code></p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">ruta</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="cargar-bases-con-la-funcionalidad-importar" class="section level3" number="1.3.3">
+<h3>
+<span class="header-section-number">1.3.3</span> Cargar bases con la funcionalidad importar<a class="anchor" aria-label="anchor" href="#cargar-bases-con-la-funcionalidad-importar"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+
+<p>Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono <em>Import Dataset</em>. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (<em>Update</em>) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (<em>Import</em>), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la figura 1.3:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="recursos%20intro/Figura_3-Importar.jpg" alt="Importar datos de excel" width="120%"><p class="caption">
+Figura 1.3: Importar datos de excel
+</p>
+</div>
+</div>
+</div>
+<div id="exploración-inicial-a-través-de-gráficos" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Exploración inicial a través de gráficos<a class="anchor" aria-label="anchor" href="#exploraci%C3%B3n-inicial-a-trav%C3%A9s-de-gr%C3%A1ficos"><i class="fas fa-link"></i></a>
+</h2>
+<div style="text-align: justify">
+
+<p>Ahora que has revisado algunas de las diversas maneras de cargar tu información al entorno de trabajo en R, es momento de comenzar a analizarla. Si importaste la base de datos a través de la función <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> notarás que el nuestra base <code>covid_zmvm</code> un objeto de tipo <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html"><code>tbl_df</code></a> que es un subtipo de <code>data.frame</code> o arreglo de datos Como el que se mencionó en antes.</p>
+<p>Las siguientes instrucciones nos ayudarán a conocer los nombres de las columnas, la estructura de los datos y la dimensión de la base:</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Nombres de las variables</span></code></pre></div>
+<pre><code>##  [1] "cvemun"     "cve_mun"    "nom_mun"    "cve_ent"    "nom_ent"   
+##  [6] "nom_abr"    "nom_zm"     "cvm"        "ext"        "pob20"     
+## [11] "pob20_h"    "pob20_m"    "positivos"  "defuncione" "pos_mil"   
+## [16] "pos_hab"    "def_hab"    "ss"         "ppob_sines" "ppob_basi" 
+## [21] "ppob_media" "ppob_sup"   "ocviv"      "occu"       "pintegra4_"
+## [26] "pintegra6_" "pintegra8_" "ppob_5_o_m" "ppob_3_o_m" "ppob_1"    
+## [31] "ppob_1dorm" "ppob_2dorm" "ppob_3dorm" "pviv_ocu5_" "pviv_ocu7_"
+## [36] "pviv_ocu9_" "analf"      "sbasc"      "vhac"       "po2sm"     
+## [41] "im"         "gm_2020"    "grad"       "grad_h"     "grad_m"    
+## [46] "poind"      "pocom"      "poss"       "tmind"      "tmcom"     
+## [51] "tmss"       "rmind"      "rmcom"      "rmss"       "den"</code></pre>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Estructura de la base de datos</span></code></pre></div>
+<pre><code>## tibble [76 x 55] (S3: tbl_df/tbl/data.frame)
+##  $ cvemun    : chr [1:76] "09010" "09012" "09015" "09017" ...
+##  $ cve_mun   : chr [1:76] "010" "012" "015" "017" ...
+##  $ nom_mun   : chr [1:76] "Álvaro Obregón" "Tlalpan" "Cuauhtémoc" "Venustiano Carranza" ...
+##  $ cve_ent   : chr [1:76] "09" "09" "09" "09" ...
+##  $ nom_ent   : chr [1:76] "Ciudad de México" "Ciudad de México" "Ciudad de México" "Ciudad de México" ...
+##  $ nom_abr   : chr [1:76] "CDMX" "CDMX" "CDMX" "CDMX" ...
+##  $ nom_zm    : chr [1:76] "Valle de México" "Valle de México" "Valle de México" "Valle de México" ...
+##  $ cvm       : num [1:76] 9.01 9.01 9.01 9.01 9.01 9.01 9.01 9.01 9.01 9.01 ...
+##  $ ext       : num [1:76] 96.2 310.4 32.5 33.9 85.8 ...
+##  $ pob20     : num [1:76] 759137 699928 545884 443704 392313 ...
+##  $ pob20_h   : num [1:76] 361007 334877 260951 210118 190190 ...
+##  $ pob20_m   : num [1:76] 398130 365051 284933 233586 202123 ...
+##  $ positivos : num [1:76] 10905 11887 7289 7172 6812 ...
+##  $ defuncione: num [1:76] 868 542 754 585 289 713 648 397 190 391 ...
+##  $ pos_mil   : num [1:76] 14.4 17 13.4 16.2 17.4 ...
+##  $ pos_hab   : num [1:76] 14.4 17 13.4 16.2 17.4 ...
+##  $ def_hab   : num [1:76] 1.143 0.774 1.381 1.318 0.737 ...
+##  $ ss        : num [1:76] 75 71.1 71.6 71.6 72.7 ...
+##  $ ppob_sines: num [1:76] 0.0204 0.0195 0.0119 0.0121 0.0193 ...
+##  $ ppob_basi : num [1:76] 0.41 0.391 0.307 0.379 0.469 ...
+##  $ ppob_media: num [1:76] 0.252 0.253 0.251 0.291 0.299 ...
+##  $ ppob_sup  : num [1:76] 0.314 0.335 0.427 0.316 0.211 ...
+##  $ ocviv     : num [1:76] 3.45 3.44 2.75 3.26 3.67 3.21 3.2 3.74 3.6 2.81 ...
+##  $ occu      : num [1:76] 0.81 0.81 0.72 0.82 0.93 0.77 0.7 0.91 0.81 0.66 ...
+##  $ pintegra4_: num [1:76] 0.648 0.644 0.48 0.609 0.699 ...
+##  $ pintegra6_: num [1:76] 0.252 0.226 0.142 0.219 0.262 ...
+##  $ pintegra8_: num [1:76] 0.1071 0.0864 0.0422 0.0798 0.0982 ...
+##  $ ppob_5_o_m: num [1:76] 0.726 0.73 0.888 0.821 0.792 ...
+##  $ ppob_3_o_m: num [1:76] 0.32 0.315 0.363 0.354 0.354 ...
+##  $ ppob_1    : num [1:76] 0.0369 0.0499 0.0249 0.0247 0.0513 ...
+##  $ ppob_1dorm: num [1:76] 0.211 0.212 0.199 0.202 0.209 ...
+##  $ ppob_2dorm: num [1:76] 0.566 0.547 0.8 0.696 0.614 ...
+##  $ ppob_3dorm: num [1:76] 0.832 0.848 0.947 0.89 0.864 ...
+##  $ pviv_ocu5_: num [1:76] 0.226 0.22 0.127 0.198 0.267 ...
+##  $ pviv_ocu7_: num [1:76] 0.0641 0.0568 0.026 0.0513 0.0701 ...
+##  $ pviv_ocu9_: num [1:76] 0.02334 0.01815 0.00645 0.01593 0.02167 ...
+##  $ analf     : num [1:76] 1.574 1.606 0.953 1.085 1.673 ...
+##  $ sbasc     : num [1:76] 19 18.2 13.5 16.9 20.3 ...
+##  $ vhac      : num [1:76] 15.25 15.19 9.42 14.43 18.3 ...
+##  $ po2sm     : num [1:76] 49.3 61.2 41.4 57.2 65.4 ...
+##  $ im        : num [1:76] 60.4 59.5 61.3 60.3 59.3 ...
+##  $ gm_2020   : chr [1:76] "Muy Bajo" "Muy Bajo" "Muy Bajo" "Muy Bajo" ...
+##  $ grad      : num [1:76] 11.3 11.5 12.4 11.5 10.5 ...
+##  $ grad_h    : num [1:76] 11.5 11.7 12.8 11.7 10.7 ...
+##  $ grad_m    : num [1:76] 11.1 11.4 12.1 11.3 10.4 ...
+##  $ poind     : num [1:76] 0.0912 0.0874 0.1334 0.0714 0.2442 ...
+##  $ pocom     : num [1:76] 0.16 0.185 0.166 0.289 0.394 ...
+##  $ poss      : num [1:76] 0.749 0.728 0.7 0.64 0.361 ...
+##  $ tmind     : num [1:76] 20.32 8.9 27.57 6.57 6.42 ...
+##  $ tmcom     : num [1:76] 5.95 3.48 4.36 2.66 2.12 ...
+##  $ tmss      : num [1:76] 27.69 13.91 24.87 9.94 2.59 ...
+##  $ rmind     : num [1:76] 68.2 116.7 55.9 64.9 78.3 ...
+##  $ rmcom     : num [1:76] 50.6 31.3 45.5 31.2 23.5 ...
+##  $ rmss      : num [1:76] 178.3 36.3 255.6 101.4 23.4 ...
+##  $ den       : num [1:76] 7895 2255 16786 13104 4575 ...</code></pre>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Dimensiones de la base</span></code></pre></div>
+<pre><code>## [1] 76 55</code></pre>
+<p>Recuerda la notación que mencionamos antes, “paquete::función”; además, si el paquete está cargado, no es necesario especificar su nombre al usar la función; al arrancar cada sesión de R, un conjunto de paquetes se cargan de forma automática, dichos paquetes aparecen marcados con una palomita, <span class="math inline">\(\checkmark\)</span>, en la pestaña <em>Packages</em> en la sección de archivo.</p>
+<p>Ahora bien, si deseas ver la base completa puedes llamarla a una nueva pestaña que se visualizará en la sección de fuente. Usa la siguiente instrucción:</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>
+<span class="co">#Que es equivalente a:</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></code></pre></div>
+<p>Alternativamente, puedes llamar la base para que aparezca en la consola, lo que no siempre es recomendable si la base es muy grande.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 55
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX    Valle ~  9.01  96.2 759137
+##  2 09012  012     Tlalpan    09      Ciudad ~ CDMX    Valle ~  9.01 310.  699928
+##  3 09015  015     Cuauhtémoc 09      Ciudad ~ CDMX    Valle ~  9.01  32.5 545884
+##  4 09017  017     Venustian~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.9 443704
+##  5 09011  011     Tláhuac    09      Ciudad ~ CDMX    Valle ~  9.01  85.8 392313
+##  6 09002  002     Azcapotza~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.5 432205
+##  7 09003  003     Coyoacán   09      Ciudad ~ CDMX    Valle ~  9.01  53.9 614447
+##  8 09013  013     Xochimilco 09      Ciudad ~ CDMX    Valle ~  9.01 118.  442178
+##  9 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX    Valle ~  9.01  71.2 217686
+## 10 09016  016     Miguel Hi~ 09      Ciudad ~ CDMX    Valle ~  9.01  46.4 414470
+## # ... with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<p>En su lugar, podrías preferir ver en la consola sólo los últimos y primeros casos:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para los primeros casos</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 55
+##   cvemun cve_mun nom_mun    cve_ent nom_ent   nom_abr nom_zm    cvm   ext  pob20
+##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 09010  010     Álvaro Ob~ 09      Ciudad d~ CDMX    Valle ~  9.01  96.2 759137
+## 2 09012  012     Tlalpan    09      Ciudad d~ CDMX    Valle ~  9.01 310.  699928
+## 3 09015  015     Cuauhtémoc 09      Ciudad d~ CDMX    Valle ~  9.01  32.5 545884
+## 4 09017  017     Venustian~ 09      Ciudad d~ CDMX    Valle ~  9.01  33.9 443704
+## 5 09011  011     Tláhuac    09      Ciudad d~ CDMX    Valle ~  9.01  85.8 392313
+## 6 09002  002     Azcapotza~ 09      Ciudad d~ CDMX    Valle ~  9.01  33.5 432205
+## # ... with 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
+## #   defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;, def_hab &lt;dbl&gt;, ss &lt;dbl&gt;,
+## #   ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;, ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;,
+## #   ocviv &lt;dbl&gt;, occu &lt;dbl&gt;, pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;,
+## #   pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;, ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;,
+## #   ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;, ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;,
+## #   pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, analf &lt;dbl&gt;, sbasc &lt;dbl&gt;, ...</code></pre>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para los últimos casos</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 55
+##   cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm    ext  pob20
+##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 15120  120     Zumpango   15      México   Mex.    Valle ~  9.01 224.   2.80e5
+## 2 15121  121     Cuautitlá~ 15      México   Mex.    Valle ~  9.01 110.   5.55e5
+## 3 15122  122     Valle de ~ 15      México   Mex.    Valle ~  9.01  46.6  3.92e5
+## 4 15125  125     Tonanitla  15      México   Mex.    Valle ~  9.01   9.04 1.49e4
+## 5 15058  058     Nezahualc~ 15      México   Mex.    Valle ~  9.01  63.3  1.08e6
+## 6 09005  005     Gustavo A~ 09      Ciudad ~ CDMX    Valle ~  9.01  87.9  1.17e6
+## # ... with 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
+## #   defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;, def_hab &lt;dbl&gt;, ss &lt;dbl&gt;,
+## #   ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;, ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;,
+## #   ocviv &lt;dbl&gt;, occu &lt;dbl&gt;, pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;,
+## #   pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;, ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;,
+## #   ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;, ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;,
+## #   pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, analf &lt;dbl&gt;, sbasc &lt;dbl&gt;, ...</code></pre>
+<p>¿Qué tan grande es la base de datos? Si bien ya la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> nos brindó información sobre la estructura de la base, puedes conocer el número de filas y columnas que componen tu arreglo de datos con las siguientes funciones:</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para conocer el número de columnas</span></code></pre></div>
+<pre><code>## [1] 55</code></pre>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para conocer el número de filas</span></code></pre></div>
+<pre><code>## [1] 76</code></pre>
+<p>Conviene que se revise el <a href="https://bit.ly/diccionario_covid_zmvm">archivo en formato txt</a> que acompaña nuestra base y que opera a modo de diccionario para que conocer el significado de cada una de las variables que componen nuestro archivo.</p>
+<p>Plantemos pues algunas preguntas y busquemos responderlas a través de un análisis gráfico:</p>
+<ul>
+<li>¿Habrá alguna relación entre el número de casos positivos por cada mil habitantes, <code>pos_hab</code>, o muertes por cada mil habitantes, <code>def_hab</code>, con el nivel de estudios promedio de la población por municipio?</li>
+<li>Si esta relación existe, ¿es más intensa entre las muertes o los casos positivos?</li>
+</ul>
+<p>Para responder a esta pregunta podemos recurrir a la construcción de diagramas de dispersión. La elaboración de gráficas dentro de <code>tidyverse</code> corre a cargo del paquete <code>ggplot2</code>, una potente librería para la representación visual de información. Este paquete se basa en lo que se denomina “gramática de gráficas” que no es otra cosa que un conjunto de reglas coherentes con base en las cuales se elaboran los gráficos (<span class="citation"><a href="references.html#ref-Wickham2016" role="doc-biblioref">Wickham y Grolemund</a> (<a href="references.html#ref-Wickham2016" role="doc-biblioref">2016</a>)</span>).</p>
+<p>La construcción de gráficas con <code>ggplot2</code> se hace a partir de una suerte de “capas” o “enunciados”. Cada enunciado constituye una parte de la gráfica. Según la hoja de trucos del paquete (que puedes consultar desde la barra de menú en la opción Help/CheatSheet):</p>
+<blockquote>
+<p>ggplot2 se basa en la gramática de los gráficos, la idea de que puedes construir cada gráfico a partir de los mismos componentes: un conjunto de datos, un sistema de coordenadas y “geoms”, es decir, marcas visuales que representan puntos de datos.</p>
+</blockquote>
+<p>Asi pues, se requieren tres elementos para la construcción de una gráfica con <code>ggplot2</code>: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base <code>covid_zmvm</code> pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
+<p>Tenemos pues dos enunciados o “capas”. La primera corresponde a la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, <code>geom_</code> cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en <code>ggplot2</code> aparecen en el cuadro 1.1:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>Cuadro 1.1</caption>
+<thead><tr class="header">
+<th>Gráfica</th>
+<th>Geometría en <code>ggplot2</code>
+</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Histograma</td>
+<td>geom_histogram()</td>
+</tr>
+<tr class="even">
+<td>Densidad</td>
+<td>geom_density()</td>
+</tr>
+<tr class="odd">
+<td>Caja</td>
+<td>geom_boxplot()</td>
+</tr>
+<tr class="even">
+<td>Barras</td>
+<td>geom_col() geom_bar()</td>
+</tr>
+<tr class="odd">
+<td>Dispersión</td>
+<td>geom_point()</td>
+</tr>
+<tr class="even">
+<td>Tendencia (lineal o suavizada)</td>
+<td>geom_smooth()</td>
+</tr>
+</tbody>
+</table></div>
+<p>Por favor, revisa la hoja de trucos del paquete para que te familiarices con las otras tantas geometrías y su uso, pues cada geometría requiere diferentes argumentos y admite varias posibles configuraciones. En general, dentro de la función de geometría, <code>geom_</code>, será necesario especificar los elementos estéticos, <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, entre los que se cuenta la o las variables a graficar y cómo serán representadas.</p>
+<p>Añadamos una “capa” adicional a nuestra gráfica, combinando otra geometría como una línea de ajuste (pongamos atención en el uso del signo de más):</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<p>Puedes ver cómo, al añadir una nueva geometría, fue necesario especificar los elementos estéticos del caso, pero los tres enunciados nos permiten tener una sola gráfica. Observa cómo R en tu consola R indica que estás usando determinado método de suavizamiento, el llamado “loess” que significa <em>locally estimated scatterplot smoothing</em>, por tanto, es fácil deducir que debe haber otros métodos de suavizamiento. Observa las siguientes líneas de código:</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<p>Aquí, hemos añadido un argumento adicional, <code>method=</code>, para indicar un suavizamiento dado por un modelo lineal, <code>lm</code>, de <em>linear model</em>. Tenemos pues que entre el número de casos positivos y el número promedio de grados cursados hay una aparente relación positiva. ¿Qué hay para el caso de las defunciones:</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
+<p>Si bien hay un poco más de dispersión, la aparente relación positiva se mantiene. ¿Qué crees que explique esta asociación? ¿Las personas con más años estudiados son susceptibles de contagiarse más fácil de COVID19? ¿O quizá se relacionará más con las diferencias que a nivel territorial se dan entre los niveles de estudio de la población en el Valle de México?</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Elabora algunas gráficas de dispersión para responder a las siguientes preguntas:<br></p>
+<ol style="list-style-type: lower-roman">
+<li><p>¿Qué tipo de asociación lineal hay entre los casos positivos y defunciones por COVID19 con las características de la población según el número de dormitorios de las casas, el número de personas que habitan en cada casa y la densidad de población?</p></li>
+<li><p>¿Encuentras algún tipo de asociación entre las variables COVID19 y las características económicas de los municipios de la Zona Metropolitana del Valle de México?</p></li>
+</ol>
+<hr>
+<p>Quizá lo que te interese no sólo sea la asociación entre pares de variables, sino el comportamiento individual de cada variable para conocer la forma de su distribución e identificar algunos valores extremos o atípicos (los llamados <em>ourliers</em>). Para ello, convendrá un tipo de gráfica que permita representar sólo una variable continúa (casos positivos o defunciones por COVID19), tal como un histograma, una gráfica de densidad o de caja.</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Histograma para los casos positivos por cada mil habitantes</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672"></div>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Gráfico de densidad para los casos positivos por cada mil habitantes</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-2.png" width="672"></div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Gráfico de caja para los casos positivos por cada mil habitantes</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-3.png" width="672"></div>
+<p>Los tres gráficos dan cuenta que la forma de la distribución muestra un marcado sesgo positivo (a la derecha), lo que significa que hay algunos municipios o alcaldías con valores muy altos para esta variable, además de algunos valores extremadamente altos según el diagrama de caja, ¿cuáles podrán ser y qué explicaría este comportamiento atípicamente alto?</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Consulta la ayuda de cada una de las funciones de geometría e intenta:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Elaborar un histograma con diferentes categorías (<code>bins</code>). ¿Cambia esto la forma de la distribución?</p></li>
+<li><p>Señalar de un color diferente las observaciones atípicas en el diagrama de caja ¿Hay manera de identificar a qué alcaldías o municipios pertenecen dichos valores atípicos?</p></li>
+</ol>
+<hr>
+<p>Además, también es posible modificar las etiquetas de los ejes:</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Casos positivos por cada mil habitantes"</span>, y<span class="op">=</span><span class="st">"Frecuencia"</span><span class="op">)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<p>Nuestra base de datos contiene una variable de tipo categórico, grado de marginación (<code>gm_2020</code>), asociada al índice de marginación (<code>im</code>). Para este tipo de variable puede ser conveniente construir un gráfico de barras especialmente diseñado para variables categóricas echando mano de la geometría <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>:</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+ <span class="fu">ggplot2</span><span class="fu">::</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">gm_2020</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Grado de marginación 2020"</span>, y<span class="op">=</span><span class="st">"Frecuencia"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Si tienes la librería ggplot2 cargada en el enorno de trabajo, alternativamente, puedes escribir:</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+ <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">gm_2020</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Grado de marginación 2020"</span>, y<span class="op">=</span><span class="st">"Frecuencia"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-2.png" width="672"></div>
+<p>Este gráfico revela que, de acuerdo con la clasificación del Consejo Nacional de Población y Vivienda (CONAPO), la gran mayoría de los municipios y alcaldías que componen el Valle de México están catalogados como de muy bajo grado de marginación.</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<ol style="list-style-type: lower-roman">
+<li>Obtén una gráfica de barras donde se muestre el número de unidades administrativas (municipios o alcaldías) por de cada una de las entidades que integran la Zona Metropolitana del Valle de México.</li>
+</ol>
+<hr>
+<p>Ahora bien, ¿será posible incorporar en un plano bidimensional una tercera variable? ¿Cómo añadirías a un diagrama de dispersión, que relaciona dos variables, una tercera? Este instrumento es a veces denominado gráfico de burbujas y si lo piensas con cuidado es una solución muy ingeniosa para añadir información extra sin renunciar a la simpleza. Para hacerlo, basta con añadir el argumento <code>size=</code> dentro de los elementos estéticos de la función <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>:</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Tamaño del circulo dado por los años estudiados</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span>,size<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Transparencia del círculo dado por los años estudiados</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span>,alpha<span class="op">=</span><span class="va">def_hab</span>, size<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"navyblue"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-2.png" width="672"></div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Transparencia del círculo dado por los años estudiados</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span>,color<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-3.png" width="672"></div>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Responde lo siguiente:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Prueba cambiar la variable que define el tamaño del círculo por nuestra variable categórica grado de marginación, ¿es recomendable usar una variable de este tipo en esta representación?</p></li>
+<li><p>¿Qué papel juega el argumento <code>alpha=</code> en la segunda gráfica?</p></li>
+<li><p>¿Cuál es la diferencia en colocar el argumento <code>color</code> dentro o fuera del grupo de elementos estéticos (<code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>)? ¿Notaste la diferencia en el par de gráficas anteriores? Prueba cambiar el argumento color dentro de <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> por otra variable y el color de los círculos.</p></li>
+</ol>
+<hr>
+<p>Finalmente, elaboremos una gráfica que nos ayude a sintetizar pares de asociaciones entre variables (diagramas de dispersión) y formas de distribución a través de un gráfico muy elegante construido con una extensión del paquete <code>ggplot2</code>: <code>GGally</code>. Para instalarlo, como es usual:</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"GGally"</span><span class="op">)</span></code></pre></div>
+<p>Luego, para poder usarlo, lo llamamos al entorno de trabajo:</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span></code></pre></div>
+<p>La gráfica que buscamos es una matriz de diagramas de dispersión y la construiremos con la función <code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs()</a></code> y sólo dos argumentos: la fuente de datos y las variables que deseamos incluir. Veamos:</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Definiendo los nombres de las variables</span>
+<span class="fu">GGally</span><span class="fu">::</span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pos_hab"</span>,<span class="st">"def_hab"</span>,<span class="st">"im"</span>,<span class="st">"grad"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Indicando el número de columna según el lugar que ocupa en la base</span>
+<span class="fu">GGally</span><span class="fu">::</span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">41</span>,<span class="fl">43</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-2.png" width="672"></div>
+<p>La matriz de diagramas de dispersión construida con <code>ggpairs</code> es, desde mi personal punto de vista, no sólo muy elegante, sino que ofrece elementos informativos en el gráfico que antes no teníamos, tales como el coeficiente de correlación lineal y su nivel de significancia.</p>
+<p>Antes de pasar a tratar otro elemento, hay que decir que RStudio permite exportar las gráficas hechas, tanto en diversos formatos de imagen (jpg, png, tiff) como en PDF.</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<ol style="list-style-type: lower-roman">
+<li>Elabora tu propia matriz de diagramas de dispersión con las variables que, a tu juicio, resulten más relevantes para explicar la dinámica tanto de las muertes como de los casos positivos de COVID19.</li>
+</ol>
+<hr>
+</div>
+<div id="manipulación-de-la-información" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Manipulación de la información<a class="anchor" aria-label="anchor" href="#manipulaci%C3%B3n-de-la-informaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h2>
+<div id="seleccionar-variables" class="section level3" number="1.5.1">
+<h3>
+<span class="header-section-number">1.5.1</span> Seleccionar variables<a class="anchor" aria-label="anchor" href="#seleccionar-variables"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Tareas relacionadas con la preparación y manipulación de datos, que en una hoja de cálculo como Excel de Office o Calc de LibreOffice, son rutinarias y muy sencillas, a veces en R pueden significar un dolor de cabeza. No obstante, dentro de los paquetes de la familia <code>tidyverse</code> encontramos <code>dplyr</code>. Este paquete brinda herramientas de manipulación de datos basadas en “gramática”, que no es otra cosa que funciones (“verbos”) que permiten seleccionar o filtrar elementos en una base de datos, o bien, agrupar y crear nuevas variables.</p>
+<p>Si deseas profundizar en el conocimiento de este potente paquete consulta la <a href="https://dplyr.tidyverse.org/">Introducción al paquete <code>dplyr</code></a>, o bien, su <a href="http://127.0.0.1:28602/library/dplyr/doc/dplyr.html">Viñeta de ayuda</a>.</p>
+<p>La base de datos que cargamos contiene 55 columnas, es decir, 55 variables. Quizá para su análisis no te sean de interés todas, por lo que querrías generar una base de datos más compacta mediante la <strong>selección</strong> de algunas que son de utilidad. Para llevar a cabo dicha tarea echaremos mano de la función <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, pero antes de hacerlo, es necesario introducir el operador “tubería”, <em>pipe</em> (<code>%&gt;%</code>).</p>
+<p>Este operador sirve para indicar cada fase del proceso por el que un objeto es tratado a través de la aplicación de diferentes funciones u operaciones. Por ejemplo, queremos que la base <code>covid_zmvm</code> “pase” por un proceso que consiste en la selección de sólo algunas variables. Comencemos usando el “verbo” seleccionar, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, para una sola variable, por ejemplo <code>pos_hab</code>:</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pos_hab</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 1
+##    pos_hab
+##      &lt;dbl&gt;
+##  1    14.4
+##  2    17.0
+##  3    13.4
+##  4    16.2
+##  5    17.4
+##  6    17.3
+##  7    14.9
+##  8    17.4
+##  9    18.7
+## 10    13.7
+## # ... with 66 more rows</code></pre>
+<p>La instrucción anterior es equivalente a escribir lo siguiente:</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">covid_zmvm</span>,<span class="va">pos_hab</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 1
+##    pos_hab
+##      &lt;dbl&gt;
+##  1    14.4
+##  2    17.0
+##  3    13.4
+##  4    16.2
+##  5    17.4
+##  6    17.3
+##  7    14.9
+##  8    17.4
+##  9    18.7
+## 10    13.7
+## # ... with 66 more rows</code></pre>
+<p>Así, usar el operador tubería permite no sólo ahorrar la escritura de algunos argumentos, sino simplificar la forma en que las instrucciones dadas a R son leídas por un ser humano. Veamos cómo seleccionar ahora, por ejemplo, tres variables: la clave de municipio (<code>cvemun</code>), los casos positivos (<code>pos_hab</code>) y el grado de marginación (<code>gm_2020</code>):</p>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">pos_hab</span>,<span class="va">gm_2020</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 3
+##    cvemun pos_hab gm_2020 
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   
+##  1 09010     14.4 Muy Bajo
+##  2 09012     17.0 Muy Bajo
+##  3 09015     13.4 Muy Bajo
+##  4 09017     16.2 Muy Bajo
+##  5 09011     17.4 Muy Bajo
+##  6 09002     17.3 Muy Bajo
+##  7 09003     14.9 Muy Bajo
+##  8 09013     17.4 Muy Bajo
+##  9 09004     18.7 Muy Bajo
+## 10 09016     13.7 Muy Bajo
+## # ... with 66 more rows</code></pre>
+<p>Ahora, imagina que queremos todas las variables excepto el nombre de la Zona Metropolitana, <code>nom_zm</code>. Sería ocioso colocar todos los nombres de las variables menos el citado. Para hacer esto más eficiente es necesario introducir solamente un signo de menos (<code>-</code>) antes del nombre de la variable, para de esta sencilla forma seleccionar todas las variables menos <code>nom_zm</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">nom_zm</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 54
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr   cvm   ext  pob20 pob20_h
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX     9.01  96.2 759137  361007
+##  2 09012  012     Tlalpan    09      Ciudad ~ CDMX     9.01 310.  699928  334877
+##  3 09015  015     Cuauhtémoc 09      Ciudad ~ CDMX     9.01  32.5 545884  260951
+##  4 09017  017     Venustian~ 09      Ciudad ~ CDMX     9.01  33.9 443704  210118
+##  5 09011  011     Tláhuac    09      Ciudad ~ CDMX     9.01  85.8 392313  190190
+##  6 09002  002     Azcapotza~ 09      Ciudad ~ CDMX     9.01  33.5 432205  204950
+##  7 09003  003     Coyoacán   09      Ciudad ~ CDMX     9.01  53.9 614447  289110
+##  8 09013  013     Xochimilco 09      Ciudad ~ CDMX     9.01 118.  442178  215452
+##  9 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX     9.01  71.2 217686  104149
+## 10 09016  016     Miguel Hi~ 09      Ciudad ~ CDMX     9.01  46.4 414470  195467
+## # ... with 66 more rows, and 44 more variables: pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
+## #   defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;, def_hab &lt;dbl&gt;, ss &lt;dbl&gt;,
+## #   ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;, ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;,
+## #   ocviv &lt;dbl&gt;, occu &lt;dbl&gt;, pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;,
+## #   pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;, ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;,
+## #   ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;, ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;,
+## #   pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, analf &lt;dbl&gt;, sbasc &lt;dbl&gt;, ...</code></pre>
+<p>En lugar de usar los nombres de las variables, puedes recurrir al número de columna en la que se hallan, contando a partir del 1. Por ejemplo, <code>nom_mun</code> es la columna 3 y <code>pos_hab</code> es la columna 16, entonces podríamos escribir:</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 2
+##    nom_mun               pos_hab
+##    &lt;chr&gt;                   &lt;dbl&gt;
+##  1 Álvaro Obregón           14.4
+##  2 Tlalpan                  17.0
+##  3 Cuauhtémoc               13.4
+##  4 Venustiano Carranza      16.2
+##  5 Tláhuac                  17.4
+##  6 Azcapotzalco             17.3
+##  7 Coyoacán                 14.9
+##  8 Xochimilco               17.4
+##  9 Cuajimalpa de Morelos    18.7
+## 10 Miguel Hidalgo           13.7
+## # ... with 66 more rows</code></pre>
+<p>Y si es de nuestro interés seleccionar un número consecutivo de columnas, podemos servirnos de:</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 10
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX    Valle ~  9.01  96.2 759137
+##  2 09012  012     Tlalpan    09      Ciudad ~ CDMX    Valle ~  9.01 310.  699928
+##  3 09015  015     Cuauhtémoc 09      Ciudad ~ CDMX    Valle ~  9.01  32.5 545884
+##  4 09017  017     Venustian~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.9 443704
+##  5 09011  011     Tláhuac    09      Ciudad ~ CDMX    Valle ~  9.01  85.8 392313
+##  6 09002  002     Azcapotza~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.5 432205
+##  7 09003  003     Coyoacán   09      Ciudad ~ CDMX    Valle ~  9.01  53.9 614447
+##  8 09013  013     Xochimilco 09      Ciudad ~ CDMX    Valle ~  9.01 118.  442178
+##  9 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX    Valle ~  9.01  71.2 217686
+## 10 09016  016     Miguel Hi~ 09      Ciudad ~ CDMX    Valle ~  9.01  46.4 414470
+## # ... with 66 more rows</code></pre>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Para finalizar lo relacionado con la selección, genera una nueva base de datos llamada <code>covid</code> que contenga las siguientes variables: <code>cvemun</code>, <code>nom_mun</code>, <code>cve_ent</code>, <code>nom_ent</code>, <code>ext</code>, <code>pos_hab</code>, <code>def_hab</code>, <code>ocviv</code>, <code>occu</code>, <code>ppob_1</code>, <code>ppob_1dorm</code>, <code>im</code>, <code>gm_2020</code>, <code>grad</code>, <code>poind</code>, <code>pocom</code>, <code>poss</code>, <code>tmind</code>, <code>tmcom</code>, <code>tmss</code>, <code>rmind</code>, <code>rmcom</code>, <code>rmss</code>, <code>den</code>, <code>pob20</code>.</p>
+<hr>
+</div>
+<div id="filtrar-seleccionar-casos" class="section level3" number="1.5.2">
+<h3>
+<span class="header-section-number">1.5.2</span> Filtrar (seleccionar casos)<a class="anchor" aria-label="anchor" href="#filtrar-seleccionar-casos"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro “verbo”, es decir, de la función filtrar, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor “México” en la variable <code>nom_ent</code> (nombre de entidad), o bien, tener el valor “15” en el de <code>cve_ent</code> (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.2:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>Cuadro 1.2</caption>
+<thead><tr class="header">
+<th>Operadores</th>
+<th>Definiciones</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>==</td>
+<td>igual que</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>diferente de</td>
+</tr>
+<tr class="odd">
+<td>&lt;=</td>
+<td>menor o igual que</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>mayor o igual que</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>mayor que</td>
+</tr>
+<tr class="even">
+<td>&gt;</td>
+<td>menor que</td>
+</tr>
+<tr class="odd">
+<td>&amp;</td>
+<td>y</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Entonces, para usar la función <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> y tomando como base la información previa:</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">==</span><span class="st">"15"</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 59 x 55
+##    cvemun cve_mun nom_mun     cve_ent nom_ent nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 15002  002     Acolman     15      México  Mex.    Valle ~  9.01  83.9 171507
+##  2 15009  009     Amecameca   15      México  Mex.    Valle ~  9.01 189.   53441
+##  3 15010  010     Apaxco      15      México  Mex.    Valle ~  9.01  75.7  31898
+##  4 15011  011     Atenco      15      México  Mex.    Valle ~  9.01  84.6  75489
+##  5 15013  013     Atizapán d~ 15      México  Mex.    Valle ~  9.01  91.1 523674
+##  6 15015  015     Atlautla    15      México  Mex.    Valle ~  9.01 162.   31900
+##  7 15016  016     Axapusco    15      México  Mex.    Valle ~  9.01 231.   29128
+##  8 15017  017     Ayapango    15      México  Mex.    Valle ~  9.01  36.4  10053
+##  9 15020  020     Coacalco d~ 15      México  Mex.    Valle ~  9.01  35.1 293444
+## 10 15022  022     Cocotitlán  15      México  Mex.    Valle ~  9.01  15.0  15107
+## # ... with 49 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#O bien</span>
+<span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_ent</span><span class="op">==</span><span class="st">"México"</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 59 x 55
+##    cvemun cve_mun nom_mun     cve_ent nom_ent nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 15002  002     Acolman     15      México  Mex.    Valle ~  9.01  83.9 171507
+##  2 15009  009     Amecameca   15      México  Mex.    Valle ~  9.01 189.   53441
+##  3 15010  010     Apaxco      15      México  Mex.    Valle ~  9.01  75.7  31898
+##  4 15011  011     Atenco      15      México  Mex.    Valle ~  9.01  84.6  75489
+##  5 15013  013     Atizapán d~ 15      México  Mex.    Valle ~  9.01  91.1 523674
+##  6 15015  015     Atlautla    15      México  Mex.    Valle ~  9.01 162.   31900
+##  7 15016  016     Axapusco    15      México  Mex.    Valle ~  9.01 231.   29128
+##  8 15017  017     Ayapango    15      México  Mex.    Valle ~  9.01  36.4  10053
+##  9 15020  020     Coacalco d~ 15      México  Mex.    Valle ~  9.01  35.1 293444
+## 10 15022  022     Cocotitlán  15      México  Mex.    Valle ~  9.01  15.0  15107
+## # ... with 49 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<p>Para hacer una selección de dos entidades, incluiremos dos expresiones en una misma consulta echando mano del operador lógico “o”, identificado con el signo <code>|</code>:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">==</span><span class="st">"09"</span><span class="op">|</span><span class="va">cve_ent</span><span class="op">==</span><span class="st">"15"</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 75 x 55
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX    Valle ~  9.01  96.2 759137
+##  2 09012  012     Tlalpan    09      Ciudad ~ CDMX    Valle ~  9.01 310.  699928
+##  3 09015  015     Cuauhtémoc 09      Ciudad ~ CDMX    Valle ~  9.01  32.5 545884
+##  4 09017  017     Venustian~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.9 443704
+##  5 09011  011     Tláhuac    09      Ciudad ~ CDMX    Valle ~  9.01  85.8 392313
+##  6 09002  002     Azcapotza~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.5 432205
+##  7 09003  003     Coyoacán   09      Ciudad ~ CDMX    Valle ~  9.01  53.9 614447
+##  8 09013  013     Xochimilco 09      Ciudad ~ CDMX    Valle ~  9.01 118.  442178
+##  9 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX    Valle ~  9.01  71.2 217686
+## 10 09016  016     Miguel Hi~ 09      Ciudad ~ CDMX    Valle ~  9.01  46.4 414470
+## # ... with 65 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<ol style="list-style-type: lower-roman">
+<li><p>Selecciona los municipios con una extensión territorial mayor a 84 <span class="math inline">\(km^2\)</span>.<br></p></li>
+<li><p>Selecciona los municipios con entre 10 y 20 casos positivos por cada mil habitantes.<br></p></li>
+<li><p>Selecciona los municipios del Estado de México que tengan más de 10 años promedio de estudio y menos de 10 casos positivos por cada mil habitantes.</p></li>
+</ol>
+<p>¿Qué otros filtros relevantes podrías pensar y elaborar?</p>
+<hr>
+</div>
+<div id="ordenar" class="section level3" number="1.5.3">
+<h3>
+<span class="header-section-number">1.5.3</span> Ordenar<a class="anchor" aria-label="anchor" href="#ordenar"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Una operación útil, cuando se analiza información, tiene que ver con ordenar la base de datos con arreglo al valor de una variable. En R con <code>dplyr</code> de <code>tidyverse</code> esto se hace con la función <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, por ejemplo:</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cvemun</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 55
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 09002  002     Azcapotza~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.5 4.32e5
+##  2 09003  003     Coyoacán   09      Ciudad ~ CDMX    Valle ~  9.01  53.9 6.14e5
+##  3 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX    Valle ~  9.01  71.2 2.18e5
+##  4 09005  005     Gustavo A~ 09      Ciudad ~ CDMX    Valle ~  9.01  87.9 1.17e6
+##  5 09006  006     Iztacalco  09      Ciudad ~ CDMX    Valle ~  9.01  23.1 4.05e5
+##  6 09007  007     Iztapalapa 09      Ciudad ~ CDMX    Valle ~  9.01 113.  1.84e6
+##  7 09008  008     La Magdal~ 09      Ciudad ~ CDMX    Valle ~  9.01  63.4 2.48e5
+##  8 09009  009     Milpa Alta 09      Ciudad ~ CDMX    Valle ~  9.01 298.  1.53e5
+##  9 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX    Valle ~  9.01  96.2 7.59e5
+## 10 09011  011     Tláhuac    09      Ciudad ~ CDMX    Valle ~  9.01  85.8 3.92e5
+## # ... with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<p>El resultado de la función anterior ordena nuestra base de menor a mayor, con base en la clave municipal. Además, es posible incluir varios criterios de ordenación, por ejemplo, si tuvieras los campos año, mes y día podría ordenarse conforme al calendario. En el caso del ejemplo siguiente, primero se ordena con arreglo a la clave de entidad y luego con respecto a la clave municipal y luego por la extensión territorial por cada mil habitantes:</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">ext</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 55
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 09002  002     Azcapotza~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.5 4.32e5
+##  2 09003  003     Coyoacán   09      Ciudad ~ CDMX    Valle ~  9.01  53.9 6.14e5
+##  3 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX    Valle ~  9.01  71.2 2.18e5
+##  4 09005  005     Gustavo A~ 09      Ciudad ~ CDMX    Valle ~  9.01  87.9 1.17e6
+##  5 09006  006     Iztacalco  09      Ciudad ~ CDMX    Valle ~  9.01  23.1 4.05e5
+##  6 09007  007     Iztapalapa 09      Ciudad ~ CDMX    Valle ~  9.01 113.  1.84e6
+##  7 09008  008     La Magdal~ 09      Ciudad ~ CDMX    Valle ~  9.01  63.4 2.48e5
+##  8 09009  009     Milpa Alta 09      Ciudad ~ CDMX    Valle ~  9.01 298.  1.53e5
+##  9 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX    Valle ~  9.01  96.2 7.59e5
+## 10 09011  011     Tláhuac    09      Ciudad ~ CDMX    Valle ~  9.01  85.8 3.92e5
+## # ... with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<p>Si deseas ordenar de forma descendente, es decir, de mayor a menor hay que introducir una función adicional, <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code>, por ejemplo:</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">ext</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 55
+##    cvemun cve_mun nom_mun    cve_ent nom_ent  nom_abr nom_zm    cvm   ext  pob20
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 09002  002     Azcapotza~ 09      Ciudad ~ CDMX    Valle ~  9.01  33.5 4.32e5
+##  2 09003  003     Coyoacán   09      Ciudad ~ CDMX    Valle ~  9.01  53.9 6.14e5
+##  3 09004  004     Cuajimalp~ 09      Ciudad ~ CDMX    Valle ~  9.01  71.2 2.18e5
+##  4 09005  005     Gustavo A~ 09      Ciudad ~ CDMX    Valle ~  9.01  87.9 1.17e6
+##  5 09006  006     Iztacalco  09      Ciudad ~ CDMX    Valle ~  9.01  23.1 4.05e5
+##  6 09007  007     Iztapalapa 09      Ciudad ~ CDMX    Valle ~  9.01 113.  1.84e6
+##  7 09008  008     La Magdal~ 09      Ciudad ~ CDMX    Valle ~  9.01  63.4 2.48e5
+##  8 09009  009     Milpa Alta 09      Ciudad ~ CDMX    Valle ~  9.01 298.  1.53e5
+##  9 09010  010     Álvaro Ob~ 09      Ciudad ~ CDMX    Valle ~  9.01  96.2 7.59e5
+## 10 09011  011     Tláhuac    09      Ciudad ~ CDMX    Valle ~  9.01  85.8 3.92e5
+## # ... with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
+## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
+## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
+## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
+## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
+## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, ...</code></pre>
+<p>La función anterior primero ordena los municipios con base en la clave de municipio de forma ascendente (de menor a mayor) y simultáneamente coloca de mayor a menor los municipios de acuerdo con su extensión territorial.</p>
+<hr>
+<p><strong>Ejercicios</strong></p>
+<ol style="list-style-type: lower-roman">
+<li><p>Genera una nueva base de datos (un nuevo objeto) que contenga sólo las alcaldías de la Ciudad de México y las variables casos por cada mil habitantes, luego ordena esa base de datos con arreglo al número de casos positivos de forma ascendente.</p></li>
+<li><p>Has lo mismo que en el inciso anterior, pero para los municipios del Estado de México y las defunciones.</p></li>
+</ol>
+<hr>
+</div>
+<div id="crear-nuevas-variables" class="section level3" number="1.5.4">
+<h3>
+<span class="header-section-number">1.5.4</span> Crear nuevas variables<a class="anchor" aria-label="anchor" href="#crear-nuevas-variables"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Para añadir una nueva variable a partir de las existentes recurrimos a la función <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Por ejemplo, calculemos la variable densidad de casos positivos, es decir, número de casos positivos dividido entre la extensión territorial, a dicha variable la llamaremos <code>pos_den</code>. Pero antes, generemos una nueva base de datos que sólo contenga algunas de las variables de la base original:</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">nom_mun</span>,<span class="va">positivos</span>,<span class="va">pos_hab</span>,<span class="va">ext</span><span class="op">)</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pos_den<span class="op">=</span><span class="va">positivos</span><span class="op">/</span><span class="va">ext</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 6
+##    cvemun nom_mun               positivos pos_hab   ext pos_den
+##    &lt;chr&gt;  &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 09010  Álvaro Obregón            10905    14.4  96.2   113. 
+##  2 09012  Tlalpan                   11887    17.0 310.     38.3
+##  3 09015  Cuauhtémoc                 7289    13.4  32.5   224. 
+##  4 09017  Venustiano Carranza        7172    16.2  33.9   212. 
+##  5 09011  Tláhuac                    6812    17.4  85.8    79.4
+##  6 09002  Azcapotzalco               7483    17.3  33.5   223. 
+##  7 09003  Coyoacán                   9182    14.9  53.9   170. 
+##  8 09013  Xochimilco                 7696    17.4 118.     65.1
+##  9 09004  Cuajimalpa de Morelos      4071    18.7  71.2    57.2
+## 10 09016  Miguel Hidalgo             5669    13.7  46.4   122. 
+## # ... with 66 more rows</code></pre>
+<p>Notarás como la nueva variable aparece al final de la base. Vamos a intentar unir varios de los elementos que hemos aprendido hasta este punto para que veas el potencial de uso de la tubería. Vamos a crear una nueva variable, la misma que hace un momento, luego, tomaremos la base que contiene la nueva variable y construiremos con ella un diagrama de dispersión con la nueva variable y el número de defunciones por cada mil habitantes:</p>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pos_den<span class="op">=</span><span class="va">positivos</span><span class="op">/</span><span class="va">ext</span><span class="op">)</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_den</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_den</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Densidad de casos positivos"</span>,y<span class="op">=</span><span class="st">"Defunciones por cada mil habitantes"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672"></div>
+<p>¿Cómo explicarías la relación entre la variable creada, densidad de casos positivos, y las defunciones por cada mil habitables?</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<ol style="list-style-type: lower-roman">
+<li><p>¿Cómo añadirías más de una nueva variable a tu base original?</p></li>
+<li><p>Construye la variable “densidad de defunciones” y grafícala en un diagrama de dispersión con la densidad de población? Usa las cañerías.</p></li>
+</ol>
+<hr>
+<p>Quizá lo que te interese sea sólo quedarte con algunas de las variables originales y las nuevas variables creadas a partir de la información de la variable original. Para ello es útil la función <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute()</a></code>:</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">nom_mun</span>,<span class="va">pos_hab</span>,<span class="va">def_hab</span>,pos_den<span class="op">=</span><span class="va">positivos</span><span class="op">/</span><span class="va">ext</span>,def_den<span class="op">=</span><span class="va">defuncione</span><span class="op">/</span><span class="va">ext</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 76 x 6
+##    cvemun nom_mun               pos_hab def_hab pos_den def_den
+##    &lt;chr&gt;  &lt;chr&gt;                   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 09010  Álvaro Obregón           14.4   1.14    113.     9.03
+##  2 09012  Tlalpan                  17.0   0.774    38.3    1.75
+##  3 09015  Cuauhtémoc               13.4   1.38    224.    23.2 
+##  4 09017  Venustiano Carranza      16.2   1.32    212.    17.3 
+##  5 09011  Tláhuac                  17.4   0.737    79.4    3.37
+##  6 09002  Azcapotzalco             17.3   1.65    223.    21.3 
+##  7 09003  Coyoacán                 14.9   1.05    170.    12.0 
+##  8 09013  Xochimilco               17.4   0.898    65.1    3.36
+##  9 09004  Cuajimalpa de Morelos    18.7   0.873    57.2    2.67
+## 10 09016  Miguel Hidalgo           13.7   0.943   122.     8.43
+## # ... with 66 more rows</code></pre>
+<p>El segmento de código anterior genera una nueva base en la que sólo conservamos algunas de las variables originales y añadimos dos nuevas a partir de la información original.</p>
+</div>
+<div id="resúmenes-de-información-y-grupos" class="section level3" number="1.5.5">
+<h3>
+<span class="header-section-number">1.5.5</span> Resúmenes de información y grupos<a class="anchor" aria-label="anchor" href="#res%C3%BAmenes-de-informaci%C3%B3n-y-grupos"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>Quizá una de las funciones más potentes y sencillas que tiene <code>dplyr</code> es la función de resumen (<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>). Veamos cómo opera. Imagina que deseas un promedio del número de casos que terminaron en muerte:</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>promedio_def<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">def_hab</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   promedio_def
+##          &lt;dbl&gt;
+## 1        0.683</code></pre>
+<p>Esto no es particularmente útil si se le compara con la función del paquete base de R, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, pero si la combinamos con la función de agrupamiento, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> la situación cambia. Imagina que queremos el promedio de casos positivos por cada mil habitantes para cada conjunto de municipios de las tres entidades que componen el Valle de México:</p>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">)</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>promedio_def<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">def_hab</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, promedio_pos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   cve_ent promedio_def promedio_pos
+##   &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;
+## 1 09             1.08         15.8 
+## 2 13             0.790         5.88
+## 3 15             0.572         4.57</code></pre>
+<p>El en segmento de código anterior primero se agrupa la información con arreglo al criterio de clave de entidad, <code>cve_ent</code>, y luego, para cada grupo, calcula el resultado especificado: un promedio. Dentro de la función de resumen, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, se puede llevar a cabo no sólo múltiples operaciones sino que estas pueden ser de diferente naturaleza, incluso por ejemplo una suma o una cuenta:</p>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">)</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>pob_tot<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pob20</span><span class="op">)</span>,im_medio<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">im</span><span class="op">)</span>,tot_mun<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   cve_ent  pob_tot im_medio tot_mun
+##   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;   &lt;int&gt;
+## 1 09       9209944     60.1      16
+## 2 13        168302     59.4       1
+## 3 15      12426269     58.0      59</code></pre>
+<p>En el segmento de código anterior creamos tres variables de resumen: la población total, <code>pob_tot</code>, que es la suma de la población para cada entidad, el promedio del índice de marginación, <code>im_medio</code> y el número de municipios de cada entidad a través de una cuenta con la función <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>.</p>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<ol style="list-style-type: lower-roman">
+<li><p>Construye una gráfica de barras donde aparezca el total de población para cada entidad, a partir del segmento código anterior.</p></li>
+<li><p>¿Es posible agrupar la información con arreglo a otra variable? Construye algunas medidas de resumen con esos grupos y gráficalos.</p></li>
+</ol>
+<hr>
+<p>Estas y otras tantas funciones son desarrolladas con todo detalle y de forma muy amena en el citado libro de Wickham y Grolemund, <a href="https://r4ds.had.co.nz/">R for data science</a>, por lo que su estudio se recomienda ampliamente.</p>
+<p>En el siguiente capítulo continuamos con la exploración de la información, pero de un tipo particular de información: la información espacial.</p>
+<div></div>
+
+
+</div>
+</div>
+</div>
+  
+
+  
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-01-19.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chapter-nav">
+<div class="prev"><a href="index.html">Prólogo</a></div>
+<div class="next"><a href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="nav-link" href="#r-lenguaje-de-programaci%C3%B3n-y-plataforma-de-an%C3%A1lisis"><span class="header-section-number">1.1</span> R: Lenguaje de programación y plataforma de análisis</a></li>
+<li>
+<a class="nav-link" href="#c%C3%B3digos-objetos-paquetes"><span class="header-section-number">1.2</span> Códigos, objetos, paquetes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#c%C3%B3digo"><span class="header-section-number">1.2.1</span> Código</a></li>
+<li><a class="nav-link" href="#objetos-operadores-y-tipos-de-variables"><span class="header-section-number">1.2.2</span> Objetos, operadores y tipos de variables</a></li>
+<li><a class="nav-link" href="#paquetes"><span class="header-section-number">1.2.3</span> Paquetes</a></li>
+<li><a class="nav-link" href="#solicitar-ayuda-de-un-paquete-o-funci%C3%B3n-de-r"><span class="header-section-number">1.2.4</span> Solicitar ayuda de un paquete o función de R</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#cargar-bases-de-datos"><span class="header-section-number">1.3</span> Cargar bases de datos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cargar-un-archivo-de-excel-xls-xslx"><span class="header-section-number">1.3.1</span> Cargar un archivo de Excel (xls, xslx)</a></li>
+<li><a class="nav-link" href="#cargar-archivos-separados-por-comas-csv"><span class="header-section-number">1.3.2</span> Cargar archivos separados por comas (csv)</a></li>
+<li><a class="nav-link" href="#cargar-bases-con-la-funcionalidad-importar"><span class="header-section-number">1.3.3</span> Cargar bases con la funcionalidad importar</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#exploraci%C3%B3n-inicial-a-trav%C3%A9s-de-gr%C3%A1ficos"><span class="header-section-number">1.4</span> Exploración inicial a través de gráficos</a></li>
+<li>
+<a class="nav-link" href="#manipulaci%C3%B3n-de-la-informaci%C3%B3n"><span class="header-section-number">1.5</span> Manipulación de la información</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#seleccionar-variables"><span class="header-section-number">1.5.1</span> Seleccionar variables</a></li>
+<li><a class="nav-link" href="#filtrar-seleccionar-casos"><span class="header-section-number">1.5.2</span> Filtrar (seleccionar casos)</a></li>
+<li><a class="nav-link" href="#ordenar"><span class="header-section-number">1.5.3</span> Ordenar</a></li>
+<li><a class="nav-link" href="#crear-nuevas-variables"><span class="header-section-number">1.5.4</span> Crear nuevas variables</a></li>
+<li><a class="nav-link" href="#res%C3%BAmenes-de-informaci%C3%B3n-y-grupos"><span class="header-section-number">1.5.5</span> Resúmenes de información y grupos</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+</div>
+</body>
+</html>

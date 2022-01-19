@@ -1,0 +1,10 @@
+delete_merged_file: true
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabla '
+    eq: 'Ecuación '
+  ui:
+    chapter_name: ""
+rmd_files: ["index.Rmd","01-intro.Rmd","02-Mapas.Rmd","03-Analisis-espacial-I.Rmd","04-Regresion-lineal.Rmd","05-Analisis-espacial-II.Rmd","08-references.Rmd"]
+

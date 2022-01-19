@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>5 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</title>
+<meta name="author" content="Jaime Alberto Prudencio Vázquez">
+<meta name="generator" content="bookdown 0.24.1 with bs4_book()">
+<meta property="og:title" content="5 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><meta name="description" content="En el capítulo 3 nos hemos referido a la necesidad de identificar la presencia de autocorrelación espacial en el conjunto de información utilizado. Mencionamos que dos son las razones por las que...">
+<meta property="og:description" content="En el capítulo 3 nos hemos referido a la necesidad de identificar la presencia de autocorrelación espacial en el conjunto de información utilizado. Mencionamos que dos son las razones por las que...">
+<meta name="twitter:description" content="En el capítulo 3 nos hemos referido a la necesidad de identificar la presencia de autocorrelación espacial en el conjunto de información utilizado. Mencionamos que dos son las razones por las que...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prólogo</a></li>
+<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="active" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análisis-espacial-ii-modelos-econométricos-espaciales" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><i class="fas fa-link"></i></a>
+</h1>
+<div style="text-align: justify">
+<p>En el capítulo 3 nos hemos referido a la necesidad de identificar la presencia de autocorrelación espacial en el conjunto de información utilizado. Mencionamos que dos son las razones por las que conviene saber si la información usada presenta este rasgo: una técnica y otra sustantiva. En términos de la segunda, la presencia de autocorrelación espacial significa que el fenómeno de interés de no se distribuye de manera aleatoria en el espacio por lo que <em>algo</em> está pasando que debe ser investigado. En términos de la razón de carácter técnico, que no está desvinculada necesariamente a la razón previa, estimar un modelo clásico de regresión lineal a través del método usual de Mínimos Cuadrados Ordinarios implicaría violar uno de sus supuestos, específicamente, aquel que tiene que ver con la independencia de los términos de error. Por tanto, por razones de la técnica utilizada y del interés de investigador, es necesario recurrir a una alternativa de modelación que permita tanto resolver el problema de la violación del citado supuesto como poner a disposición del interesado información relevante para buscar las causas que explican la distribución no aleatoria del fenómeno en el espacio.</p>
+<p>En este capítulo nos dedicaremos a mostrar dos de las alternativas para lograr lo anterior a través de los llamados modelos econométricos espaciales. Es crucial que, antes de abordar este capítulo, hayan quedado plenamente asimilados los contenidos del capítulo 3 y 4, en la medida en que lo expuesto aquí se basa en los conocimientos previos.</p>
+<div id="diversas-alternativas-de-modelos-econométricos" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Diversas alternativas de modelos econométricos<a class="anchor" aria-label="anchor" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><i class="fas fa-link"></i></a>
+</h2>
+<div style="text-align: justify">
+<p>Existen múltiples modelos econométricos que buscan resolver las dos cuestiones mencionadas a través de captar las interacciones que se dan en el espacio, más aún, dichas interacciones las hay de diferente naturaleza. El modelo que incorpora todas las posibles interacciones espaciales recibe el nombre de <strong>Modelo General Anidado</strong> (<em>General Nesting Spatial Model</em> <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">Elhorst 2006, 7</a>)</span> y puede ser escrito como:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y &amp;= \rho WY +\alpha1_N+X\beta+WX\theta+u  \\
+u &amp;=\lambda Wu+\epsilon  \\
+\end{aligned}
+\]</span></p>
+<p>Las interacciones espaciales en la expresión anterior son de tres tipos: i) efectos de interacción endógenos, es decir, cuando la variable dependiente reaparece como independiente pero a través de su rezago espacial (<span class="math inline">\(WY\)</span>), aquí el sentido y magnitud de la interacción está dado por <span class="math inline">\(\rho\)</span>; ii) efectos de interacción exógenos, es decir, cuando las variables independientes son incluidas en forma de sus rezagos espaciales (<span class="math inline">\(WX\)</span>) en la que la relación es captada por <span class="math inline">\(\theta\)</span>; iii) efectos de interacción dados por los términos de error de la regresión (<span class="math inline">\(Wu\)</span>) e interesa el sentido y magnitud de <span class="math inline">\(\lambda\)</span>.</p>
+<p>A partir de este modelo general es posible derivar otros, más simples, si se suponen determinados valores para los coeficientes. Toda la constelación de modelos espaciales posibles aparece en la siguiente figura <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">Elhorst 2006, 7</a>)</span>:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-172"></span>
+<img src="recursos%205/figura%201.jpg" alt="Clasificación de modelos espaciales, Elhorst (2006)" width="100%"><p class="caption">
+Figura 5.1: Clasificación de modelos espaciales, Elhorst (2006)
+</p>
+</div>
+<p>De toda esta gama de modelos aquí sólo nos ocuparemos de dos de ellos, el <strong>modelo de rezago espacial</strong> y el <strong>modelo de error espacial</strong>, siguiendo la ruta metodológica propuesta por Anselin y Rey <span class="citation">(<a href="references.html#ref-Anselin2014" role="doc-biblioref">Anselin y Rey 2014</a>)</span> que consiste en comenzar con un modelo lineal no espacial estimado con mínimos cuadrados ordinarios (MCO) que luego es extendido con la incorporación de interacciones espaciales, ya sea a un modelo de rezago espacial o a uno de error, con base en pruebas que verifican alternativamente la pertinencia de cada uno:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-173"></span>
+<img src="recursos%205/figura%202.jpg" alt="De un modelo con MCO a un modelo espacial" width="100%"><p class="caption">
+Figura 5.2: De un modelo con MCO a un modelo espacial
+</p>
+</div>
+<p>Después de haber llevado a cabo el análisis exploratorio de datos espaciales (ESDA) y que se ha decidido modelar a través de econometría la relación de interésla secuencia general para la estimación de un modelo econométrico espacial consiste en:</p>
+<ol style="list-style-type: lower-roman">
+<li>Estimar un modelo clásico de regresión lineal con mínimos cuadrados ordinarios.<br>
+</li>
+<li>Evaluar la presencia de autocorrelación espacial en los errores del modelo.<br>
+</li>
+<li>Evaluar, alternativamente, la pertinencia de un modelo de rezago o de error espacial.<br>
+</li>
+<li>Estimar el modelo de rezago y de error espacial y seleccionar el mejor modelo.</li>
+</ol>
+<p>El punto <em>i)</em> ha sido tratado en el capítulo 4 a la regresión lineal. Si bien podrías pensar que la evaluación de la autocorrelación ha quedado plenamente cubierta en el capítulo 3 correspondiente al análisis exploratorio de datos espaciales, es necesario distinguir entre autocorrelación en la variable de interés y autocorrelación en los errores del modelo; esto último se mecionó dentro de los supuestos del modelo clásico de regresión lineal y es momento de evaluar formalmente dicho supuesto través de la I de Moran.</p>
+<p>La evaluación sobre las alternativas de los modelos de error y de rezago corren a cargo de los estadísticos de prueba de los multiplicadores de Lagrange, también referidos como Prueba de Puntaje de Rao (<em>Rao score test</em>). Las pruebas nos permitirán decidir qué modelo es mejor, evaluándolos de siguiente modo:</p>
+<ul>
+<li>Modelo MCO vs. Modelo de rezago<br>
+</li>
+<li>Modelo MCO vs. Modelo de error</li>
+</ul>
+<p>Evaluar entre el modelo de MCO y el modelo de rezago implica recordar la estructura del modelo de rezago:
+<span class="math display">\[
+y=\rho Wy+X\beta+u 
+\]</span>
+así, formalmente el juego de hipótesis a evaluar sobre la expresión anterior es:</p>
+<p><span class="math display">\[
+\begin {aligned}
+Ho &amp;: \rho=0 \\
+Ha &amp;: \rho\not=0 \\
+\end {aligned}
+\]</span></p>
+<p>El estadístico usado es el multiplicador de Lagrange, que sigue una distribución <span class="math inline">\(\chi^2\)</span> con un grado de libertad<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Para una exposición detallada de la formulación de los multiplicadores de Lagrange para la selección de modelos alternativos consulta Anselin y Rey (2014: 104)&lt;/p&gt;"><sup>5</sup></a>. Así, dado determinado nivel de significancia, rechazar la hipótesis nula significará que el mejor modelo es un modelo de rezago espacial. De forma semejante, para evaluar la alternativa del modelo de error recuerda que:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y &amp;= \alpha1_N+X\beta+u  \\
+u &amp;=\lambda Wu+\epsilon  \\
+\end{aligned}
+\]</span></p>
+<p>de modo que las hipótesis a verificar son:</p>
+<p><span class="math display">\[
+\begin {aligned}
+Ho &amp;: \lambda=0 \\
+Ha &amp;: \lambda\not=0 \\
+\end {aligned}
+\]</span>
+Igualmente, el estadístico usado para evaluar nuestras hipótesis es el multiplicador de Lagrange que sigue una distribución <span class="math inline">\(\chi^2\)</span> con un grado de libertad, por lo que fijado determinado nivel de significancia, rechazar la hipótesis nula implica que el mejor modelo es un modelo de error espacial.</p>
+<p>Pero, ¿qué ocurre cuando tanto la prueba sobre la versión de rezago y de error han resultado significativas? En este caso, se recurre a las versiones robustas de los multiplicadores de Lagrange. Las versiones robustas de dichos indicadores implican “que el estadístico original es corregido mediante la influencia potencial de ‘otras’ alternativas” (Anseluin y Rey, 2014: 105). En un sentido estrictamente práctico, de nueva cuenta, se evalúa alternativamente el modelo MCO vs. el de rezago, y el MCO vs. el de error, pero esta vez, con las versiones robustas con exactamente los mismos juegos de hipótesis.</p>
+<p>Lo dicho anteriormente dicho es sintetizado por nuestro autores en el siguiente esquema:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-174"></span>
+<img src="recursos%205/figura%203.jpg" alt="Árbol de decisión de regresión espacial, Anselin y Rey (2014)" width="100%"><p class="caption">
+Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
+</p>
+</div>
+<p>Para simplificar el proceso de selección entre los modelos alternativos, basta recordar lo recomendado por <span class="citation">(<a href="references.html#ref-Anselin2005" role="doc-biblioref">Anselin 2005, 197</a>)</span>:</p>
+<blockquote>
+<p>Lo importante a recordar es considerar las versiones robustas de loss estadísticos (los multiplicadores de Lagrange) sólo cuando las versiones estándar son significativas</p>
+</blockquote>
+</div>
+<div id="modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-méxico" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Modelos espaciales en R: un ejemplo para el Valle de México<a class="anchor" aria-label="anchor" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><i class="fas fa-link"></i></a>
+</h2>
+<div style="text-align: justify">
+<p>Los paquetes utilizados para la estimación de modelos econométricos espaciales son:</p>
+<ul>
+<li>
+<code>spatialreg</code>: contiene las funciones para calcular modelos espaciales.<br>
+</li>
+<li>
+<code>spdep</code>: funciones para evaluar dependencia espacial y construir matrices de pesos espaciales.</li>
+</ul>
+<p>Como es usual, la instalación desde la consola puede hacerse con:</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Instalar dos paquetes</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spdep"</span>, <span class="st">"spatialreg"</span> <span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Además, echaremos mano de otros tantos paquetes previamente trabajadas, por lo que deberán ser llamadas junto con los recién instalados:</p>
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Paquetes recien instalados</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: package 'spatialreg' was built under R version 4.1.2</code></pre>
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Otros paquetes usados</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rgdal.r-forge.r-project.org">rgdal</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/">sp</a></span><span class="op">)</span></code></pre></div>
+<p>La base de datos a usar en este ejercicio es la misma que hemos usando antes y que puedes <a href="https://bit.ly/covidSHP">descargar aquí</a>. Cargue su base de datos espacial con:</p>
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op">&lt;-</span><span class="fu">rgdal</span><span class="fu">::</span><span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/readOGR.html">readOGR</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI, dumpSRS =
+## dumpSRS, : Discarded datum D_unknown in Proj4 definition: +proj=lcc +lat_0=12
+## +lon_0=-102 +lat_1=17.5 +lat_2=29.5 +x_0=2500000 +y_0=0 +ellps=GRS80 +units=m
+## +no_defs</code></pre>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: "C:\Users\Jarvis\Desktop\Analisis espacial con R studio\base de datos\covid_zmvm shp\covid_zmvm.shp", layer: "covid_zmvm"
+## with 76 features
+## It has 55 fields</code></pre>
+<p>Como recordarás del capítulo relativo al análisis exploratorio de datos espaciales, la definición de una estructura espacial atraviesa por la construcción de una matriz de pesos espaciales, recuerda que a través de la función <code><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb()</a></code> del paquete <code>spdep</code> construimos nuestra lista de vecinos con base en los criterios de contigüidad de tipo reina (<code>queen=TRUE</code>):</p>
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mTRUE</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></code></pre></div>
+<p>Ahora, el objeto de tipo <code>nb</code> debe ser trasformado a uno que contenga los pesos espaciales, es decir, la matriz ponderada: un objeto de tipo <code>listw</code>:</p>
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mTRUE.pesos</span><span class="op">&lt;-</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mTRUE</span><span class="op">)</span></code></pre></div>
+<p>Visualicemos la estructura de dependencia espacial:</p>
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672"></div>
+<p>Sólo con el afán de recordar los elementos previamente revisados en el análisis exploratorio de datos, construyamos el estadístico de correlación espacial global sobre la variable crimen, <code>pos_hab</code>:</p>
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  Moran I test under randomisation
+## 
+## data:  covid_zmvm$pos_hab  
+## weights: mTRUE.pesos    
+## 
+## Moran I statistic standard deviate = 8.8625, p-value &lt; 2.2e-16
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##       0.656334129      -0.013333333       0.005709563</code></pre>
+<p>Y el respectivo diagrama de Moran:</p>
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot</a></span><span class="op">(</span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span>, listw <span class="op">=</span> <span class="va">mTRUE.pesos</span>, xlab<span class="op">=</span><span class="st">"Casos positivos por cada 100 mil habitab¿ntes"</span>, ylab<span class="op">=</span><span class="st">"Promedio de casos positivos en regiones vecinas"</span>, main<span class="op">=</span><span class="st">"Diagrama de Moran de los casos positivos en el Valle de México"</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672"></div>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Interpreta tanto la I de Moran como su diagrama, ¿hay evidencia de autocorrelación espacial? Si es así, ¿de qué magnitud y sentido? ¿Cómo interpretarías el estadístico obtenido?</p>
+<hr>
+<p>De acuerdo a lo dicho líneas más arriba, primero debemos estimar un modelo clásico de regresión lineal con mínimos cuadrados ordinarios. Usaremos el mismo modelo del capítulo sobre regresión lineal en su versión simple: un modelo que busca explicar los casos positivos por COVID-19 por cada 1 mil habitantes (<code>pos_hab</code>) mediante la población con acceso a servicios de salud (<code>ss</code>):</p>
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">modelo_mco</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelo_mco</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## stats::lm(formula = pos_hab ~ ss, data = covid_zmvm)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.4391 -2.7744 -0.6709  1.5324 14.9969 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -19.862      5.809  -3.419  0.00102 ** 
+## ss            39.490      8.516   4.637 1.49e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.572 on 74 degrees of freedom
+## Multiple R-squared:  0.2252, Adjusted R-squared:  0.2147 
+## F-statistic:  21.5 on 1 and 74 DF,  p-value: 1.488e-05</code></pre>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>¿Qué puedes decir sobre la significancia individual del coeficiente estimado? ¿Qué sobre la bondad de ajuste del modelo?</p>
+<hr>
+<p>Una vez que hemos estimado el modelo lineal a través del MCO, debemos evaluar la presencia de autocorrelación espacial en los errores del modelo. De nueva cuenta insistimos en la diferencia entre evaluar la autocorrelación sobre la variable de interés (lo que hicimos hace un momento con la I de Moran y su diagrama sobre la variable <code>pos_hab</code>) y evaluar la autocorrelación sobre los errores del modelo, lo que haremos en este momento.</p>
+<p>Verificamos la presencia de autocorrelación espacial de los errores a través de la I de Moran, lo que nos permitirá responder a la pregunta ¿los errores de nuestro modelo están correlacionados? Para ello, nos servimos de la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test()</a></code> del paquete <code>spdep</code>. Como recordarás, la función requiere dos argumentos: el vector número a evaluar (en este caso los errores del modelo MCO) y la estructura espacial:</p>
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">modelo_mco</span><span class="op">$</span><span class="va">residuals</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  Moran I test under randomisation
+## 
+## data:  modelo_mco$residuals  
+## weights: mTRUE.pesos    
+## 
+## Moran I statistic standard deviate = 6.9825, p-value = 1.45e-12
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##       0.512928287      -0.013333333       0.005680411</code></pre>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Con base en los resultados de la I de Moran, ¿dirías que existe autocorrelación espacial en los errores?</p>
+<hr>
+<p>Lo usual es que cuando la variable de interés presenta autocorrelación, esta característica termine por afectar los resultados de la estimación por mínimos cuadrados ordinarios. Así pues, es necesario, siguiendo la ruta marcada por Anselin y Rey (2014), evaluar, alternativamente, la pertinencia de un modelo de rezago o de error espacial. Como dijimos antes, esto lo haremos con base en las pruebas sobre las dos alternativas propuestas (modelo de rezago o modelo de error), a través de los mutiplicadores de Lagrange lo que nos permitirá tener elementos informativos para decantarnos por alguna de estas opciones.</p>
+<p>Las pruebas son llamadas con la función <code><a href="https://r-spatial.github.io/spdep/reference/lm.LMtests.html">lm.LMtests()</a></code> del paquete <code>spdep</code> que requiere de los siguientes argumentos: el modelo lineal a evaluar (<code>model=</code>), la estructura espacial (<code>listw=</code>) y los pruebas solicitadas (<code>test=</code>):</p>
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.LMtests.html">lm.LMtests</a></span><span class="op">(</span>model<span class="op">=</span><span class="va">modelo_mco</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span>, test<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LMlag"</span>,<span class="st">"LMerr"</span>, <span class="st">"RLMlag"</span>,<span class="st">"RLMerr"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: stats::lm(formula = pos_hab ~ ss, data = covid_zmvm)
+## weights: mTRUE.pesos
+## 
+## LMlag = 55.313, df = 1, p-value = 1.028e-13
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: stats::lm(formula = pos_hab ~ ss, data = covid_zmvm)
+## weights: mTRUE.pesos
+## 
+## LMerr = 42.733, df = 1, p-value = 6.275e-11
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: stats::lm(formula = pos_hab ~ ss, data = covid_zmvm)
+## weights: mTRUE.pesos
+## 
+## RLMlag = 13.358, df = 1, p-value = 0.0002573
+## 
+## 
+##  Lagrange multiplier diagnostics for spatial dependence
+## 
+## data:  
+## model: stats::lm(formula = pos_hab ~ ss, data = covid_zmvm)
+## weights: mTRUE.pesos
+## 
+## RLMerr = 0.77786, df = 1, p-value = 0.3778</code></pre>
+<p>Revisa la ayuda relacionada con la función <code><a href="https://r-spatial.github.io/spdep/reference/lm.LMtests.html">lm.LMtests()</a></code> para familiarizarte con todos sus argumentos. En este caso, solicitamos las 4 pruebas de las que hicimos mención previamente: la prueba del multiplicador de Lagrange sobre la alternativa del modelo de rezago (<code>LMlag</code>), la prueba del multiplicador de Lagrange sobre la alternativa del modelo de error (<code>LMerr</code>), así como sus respectivas versiones robustas (<code>RLMlag</code>,<code>RLMerr</code>).</p>
+<p>Interpretemos los resultados. Primero, contrastemos las versiones sencillas de los multiplicadores:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th></th>
+<th>Estadístico</th>
+<th>valor-p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>LMlag</td>
+<td>55.313</td>
+<td>1.028e-13</td>
+</tr>
+<tr class="even">
+<td>LMerr</td>
+<td>42.733</td>
+<td>6.275e-11</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tanto el estadístico vinculado al modelo de rezago, como el del error son estadísticamente significativos, es decir, en cada caso se rechaza la hipótesis nula de que <span class="math inline">\(\rho=0\)</span> y <span class="math inline">\(\lambda=0\)</span>, respectivamente, por lo que tanto un modelo de rezago como de error son plausibles. En este caso, hay que mirar los resultados de las versiones robustas para tomar la decisión final:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th></th>
+<th>Estadístico</th>
+<th>valor-p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>RLMlag</td>
+<td>13.358</td>
+<td>0.0002573</td>
+</tr>
+<tr class="even">
+<td>RLMerr</td>
+<td>0.77786</td>
+<td>0.3778</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sólo el estadistico vinculado al modelo de rezago, <code>RLMlag</code>, resulta significativo, es decir, se rechaza la hipótesis nula de que <span class="math inline">\(\rho=0\)</span>; en tanto, para el caso del estadístico vinculado al modelo de error, <code>RLMerr</code>, no podemos rechazar la hipótesis nula de que <span class="math inline">\(\lambda=0\)</span>, así, la mejor alternativa espacial al modelo de MCO es el modelo de rezago. Revisa de nueva cuenta la figura 5.3 para mejor entender nuestra decisión.</p>
+<p>Finalmente, vamos a estimar ambos modelos, aunque a sabiendas de que el mejor es el modelo de error, lo usual es presentar los resultados de ambos.</p>
+</div>
+<div id="modelos-espaciales" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Modelos espaciales<a class="anchor" aria-label="anchor" href="#modelos-espaciales"><i class="fas fa-link"></i></a>
+</h2>
+<div id="modelo-de-rezago-espacial" class="section level3" number="5.3.1">
+<h3>
+<span class="header-section-number">5.3.1</span> Modelo de rezago espacial<a class="anchor" aria-label="anchor" href="#modelo-de-rezago-espacial"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>El modelo de rezago espacial se invoca con al función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">lagsarlm()</a></code> del paquete <code>spatialreg</code> en la que la estimación corre a cargo del método de máxima verosimilitud. En la función se especifica el modelo (<code>formula=</code>), la base de datos (<code>data=</code>) y la estructura espacial (<code>listw=</code>).</p>
+<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span>
+<span class="va">rezago</span> <span class="op">&lt;-</span> <span class="fu">spatialreg</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">lagsarlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data<span class="op">=</span><span class="va">covid_zmvm</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">rezago</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Call:spatialreg::lagsarlm(formula = pos_hab ~ ss, data = covid_zmvm, 
+##     listw = mTRUE.pesos)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -5.72501 -1.71081 -0.31629  1.12054 11.64378 
+## 
+## Type: lag 
+## Coefficients: (asymptotic standard errors) 
+##             Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)  -8.8906     3.4221 -2.5980 0.009377
+## ss           14.9811     5.1378  2.9159 0.003547
+## 
+## Rho: 0.83629, LR test value: 62.655, p-value: 2.4425e-15
+## Asymptotic standard error: 0.056938
+##     z-value: 14.688, p-value: &lt; 2.22e-16
+## Wald statistic: 215.73, p-value: &lt; 2.22e-16
+## 
+## Log likelihood: -191.0071 for lag model
+## ML residual variance (sigma squared): 7.1381, (sigma: 2.6717)
+## Number of observations: 76 
+## Number of parameters estimated: 4 
+## AIC: 390.01, (AIC for lm: 450.67)
+## LM test for residual autocorrelation
+## test value: 0.10973, p-value: 0.74045</code></pre>
+<p>De la salida debemos llamar la atención sobre los coeficientes de interés: <span class="math inline">\(\rho\)</span>, el coeficiente de autocorrelación espacial que en este caso es positivo, significativo y alto, 0.83, esto significa que cuando aumenta en 1 el número de casos positivos en los municipios y alcaldías vecinas, el número de casos positivos por COVID19 por cada 1 mil habitantes en el municipio de interés aumentará en 0.83.</p>
+<p>De forma semejante, los errores pueden ser visualizados, guardados y evaluados para ver si presentan autocorrelación:</p>
+<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">rezago</span><span class="op">[[</span><span class="st">"residuals"</span><span class="op">]</span><span class="op">]</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  Moran I test under randomisation
+## 
+## data:  rezago[["residuals"]]  
+## weights: mTRUE.pesos    
+## 
+## Moran I statistic standard deviate = -0.030802, p-value = 0.5123
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##      -0.015615667      -0.013333333       0.005490469</code></pre>
+<hr>
+<p><strong>Ejercicio</strong></p>
+<p>Con base en los resultados de la I de Moran, ¿diría que persite el problema de autocorrelación espacial en los errores en el modelo de rezago?</p>
+<hr>
+</div>
+<div id="modelo-de-error-espacial" class="section level3" number="5.3.2">
+<h3>
+<span class="header-section-number">5.3.2</span> Modelo de error espacial<a class="anchor" aria-label="anchor" href="#modelo-de-error-espacial"><i class="fas fa-link"></i></a>
+</h3>
+<div style="text-align: justify">
+<p>El modelo de error espacial es llamado con la función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm()</a></code> y los argumentos son los mismos:</p>
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">error</span> <span class="op">&lt;-</span>  <span class="fu">spatialreg</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data<span class="op">=</span><span class="va">covid_zmvm</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">error</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Call:spatialreg::errorsarlm(formula = pos_hab ~ ss, data = covid_zmvm, 
+##     listw = mTRUE.pesos)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -5.80220 -1.62230 -0.39269  1.11193 11.55180 
+## 
+## Type: error 
+## Coefficients: (asymptotic standard errors) 
+##             Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept) -0.66237    5.03921 -0.1314  0.89543
+## ss          12.54484    6.30980  1.9882  0.04679
+## 
+## Lambda: 0.87101, LR test value: 58.512, p-value: 2.0206e-14
+## Asymptotic standard error: 0.050779
+##     z-value: 17.153, p-value: &lt; 2.22e-16
+## Wald statistic: 294.22, p-value: &lt; 2.22e-16
+## 
+## Log likelihood: -193.0788 for error model
+## ML residual variance (sigma squared): 7.3069, (sigma: 2.7031)
+## Number of observations: 76 
+## Number of parameters estimated: 4 
+## AIC: 394.16, (AIC for lm: 450.67)</code></pre>
+<p>Aquí, el parámetro de interés estimado es <span class="math inline">\(\lambda\)</span>. Verifique si se ha resuelto el problema de la autocorrelación espacial en los errores:</p>
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">error</span><span class="op">[[</span><span class="st">"residuals"</span><span class="op">]</span><span class="op">]</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  Moran I test under randomisation
+## 
+## data:  error[["residuals"]]  
+## weights: mTRUE.pesos    
+## 
+## Moran I statistic standard deviate = 0.18736, p-value = 0.4257
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##      0.0005636417     -0.0133333333      0.0055017348</code></pre>
+<p>Con estos resultados hemos completado la ruta más elemental para la estimación de modelos econométricos espaciales. Sin embargo, hay no sólo otras tantas alternativas de modelación, tal y como apuntamos en la figura 5.1. Además, hay una serie de tópicos que quedan fuera de estas notas, tales como la modelación de heterogeneidad espacial (violación del supuesto de homoscedasticidad), así como la incorporación de la dimensión temporal a nuetro análisis, a través de los modelos de panel espacial. Cada uno de estos temas implica un estudio sistemático por sí sólo. Esperamos que estas notas contribuyan a alimentar tu curiosidad sobre el tratamiento y análisis de información espacial y que sean un primer paso en tu formación como profesionista especialista en economía urbana y regional.</p>
+
+</div>
+</div>
+</div>
+
+  
+
+  
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-01-19.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</div>
+</div>
+</div>
+<div class="chapter-nav">
+<div class="prev"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="nav-link" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><span class="header-section-number">5.1</span> Diversas alternativas de modelos econométricos</a></li>
+<li><a class="nav-link" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><span class="header-section-number">5.2</span> Modelos espaciales en R: un ejemplo para el Valle de México</a></li>
+<li>
+<a class="nav-link" href="#modelos-espaciales"><span class="header-section-number">5.3</span> Modelos espaciales</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modelo-de-rezago-espacial"><span class="header-section-number">5.3.1</span> Modelo de rezago espacial</a></li>
+<li><a class="nav-link" href="#modelo-de-error-espacial"><span class="header-section-number">5.3.2</span> Modelo de error espacial</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
+</div>
+</body>
+</html>
