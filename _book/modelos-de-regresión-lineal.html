@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>4 Modelos de regresión lineal | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</title>
+<title>4 Modelos de regresión lineal | Análisis de datos espaciales con R</title>
 <meta name="author" content="Jaime Alberto Prudencio Vázquez">
 <meta name="generator" content="bookdown 0.24.1 with bs4_book()">
-<meta property="og:title" content="4 Modelos de regresión lineal | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<meta property="og:title" content="4 Modelos de regresión lineal | Análisis de datos espaciales con R">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4 Modelos de regresión lineal | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<meta name="twitter:title" content="4 Modelos de regresión lineal | Análisis de datos espaciales con R">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</a>
+        <a href="index.html" title="">Análisis de datos espaciales con R</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -47,6 +47,7 @@
 <li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
 <li><a class="active" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
 <li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -66,7 +67,7 @@
 <div style="text-align: justify">
 <p>En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser respondidas, nos permitan tener una descripción general del fenómeno, habrá otras que nos permitan explorar la relación entre dos fenómenos, o bien, preguntas cuya respuesta nos permita predecir el comportamiento futuro del elemento estudiado. Así pues, hay <a href="https://bit.ly/DatSciQ">diferentes tipos de preguntas</a>, dependiendo de su grado de complejidad.</p>
 <p>Entre los tipos de preguntas planteadas se halla uno que es de particular interés: el análisis causal. El objetivo del análisis causal es “ver qué sucede con una variable cuando manipulamos otra variable -mirar la causa y el efecto de una relación”<span class="citation">(<a href="references.html#ref-JHU2020" role="doc-biblioref">University 2020</a>)</span>. Con el análisis causal se busca saber si un par de variables están asociadas, más aún, si si el cambio en una variable causa cambios en la otra. Responder este tipo de preguntas exige el dominio de diversas herramientas estadísticas, cuyo abordaje está completamente fuera del alcance de este capítulo. No obstante, el anális de regresión nos brinda una oportunidad que, cuando es bien utilizada, nos permite aproximarnos al análisis causal.</p>
-<p>La regresión como instrumento analítico nos brinda los elementos para acercarnos a la comprensión de la <em>asociación entre dos variables</em>, aunque no es posible hablar en sentido estricto de causalidad como resultado del análisis efectuado. Así, "El análisis de regresión solo puede abordar los problemas de correlación. No puede abordar el problema de la necesidad (causalidad). Por tanto, nuestras expectativas de descubrir relaciones de causa y efecto a partir de la regresión deberían ser modestas <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3</a>)</span>.</p>
+<p>La regresión como instrumento analítico nos brinda los elementos para acercarnos a la comprensión de la <em>asociación entre dos variables</em>, aunque no es posible hablar en sentido estricto de causalidad como resultado del análisis efectuado. Así, “El análisis de regresión solo puede abordar los problemas de correlación. No puede abordar el problema de la necesidad (causalidad). Por tanto, nuestras expectativas de descubrir relaciones de causa y efecto a partir de la regresión deberían ser modestas <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3</a>)</span>.</p>
 <p>Entonces, ¿de qué modo el análisis de regresión se convierte potencialmente en un elemento que nos permita analizar causalidad? Lo que resultará fundamental en el proceso de investigación en donde se incorpore esta herramienta es la pregunta que se plantee el investigador. Y lo fundamental es plantear nuestras preguntas desde el conocimiento científico previamente existente, ¿qué dice la teoría sobre la relación entre la variable A y la variable B?</p>
 <p>¿Qué asociaciones entre pares de variables recuerdas de tus cursos teoría económica? Quizá los siguientes ejemplos te resulten familiares: i) la asociación entre la tasa de interés y eficiencia marginal del capital en la teoría de la inversión de Keynes, ii) la relación entre la composición orgánica del capital y tasa de ganancia en la perspectiva de Marx sobre el comportamiento de largo plazo del capitalismo (la teoría de la tasa de ganancia decreciente), iii) los rendimientos decrecientes en el producto al añadir una unidad adicional de trabajo, <em>ceteris paribus</em>, en la teoría del productor de los neoclásicos.</p>
 <p>En el proceso de investigación científica, las preguntas planteadas deberán hacerse desde el conocimiento previamente existente, es decir, se plantean desde determinados cuerpos teóricos reconocidos y validados, o bien, a partir de los resultados de investigaciones previas. Antes del método está la pregunta de investigación que establece la línea de causalidad entre las variables postuladas en el modelo. Esta base teórica ha de ser complementada con los resultados arrojados en el análisis exploratorio.</p>
@@ -512,7 +513,7 @@ Ha&amp;: al.menos.una. \hat\beta_i\not=0 \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-01-19.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-01-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

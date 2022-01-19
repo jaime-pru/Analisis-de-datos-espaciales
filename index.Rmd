@@ -1,6 +1,5 @@
 --- 
-title: "Análisis de datos espaciales con R: manejo, visualización y modelos econométricos"
-con R: visualización y modelación con datos espaciales"
+title: "Análisis de datos espaciales con R"
 author: "Jaime Alberto Prudencio Vázquez"
 date: "`r Sys.Date()`"
 knit: "bookdown::render_book"
