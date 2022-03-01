@@ -55,6 +55,6 @@ On the other hand, the student or teacher reader interested in making some corre
 
 # Acknowledgements
 
-The author thanks [Montserrat Romero Martínez](vmrm@azc.uam.mx) and [Alvaro Martínez Rodríguez](amr@azc.uam.mx), assistants in the Productive Relations Area, who were respectively in charge of reviewing Preliminary materials for this book and its edition for publication online with Bookdown on GitHub.
+The author thanks Montserrat Romero Martínez (vmrm@azc.uam.mx) and Alvaro Martínez Rodríguez(amr@azc.uam.mx), assistants in the Productive Relations Area, who were respectively in charge of reviewing Preliminary materials for this book and its edition for publication online with Bookdown on GitHub.
 
 # References
