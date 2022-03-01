@@ -15,7 +15,7 @@ authors:
    affiliation: 1
 
 affiliations:
- - name: Visiting professor, Economics Department, Universidad Autónoma Metropolitana, Unidad Azcapotzalco, CDMX, México.  
+ - name: Economics Department, Universidad Autónoma Metropolitana, Unidad Azcapotzalco, CDMX, México.  
    index: 1
 
 date: 1 March 2022
