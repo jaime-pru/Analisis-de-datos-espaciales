@@ -142,11 +142,11 @@ Te recomendamos consultar el espléndido material [Geocomputation with R](https:
 
 
 ## Personalización
-
+<div style="text-align: justify">
 ### Argumentos de personalización dentro de la función de relleno
 
 #### Paleta de colores
-<div style="text-align: justify">
+
 Nos concentraremos ahora en revisar cómo podemos hacer "mapas a la medida", es decir, personalizar prácticamente cada parte del mapa, desde la gama cromática hasta títulos y leyendas. Comencemos revisando las posibilidades de personalización dentro de la función de relleno, `tm_fill()`. Veremos primero cómo cambiar la paleta de colores de relleno a través del argumento `palette=`. Por defecto, los colores corresponden a una gama cromática de rojos, pero podemos cambiarla a una de color naranja:
 
 
@@ -221,7 +221,7 @@ tmaptools::palette_explorer() #Lanza la aplicación de Shiny para mostrar las pa
 ------------------------------------------------------------------------
 
 #### Leyenda
-<div style="text-align: justify">
+
 Para modificar la forma en que aparece la leyenda, el argumento del caso es `title=`. Por ejemplo:
 
 ```{r}
@@ -239,7 +239,7 @@ tmap::tm_shape(zmvm_cov_sf)+
 ```
 
 #### Mapas de clasificación
-<div style="text-align: justify">
+
 Quizá el elemento de personalización más importante tiene que ver con el método de clasificación de la variable que busca ser representada en el mapa. Todas las alternativas de cómo deben construirse las categorías resultado de la clasificación deben ser especificadas dentro de la función `tm_fill()`. 
 
 Hay diferentes métodos de clasificación y, por tanto, diferentes tipos de mapas. Podemos organizar dichos tipos de mapas de coropletas en tres grandes familias, tal como se muestra en el cuadro 2.1:
@@ -268,7 +268,7 @@ Hay diferentes métodos de clasificación y, por tanto, diferentes tipos de mapa
 
 :Cuadro 2.1. Formas de clasificación de familias de mapas 
 
-<div style="text-align: justify">
+
 Todos estos tipos de mapas pueden ser fácilmente invocados en un programa como GeoDa o QGIS, sin embargo, en R no todos están disponibles y a veces la construcción de alguno de ellos exige algunos fundamentos de programación. A pesar de ello, R ofrece bastantes alternativas sencillas para construir mapas de clasificación común.
 
 ---------------------------------------------------------------------
@@ -336,7 +336,7 @@ iii. Un mapa a partir de la clasificación por clusters jerárquicos.
 ------------------------------------------------------------------------
 
 ### Argumentos de personalización del borde
-<div style="text-align: justify">
+
 Se dijo antes que a pesar de no haber especificado argumento alguno en la función de borde, en ésta operan argumentos por defecto. Es momento de modificar dichos argumentos. Las opciones de borde se especifican dentro de  `tm_border()` donde es posible modificar el color (`col`), grosor (`lwd`) y tipo de borde (`lty`):
 
 ```{r}
@@ -461,7 +461,7 @@ tmap::tm_shape(cartograma.cont) +
 ```
 
 ## Centroides o coordenadas geométricas (punto medio)
-
+<div style="text-align: justify">
 En el [blog de mappingGIS](https://mappinggis.com/2018/09/como-calcular-las-coordenadas-de-una-geometria-con-qgis/) encontramos la siguiente definición de punto medio:
 
 > Toda geometría vectorial (punto, línea o polígono) contiene un punto central denominado centroide.
@@ -501,14 +501,12 @@ Como siempre, se recomienda revisar la documentación de ayuda de la función `s
 
 ## Tópico adicional: Mapas de clasificación especial (elementos de programación)
 <div style="text-align: justify">
-
 ### Una palabra de advertencia
 En esta sección se construyen dos tipos de mapas de clasificación especial, es decir, destinados a hacer notar los valores atípicos. No obstante, la construcción de dichos mapas en R supone cierto conocimiento sobre programación que está fuera del alcance de estas notas. Si deseas profundizar en el aprendizaje de programación en R, el libro de Roger D. Peng, [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) es un excelente material, particularmente el [capítulo 14 dedicado a las funciones en R](https://bookdown.org/rdpeng/rprogdatascience/functions.html) @Peng2015.
 
 Con esta advertencia, llevamos a cabo la exposición de esta sección, esperando motivarte para que tu mismo profundices en los tópicos de programación.
 
 ### Mapa de intervalos personalizados
-<div style="text-align: justify">
 
 Se señaló antes que, hasta donde tenemos conocimiento, en R no es posible construir mapas de clasificación especial con `tmap` a través de las opciones de estilo, no obstante, con algunos elementos de programación es posible solventar esta tarea. En esta sección nos servimos del código proporcionado por Luc Anselin y su equipo quienes, en un esfuerzo de difusión del conocimiento sobre el uso de estas herramientas, pone a nuestra disposición una basta cantidad de materiales en la página del [Center for Spatial Data Science](https://spatial.uchicago.edu/) de la Universidad de Chicago. @AnselinMorrison2018
 
@@ -579,7 +577,7 @@ tmap::tm_shape(zmvm_cov_sf)+
 ```
 
 ### Construcción de una función personalizada para hacer mapas de percentiles
-<div style="text-align: justify">
+
 Con el camino que hemos seguido, es posible ahorrarnos muchos pasos y crear nuestra propia función (que opera en el entorno de trabajo activo de la sesión) para construir mapas de percentiles. Nuestra función se llamará `percentmap()`. Nuestra función tendrá los siguientes argumentos: 
 
 * `varnom`: nombre de la variable (cadena, entre comillas).

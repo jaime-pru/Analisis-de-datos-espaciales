@@ -150,11 +150,11 @@ Figura 3.3: Matriz ejemplo llena
 <h2>
 <span class="header-section-number">3.2</span> Matrices de pesos espaciales en R<a class="anchor" aria-label="anchor" href="#matrices-de-pesos-espaciales-en-r"><i class="fas fa-link"></i></a>
 </h2>
+<div style="text-align: justify">
 <div id="los-paquetes-1" class="section level3" number="3.2.1">
 <h3>
 <span class="header-section-number">3.2.1</span> Los paquetes<a class="anchor" aria-label="anchor" href="#los-paquetes-1"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>En R hay muchas rutas para desarrollar la misma tarea. Lo que presentamos en este capítulo es una de múltiples maneras que pueden encontrarse para la construcción de matrices de pesos espaciales en R. En el apéndice, encontrarás otra alternativa, un tanto más elaborada. La manera en que desarrollamos en esta sección la tarea de construir las matrices de pesos espaciales se sirve de los siguientes paquetes:</p>
 <ul>
 <li>
@@ -174,7 +174,6 @@ Figura 3.3: Matriz ejemplo llena
 <h3>
 <span class="header-section-number">3.2.2</span> Matrices de contigüidad: el argumento <code>queen</code> de la función <code>poly2nb()</code><a class="anchor" aria-label="anchor" href="#matrices-de-contig%C3%BCidad-el-argumento-queen-de-la-funci%C3%B3n-poly2nb"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Primero, carguemos la base de datos espacial. En este caso, recurrimos a la función <code>readOGR</code> que forma parte del paquete <code>rgdal</code> para leer los archivos de tipo SHP.</p>
 <div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span><span class="fu">rgdal</span><span class="fu">::</span><span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></span></code></pre></div>
@@ -263,11 +262,11 @@ Figura 3.3: Matriz ejemplo llena
 <h2>
 <span class="header-section-number">3.3</span> Estadísticos de correlación espacial<a class="anchor" aria-label="anchor" href="#estad%C3%ADsticos-de-correlaci%C3%B3n-espacial"><i class="fas fa-link"></i></a>
 </h2>
+<div style="text-align: justify">
 <div id="la-matriz-de-pesos-espaciales-estandarizada" class="section level3" number="3.3.1">
 <h3>
 <span class="header-section-number">3.3.1</span> La matriz de pesos espaciales estandarizada<a class="anchor" aria-label="anchor" href="#la-matriz-de-pesos-espaciales-estandarizada"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Antes dijimos que cada uno de los elementos <span class="math inline">\(w_{ij}\)</span> de la matriz <span class="math inline">\(W\)</span> pueden tomar como valores ceros o unos. La matriz <span class="math inline">\(W\)</span> puede escribirse como:</p>
 <p><span class="math display">\[
 W=
@@ -322,7 +321,6 @@ La matriz de pesos espaciales estandarizada es la que usaremos en lo sucesivo pa
 <h3>
 <span class="header-section-number">3.3.2</span> El rezago o retardo espacial<a class="anchor" aria-label="anchor" href="#el-rezago-o-retardo-espacial"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas. Ya hemos visto cómo podemos operacionalizar el concepto de vecindad, por lo que podemos ahora concentrémonos en los otros elementos. Comencemos con aquel que define el valor de una variable en las zonas vecinas, a lo que llamaremos <em>variable espacialmente rezagada</em>. Una variable espacialmente rezagada no es otra cosa que un promedio ponderado del valor de una variable en un sitio y sus locaciones vecinas <span class="citation">(<a href="references.html#ref-Chasco2003" role="doc-biblioref">Chasco 2003, 61</a>; <a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>. Siguiendo a <span class="citation">(<a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>, “el rezago espacial de <span class="math inline">\(y\)</span> del objeto espacial <span class="math inline">\(i\)</span> es expresado como <span class="math inline">\(Wy_{i}\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -408,7 +406,6 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 <h3>
 <span class="header-section-number">3.3.3</span> Coeficiente de correlación espacial: la I de Moran<a class="anchor" aria-label="anchor" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Sin duda, el estadístico de asociación espacial más común es la I de Moran, que no es otra cosa que un coeficiente de correlación lineal que “incorpora al espacio”, es decir, mide la asociación lineal entre la variable de interés y su rezago espacial.</p>
 <p>Para calcular el coeficiente o estadístico de Moran necesitamos recurrir a la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test()</a></code> del paquete <code>spdep</code>. Los argumentos de la función deben especificar el nombre de la variable y el tipo de estructura espacial dado por la matriz de pesos usada; adicionalmente, se puede indicar qué hacer en caso de que existan islas (objetos espaciales sin vecinos) con el argumento <code>zero.policy</code>.</p>
 <hr>
@@ -463,7 +460,6 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 <h3>
 <span class="header-section-number">3.3.4</span> Diagrama de dispersión de Moran<a class="anchor" aria-label="anchor" href="#diagrama-de-dispersi%C3%B3n-de-moran"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Una forma creativa de expresar gráficamente la autocorrelación de la variable de interés es a través de un diagrama de dispersión cuyo eje <span class="math inline">\(x\)</span> corresponde a la variable de interés, casos positivos de COVID19 por cada 1 mil habitantes, y en el eje <span class="math inline">\(y\)</span> su rezago espacial; además, al agregar una recta de ajuste sobre los datos estandarizados lograremos que la pendiente de dicha recta corresponda exactamente al valor de la I de Moran. Una de las características del diagrama de Moran es que se descompone en cuatro cuadrantes, tal como aparece en la figura 3.4.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-128"></span>
@@ -616,7 +612,6 @@ Figura 3.4: Diagrama de dispersión de Moran
 <h3>
 <span class="header-section-number">3.6.1</span> Matriz tipo torre (<em>rook</em>)<a class="anchor" aria-label="anchor" href="#matriz-tipo-torre-rook"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>La construcción de las matrices de pesos espaciales en R con este segundo enfoque se hará a través de los paquetes <code>sf</code> y <code>spdep</code>, que permitirá crear una matriz de tipo torre y reina.</p>
 <p>Para hacerlo, es necesario seguir dos pasos. En el primero se construirá una función que recoja la relación de vecindad, a esta función la llamaremos <code>func_torre</code> y dentro de dicha función definiremos la relación de vecindad que nos interesa a través de otra función, la función <code><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate()</a></code> del paquete <code>sf</code> que “calcula relaciones entre pares de geometrías o las empareja con un patrón dado. Esta función también tiene un parámetro para un patrón específico” <span class="citation">(<a href="references.html#ref-AnselinMorrison2018" role="doc-biblioref">Anselin y Morrison 2018</a>)</span> y la que nos interesa es el patrón “compartir lados”. Posteriormente, en el segundo paso, aplicamos la función creada a nuestra geometría para crear un objeto de tipo <code>sgbp</code>:</p>
 <div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
@@ -664,7 +659,6 @@ Figura 3.4: Diagrama de dispersión de Moran
 <h3>
 <span class="header-section-number">3.6.2</span> Matriz tipo reyna (<em>queen</em>)<a class="anchor" aria-label="anchor" href="#matriz-tipo-reyna-queen"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Procedemos de forma semejante para la construcción de una matriz tipo torre, a través de un par de funciones. Primero, se establece la función que recoge los patrones de interés, “compartir lados y vértices”:</p>
 <div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">func_reina</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="va">a</span><span class="op">)</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, pattern <span class="op">=</span> <span class="st">"F***T****"</span><span class="op">)</span></span></code></pre></div>
@@ -698,7 +692,6 @@ Figura 3.4: Diagrama de dispersión de Moran
 <h3>
 <span class="header-section-number">3.6.3</span> Matrices de contigüidad de orden superior<a class="anchor" aria-label="anchor" href="#matrices-de-contig%C3%BCidad-de-orden-superior"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Es posible contar con matrices de órdenes superiores, para ello, recurrimos a la función <code><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag()</a></code> con la que creamos un objeto del que, en el segundo paso, extraeremos la información de interés. Nota que el orden de contigüidad está establecido en el segundo argumento:</p>
 <div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reina.2o</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag</a></span><span class="op">(</span><span class="va">reina.nb</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
@@ -799,13 +792,6 @@ for (let popover of popovers) {
   }
 }
 </script>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

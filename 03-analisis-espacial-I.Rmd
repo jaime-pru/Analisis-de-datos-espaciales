@@ -65,9 +65,9 @@ Este tipo de matriz, denotado por la letra mayúscula $W$, contiene como element
 Aquí acabamos de ilustrar la lógica con la que puede ser construida una matriz de pesos espaciales a partir de una retícula regular con apenas seis elementos. Veamos ahora cómo obtener matrices de pesos espaciales sirviéndonos de R, ya que desarrollar los pasos anteriores para un vecindario compuesto por 76 elementos como los que integran el Valle de México es tarea para una máquina, no para nosotros.
 
 ## Matrices de pesos espaciales en R
-
-### Los paquetes
 <div style="text-align: justify">
+### Los paquetes
+
 En R hay muchas rutas para desarrollar la misma tarea. Lo que presentamos en este capítulo es una de múltiples maneras que pueden encontrarse para la construcción de matrices de pesos espaciales en R. En el apéndice, encontrarás otra alternativa, un tanto más elaborada. La manera en que desarrollamos en esta sección la tarea de construir las matrices de pesos espaciales se sirve de los siguientes paquetes:
 
 * `rgdal`: según se lee en la documentación, "proporciona enlaces a la biblioteca de abstracción de datos 'geoespaciales'"
@@ -87,7 +87,7 @@ library(rgdal)
 ```
 
 ### Matrices de contigüidad: el argumento `queen` de la función `poly2nb()`
-<div style="text-align: justify">
+
 Primero, carguemos la base de datos espacial. En este caso, recurrimos a la función `readOGR` que forma parte del paquete `rgdal` para leer los archivos de tipo SHP.
 
 ```{r}
@@ -173,9 +173,9 @@ plot(mFALSE, coordinates(covid_zmvm), add=TRUE, col='lightgreen')
 Como puedes observar, son estructuras muy parecidas, aunque es posible notar sus diferencias. Es ampliamente recomendable que revises el apéndice de este capítulo pues en él se trata un enfoque diferente para la construcción de matrices de pesos espaciales que, si bien es más complejo, te puede servir para avanzar en tu conocimiento sobre R.
 
 ## Estadísticos de correlación espacial
-
-### La matriz de pesos espaciales estandarizada
 <div style="text-align: justify">
+### La matriz de pesos espaciales estandarizada
+
 Antes dijimos que cada uno de los elementos $w_{ij}$  de la matriz $W$ pueden tomar como valores ceros o unos. La matriz $W$ puede escribirse como:
 
 
@@ -216,7 +216,7 @@ ii. ¿Logras identificar cómo la suma de cada renglón de la lista es igual a u
 ------------------------------------------------------------------------
 
 ### El rezago o retardo espacial
-<div style="text-align: justify">
+
 Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas. Ya hemos visto cómo podemos operacionalizar el concepto de vecindad, por lo que podemos ahora concentrémonos en los otros elementos. Comencemos con aquel que define el valor de una variable en las zonas vecinas, a lo que llamaremos *variable espacialmente rezagada*. Una variable espacialmente rezagada no es otra cosa que un promedio ponderado del valor de una variable en un sitio y sus locaciones vecinas [@Chasco2003,p. 61; @Anselin2020]. Siguiendo a [@Anselin2020], "el rezago espacial de $y$ del objeto espacial $i$ es expresado como $Wy_{i}$:
 
 $$
@@ -282,7 +282,7 @@ Los valores previamente listados corresponden tanto al nombre como al número de
 
 
 ### Coeficiente de correlación espacial: la I de Moran
-<div style="text-align: justify">
+
 Sin duda, el estadístico de asociación espacial más común es la I de Moran, que no es otra cosa que un coeficiente de correlación lineal que "incorpora al espacio", es decir, mide la asociación lineal entre la variable de interés y su rezago espacial.
 
 Para calcular el coeficiente o estadístico de Moran necesitamos recurrir a la función `moran.test()` del paquete `spdep`. Los argumentos de la función deben especificar el nombre de la variable y el tipo de estructura espacial dado por la matriz de pesos usada; adicionalmente, se puede indicar qué hacer en caso de que existan islas (objetos espaciales sin vecinos) con el argumento `zero.policy`.
@@ -337,9 +337,8 @@ iii. ¿Dirías que dicha relación es producto del azar o que existe un comporta
 
 ------------------------------------------------------------------------
 
-
 ### Diagrama de dispersión de Moran
-<div style="text-align: justify">
+
 Una forma creativa de expresar gráficamente la autocorrelación de la variable de interés es a través de un diagrama de dispersión cuyo eje $x$ corresponde a la variable de interés, casos positivos de COVID19 por cada 1 mil habitantes, y en el eje $y$ su rezago espacial; además, al agregar una recta de ajuste sobre los datos estandarizados lograremos que la pendiente de dicha recta corresponda exactamente al valor de la I de Moran. Una de las características del diagrama de Moran es que se descompone en cuatro cuadrantes, tal como aparece en la figura 3.4.
 
 ```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Diagrama de dispersión de Moran'} 
@@ -484,7 +483,7 @@ covid_zmvm_sf <-sf::st_read("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
 Note el tipo de objeto creado (sf) al cargar la base con esta función que difiere del tipo de objeto usado en el primer método (spatial polygon dataframe).
 
 ### Matriz tipo torre (*rook*)
-<div style="text-align: justify">
+
 La construcción de las matrices de pesos espaciales en R con este segundo enfoque se hará a través de los paquetes `sf` y `spdep`, que permitirá crear una matriz de tipo torre y reina.
 
 Para hacerlo, es necesario seguir dos pasos. En el primero se construirá una función que recoja la relación de vecindad, a esta función la llamaremos `func_torre` y dentro de dicha función definiremos la relación de vecindad que nos interesa a través de otra función, la función `st_relate()` del paquete `sf` que "calcula relaciones entre pares de geometrías o las empareja con un patrón dado. Esta función también tiene un parámetro para un patrón específico" [@AnselinMorrison2018] y la que nos interesa es el patrón "compartir lados". Posteriormente, en el segundo paso, aplicamos la función creada a nuestra geometría para crear un objeto de tipo `sgbp`:
@@ -524,7 +523,7 @@ torre.pesos <- spdep::nb2listw(torre.nb, zero.policy = TRUE)
 
 
 ### Matriz tipo reyna (*queen*)
-<div style="text-align: justify">
+
 Procedemos de forma semejante para la construcción de una matriz tipo torre, a través de un par de funciones. Primero, se establece la función que recoge los patrones de interés, "compartir lados y vértices":
   
 ```{r}
@@ -552,7 +551,7 @@ reina.pesos <- spdep::nb2listw(reina.nb, zero.policy = TRUE)
 
 
 ### Matrices de contigüidad de orden superior
-<div style="text-align: justify">
+
 Es posible contar con matrices de órdenes superiores, para ello, recurrimos a la función `nblag()` con la que creamos un objeto del que, en el segundo paso, extraeremos la información de interés. Nota que el orden de contigüidad está establecido en el segundo argumento:
   
 ```{r}
