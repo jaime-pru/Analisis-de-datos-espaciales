@@ -15,3 +15,8 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
+bookdown::bs4_book:
+  theme:
+    primary: "#3860b6"
+    base_font: "Segoe UI"
+  css: css/style.css

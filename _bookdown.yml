@@ -6,5 +6,6 @@ language:
     eq: 'Ecuación '
   ui:
     chapter_name: ""
+output_dir: docs
 rmd_files: ["index.Rmd","01-intro.Rmd","02-Mapas.Rmd","03-Analisis-espacial-I.Rmd","04-Regresion-lineal.Rmd","05-Analisis-espacial-II.Rmd","07-sobre-el-autor-y-creditos.Rmd","08-references.Rmd"]
 

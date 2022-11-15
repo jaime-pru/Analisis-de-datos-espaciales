@@ -4,20 +4,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</title>
+<title>3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R</title>
 <meta name="author" content="Jaime Alberto Prudencio Vázquez">
-<meta name="generator" content="bookdown 0.24.1 with bs4_book()">
-<meta property="og:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
+<meta name="generator" content="bookdown 0.30 with bs4_book()">
+<meta property="og:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R: manejo, visualización y modelos econométricos">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="twitter:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
 <script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><meta name="description" content="3.1 Autocorrelación y dependencia espacial  La identificación de autocorrelación espacial es importante como parte del proceso de análisis del fenómeno socioterritoriales al menos por dos...">
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="css/style.css">
+<meta name="description" content="3.1 Autocorrelación y dependencia espacial  La identificación de autocorrelación espacial es importante como parte del proceso de análisis del fenómeno socioterritoriales al menos por dos...">
 <meta property="og:description" content="3.1 Autocorrelación y dependencia espacial  La identificación de autocorrelación espacial es importante como parte del proceso de análisis del fenómeno socioterritoriales al menos por dos...">
 <meta name="twitter:description" content="3.1 Autocorrelación y dependencia espacial  La identificación de autocorrelación espacial es importante como parte del proceso de análisis del fenómeno socioterritoriales al menos por dos...">
 </head>
@@ -29,7 +56,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</a>
+        <a href="index.html" title="">Análisis de datos espaciales con R</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -47,6 +74,7 @@
 <li><a class="active" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
 <li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
 <li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -135,12 +163,12 @@ Figura 3.3: Matriz ejemplo llena
 <code>spdep</code>: contiene todo un arsenal de funciones para el análisis espacial, que permiten crear matrices de pesos espaciales, así como evaluar autocorrelación espacial.</li>
 </ul>
 <p>Como es usual, se deben descargar e instalar los paquetes:</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rgdal"</span>,<span class="st">"spdep"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rgdal"</span>,<span class="st">"spdep"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Para cargarlos:</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rgdal.r-forge.r-project.org">rgdal</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rgdal.r-forge.r-project.org">rgdal</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="matrices-de-contigüidad-el-argumento-queen-de-la-función-poly2nb" class="section level3" number="3.2.2">
 <h3>
@@ -148,14 +176,17 @@ Figura 3.3: Matriz ejemplo llena
 </h3>
 <div style="text-align: justify">
 <p>Primero, carguemos la base de datos espacial. En este caso, recurrimos a la función <code>readOGR</code> que forma parte del paquete <code>rgdal</code> para leer los archivos de tipo SHP.</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">covid_zmvm</span> <span class="op">&lt;-</span><span class="fu">rgdal</span><span class="fu">::</span><span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/readOGR.html">readOGR</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI, dumpSRS =
-## dumpSRS, : Discarded datum D_unknown in Proj4 definition: +proj=lcc +lat_0=12
-## +lon_0=-102 +lat_1=17.5 +lat_2=29.5 +x_0=2500000 +y_0=0 +ellps=GRS80 +units=m
-## +no_defs</code></pre>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span><span class="fu">rgdal</span><span class="fu">::</span><span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
+<pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: "C:\Users\Jarvis\Desktop\Analisis espacial con R studio\base de datos\covid_zmvm shp\covid_zmvm.shp", layer: "covid_zmvm"
+## Source: "C:\Repositorios\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp", layer: "covid_zmvm"
 ## with 76 features
 ## It has 55 fields</code></pre>
 <p>Observa el objeto en tu ambiente de trabajo. Notaras que es un objeto de tipo <em>Spatial polygons data frame</em> y al hacer clic en la imagen de la lente de aumento no se desplegará la base de datos como es usual, sino que estará almacenada y agrupada de otra manera:</p>
@@ -172,12 +203,12 @@ Figura 3.3: Matriz ejemplo llena
 <p>La función <code><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb()</a></code> del paquete <code>spdep</code> nos permite calcular dos tipos de vecindad por adyacencia a través del argumento lógico <code>queen</code>. En la documentación de la función podemos leer que: “si es VERDADERO, <code>TRUE</code>, un solo punto límite compartido cumple la condición de contigüidad; si es FALSO, <code>FALSE</code>, se requiere más de un punto compartido; ten en cuenta que más de un punto límite compartido no significa necesariamente una línea límite compartida”.</p>
 <p>Lo dicho en el párrafo anterior es relevante en el sentido de que los estos criterios, los usados por R en la construcción de matrices, no son exactamente los mismos que definimos antes (contigüidad reina y torre). Aquí la diferencia entre asignar como verdadero o falso el argumento <code>queen=</code>, puede ser interpretado como un criterio menos estricto o más estricto, respectivamente.</p>
 <p>Vamos a construir un objeto que llamaremos <code>mTRUE</code>, dicho objeto contendrá los elementos que definen la vecindad:</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mTRUE</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mTRUE</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></span></code></pre></div>
 <p>El segmento de código anterior genera un objeto de tipo <code>nb</code>. Verifica sus características con <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> . Además, nota que en la sección de ambiente de trabajo (cuadrante superior derecho, en la pestaña ambiente) aparece el objeto creado. Da clic en la imagen de la lupa para visualizarlo e intenta interpretar el resultado de la ventana.</p>
 <p>Ahora, llama a el objeto y presta atención sobre los resultados que ofrece:</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mTRUE</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mTRUE</span></span></code></pre></div>
 <pre><code>## Neighbour list object:
 ## Number of regions: 76 
 ## Number of nonzero links: 384 
@@ -195,11 +226,11 @@ Figura 3.3: Matriz ejemplo llena
 <li>Número promedio de vecinos o vínculos: 5. Número de vecinos que en promedio tiene cada municipio o alcaldía.</li>
 </ul>
 <p>Ahora bien, para construir una lista de vecindad con base en un criterio más estricto, es decir, <code>queen = FALSE</code>, procedemos como:</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mFALSE</span><span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, queen <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mFALSE</span><span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, queen <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Ahora, llama dicho objeto y contrasta con los resultados anteriores.</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mFALSE</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mFALSE</span></span></code></pre></div>
 <pre><code>## Neighbour list object:
 ## Number of regions: 76 
 ## Number of nonzero links: 372 
@@ -214,16 +245,16 @@ Figura 3.3: Matriz ejemplo llena
 <hr>
 <p>Es posible observar que, con base en este segundo criterio de vecindad, se identificaron un menor número de vecinos (número de vínculos diferente de cero).</p>
 <p>Estas listas, que contienen nuestras estructuras espaciales en los objeto de tipo <code>nb</code> llamados <code>mTRUE</code> y <code>mFALSE</code>, pueden representarse visualmente a través de un <em>gráfico de conectividad</em> que representa la estructura espacial definida por cada criterio a través de líneas que unen a los municipios considerados vecinos.</p>
-<p>Para visualizar el mapa de conectividad recurrimos a la función <code><a href="https://r-spatial.github.io/sf/reference/plot.html">plot()</a></code> y superpondremos dos gráficas: una sólo con los bordes o límites a nivel municipal y otra con los centroides y la estructura espacial. Aquí se muestra el mapa de conectividad resultado de la matriz <code>mTRUE</code></p>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightblue'</span><span class="op">)</span></code></pre></div>
+<p>Para visualizar el mapa de conectividad recurrimos a la función <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> y superpondremos dos gráficas: una sólo con los bordes o límites a nivel municipal y otra con los centroides y la estructura espacial. Aquí se muestra el mapa de conectividad resultado de la matriz <code>mTRUE</code></p>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightblue'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672"></div>
 <p>Para comparar ambas formas podemos superponer las dos gráficas y asignar colores diferentes:</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">mFALSE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightgreen'</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mFALSE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightgreen'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-121-1.png" width="672"></div>
 <p>Como puedes observar, son estructuras muy parecidas, aunque es posible notar sus diferencias. Es ampliamente recomendable que revises el apéndice de este capítulo pues en él se trata un enfoque diferente para la construcción de matrices de pesos espaciales que, si bien es más complejo, te puede servir para avanzar en tu conocimiento sobre R.</p>
 </div>
@@ -250,9 +281,9 @@ w_{n1} &amp; w_{n2} &amp; \dots  &amp; w_{nn}\\
 <p>No obstante, es posible expresar dicha matriz <span class="math inline">\(W\)</span> de una forma diferente, normalizandola por filas. Normalizar una matriz de pesos espaciales por filas implica dividir cada elemento <span class="math inline">\(w_{ij}\)</span> de una fila entre la suma de elementos diferentes a cero de dicha fila, es decir:</p>
 <p><span class="math display">\[w_{ij(s)}=\frac {w_{ij}} {\sum{w_{ij}}}\]</span>
 La matriz de pesos espaciales estandarizada es la que usaremos en lo sucesivo para construir lo que denominaremos rezago espacial y para la construcción de estadísticos de correlación espacial, un poco más adelante. El proceso de estandarización de las matrices que recién creamos, los objetos <code>mTRUE</code> y <code>mFALSE</code>, corre a cuenta de la función <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code> del paquete <code>spdep</code>:</p>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mTRUE.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mTRUE</span><span class="op">)</span>
-<span class="va">mTRUE.pesos</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mTRUE.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mTRUE</span><span class="op">)</span></span>
+<span><span class="va">mTRUE.pesos</span></span></code></pre></div>
 <pre><code>## Characteristics of weights list object:
 ## Neighbour list object:
 ## Number of regions: 76 
@@ -264,9 +295,9 @@ La matriz de pesos espaciales estandarizada es la que usaremos en lo sucesivo pa
 ## Weights constants summary:
 ##    n   nn S0       S1       S2
 ## W 76 5776 76 35.56142 319.6623</code></pre>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mFALSE.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mFALSE</span><span class="op">)</span>
-<span class="va">mFALSE.pesos</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mFALSE.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mFALSE</span><span class="op">)</span></span>
+<span><span class="va">mFALSE.pesos</span></span></code></pre></div>
 <pre><code>## Characteristics of weights list object:
 ## Neighbour list object:
 ## Number of regions: 76 
@@ -292,7 +323,7 @@ La matriz de pesos espaciales estandarizada es la que usaremos en lo sucesivo pa
 <span class="header-section-number">3.3.2</span> El rezago o retardo espacial<a class="anchor" aria-label="anchor" href="#el-rezago-o-retardo-espacial"><i class="fas fa-link"></i></a>
 </h3>
 <div style="text-align: justify">
-<p>Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas. Ya hemos visto cómo podemos operacionalizar el concepto de vecindad, por lo que podemos ahora concentrémonos en los otros elementos. Comencemos con aquel que define el valor de una variable en las zonas vecinas, a lo que llamaremos <em>variable espacialmente rezagada</em>. Una variable espacialmente rezagada no es otra cosa que un promedio ponderado del valor de una variable en un sitio y sus locaciones vecinas <span class="citation">(<a href="references.html#ref-Chasco2003" role="doc-biblioref">Chasco 2003, 61</a>; <a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>. Siguiendo a <span class="citation">(<a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>, "el rezago espacial de <span class="math inline">\(y\)</span> del objeto espacial <span class="math inline">\(i\)</span> es expresado como <span class="math inline">\(Wy_{i}\)</span>:</p>
+<p>Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas. Ya hemos visto cómo podemos operacionalizar el concepto de vecindad, por lo que podemos ahora concentrémonos en los otros elementos. Comencemos con aquel que define el valor de una variable en las zonas vecinas, a lo que llamaremos <em>variable espacialmente rezagada</em>. Una variable espacialmente rezagada no es otra cosa que un promedio ponderado del valor de una variable en un sitio y sus locaciones vecinas <span class="citation">(<a href="references.html#ref-Chasco2003" role="doc-biblioref">Chasco 2003, 61</a>; <a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>. Siguiendo a <span class="citation">(<a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>, “el rezago espacial de <span class="math inline">\(y\)</span> del objeto espacial <span class="math inline">\(i\)</span> es expresado como <span class="math inline">\(Wy_{i}\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 Wy_i &amp;=  w_{i1}y_1+w_{i2}y_2+...+w_{in}y_n \\
@@ -301,17 +332,17 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 \]</span></p>
 <p>Recuerda que <span class="math inline">\(w_{ij}\)</span> no es otra cosa que cada uno de los elementos de la matriz de pesos estandarizada por fila y que define la estructura de asociación en el espacio.</p>
 <p>Construiremos un rezago espacial de la variable <code>pos_hab</code> con ayuda de la función <code><a href="https://r-spatial.github.io/spdep/reference/lag.listw.html">lag.listw()</a></code> del paquete <code>spdep</code>. Indicamos dos argumentos en la función: la estructura espacial dada por la matriz estandarizada, <code>mTRUE.pesos</code>, y la variable de la que deseamos el rezago espacial, <code>pos_hab</code>, esto es guardado en un nuevo objeto, <code>lag_poshab</code>, tal y como se muestra en el siguiente segmento de código:</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lag_poshab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lag.listw.html">lag.listw</a></span><span class="op">(</span><span class="va">mTRUE.pesos</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lag_poshab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lag.listw.html">lag.listw</a></span><span class="op">(</span><span class="va">mTRUE.pesos</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span></span></code></pre></div>
 <p>Para lograr apreciar mejor nuestro rezago espacial, construiremos una tabla de dos columnas que almacenaremos en el objeto <code>df</code>, la primera contendrá la variable original y la segunda el rezago espacial, luego pediremos que nos muestre los primeros registros de la tabla con la función <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> en un formato estilizado a través de la función <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> del paquete <code>knitr</code>:</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Crea un nuevo arreglo de datos donde se almacena la variable original y el rezago espacial</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pos_hab <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">lag_poshab</span><span class="op">)</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
-
-<span class="co">#Coloca los primeros valores de ambas variables en una tabla, requiere instalación y carga del paquete  knitr</span>
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Crea un nuevo arreglo de datos donde se almacena la variable original y el rezago espacial</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pos_hab <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">lag_poshab</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Coloca los primeros valores de ambas variables en una tabla, requiere instalación y carga del paquete  knitr</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
 <th align="right">pos_hab</th>
@@ -346,13 +377,13 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 </table></div>
 <p>El valor de la segunda columna, <code>lag_poshab</code>, es el promedio ponderado de los casos positivos de los vecinos de cada uno de los 76 municipios y alcaldías de nuestra base. Para inspeccionar esto, observemos tanto a los vecinos de una unidad espacial como a sus respectivos valores de <code>pos_hab</code>.</p>
 <p>Para identificar a los vecinos de cada observación hay que extraer el dato utilizando dobles corchetes desde el objeto que contiene la estructura espacial no ponderada, <code>mTRUE</code>. Para nuestra observación identificada con el número 1 tenemos:</p>
-<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Devuelve el nombre del municipio identificado con el número 1</span>
-<span class="va">covid_zmvm</span><span class="op">$</span><span class="va">nom_mun</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] "Ã\201lvaro ObregÃ³n"</code></pre>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Devuelve los números de identificación de los municipios y alcaldías vecinas del Álvaro Obregón, la observación identificada con el número 1.</span>
-<span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Devuelve el nombre del municipio identificado con el número 1</span></span>
+<span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">nom_mun</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] "Álvaro Obregón"</code></pre>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Devuelve los números de identificación de los municipios y alcaldías vecinas del Álvaro Obregón, la observación identificada con el número 1.</span></span>
+<span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1]  2  7  9 10 11 15</code></pre>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -362,14 +393,14 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 </ol>
 <hr>
 <p>Ahora bien, ¿cuál es el valor de los casos positivos por cada 100 mil habitantes para cada una de las observaciones recién obtenidas? Para llamarlas a la consola podemos escribir:</p>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Devuelve el nombre de las alcaldías y municipios vecinos de Álvaro Obregón</span>
-<span class="va">covid_zmvm</span><span class="op">$</span><span class="va">nom_mun</span><span class="op">[</span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] "Tlalpan"                "CoyoacÃ¡n"              "Cuajimalpa de Morelos" 
-## [4] "Miguel Hidalgo"         "La Magdalena Contreras" "Benito JuÃ¡rez"</code></pre>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Devuelve el valor de pos_hab para cada observación vecina de Álvaro Obregón</span>
-<span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">[</span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Devuelve el nombre de las alcaldías y municipios vecinos de Álvaro Obregón</span></span>
+<span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">nom_mun</span><span class="op">[</span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] "Tlalpan"                "Coyoacán"               "Cuajimalpa de Morelos" 
+## [4] "Miguel Hidalgo"         "La Magdalena Contreras" "Benito Juárez"</code></pre>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Devuelve el valor de pos_hab para cada observación vecina de Álvaro Obregón</span></span>
+<span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">[</span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] 16.98318 14.94352 18.70125 13.67771 20.55956 11.08826</code></pre>
 <p>Los valores previamente listados corresponden tanto al nombre como al número de casos positivos de los vecinos de Álvaro Obregón. Así, el primer valor de la tabla es el resultado de (16.98 + 14.94 + 18.70 +13.67 + 20.55 + 11.08)/6, es decir, 15.99.</p>
 </div>
@@ -388,8 +419,8 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 </ol>
 <hr>
 <p>Construyamos el estadístico de Moran para la variable <code>pos_hab</code> usando la estructura espacial llamada <code>mTRUE.pesos</code>:</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Moran I test under randomisation
 ## 
@@ -441,13 +472,13 @@ Figura 3.4: Diagrama de dispersión de Moran
 </p>
 </div>
 <p>Para representar el diagrama de dispersión de Moran o simplemente diagrama de Moran recurrimos a la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> del paquete <code>spdep</code> que para una matriz de tipo reina con el argumento <code>queen=TRUE</code>:</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span>,
-                  listw <span class="op">=</span> <span class="va">mTRUE.pesos</span>, 
-                  xlab<span class="op">=</span><span class="st">"Casos positivos"</span>,
-                  ylab<span class="op">=</span><span class="st">"Rezago espacial de los casos positivos"</span>,
-                  main<span class="op">=</span><span class="st">"Diagrama de Moran para casos positivos"</span>,
-                  col<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  listw <span class="op">=</span> <span class="va">mTRUE.pesos</span>, </span>
+<span>                  xlab<span class="op">=</span><span class="st">"Casos positivos"</span>,</span>
+<span>                  ylab<span class="op">=</span><span class="st">"Rezago espacial de los casos positivos"</span>,</span>
+<span>                  main<span class="op">=</span><span class="st">"Diagrama de Moran para casos positivos"</span>,</span>
+<span>                  col<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672"></div>
 </div>
 </div>
@@ -475,8 +506,8 @@ Figura 3.4: Diagrama de dispersión de Moran
 <p>El Índice local de Moran toma la forma de:</p>
 <p><span class="math inline">\(I_i = \frac{(x_i-\bar{x})}{{∑_{k=1}^{n}(x_k-\bar{x})^2}/(n-1)}{∑_{j=1}^{n}w_{ij}(x_j-\bar{x})}\)</span></p>
 <p>Para calcular un índice de Moran local en R usamos la función <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code>. Creamos un objeto denominado <code>local</code> que echa mano de la matriz <code>mTRUE.pesos</code>:</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">local</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">local</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></span></code></pre></div>
 <p>El objeto creado, <code>local</code> es de tipo “localmoran”, no es otra cosa que una tabla que contiene múltiples variables cuyo contenido corresponde, según indica la propia ayuda de la función, a:</p>
 <ul>
 <li>Ii: estadístico de Moran local.<br>
@@ -490,44 +521,44 @@ Figura 3.4: Diagrama de dispersión de Moran
 <li>Pr (): valor p del estadístico de Moran local.</li>
 </ul>
 <p>Nos interesa la primera columna, <code>Ii</code>, el índice de Moran local y la columna <code>Pr</code> que contiene la probabilidad asociada, por lo que uniremos los resultados del objeto <code>local</code> a la tabla original que contiene nuestra base de datos. Para eso hay que usar la función <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> (combinar por columna) en un nuevo objeto que llamaremos <code>mapa.moran</code>:</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mapa.moran</span> <span class="op">&lt;-</span> <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, <span class="va">local</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mapa.moran</span> <span class="op">&lt;-</span> <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, <span class="va">local</span><span class="op">)</span></span></code></pre></div>
 <p>Primero, llevemos los resultados del Moran Local a un mapa de quintiles aplicando las funciones aprendidas en <code>tmap</code>:</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">mapa.moran</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"Ii"</span>, style <span class="op">=</span> <span class="st">"quantile"</span>,
-                palette <span class="op">=</span> <span class="st">"Spectral"</span>, midpoint<span class="op">=</span> <span class="cn">NA</span>,
-                title <span class="op">=</span> <span class="st">"I de Moran local"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">mapa.moran</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"Ii"</span>, style <span class="op">=</span> <span class="st">"quantile"</span>,</span>
+<span>                palette <span class="op">=</span> <span class="st">"Spectral"</span>, midpoint<span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                title <span class="op">=</span> <span class="st">"I de Moran local"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672"></div>
 <p>El mapa permite observar la manera en que varía la correlación espacial a nivel local. Pero necesitamos otro instrumento que nos permita identificar si los valores de la I de Moran local son o no significativos en esas áreas y de esta manera identificar agrupaciones o núcleos de cluster significativos, así como observaciones espaciales atípicas, es decir, un mapa de significancia. Esto lo hacemos siguiendo la propuesta de <span class="citation">(<a href="references.html#ref-Lovelace2014" role="doc-biblioref">Lovelace y Cheshire 2014</a>)</span>:</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># crea un vector numérico de la misma longitud del tamaño de filas de la base "local"</span>
-<span class="va">cuadrantes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode<span class="op">=</span><span class="st">"numeric"</span>,length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">local</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Centra la variable de interés (CRIME) alrededor de su media</span>
-<span class="va">m.COVID</span> <span class="op">&lt;-</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span>
-
-<span class="co"># Centra el Índice de Moran local alrededor de su media (columna 1 de la base "local")</span>
-<span class="va">m.local</span> <span class="op">&lt;-</span> <span class="va">local</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">local</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>    
-
-<span class="co"># Fija el umbral de significancia</span>
-<span class="va">signif</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> 
-
-<span class="co"># Identificación de los cuadrantes de interés</span>
-<span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&gt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span>  
-<span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&lt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span>      
-<span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&lt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-<span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&gt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">3</span>
-<span class="va">cuadrantes</span><span class="op">[</span><span class="va">local</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">&gt;</span><span class="va">signif</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>   
-
-<span class="co">#Para graficarlo</span>
-<span class="va">cortes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>
-<span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>,<span class="st">"blue"</span>,<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,alpha<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,alpha<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>,<span class="st">"red"</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">mapa.moran</span>, border<span class="op">=</span><span class="st">"lightgray"</span>,col<span class="op">=</span><span class="va">colores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/findInterval.html">findInterval</a></span><span class="op">(</span><span class="va">cuadrantes</span>,<span class="va">cortes</span>,all.inside<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>,legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No signficativo"</span>,<span class="st">"Bajo-Bajo"</span>,<span class="st">"Bajo-alto"</span>,<span class="st">"Alto-Bbajo"</span>,<span class="st">"Alto-Alto"</span><span class="op">)</span>,
-       fill<span class="op">=</span><span class="va">colores</span>,bty<span class="op">=</span><span class="st">"n"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># crea un vector numérico de la misma longitud del tamaño de filas de la base "local"</span></span>
+<span><span class="va">cuadrantes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode<span class="op">=</span><span class="st">"numeric"</span>,length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">local</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Centra la variable de interés (CRIME) alrededor de su media</span></span>
+<span><span class="va">m.COVID</span> <span class="op">&lt;-</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Centra el Índice de Moran local alrededor de su media (columna 1 de la base "local")</span></span>
+<span><span class="va">m.local</span> <span class="op">&lt;-</span> <span class="va">local</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">local</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>    </span>
+<span></span>
+<span><span class="co"># Fija el umbral de significancia</span></span>
+<span><span class="va">signif</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> </span>
+<span></span>
+<span><span class="co"># Identificación de los cuadrantes de interés</span></span>
+<span><span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&gt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span>  </span>
+<span><span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&lt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span>      </span>
+<span><span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&lt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">cuadrantes</span><span class="op">[</span><span class="va">m.COVID</span> <span class="op">&gt;</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">m.local</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">cuadrantes</span><span class="op">[</span><span class="va">local</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">&gt;</span><span class="va">signif</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>   </span>
+<span></span>
+<span><span class="co">#Para graficarlo</span></span>
+<span><span class="va">cortes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>,<span class="st">"blue"</span>,<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,alpha<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,alpha<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>,<span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mapa.moran</span>, border<span class="op">=</span><span class="st">"lightgray"</span>,col<span class="op">=</span><span class="va">colores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/findInterval.html">findInterval</a></span><span class="op">(</span><span class="va">cuadrantes</span>,<span class="va">cortes</span>,all.inside<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>,legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No signficativo"</span>,<span class="st">"Bajo-Bajo"</span>,<span class="st">"Bajo-alto"</span>,<span class="st">"Alto-Bbajo"</span>,<span class="st">"Alto-Alto"</span><span class="op">)</span>,</span>
+<span>       fill<span class="op">=</span><span class="va">colores</span>,bty<span class="op">=</span><span class="st">"n"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672"></div>
 <p>El mapa anterior permite identificar agrupamientos de valores significativos al 10%, núcleos de cluster que muestran municipios y alcaldías con valores altos de tasas positivas de COVID19 rodeados de vecinos con valores altos (agrupamiento Alto-Alto), así como agrupamientos de valores bajos (cuadrante Bajo-Bajo), además de observaciones espaciales atípicas (cuadrante Alto-bajo).</p>
 <p>En síntesis, hasta este punto hemos visto en este capítulo:</p>
@@ -563,17 +594,17 @@ Figura 3.4: Diagrama de dispersión de Moran
 <code>knitr</code>: permite generar reportes estilizados en R.</li>
 </ul>
 <p>Si aún no los has instalado, hazlo. Si ya los instaste, llámalos al entorno de trabajo:</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span></code></pre></div>
 <p>Para construir las matrices de pesos espaciales con este segundo enfoque, es necesario cargar de nueva cuenta la base de datos, pero ahora a través de la función <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> del paquete <code>sf</code>. Para ello, recurrimos a:</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">covid_zmvm_sf</span> <span class="op">&lt;-</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">covid_zmvm_sf</span> <span class="op">&lt;-</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Reading layer `covid_zmvm' from data source 
-##   `C:\Users\Jarvis\Desktop\Analisis espacial con R studio\base de datos\covid_zmvm shp\covid_zmvm.shp' 
+##   `C:\Repositorios\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp' 
 ##   using driver `ESRI Shapefile'
 ## Simple feature collection with 76 features and 55 fields
 ## Geometry type: MULTIPOLYGON
@@ -588,22 +619,22 @@ Figura 3.4: Diagrama de dispersión de Moran
 <div style="text-align: justify">
 <p>La construcción de las matrices de pesos espaciales en R con este segundo enfoque se hará a través de los paquetes <code>sf</code> y <code>spdep</code>, que permitirá crear una matriz de tipo torre y reina.</p>
 <p>Para hacerlo, es necesario seguir dos pasos. En el primero se construirá una función que recoja la relación de vecindad, a esta función la llamaremos <code>func_torre</code> y dentro de dicha función definiremos la relación de vecindad que nos interesa a través de otra función, la función <code><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate()</a></code> del paquete <code>sf</code> que “calcula relaciones entre pares de geometrías o las empareja con un patrón dado. Esta función también tiene un parámetro para un patrón específico” <span class="citation">(<a href="references.html#ref-AnselinMorrison2018" role="doc-biblioref">Anselin y Morrison 2018</a>)</span> y la que nos interesa es el patrón “compartir lados”. Posteriormente, en el segundo paso, aplicamos la función creada a nuestra geometría para crear un objeto de tipo <code>sgbp</code>:</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">func_torre</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="va">a</span><span class="op">)</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, pattern <span class="op">=</span> <span class="st">"F***1****"</span><span class="op">)</span><span class="co">#Define la función y sus parámetros</span>
-<span class="va">torre.sgbp</span> <span class="op">&lt;-</span> <span class="fu">func_torre</span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span> <span class="co"># Crea un objeto a partir de la función anterior. Requiere tener cargado el paquete sf</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">func_torre</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="va">a</span><span class="op">)</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, pattern <span class="op">=</span> <span class="st">"F***1****"</span><span class="op">)</span><span class="co">#Define la función y sus parámetros</span></span>
+<span><span class="va">torre.sgbp</span> <span class="op">&lt;-</span> <span class="fu">func_torre</span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span> <span class="co"># Crea un objeto a partir de la función anterior. Requiere tener cargado el paquete sf</span></span></code></pre></div>
 <p>Observa la estructura y clase que tiene el objeto recién creado, <code>torre.sgbp</code>: es un objeto de tipo <code>sgbp</code>. Para poder interactuar más adelante con este objeto, es necesario modificar su clase. Se trata, pues, de transformar el objeto a una clase <code>nb</code>, es decir, una <em>neighbor list</em> (lista de vecinos). Llevaremos a cabo este procedimiento creando una función para el caso, <code>as.nb.sgbp</code>. Esta función nos permitirá además lidiar con los polígonos que no tienen vecinos.</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">as.nb.sgbp</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span><span class="co">#Define la función con 1 argumento, un objeto de tipo `sgbp`</span>
-  <span class="va">attrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co">#Guarda los atributos del objeto de tipo sgbp</span>
-  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">x</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span> <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="fl">0L</span> <span class="kw">else</span> <span class="va">i</span> <span class="op">}</span> <span class="op">)</span> <span class="co">#Función que coloca un 0 a cada elemento sin vecinos.</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">attrs</span> <span class="co">#aplica los atributos recién modificados al argumento x.</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"nb"</span> <span class="co"># Cambia el tipo de objeto de `sgbp` a `nb`</span>
-  <span class="va">x</span> <span class="co">#Devuelve el objeto</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">as.nb.sgbp</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span><span class="co">#Define la función con 1 argumento, un objeto de tipo `sgbp`</span></span>
+<span>  <span class="va">attrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co">#Guarda los atributos del objeto de tipo sgbp</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">x</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span> <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="fl">0L</span> <span class="kw">else</span> <span class="va">i</span> <span class="op">}</span> <span class="op">)</span> <span class="co">#Función que coloca un 0 a cada elemento sin vecinos.</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">attrs</span> <span class="co">#aplica los atributos recién modificados al argumento x.</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"nb"</span> <span class="co"># Cambia el tipo de objeto de `sgbp` a `nb`</span></span>
+<span>  <span class="va">x</span> <span class="co">#Devuelve el objeto</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Ahora, a través de la función recién creada trasformaremos el objeto <code>torre.sgbp</code> a un objeto de clase <code>nb</code>.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">torre.nb</span> <span class="op">&lt;-</span> <span class="fu">as.nb.sgbp</span><span class="op">(</span><span class="va">torre.sgbp</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">torre.nb</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">torre.nb</span> <span class="op">&lt;-</span> <span class="fu">as.nb.sgbp</span><span class="op">(</span><span class="va">torre.sgbp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">torre.nb</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Neighbour list object:
 ## Number of regions: 76 
 ## Number of nonzero links: 196 
@@ -619,15 +650,15 @@ Figura 3.4: Diagrama de dispersión de Moran
 ## 1 2 3 7 13 19 23 32 35 38 49 51 75 with 1 link
 ## 3 most connected regions:
 ## 28 46 71 with 8 links</code></pre>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">torre.nb</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">torre.nb</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "nb"</code></pre>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">torre.nb</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">torre.nb</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 76</code></pre>
 <p>Finalmente, construimos la matriz (lista) ponderada a través de la función <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code>, verifique por su cuenta la estructura del objeto creado:</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">torre.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">torre.nb</span>, zero.policy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">torre.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">torre.nb</span>, zero.policy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="matriz-tipo-reyna-queen" class="section level3" number="3.6.2">
 <h3>
@@ -635,15 +666,15 @@ Figura 3.4: Diagrama de dispersión de Moran
 </h3>
 <div style="text-align: justify">
 <p>Procedemos de forma semejante para la construcción de una matriz tipo torre, a través de un par de funciones. Primero, se establece la función que recoge los patrones de interés, “compartir lados y vértices”:</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">func_reina</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="va">a</span><span class="op">)</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, pattern <span class="op">=</span> <span class="st">"F***T****"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">func_reina</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="va">a</span><span class="op">)</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, pattern <span class="op">=</span> <span class="st">"F***T****"</span><span class="op">)</span></span></code></pre></div>
 <p>Luego, con esta función, creamos un objeto de tipo <code>sgbp</code> que contendrá los elementos informativos de vecindad tipo reina:</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reina.sgbp</span> <span class="op">&lt;-</span> <span class="fu">func_reina</span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reina.sgbp</span> <span class="op">&lt;-</span> <span class="fu">func_reina</span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span></span></code></pre></div>
 <p>A continuación convertimos el objeto creado de <code>sgbp</code> a <code>nb</code> con la función elaborada en la secuencia de la matriz tipo torre:</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reina.nb</span> <span class="op">&lt;-</span> <span class="fu">as.nb.sgbp</span><span class="op">(</span><span class="va">reina.sgbp</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">reina.nb</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reina.nb</span> <span class="op">&lt;-</span> <span class="fu">as.nb.sgbp</span><span class="op">(</span><span class="va">reina.sgbp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">reina.nb</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Neighbour list object:
 ## Number of regions: 76 
 ## Number of nonzero links: 206 
@@ -660,8 +691,8 @@ Figura 3.4: Diagrama de dispersión de Moran
 ## 3 most connected regions:
 ## 28 46 71 with 8 links</code></pre>
 <p>Es turno de la matriz ponderada:</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reina.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">reina.nb</span>, zero.policy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reina.pesos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">reina.nb</span>, zero.policy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="matrices-de-contigüidad-de-orden-superior" class="section level3" number="3.6.3">
 <h3>
@@ -669,14 +700,14 @@ Figura 3.4: Diagrama de dispersión de Moran
 </h3>
 <div style="text-align: justify">
 <p>Es posible contar con matrices de órdenes superiores, para ello, recurrimos a la función <code><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag()</a></code> con la que creamos un objeto del que, en el segundo paso, extraeremos la información de interés. Nota que el orden de contigüidad está establecido en el segundo argumento:</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reina.2o</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag</a></span><span class="op">(</span><span class="va">reina.nb</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reina.2o</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag</a></span><span class="op">(</span><span class="va">reina.nb</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p>Verifica la estructura con <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. A partir del objeto realizado, <code>reina.2o</code>, se creará otro de tipo <code>nb</code> que contendrá la información relativa a los datos de vecindad de tipo reina de orden 2, a través de una selección del segundo elemento de dicho objeto:</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reina.2o.nb</span> <span class="op">&lt;-</span> <span class="va">reina.2o</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reina.2o.nb</span> <span class="op">&lt;-</span> <span class="va">reina.2o</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <p>Para poder tener los dos tipos de estructura espacial (reina de primer y de segundo orden) en un solo objeto, es necesario crear un objeto a partir de la función <code><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag_cumul()</a></code> que arrojará como resultado un elemento de tipo <code>nb</code> que contendrá tanto la estructura de dependencia de primer como la de segundo orden:</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reina.ambos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag_cumul</a></span><span class="op">(</span><span class="va">reina.2o</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reina.ambos</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag_cumul</a></span><span class="op">(</span><span class="va">reina.2o</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="visualización-de-la-estructura-espacial" class="section level2" number="3.7">
@@ -685,23 +716,23 @@ Figura 3.4: Diagrama de dispersión de Moran
 </h2>
 <div style="text-align: justify">
 <p>La visualización de la estructura espacial en este segundo enfoque es un poco más complicada, pues para poder mostrarla en un mapa de conectividad es necesario contar con los centroides geométricos como objetos independientes, es decir, como un par de coordenadas en un objeto independiente. Éstos los extraeremos del atributo “Geometry” que aparece en nuestra base de datos de tipo <code>sf</code> (<code>covid_zmvm_sf</code>). Para extraerlos usaremos la función <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> del paquete <code>purrr</code> y <code><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid()</a></code> del paquete <code>sf</code>, como se muestra enseguida:</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">longitud</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">$</span><span class="va">geometry</span>, <span class="op">~</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="va">latitud</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">$</span><span class="va">geometry</span>, <span class="op">~</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">longitud</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">$</span><span class="va">geometry</span>, <span class="op">~</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">latitud</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">$</span><span class="va">geometry</span>, <span class="op">~</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p>Ahora, esos elementos los guardamos en un nuevo objeto con la función “combina por columna”, es decir, <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> (<em>column bind</em>):</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">longitud</span>, <span class="va">latitud</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">longitud</span>, <span class="va">latitud</span><span class="op">)</span></span></code></pre></div>
 <p>Para poder visualizar la estructura espacial de cada tipo de vecindad debemos graficar los centroides, la geometría de interés y las líneas que unen los centroides ,las cuales indican la vecindad. Para el caso de la matriz tipo torre:</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">torre.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">torre.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672"></div>
 <p>Para el caso de la matriz de tipo reina de primer orden:</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">reina.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">reina.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672"></div>
 <p>Para la de segundo orden:</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">reina.2o.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">reina.2o.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672"></div>
 </div>
 <div id="matrices-de-distancia-k-vecinos-más-cercanos" class="section level2" number="3.8">
@@ -710,12 +741,12 @@ Figura 3.4: Diagrama de dispersión de Moran
 </h2>
 <div style="text-align: justify">
 <p>En este segundo enfoque expuesto, el de Anselin y su equipo, es posible construir otro tipo de matrices a partir de umbrales de distancia: matriz de k-vecinos más cercanos. Para ello, usaremos de nueva cuenta las coordenadas con los centroides como punto de referencia para medir la distancia (el objeto <code>coords</code>). Luego, a través de dos funciones <code>knearneigh</code> y <code>knn2nb</code> del paquete <code>spdep</code> construiremos la matriz, transformándola enseguida en un objeto de tipo <code>nb</code>. Luego, la convertiremos propiamente en un objeto tipo lista con los pesos:</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">k6nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knn2nb.html">knn2nb</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="va">coords</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
-<span class="va">k6.pesos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">k6nb</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">k6nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knn2nb.html">knn2nb</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="va">coords</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">k6.pesos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">k6nb</span><span class="op">)</span></span></code></pre></div>
 <p>Para visualizar la estructura espacial:</p>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">k6nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">k6nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672"></div>
 
 </div>
@@ -731,7 +762,7 @@ Figura 3.4: Diagrama de dispersión de Moran
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R: manejo, visualización y modelos econométricos</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-01-19.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-11-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -744,7 +775,7 @@ Figura 3.4: Diagrama de dispersión de Moran
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
