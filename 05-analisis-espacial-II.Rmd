@@ -6,7 +6,7 @@ En el capítulo 3 nos hemos referido a la necesidad de identificar la presencia 
 En este capítulo nos dedicaremos a mostrar dos de las alternativas para lograr lo anterior a través de los llamados modelos econométricos espaciales. Es crucial que, antes de abordar este capítulo, hayan quedado plenamente asimilados los contenidos del capítulo 3 y 4, en la medida en que lo expuesto aquí se basa en los conocimientos previos.
 
 ## Diversas alternativas de modelos econométricos
-<div style="text-align: justify">
+
 Existen múltiples modelos econométricos que buscan resolver las dos cuestiones mencionadas a través de captar las interacciones que se dan en el espacio, más aún, dichas interacciones las hay de diferente naturaleza. El modelo que incorpora todas las posibles interacciones espaciales recibe el nombre de **Modelo General Anidado** (*General Nesting Spatial Model* [@Elhorst2006,p. 7] y puede ser escrito como:
 
 $$
@@ -90,7 +90,7 @@ Para simplificar el proceso de selección entre los modelos alternativos, basta 
 >Lo importante a recordar es considerar las versiones robustas de loss estadísticos (los multiplicadores de Lagrange) sólo cuando las versiones estándar son significativas
 
 ## Modelos espaciales en R: un ejemplo para el Valle de México
-<div style="text-align: justify">
+
 Los paquetes utilizados para la estimación de modelos econométricos espaciales son:
 
 * `spatialreg`: contiene las funciones para calcular modelos espaciales.  
@@ -223,7 +223,7 @@ Finalmente, vamos a estimar ambos modelos, aunque a sabiendas de que el mejor es
 ## Modelos espaciales
 
 ### Modelo de rezago espacial
-<div style="text-align: justify">
+
 El modelo de rezago espacial se invoca con al función `lagsarlm()` del paquete `spatialreg` en la que la estimación corre a cargo del método de máxima verosimilitud. En la función se especifica el modelo (`formula=`), la base de datos (`data=`) y la estructura espacial (`listw=`).
 
 
@@ -251,7 +251,7 @@ Con base en los resultados de la I de Moran, ¿diría que persite el problema de
 
 
 ### Modelo de error espacial
-<div style="text-align: justify">
+
 El modelo de error espacial es llamado con la función `errorsarlm()` y los argumentos son los mismos:
 
 ```{r message=FALSE}

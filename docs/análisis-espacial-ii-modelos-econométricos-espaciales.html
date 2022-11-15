@@ -94,7 +94,6 @@
 <h2>
 <span class="header-section-number">5.1</span> Diversas alternativas de modelos econométricos<a class="anchor" aria-label="anchor" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><i class="fas fa-link"></i></a>
 </h2>
-<div style="text-align: justify">
 <p>Existen múltiples modelos econométricos que buscan resolver las dos cuestiones mencionadas a través de captar las interacciones que se dan en el espacio, más aún, dichas interacciones las hay de diferente naturaleza. El modelo que incorpora todas las posibles interacciones espaciales recibe el nombre de <strong>Modelo General Anidado</strong> (<em>General Nesting Spatial Model</em> <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">Elhorst 2006, 7</a>)</span> y puede ser escrito como:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -177,7 +176,6 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <h2>
 <span class="header-section-number">5.2</span> Modelos espaciales en R: un ejemplo para el Valle de México<a class="anchor" aria-label="anchor" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><i class="fas fa-link"></i></a>
 </h2>
-<div style="text-align: justify">
 <p>Los paquetes utilizados para la estimación de modelos econométricos espaciales son:</p>
 <ul>
 <li>
@@ -381,7 +379,6 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <h3>
 <span class="header-section-number">5.3.1</span> Modelo de rezago espacial<a class="anchor" aria-label="anchor" href="#modelo-de-rezago-espacial"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>El modelo de rezago espacial se invoca con al función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">lagsarlm()</a></code> del paquete <code>spatialreg</code> en la que la estimación corre a cargo del método de máxima verosimilitud. En la función se especifica el modelo (<code>formula=</code>), la base de datos (<code>data=</code>) y la estructura espacial (<code>listw=</code>).</p>
 <div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span></span>
@@ -437,7 +434,6 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <h3>
 <span class="header-section-number">5.3.2</span> Modelo de error espacial<a class="anchor" aria-label="anchor" href="#modelo-de-error-espacial"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>El modelo de error espacial es llamado con la función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm()</a></code> y los argumentos son los mismos:</p>
 <div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">error</span> <span class="op">&lt;-</span>  <span class="fu">spatialreg</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data<span class="op">=</span><span class="va">covid_zmvm</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span><span class="op">)</span></span>
@@ -491,6 +487,30 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
   
 
 </div>
+<div class="chapter-nav">
+<div class="prev"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></div>
+<div class="next"><a href="sobre-el-autor.html">Sobre el autor</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="nav-link" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><span class="header-section-number">5.1</span> Diversas alternativas de modelos econométricos</a></li>
+<li><a class="nav-link" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><span class="header-section-number">5.2</span> Modelos espaciales en R: un ejemplo para el Valle de México</a></li>
+<li>
+<a class="nav-link" href="#modelos-espaciales"><span class="header-section-number">5.3</span> Modelos espaciales</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modelo-de-rezago-espacial"><span class="header-section-number">5.3.1</span> Modelo de rezago espacial</a></li>
+<li><a class="nav-link" href="#modelo-de-error-espacial"><span class="header-section-number">5.3.2</span> Modelo de error espacial</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
 </div> <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
@@ -533,34 +553,6 @@ for (let popover of popovers) {
   }
 }
 </script>
-</div>
-</div>
-</div>
-<div class="chapter-nav">
-<div class="prev"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></div>
-<div class="next"><a href="sobre-el-autor.html">Sobre el autor</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
-<li><a class="nav-link" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><span class="header-section-number">5.1</span> Diversas alternativas de modelos econométricos</a></li>
-<li><a class="nav-link" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><span class="header-section-number">5.2</span> Modelos espaciales en R: un ejemplo para el Valle de México</a></li>
-<li>
-<a class="nav-link" href="#modelos-espaciales"><span class="header-section-number">5.3</span> Modelos espaciales</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#modelo-de-rezago-espacial"><span class="header-section-number">5.3.1</span> Modelo de rezago espacial</a></li>
-<li><a class="nav-link" href="#modelo-de-error-espacial"><span class="header-section-number">5.3.2</span> Modelo de error espacial</a></li>
-</ul>
-</li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-          
-        </ul>
-</div>
-    </nav>
-</div>
-</div>
 </div>
 </body>
 </html>
