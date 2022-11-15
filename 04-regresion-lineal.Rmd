@@ -2,7 +2,6 @@
 
 
 ## Causalidad y correlación: el alcance del análisis de regresión
-
 <div style="text-align: justify">
 En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser respondidas, nos permitan tener una descripción general del fenómeno, habrá otras que nos permitan explorar la relación entre dos fenómenos, o bien, preguntas cuya respuesta nos permita predecir el comportamiento futuro del elemento estudiado. Así pues, hay [diferentes tipos de preguntas](https://bit.ly/DatSciQ), dependiendo de su grado de complejidad. 
 
@@ -21,7 +20,6 @@ Así pues, es relevante la siguiente advertencia:
 "Para establecer la causalidad, la relación entre los regresores y la variable de respuesta debe tener una base fuera de los datos de la muestra; por ejemplo, la relación puede ser sugerida por consideraciones teóricas. El análisis de regresión puede ayudar a confirmar una relación de causa y efecto, pero no puede ser la única base de tal afirmación" [@Montgomery2012, p.3].
 
 ## Lo "artesanal" de la econometría
-
 <div style="text-align: justify">
 No cabe duda que la especificación de un buen modelo econométrico tiene algo de artesanal, es decir, serán pocas las ocasiones en las que no tendremos que proponer diferentes alternativas de modelo, probar con múltiples variables y llevar a cabo un sin número de ajustes. Conviene desde un momento inicial eliminar la idea de que "sólo hay que aplicar una técnica": todas las técnicas requieren práctica y repetición pues no siempre enfrentaremos un mismo problema en las mismas condiciones. A este respecto puede ser apuntado que:
 
@@ -199,7 +197,7 @@ Es decir,
 $$\hat {poshab}=-19.8622+0.3949ss$$
 
 ### Una exploración visual de los errores
-<div style="text-align: justify">
+
 Un elemento de interés para el análisis en la regresión lineal estimada son los errores observados, $u_i$. Para lograr comprender mejor este elemento conviene imaginar nuestro modelo como "Respuesta = Predicción + Error", es decir, $y=\hat y+u$. De esta manera podemos expresar el error como:
 
 $$u_i=y_i-\hat {y_i}$$
@@ -289,7 +287,7 @@ ii. Menciona dos pruebas para evaluar homoscedasticidad y cómo son interpretada
 ------------------------------------------------------------------------
 
 ### El error estandar residual o error estándar de los errores
-<div style="text-align: justify">
+
 Además, los errores del modelo nos sirven para calcular la varianza, $\sigma^2$ del modelo estadístico propuesto. Para ello, recuerda que:
 
 \[
@@ -315,12 +313,10 @@ iii. ¿Un modelo con error estándar residual pequeño es preferible a uno que t
 
 ### Coeficiente de determinación
 
-<div style="text-align: justify">
 El $R^2$ o coeficiente de determinación es una medida de bondad de ajuste, es decir, un número de nos indica qué tanto nuestro modelo explica a la variable de interés. El $R^2$ es la proporción de la variabilidad de $y$ que es explicada por $x$. Los valores más cercanos a 1 significan que una mayor parte de la variabilidad de $y$ es explicada por $x$. En nuestro caso, hemos obtenido un $R^2$ de 0.22, lo que puede ser interpretado de la siguiente manera:  poco más de la quinta parte de la variabilidad de los casos positivos por cada 1 mil habitantes es explicada por el porcentaje de población con acceso a servicios de salud. 
 
 ### Una aproximación a la predicción
 
-<div style="text-align: justify">
 A través de nuestro modelo estimado (también llamado ajustado) es posible hacer predicciones de $y$, es decir, de los casos positivos por cada 1 mil habitantes, siempre que los valores de la variable predictora estén dentro del rango original.
 
 ------------------------------------------------------------------------
@@ -348,7 +344,6 @@ En este caso, estamos indicando los nuevos datos de forma manual para la variabl
 
 ### Significancia individual de los coeficientes obtenidos
 
-<div style="text-align: justify">
 Uno de los aspectos más importantes del análisis de regresión es la interpretación de los coeficientes obtenidos. Será de particular interés para nosotros tener la información para cada coeficiente: i) conocer el sentido de su asociación con la variable dependiente, es decir, el signo del coeficiente; ii) identificar la magnitud de la asociación lineal, qué tan grande es dicho coeficiente en el contexto de las unidades de la variable y iii) su significancia estadística, si hay evidencia de que el verdadero valor del estimador es correspondiente con el estimado.
 
 Los dos primeros elementos, sentido y magnitud, ya fueron comentados con anterioridad y pueden ser conocidos llamando al objeto que contiene los resultados de nuestro modelo:
@@ -438,7 +433,7 @@ ii. Aquí hemos expuesto una versión simplificada en extremo de cómo tomar dec
 ------------------------------------------------------------------------
 
 ### Significancia conjunta de los coeficientes calculados
-<div style="text-align: justify">
+
 Seguramente notaste que cuando se llamó el objeto `modelo_multi` a tu consola aparecieron otros tantos elementos ,además de los coeficientes, entre ellos uno llamado *F-statistic *, el estadístico F. En este contexto es utilizado para evaluar si la particular combinación de variables propuesta contribuye o no a explicar la variable de interés. En términos concretos, la prueba F y el valor p asociado a ella, permiten evaluar el siguiente juego de hipótesis:
 
 $$

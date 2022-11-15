@@ -277,7 +277,6 @@ Es decir,</p>
 <h3>
 <span class="header-section-number">4.5.1</span> Una exploración visual de los errores<a class="anchor" aria-label="anchor" href="#una-exploraci%C3%B3n-visual-de-los-errores"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Un elemento de interés para el análisis en la regresión lineal estimada son los errores observados, <span class="math inline">\(u_i\)</span>. Para lograr comprender mejor este elemento conviene imaginar nuestro modelo como “Respuesta = Predicción + Error”, es decir, <span class="math inline">\(y=\hat y+u\)</span>. De esta manera podemos expresar el error como:</p>
 <p><span class="math display">\[u_i=y_i-\hat {y_i}\]</span>
 Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores estimados, <span class="math inline">\(\hat y_i\)</span>, producto de nuestro modelo estimado para cada uno de los 76 municipios y alcaldías del Valle de México son almacenados en el elemento <code>residuals</code> y <code>fitted.values</code>, respectivamente, dentro de la lista <code>lm</code>, da clic en la lente de aumento al final de la fila que contiene el objeto de tipo <code>lm</code> en la sección de ambiente en tu entorno de trabajo. Para poder analizar mejor los errores del modelo, vamos a crear un nuevo objeto que contenga, además de nuestras variables de interés (<code>pos_hab</code> y <code>ss</code>), la clave municipal (<code>cvemun</code>), los errores observados y los valores ajustados o predichos:</p>
@@ -347,7 +346,6 @@ Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores 
 <h3>
 <span class="header-section-number">4.5.2</span> El error estandar residual o error estándar de los errores<a class="anchor" aria-label="anchor" href="#el-error-estandar-residual-o-error-est%C3%A1ndar-de-los-errores"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Además, los errores del modelo nos sirven para calcular la varianza, <span class="math inline">\(\sigma^2\)</span> del modelo estadístico propuesto. Para ello, recuerda que:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -369,14 +367,12 @@ s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat y _i)^2 \\
 <h3>
 <span class="header-section-number">4.5.3</span> Coeficiente de determinación<a class="anchor" aria-label="anchor" href="#coeficiente-de-determinaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>El <span class="math inline">\(R^2\)</span> o coeficiente de determinación es una medida de bondad de ajuste, es decir, un número de nos indica qué tanto nuestro modelo explica a la variable de interés. El <span class="math inline">\(R^2\)</span> es la proporción de la variabilidad de <span class="math inline">\(y\)</span> que es explicada por <span class="math inline">\(x\)</span>. Los valores más cercanos a 1 significan que una mayor parte de la variabilidad de <span class="math inline">\(y\)</span> es explicada por <span class="math inline">\(x\)</span>. En nuestro caso, hemos obtenido un <span class="math inline">\(R^2\)</span> de 0.22, lo que puede ser interpretado de la siguiente manera: poco más de la quinta parte de la variabilidad de los casos positivos por cada 1 mil habitantes es explicada por el porcentaje de población con acceso a servicios de salud.</p>
 </div>
 <div id="una-aproximación-a-la-predicción" class="section level3" number="4.5.4">
 <h3>
 <span class="header-section-number">4.5.4</span> Una aproximación a la predicción<a class="anchor" aria-label="anchor" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>A través de nuestro modelo estimado (también llamado ajustado) es posible hacer predicciones de <span class="math inline">\(y\)</span>, es decir, de los casos positivos por cada 1 mil habitantes, siempre que los valores de la variable predictora estén dentro del rango original.</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -396,7 +392,6 @@ s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat y _i)^2 \\
 <h3>
 <span class="header-section-number">4.5.5</span> Significancia individual de los coeficientes obtenidos<a class="anchor" aria-label="anchor" href="#significancia-individual-de-los-coeficientes-obtenidos"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Uno de los aspectos más importantes del análisis de regresión es la interpretación de los coeficientes obtenidos. Será de particular interés para nosotros tener la información para cada coeficiente: i) conocer el sentido de su asociación con la variable dependiente, es decir, el signo del coeficiente; ii) identificar la magnitud de la asociación lineal, qué tan grande es dicho coeficiente en el contexto de las unidades de la variable y iii) su significancia estadística, si hay evidencia de que el verdadero valor del estimador es correspondiente con el estimado.</p>
 <p>Los dos primeros elementos, sentido y magnitud, ya fueron comentados con anterioridad y pueden ser conocidos llamando al objeto que contiene los resultados de nuestro modelo:</p>
 <div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
@@ -517,7 +512,6 @@ De nuevo, a través de la función <code><a href="https://rdrr.io/r/stats/lm.htm
 <h3>
 <span class="header-section-number">4.7.1</span> Significancia conjunta de los coeficientes calculados<a class="anchor" aria-label="anchor" href="#significancia-conjunta-de-los-coeficientes-calculados"><i class="fas fa-link"></i></a>
 </h3>
-<div style="text-align: justify">
 <p>Seguramente notaste que cuando se llamó el objeto <code>modelo_multi</code> a tu consola aparecieron otros tantos elementos ,además de los coeficientes, entre ellos uno llamado <em>F-statistic </em>, el estadístico F. En este contexto es utilizado para evaluar si la particular combinación de variables propuesta contribuye o no a explicar la variable de interés. En términos concretos, la prueba F y el valor p asociado a ella, permiten evaluar el siguiente juego de hipótesis:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -579,12 +573,6 @@ for (let popover of popovers) {
   }
 }
 </script>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
