@@ -117,7 +117,7 @@
 <hr>
 <p>Los interesados en el análisis espacial han propuesto un ingenioso instrumento matemático para captar y sintetizar cómo un objeto se relaciona con otros en el espacio, es decir, para captar la <em>estructura espacial</em> del área de interés. Piensa en un vecindario o área de estudio compuesto sólo por seis elementos, tal como se ilustra en la figura 3.1:</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-110"></span>
+<span style="display:block;" id="fig:unnamed-chunk-109"></span>
 <img src="recursos%203/Vecindario%20regular.jpg" alt="Vecindario regular" width="100%"><p class="caption">
 Figura 3.1: Vecindario regular
 </p>
@@ -125,14 +125,14 @@ Figura 3.1: Vecindario regular
 <p>A partir de la disposición de este hipotético vecindario nos interesa construir un instrumento para captar su estructura espacial a través de un criterio de adyacencia o contigüidad. A decir de Anselin (2020) “contigüidad significa que dos unidades espaciales comparten un borde común de longitud distinta de cero. Desde el punto de vista operativo, podemos distinguir aún más entre un criterio de contigüidad de tipo torre y de tipo reina, en analogía con los movimientos permitidos para las piezas así nombradas en un tablero de ajedrez. El criterio de la torre define a los vecinos por la existencia de un borde común entre dos unidades espaciales. El criterio de la reina es algo más amplio y define a los vecinos como unidades espaciales que comparten un borde o un vértice comunes” <span class="citation"><a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin</a> (<a href="references.html#ref-Anselin2020" role="doc-biblioref">2020</a>)</span>.</p>
 <p>Ahora bien, ¿cómo podemos plasmar las relaciones de contigüidad de forma sintética. Pensemos en un cuadro que tiene tantas filas y columnas como objetos espaciales tiene nuestro vecindario, semejante al que aparece en la figura 3.2.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-111"></span>
+<span style="display:block;" id="fig:unnamed-chunk-110"></span>
 <img src="recursos%203/Matriz%20ejemplo-vac%C3%ADa.jpg" alt="Matriz ejemplo vacía" width="100%"><p class="caption">
 Figura 3.2: Matriz ejemplo vacía
 </p>
 </div>
 <p>Coloquemos el número uno si el elemento 1 y el 2 comparten un lado, en caso contrario, coloquemos un cero. Hagamos esto para cada celda de este cuadro hasta que lo llenemos y obtengamos algo parecido a lo que aparece en la figura 3.3.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-112"></span>
+<span style="display:block;" id="fig:unnamed-chunk-111"></span>
 <img src="recursos%203/Matriz%20ejemplo-llena.jpg" alt="Matriz ejemplo llena" width="100%"><p class="caption">
 Figura 3.3: Matriz ejemplo llena
 </p>
@@ -248,13 +248,13 @@ Figura 3.3: Matriz ejemplo llena
 <div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightblue'</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-119-1.png" width="672"></div>
 <p>Para comparar ambas formas podemos superponer las dos gráficas y asignar colores diferentes:</p>
 <div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mFALSE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightgreen'</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-121-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672"></div>
 <p>Como puedes observar, son estructuras muy parecidas, aunque es posible notar sus diferencias. Es ampliamente recomendable que revises el apéndice de este capítulo pues en él se trata un enfoque diferente para la construcción de matrices de pesos espaciales que, si bien es más complejo, te puede servir para avanzar en tu conocimiento sobre R.</p>
 </div>
 </div>
@@ -462,7 +462,7 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij}y_j \\
 </h3>
 <p>Una forma creativa de expresar gráficamente la autocorrelación de la variable de interés es a través de un diagrama de dispersión cuyo eje <span class="math inline">\(x\)</span> corresponde a la variable de interés, casos positivos de COVID19 por cada 1 mil habitantes, y en el eje <span class="math inline">\(y\)</span> su rezago espacial; además, al agregar una recta de ajuste sobre los datos estandarizados lograremos que la pendiente de dicha recta corresponda exactamente al valor de la I de Moran. Una de las características del diagrama de Moran es que se descompone en cuatro cuadrantes, tal como aparece en la figura 3.4.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-128"></span>
+<span style="display:block;" id="fig:unnamed-chunk-127"></span>
 <img src="recursos%203/Diagrama%20de%20Moran.jpg" alt="Diagrama de dispersión de Moran" width="100%"><p class="caption">
 Figura 3.4: Diagrama de dispersión de Moran
 </p>
@@ -475,7 +475,7 @@ Figura 3.4: Diagrama de dispersión de Moran
 <span>                  ylab<span class="op">=</span><span class="st">"Rezago espacial de los casos positivos"</span>,</span>
 <span>                  main<span class="op">=</span><span class="st">"Diagrama de Moran para casos positivos"</span>,</span>
 <span>                  col<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672"></div>
 </div>
 </div>
 <div id="múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par." class="section level2" number="3.4">
@@ -483,7 +483,7 @@ Figura 3.4: Diagrama de dispersión de Moran
 <span class="header-section-number">3.4</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función <code>par()</code>.<a class="anchor" aria-label="anchor" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Ejercicio</strong></p>
-<p>¿Es posible construir un diagrama de Moran usando el paquete ggplot2? De ser así, ¿cómo lo harías de ser así?</p>
+<p>¿Es posible construir un diagrama de Moran usando el paquete ggplot2? De ser así, ¿cómo lo harías?</p>
 <hr>
 </div>
 <div id="índice-de-moran-local-y-mapa-de-clusters" class="section level2" number="3.5">
@@ -526,7 +526,7 @@ Figura 3.4: Diagrama de dispersión de Moran
 <span>                palette <span class="op">=</span> <span class="st">"Spectral"</span>, midpoint<span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                title <span class="op">=</span> <span class="st">"I de Moran local"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672"></div>
 <p>El mapa permite observar la manera en que varía la correlación espacial a nivel local. Pero necesitamos otro instrumento que nos permita identificar si los valores de la I de Moran local son o no significativos en esas áreas y de esta manera identificar agrupaciones o núcleos de cluster significativos, así como observaciones espaciales atípicas, es decir, un mapa de significancia. Esto lo hacemos siguiendo la propuesta de <span class="citation">(<a href="references.html#ref-Lovelace2014" role="doc-biblioref">Lovelace y Cheshire 2014</a>)</span>:</p>
 <div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># crea un vector numérico de la misma longitud del tamaño de filas de la base "local"</span></span>
@@ -553,9 +553,9 @@ Figura 3.4: Diagrama de dispersión de Moran
 <span><span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>,<span class="st">"blue"</span>,<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,alpha<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,alpha<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>,<span class="st">"red"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mapa.moran</span>, border<span class="op">=</span><span class="st">"lightgray"</span>,col<span class="op">=</span><span class="va">colores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/findInterval.html">findInterval</a></span><span class="op">(</span><span class="va">cuadrantes</span>,<span class="va">cortes</span>,all.inside<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>,legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No signficativo"</span>,<span class="st">"Bajo-Bajo"</span>,<span class="st">"Bajo-alto"</span>,<span class="st">"Alto-Bbajo"</span>,<span class="st">"Alto-Alto"</span><span class="op">)</span>,</span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>,legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No signficativo"</span>,<span class="st">"Bajo-Bajo"</span>,<span class="st">"Bajo-Alto"</span>,<span class="st">"Alto-Bajo"</span>,<span class="st">"Alto-Alto"</span><span class="op">)</span>,</span>
 <span>       fill<span class="op">=</span><span class="va">colores</span>,bty<span class="op">=</span><span class="st">"n"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672"></div>
 <p>El mapa anterior permite identificar agrupamientos de valores significativos al 10%, núcleos de cluster que muestran municipios y alcaldías con valores altos de tasas positivas de COVID19 rodeados de vecinos con valores altos (agrupamiento Alto-Alto), así como agrupamientos de valores bajos (cuadrante Bajo-Bajo), además de observaciones espaciales atípicas (cuadrante Alto-bajo).</p>
 <p>En síntesis, hasta este punto hemos visto en este capítulo:</p>
 <ol style="list-style-type: lower-roman">
@@ -718,15 +718,15 @@ Figura 3.4: Diagrama de dispersión de Moran
 <p>Para poder visualizar la estructura espacial de cada tipo de vecindad debemos graficar los centroides, la geometría de interés y las líneas que unen los centroides ,las cuales indican la vecindad. Para el caso de la matriz tipo torre:</p>
 <div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">torre.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672"></div>
 <p>Para el caso de la matriz de tipo reina de primer orden:</p>
 <div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">reina.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672"></div>
 <p>Para la de segundo orden:</p>
 <div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">reina.2o.nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672"></div>
 </div>
 <div id="matrices-de-distancia-k-vecinos-más-cercanos" class="section level2" number="3.8">
 <h2>
@@ -740,7 +740,7 @@ Figura 3.4: Diagrama de dispersión de Moran
 <p>Para visualizar la estructura espacial:</p>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">k6nb</span>, <span class="va">coords</span>, lwd<span class="op">=</span><span class="fl">.2</span>, col<span class="op">=</span><span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672"></div>
 
 </div>
 </div>

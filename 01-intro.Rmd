@@ -16,9 +16,9 @@ A lo largo de este libro usaremos R a través de [*RStudio*](https://es.wikipedi
 
 R puede ser descargado de [aquí](https://www.r-project.org/). Al seleccionar *"download R"* hay que elegir cualquier CRAN Mirror (del inglés *Comprehensive R Archive Network* que son repositorios que contienen una copia del código base de R y sus paquetes). México tiene dos, puedes elegir cualquiera.
 
-En tanto, R Studio puede ser desargado de [aquí](https://www.rstudio.com/). Ve a la sección *"Download"* en la parte superior y elije la versión gratuita. El navegador debería seleccionar la versión adecuada para tu equipo, sino es así, selecciona del listado que aparece en la parte inferior. También puedes consultar [este video](https://youtu.be/zlnm1jLWLeE) para seguir paso a paso la instalación de ambos programas.
+En tanto, RStudio puede ser descargado de [aquí](https://www.rstudio.com/). Ve a la sección *"Download"* en la parte superior y elije la versión gratuita. El navegador debería seleccionar la versión adecuada para tu equipo, sino es así, selecciona del listado que aparece en la parte inferior. También puedes consultar [este video](https://youtu.be/zlnm1jLWLeE) para seguir paso a paso la instalación de ambos programas.
 
-Al abrir RStudio se mostrará una pantalla como la que aparece en la figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (*New file*, parte superior izquierda de la pantalla) para que se despliegue.
+Al abrir RStudio se mostrará una pantalla como la que aparece en la Figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (*New file*, parte superior izquierda de la pantalla) para que se despliegue.
 
 ```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Panel principal'} 
 knitr::include_graphics("recursos intro/Figura_1-Entorno.jpg")
@@ -41,27 +41,36 @@ En este sentido, se debe señalar que R es sensible al uso de mayúsculas y min�
 
 ### Objetos, operadores y tipos de variables
 
-Si bien R es tremendamente potente, puede incluso utilizarse como simple calculadora. Los operadores matemáticos que pueden emplearse en R se muestran en la figura 1.2:
+Si bien R es tremendamente potente, puede incluso utilizarse como simple calculadora. Los operadores matemáticos que pueden emplearse en R se muestran en el cuadro 1.1:
 
-```{r, echo=FALSE, fig.align='center',out.width='120%', fig.cap='Operadores'} 
-knitr::include_graphics("recursos intro/Figura_2-Operadores.jpg")
-```
 
-De esta forma sí colocas en la consola el número `5` seguido del signo aritmético correspondiente, por ejemplo un signo de más, `+`, y luego otro número, R devolverá el resultado de la operación:
+|Operador | Operación | Ejemplo | Resultado |
+|:-------:|:---------:|:-------:|:---------:|
+|+        |Suma       |5+3      |8          |
+|-        |Resta      |5-3      |2          |
+|*        | Multiplicación | 5*3|15         |
+|/        |División   |5/3      |1.66667    |
+|^        |Potencia   |5^3      |125        |
+|%%       |División entera|5%%3 |2          |
+
+:Cuadro 1.1
+
+De esta forma si colocas en la consola el número `5` seguido del signo aritmético correspondiente, por ejemplo un signo de más, `+`, y luego otro número, R devolverá el resultado de la operación:
 
 ```{r}
 5+10
 ```
 
-En R, todos los elementos con los que se interactúa son denominados objetos (por eso se dice que es un lenguaje de programación orientado a objetos), los hay de distintas clases y cada clase se puede identificar por un nombre. Los objetos más comunes en R son: constantes, variables, vectores, listas, matrices y arreglos de datos (*data frames*). Éstos últimos los hay en diferentes versiones dependiendo de algunas de sus características.
+En R, todos los elementos con los que se interactúa son denominados objetos (por eso se dice que es un lenguaje de programación orientado a objetos), los hay de distintas clases y cada clase se puede identificar por un nombre. Los objetos más comunes en R son: constantes, variables, vectores, listas, matrices y arreglos de datos (*data frames*). Estos últimos los hay en diferentes versiones dependiendo de algunas de sus características.
 
 Los objetos pueden contener diferentes tipos de información como: números enteros (*integer*), valores numéricos (*numeric*), números complejos (*complex*) o valores lógicos (*logic*) y de cadena/texto (*character*). Distinguir entre los tipos de información que contiene cada objeto es importante para conocer las operaciones que se pueden hacer entre ellos. Por ejemplo, no es posible hacer operaciones matemáticas con variables tipo *character* ya que no tiene sentido sumar aritméticamente "casa" y "azul", pero sí es posible concatenarlos.
 
-Para crear objetos, en R se utiliza el singo "menor que" seguido de un guion para formar una suerte de flecha que apunta a la izquierda, `<-`, éste singo es llamado **operador de asignación** y precisamente asigna contenido a objetos, es decir, con el operador `<-` creamos un objeto que tendrá determinado contenido. Ve a la sección consola de tu entorno de trabajo e ingresa las siguientes líneas de instrucciones (o simplemente da click en el ícono de copiar que aparece en la esquina superior derecha del cuadro que contiene el código):
+Para crear objetos, en R se utiliza el signo "menor que" seguido de un guion para formar una suerte de flecha que apunta a la izquierda, `<-`, éste singo es llamado **operador de asignación** y precisamente asigna contenido a objetos, es decir, con el operador `<-` creamos un objeto que tendrá determinado contenido. Ve a la sección consola de tu entorno de trabajo e ingresa las siguientes líneas de instrucciones (o simplemente da click en el ícono de copiar que aparece en la esquina superior derecha del cuadro que contiene el código y pégalo en la consola):
 
 ```{r}
+#Nota: el símbolo de # representa un comentario y no se ejecuta con el código
 x <- 3 #Numérico
-y <- "Hello World" #Carácter 
+y <- "Hola Mundo" #Carácter 
 z <- FALSE # Lógico
 ```
 
@@ -75,7 +84,7 @@ x <- 5+10
 
 Como es posible identificar, si en una sesión de R se utiliza dos veces el mismo nombre para una variable, se sobrescribe la información asignada a esa variable, es decir, sólo permanece el último valor asignado: `x` ya no contiene la primera asignación, 3, solamente la última, 15.
 
-Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: La función `class()` y la función `str()`. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto `y` es de tipo carácter y su contenido es la expresión "Hello World".
+Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: la función `class()` y la función `str()`. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto `y` es de tipo carácter y su contenido es la expresión "Hello World".
 
 ```{r}
 class(y)
@@ -155,7 +164,7 @@ x <- factor(c("yes","no","no","yes","no"))
 x
 ```
 
-Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como "masculino" y "femenido", es decir, es recomendable almacenar la información como factor.
+Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como "masculino" y "femenino", es decir, es recomendable almacenar la información como factor.
 
 #### _Data frame_ o arreglo de datos
 
@@ -197,10 +206,10 @@ Cada uno de los paquetes y funciones de R está acompañado por materiales de re
 help(tmap)
 ```
 
-Alternativamente, para solicitar ayuda puedes escribir dos signos de interrogación y el nombre del paquete o función:
+Alternativamente, para solicitar ayuda puedes escribir un signo de interrogación y el nombre del paquete o dos signos para una función:
 
 ```{r eval=FALSE}
-??ggplot
+?ggplot
 ```
 
 También puedes buscar ayuda de una función específica, por ejemplo, de las funciones para crear una matriz (`matrix()`)o para calcular una media (`mean()`):
@@ -310,7 +319,7 @@ knitr::include_graphics("recursos intro/Figura_3-Importar.jpg")
 
 ## Exploración inicial a través de gráficos
 <div style="text-align: justify">
-Ahora que has revisado algunas de las diversas maneras de cargar tu información al entorno de trabajo en R, es momento de comenzar a analizarla. Si importaste la base de datos a través de la función    `readxl::read_excel()` notarás que el nuestra base `covid_zmvm` un objeto de tipo [`tbl_df`](https://tibble.tidyverse.org/reference/tbl_df-class.html) que es un subtipo de `data.frame` o arreglo de datos Como el que se mencionó en antes.
+Ahora que has revisado algunas de las diversas maneras de cargar tu información al entorno de trabajo en R, es momento de comenzar a analizarla. Si importaste la base de datos a través de la función    `readxl::read_excel()` notarás que el nuestra base `covid_zmvm` un objeto de tipo [`tbl_df`](https://tibble.tidyverse.org/reference/tbl_df-class.html) que es un subtipo de `data.frame` o arreglo de datos como el que se mencionó antes.
 
 Las siguientes instrucciones nos ayudarán a conocer los nombres de las columnas, la estructura de los datos y la dimensión de la base:
 
@@ -371,7 +380,7 @@ ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab))
 ```
 
-Tenemos pues dos enunciados o "capas". La primera corresponde a la función `ggplot()` donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, `geom_` cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en `ggplot2` aparecen en el cuadro 1.1:
+Tenemos pues dos enunciados o "capas". La primera corresponde a la función `ggplot()` donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, `geom_` cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en `ggplot2` aparecen en el cuadro 1.2:
 
 | Gráfica                        | Geometría en `ggplot2` |
 |--------------------------------|------------------------|
@@ -382,7 +391,7 @@ Tenemos pues dos enunciados o "capas". La primera corresponde a la función `ggp
 | Dispersión                     | geom_point()           |
 | Tendencia (lineal o suavizada) | geom_smooth()          |
 
-:Cuadro 1.1
+:Cuadro 1.2
 
 Por favor, revisa la hoja de trucos del paquete para que te familiarices con las otras tantas geometrías y su uso, pues cada geometría requiere diferentes argumentos y admite varias posibles configuraciones. En general, dentro de la función de geometría, `geom_`, será necesario especificar los elementos estéticos, `aes()`, entre los que se cuenta la o las variables a graficar y cómo serán representadas.
 
@@ -605,7 +614,7 @@ Para finalizar lo relacionado con la selección, genera una nueva base de datos 
 
 ### Filtrar (seleccionar casos)
 
-Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro "verbo", es decir, de la función filtrar, `filter()`. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor "México" en la variable `nom_ent` (nombre de entidad), o bien, tener el valor "15" en el de `cve_ent` (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.2:
+Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro "verbo", es decir, de la función filtrar, `filter()`. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor "México" en la variable `nom_ent` (nombre de entidad), o bien, tener el valor "15" en el de `cve_ent` (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.3:
 
 | Operadores | Definiciones      |
 |------------|-------------------|
@@ -618,7 +627,7 @@ Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, h
 | &          | y                 |
 | |          | o                 |
 
-:Cuadro 1.2
+:Cuadro 1.3
 
 Entonces, para usar la función `filter()` y tomando como base la información previa:
 

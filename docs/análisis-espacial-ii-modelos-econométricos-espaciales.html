@@ -104,14 +104,14 @@ u &amp;=\lambda Wu+\epsilon  \\
 <p>Las interacciones espaciales en la expresión anterior son de tres tipos: i) efectos de interacción endógenos, es decir, cuando la variable dependiente reaparece como independiente pero a través de su rezago espacial (<span class="math inline">\(WY\)</span>), aquí el sentido y magnitud de la interacción está dado por <span class="math inline">\(\rho\)</span>; ii) efectos de interacción exógenos, es decir, cuando las variables independientes son incluidas en forma de sus rezagos espaciales (<span class="math inline">\(WX\)</span>) en la que la relación es captada por <span class="math inline">\(\theta\)</span>; iii) efectos de interacción dados por los términos de error de la regresión (<span class="math inline">\(Wu\)</span>) e interesa el sentido y magnitud de <span class="math inline">\(\lambda\)</span>.</p>
 <p>A partir de este modelo general es posible derivar otros, más simples, si se suponen determinados valores para los coeficientes. Toda la constelación de modelos espaciales posibles aparece en la siguiente figura <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">Elhorst 2006, 7</a>)</span>:</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-172"></span>
+<span style="display:block;" id="fig:unnamed-chunk-171"></span>
 <img src="recursos%205/figura%201.jpg" alt="Clasificación de modelos espaciales, Elhorst (2006)" width="100%"><p class="caption">
 Figura 5.1: Clasificación de modelos espaciales, Elhorst (2006)
 </p>
 </div>
 <p>De toda esta gama de modelos aquí sólo nos ocuparemos de dos de ellos, el <strong>modelo de rezago espacial</strong> y el <strong>modelo de error espacial</strong>, siguiendo la ruta metodológica propuesta por Anselin y Rey <span class="citation">(<a href="references.html#ref-Anselin2014" role="doc-biblioref">Anselin y Rey 2014</a>)</span> que consiste en comenzar con un modelo lineal no espacial estimado con mínimos cuadrados ordinarios (MCO) que luego es extendido con la incorporación de interacciones espaciales, ya sea a un modelo de rezago espacial o a uno de error, con base en pruebas que verifican alternativamente la pertinencia de cada uno:</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-173"></span>
+<span style="display:block;" id="fig:unnamed-chunk-172"></span>
 <img src="recursos%205/figura%202.jpg" alt="De un modelo con MCO a un modelo espacial" width="100%"><p class="caption">
 Figura 5.2: De un modelo con MCO a un modelo espacial
 </p>
@@ -162,7 +162,7 @@ Igualmente, el estadístico usado para evaluar nuestras hipótesis es el multipl
 <p>Pero, ¿qué ocurre cuando tanto la prueba sobre la versión de rezago y de error han resultado significativas? En este caso, se recurre a las versiones robustas de los multiplicadores de Lagrange. Las versiones robustas de dichos indicadores implican “que el estadístico original es corregido mediante la influencia potencial de ‘otras’ alternativas” (Anseluin y Rey, 2014: 105). En un sentido estrictamente práctico, de nueva cuenta, se evalúa alternativamente el modelo MCO vs. el de rezago, y el MCO vs. el de error, pero esta vez, con las versiones robustas con exactamente los mismos juegos de hipótesis.</p>
 <p>Lo dicho anteriormente dicho es sintetizado por nuestro autores en el siguiente esquema:</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-174"></span>
+<span style="display:block;" id="fig:unnamed-chunk-173"></span>
 <img src="recursos%205/figura%203.jpg" alt="Árbol de decisión de regresión espacial, Anselin y Rey (2014)" width="100%"><p class="caption">
 Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 </p>
@@ -220,7 +220,7 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672"></div>
 <p>Sólo con el afán de recordar los elementos previamente revisados en el análisis exploratorio de datos, construyamos el estadístico de correlación espacial global sobre la variable crimen, <code>pos_hab</code>:</p>
 <div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></span></code></pre></div>
@@ -238,7 +238,7 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <p>Y el respectivo diagrama de Moran:</p>
 <div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot</a></span><span class="op">(</span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span>, listw <span class="op">=</span> <span class="va">mTRUE.pesos</span>, xlab<span class="op">=</span><span class="st">"Casos positivos por cada 100 mil habitab¿ntes"</span>, ylab<span class="op">=</span><span class="st">"Promedio de casos positivos en regiones vecinas"</span>, main<span class="op">=</span><span class="st">"Diagrama de Moran de los casos positivos en el Valle de México"</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-181-1.png" width="672"></div>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <p>Interpreta tanto la I de Moran como su diagrama, ¿hay evidencia de autocorrelación espacial? Si es así, ¿de qué magnitud y sentido? ¿Cómo interpretarías el estadístico obtenido?</p>

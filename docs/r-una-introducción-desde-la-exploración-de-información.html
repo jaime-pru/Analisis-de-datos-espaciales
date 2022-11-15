@@ -105,8 +105,8 @@
 </ol>
 <p>A lo largo de este libro usaremos R a través de <a href="https://es.wikipedia.org/wiki/RStudio"><em>RStudio</em></a>, un entorno de desarrollo integrado o IDE por sus siglas en inglés. Así que, lo primero será descargar e instalar R y luego descargar e instalar RStudio.</p>
 <p>R puede ser descargado de <a href="https://www.r-project.org/">aquí</a>. Al seleccionar <em>“download R”</em> hay que elegir cualquier CRAN Mirror (del inglés <em>Comprehensive R Archive Network</em> que son repositorios que contienen una copia del código base de R y sus paquetes). México tiene dos, puedes elegir cualquiera.</p>
-<p>En tanto, R Studio puede ser desargado de <a href="https://www.rstudio.com/">aquí</a>. Ve a la sección <em>“Download”</em> en la parte superior y elije la versión gratuita. El navegador debería seleccionar la versión adecuada para tu equipo, sino es así, selecciona del listado que aparece en la parte inferior. También puedes consultar <a href="https://youtu.be/zlnm1jLWLeE">este video</a> para seguir paso a paso la instalación de ambos programas.</p>
-<p>Al abrir RStudio se mostrará una pantalla como la que aparece en la figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (<em>New file</em>, parte superior izquierda de la pantalla) para que se despliegue.</p>
+<p>En tanto, RStudio puede ser descargado de <a href="https://www.rstudio.com/">aquí</a>. Ve a la sección <em>“Download”</em> en la parte superior y elije la versión gratuita. El navegador debería seleccionar la versión adecuada para tu equipo, sino es así, selecciona del listado que aparece en la parte inferior. También puedes consultar <a href="https://youtu.be/zlnm1jLWLeE">este video</a> para seguir paso a paso la instalación de ambos programas.</p>
+<p>Al abrir RStudio se mostrará una pantalla como la que aparece en la Figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (<em>New file</em>, parte superior izquierda de la pantalla) para que se despliegue.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="recursos%20intro/Figura_1-Entorno.jpg" alt="Panel principal" width="100%"><p class="caption">
@@ -137,36 +137,78 @@ Figura 1.1: Panel principal
 <h3>
 <span class="header-section-number">1.2.2</span> Objetos, operadores y tipos de variables<a class="anchor" aria-label="anchor" href="#objetos-operadores-y-tipos-de-variables"><i class="fas fa-link"></i></a>
 </h3>
-<p>Si bien R es tremendamente potente, puede incluso utilizarse como simple calculadora. Los operadores matemáticos que pueden emplearse en R se muestran en la figura 1.2:</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="recursos%20intro/Figura_2-Operadores.jpg" alt="Operadores" width="120%"><p class="caption">
-Figura 1.2: Operadores
-</p>
-</div>
-<p>De esta forma sí colocas en la consola el número <code>5</code> seguido del signo aritmético correspondiente, por ejemplo un signo de más, <code>+</code>, y luego otro número, R devolverá el resultado de la operación:</p>
+<p>Si bien R es tremendamente potente, puede incluso utilizarse como simple calculadora. Los operadores matemáticos que pueden emplearse en R se muestran en el cuadro 1.1:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>Cuadro 1.1</caption>
+<thead><tr class="header">
+<th align="center">Operador</th>
+<th align="center">Operación</th>
+<th align="center">Ejemplo</th>
+<th align="center">Resultado</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">+</td>
+<td align="center">Suma</td>
+<td align="center">5+3</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">Resta</td>
+<td align="center">5-3</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">*</td>
+<td align="center">Multiplicación</td>
+<td align="center">5*3</td>
+<td align="center">15</td>
+</tr>
+<tr class="even">
+<td align="center">/</td>
+<td align="center">División</td>
+<td align="center">5/3</td>
+<td align="center">1.66667</td>
+</tr>
+<tr class="odd">
+<td align="center">^</td>
+<td align="center">Potencia</td>
+<td align="center">5^3</td>
+<td align="center">125</td>
+</tr>
+<tr class="even">
+<td align="center">%%</td>
+<td align="center">División entera</td>
+<td align="center">5%%3</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table></div>
+<p>De esta forma si colocas en la consola el número <code>5</code> seguido del signo aritmético correspondiente, por ejemplo un signo de más, <code>+</code>, y luego otro número, R devolverá el resultado de la operación:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">5</span><span class="op">+</span><span class="fl">10</span></span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<p>En R, todos los elementos con los que se interactúa son denominados objetos (por eso se dice que es un lenguaje de programación orientado a objetos), los hay de distintas clases y cada clase se puede identificar por un nombre. Los objetos más comunes en R son: constantes, variables, vectores, listas, matrices y arreglos de datos (<em>data frames</em>). Éstos últimos los hay en diferentes versiones dependiendo de algunas de sus características.</p>
+<p>En R, todos los elementos con los que se interactúa son denominados objetos (por eso se dice que es un lenguaje de programación orientado a objetos), los hay de distintas clases y cada clase se puede identificar por un nombre. Los objetos más comunes en R son: constantes, variables, vectores, listas, matrices y arreglos de datos (<em>data frames</em>). Estos últimos los hay en diferentes versiones dependiendo de algunas de sus características.</p>
 <p>Los objetos pueden contener diferentes tipos de información como: números enteros (<em>integer</em>), valores numéricos (<em>numeric</em>), números complejos (<em>complex</em>) o valores lógicos (<em>logic</em>) y de cadena/texto (<em>character</em>). Distinguir entre los tipos de información que contiene cada objeto es importante para conocer las operaciones que se pueden hacer entre ellos. Por ejemplo, no es posible hacer operaciones matemáticas con variables tipo <em>character</em> ya que no tiene sentido sumar aritméticamente “casa” y “azul”, pero sí es posible concatenarlos.</p>
-<p>Para crear objetos, en R se utiliza el singo “menor que” seguido de un guion para formar una suerte de flecha que apunta a la izquierda, <code>&lt;-</code>, éste singo es llamado <strong>operador de asignación</strong> y precisamente asigna contenido a objetos, es decir, con el operador <code>&lt;-</code> creamos un objeto que tendrá determinado contenido. Ve a la sección consola de tu entorno de trabajo e ingresa las siguientes líneas de instrucciones (o simplemente da click en el ícono de copiar que aparece en la esquina superior derecha del cuadro que contiene el código):</p>
+<p>Para crear objetos, en R se utiliza el signo “menor que” seguido de un guion para formar una suerte de flecha que apunta a la izquierda, <code>&lt;-</code>, éste singo es llamado <strong>operador de asignación</strong> y precisamente asigna contenido a objetos, es decir, con el operador <code>&lt;-</code> creamos un objeto que tendrá determinado contenido. Ve a la sección consola de tu entorno de trabajo e ingresa las siguientes líneas de instrucciones (o simplemente da click en el ícono de copiar que aparece en la esquina superior derecha del cuadro que contiene el código y pégalo en la consola):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="co">#Numérico</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"Hello World"</span> <span class="co">#Carácter </span></span>
+<code class="sourceCode R"><span><span class="co">#Nota: el símbolo de # representa un comentario y no se ejecuta con el código</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="co">#Numérico</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"Hola Mundo"</span> <span class="co">#Carácter </span></span>
 <span><span class="va">z</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span> <span class="co"># Lógico</span></span></code></pre></div>
 <p>Tras haber escrito estas líneas de código notarás que en la sección superior derecha de RStudio aparecen, en la pestaña de ambiente, los tres objetos creados, cada uno con un nombre y contenido diferente entre ellos: <code>x</code> es un objeto numérico, <code>y</code> es una cadena de texto o carácter y <code>z</code> contiene un valor lógico. Basta con escribir el nombre del objeto en la consola para ver su contenido.</p>
 <p>Ahora, vuelve a crear un objeto de nombre <code>x</code> que contenga el resultado de la suma de 5+10:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">+</span><span class="fl">10</span></span></code></pre></div>
 <p>Como es posible identificar, si en una sesión de R se utiliza dos veces el mismo nombre para una variable, se sobrescribe la información asignada a esa variable, es decir, sólo permanece el último valor asignado: <code>x</code> ya no contiene la primera asignación, 3, solamente la última, 15.</p>
-<p>Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: La función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto <code>y</code> es de tipo carácter y su contenido es la expresión “Hello World”.</p>
+<p>Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: la función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto <code>y</code> es de tipo carácter y su contenido es la expresión “Hello World”.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##  chr "Hello World"</code></pre>
+<pre><code>##  chr "Hola Mundo"</code></pre>
 <div id="vectores" class="section level4" number="1.2.2.1">
 <h4>
 <span class="header-section-number">1.2.2.1</span> Vectores<a class="anchor" aria-label="anchor" href="#vectores"><i class="fas fa-link"></i></a>
@@ -237,7 +279,7 @@ Figura 1.2: Operadores
 <span><span class="va">x</span></span></code></pre></div>
 <pre><code>## [1] yes no  no  yes no 
 ## Levels: no yes</code></pre>
-<p>Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como “masculino” y “femenido”, es decir, es recomendable almacenar la información como factor.</p>
+<p>Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como “masculino” y “femenino”, es decir, es recomendable almacenar la información como factor.</p>
 </div>
 <div id="data-frame-o-arreglo-de-datos" class="section level4" number="1.2.2.4">
 <h4>
@@ -277,9 +319,9 @@ Figura 1.2: Operadores
 <p>Cada uno de los paquetes y funciones de R está acompañado por materiales de referencia que explican con detalle su uso, así como los diferentes argumentos en el caso de las funciones. Para solicitar ayuda en R puedes recurrir a la función <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> e indicar como argumento el nombre de la función:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">tmap</span><span class="op">)</span></span></code></pre></div>
-<p>Alternativamente, para solicitar ayuda puedes escribir dos signos de interrogación y el nombre del paquete o función:</p>
+<p>Alternativamente, para solicitar ayuda puedes escribir un signo de interrogación y el nombre del paquete o dos signos para una función:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">?</span><span class="op">?</span><span class="va">ggplot</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">ggplot</span></span></code></pre></div>
 <p>También puedes buscar ayuda de una función específica, por ejemplo, de las funciones para crear una matriz (<code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code>)o para calcular una media (<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>):</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span></span>
@@ -351,9 +393,9 @@ Figura 1.2: Operadores
 </h3>
 <p>Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono <em>Import Dataset</em>. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (<em>Update</em>) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (<em>Import</em>), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la figura 1.3:</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<span style="display:block;" id="fig:unnamed-chunk-30"></span>
 <img src="recursos%20intro/Figura_3-Importar.jpg" alt="Importar datos de excel" width="120%"><p class="caption">
-Figura 1.3: Importar datos de excel
+Figura 1.2: Importar datos de excel
 </p>
 </div>
 </div>
@@ -363,7 +405,7 @@ Figura 1.3: Importar datos de excel
 <span class="header-section-number">1.4</span> Exploración inicial a través de gráficos<a class="anchor" aria-label="anchor" href="#exploraci%C3%B3n-inicial-a-trav%C3%A9s-de-gr%C3%A1ficos"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>Ahora que has revisado algunas de las diversas maneras de cargar tu información al entorno de trabajo en R, es momento de comenzar a analizarla. Si importaste la base de datos a través de la función <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> notarás que el nuestra base <code>covid_zmvm</code> un objeto de tipo <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html"><code>tbl_df</code></a> que es un subtipo de <code>data.frame</code> o arreglo de datos Como el que se mencionó en antes.</p>
+<p>Ahora que has revisado algunas de las diversas maneras de cargar tu información al entorno de trabajo en R, es momento de comenzar a analizarla. Si importaste la base de datos a través de la función <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> notarás que el nuestra base <code>covid_zmvm</code> un objeto de tipo <a href="https://tibble.tidyverse.org/reference/tbl_df-class.html"><code>tbl_df</code></a> que es un subtipo de <code>data.frame</code> o arreglo de datos como el que se mencionó antes.</p>
 <p>Las siguientes instrucciones nos ayudarán a conocer los nombres de las columnas, la estructura de los datos y la dimensión de la base:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Nombres de las variables</span></span></code></pre></div>
@@ -528,10 +570,10 @@ Figura 1.3: Importar datos de excel
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
-<p>Tenemos pues dos enunciados o “capas”. La primera corresponde a la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, <code>geom_</code> cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en <code>ggplot2</code> aparecen en el cuadro 1.1:</p>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
+<p>Tenemos pues dos enunciados o “capas”. La primera corresponde a la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, <code>geom_</code> cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en <code>ggplot2</code> aparecen en el cuadro 1.2:</p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Cuadro 1.1</caption>
+<caption>Cuadro 1.2</caption>
 <thead><tr class="header">
 <th>Gráfica</th>
 <th>Geometría en <code>ggplot2</code>
@@ -570,19 +612,19 @@ Figura 1.3: Importar datos de excel
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
 <p>Puedes ver cómo, al añadir una nueva geometría, fue necesario especificar los elementos estéticos del caso, pero los tres enunciados nos permiten tener una sola gráfica. Observa cómo R en tu consola R indica que estás usando determinado método de suavizamiento, el llamado “loess” que significa <em>locally estimated scatterplot smoothing</em>, por tanto, es fácil deducir que debe haber otros métodos de suavizamiento. Observa las siguientes líneas de código:</p>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
 <p>Aquí, hemos añadido un argumento adicional, <code>method=</code>, para indicar un suavizamiento dado por un modelo lineal, <code>lm</code>, de <em>linear model</em>. Tenemos pues que entre el número de casos positivos y el número promedio de grados cursados hay una aparente relación positiva. ¿Qué hay para el caso de las defunciones:</p>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
 <p>Si bien hay un poco más de dispersión, la aparente relación positiva se mantiene. ¿Qué crees que explique esta asociación? ¿Las personas con más años estudiados son susceptibles de contagiarse más fácil de COVID19? ¿O quizá se relacionará más con las diferencias que a nivel territorial se dan entre los niveles de estudio de la población en el Valle de México?</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -597,17 +639,17 @@ Figura 1.3: Importar datos de excel
 <code class="sourceCode R"><span><span class="co">#Histograma para los casos positivos por cada mil habitantes</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Gráfico de densidad para los casos positivos por cada mil habitantes</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-2.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-2.png" width="672"></div>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Gráfico de caja para los casos positivos por cada mil habitantes</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-3.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-3.png" width="672"></div>
 <p>Los tres gráficos dan cuenta que la forma de la distribución muestra un marcado sesgo positivo (a la derecha), lo que significa que hay algunos municipios o alcaldías con valores muy altos para esta variable, además de algunos valores extremadamente altos según el diagrama de caja, ¿cuáles podrán ser y qué explicaría este comportamiento atípicamente alto?</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -623,19 +665,19 @@ Figura 1.3: Importar datos de excel
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Casos positivos por cada mil habitantes"</span>, y<span class="op">=</span><span class="st">"Frecuencia"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672"></div>
 <p>Nuestra base de datos contiene una variable de tipo categórico, grado de marginación (<code>gm_2020</code>), asociada al índice de marginación (<code>im</code>). Para este tipo de variable puede ser conveniente construir un gráfico de barras especialmente diseñado para variables categóricas echando mano de la geometría <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>:</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span> <span class="fu">ggplot2</span><span class="fu">::</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">gm_2020</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Grado de marginación 2020"</span>, y<span class="op">=</span><span class="st">"Frecuencia"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Si tienes la librería ggplot2 cargada en el enorno de trabajo, alternativamente, puedes escribir:</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">gm_2020</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Grado de marginación 2020"</span>, y<span class="op">=</span><span class="st">"Frecuencia"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-2.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-2.png" width="672"></div>
 <p>Este gráfico revela que, de acuerdo con la clasificación del Consejo Nacional de Población y Vivienda (CONAPO), la gran mayoría de los municipios y alcaldías que componen el Valle de México están catalogados como de muy bajo grado de marginación.</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -648,17 +690,17 @@ Figura 1.3: Importar datos de excel
 <code class="sourceCode R"><span><span class="co">#Tamaño del circulo dado por los años estudiados</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span>,size<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Transparencia del círculo dado por los años estudiados</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span>,alpha<span class="op">=</span><span class="va">def_hab</span>, size<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"navyblue"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-2.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-2.png" width="672"></div>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Transparencia del círculo dado por los años estudiados</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span>,color<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-3.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-43-3.png" width="672"></div>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <p>Responde lo siguiente:</p>
@@ -678,11 +720,11 @@ Figura 1.3: Importar datos de excel
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Definiendo los nombres de las variables</span></span>
 <span><span class="fu">GGally</span><span class="fu">::</span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pos_hab"</span>,<span class="st">"def_hab"</span>,<span class="st">"im"</span>,<span class="st">"grad"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Indicando el número de columna según el lugar que ocupa en la base</span></span>
 <span><span class="fu">GGally</span><span class="fu">::</span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">41</span>,<span class="fl">43</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-2.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-46-2.png" width="672"></div>
 <p>La matriz de diagramas de dispersión construida con <code>ggpairs</code> es, desde mi personal punto de vista, no sólo muy elegante, sino que ofrece elementos informativos en el gráfico que antes no teníamos, tales como el coeficiente de correlación lineal y su nivel de significancia.</p>
 <p>Antes de pasar a tratar otro elemento, hay que decir que RStudio permite exportar las gráficas hechas, tanto en diversos formatos de imagen (jpg, png, tiff) como en PDF.</p>
 <hr>
@@ -821,9 +863,9 @@ Figura 1.3: Importar datos de excel
 <h3>
 <span class="header-section-number">1.5.2</span> Filtrar (seleccionar casos)<a class="anchor" aria-label="anchor" href="#filtrar-seleccionar-casos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro “verbo”, es decir, de la función filtrar, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor “México” en la variable <code>nom_ent</code> (nombre de entidad), o bien, tener el valor “15” en el de <code>cve_ent</code> (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.2:</p>
+<p>Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro “verbo”, es decir, de la función filtrar, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor “México” en la variable <code>nom_ent</code> (nombre de entidad), o bien, tener el valor “15” en el de <code>cve_ent</code> (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.3:</p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Cuadro 1.2</caption>
+<caption>Cuadro 1.3</caption>
 <thead><tr class="header">
 <th>Operadores</th>
 <th>Definiciones</th>
@@ -1054,7 +1096,7 @@ Figura 1.3: Importar datos de excel
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_den</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_den</span>,y<span class="op">=</span><span class="va">def_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Densidad de casos positivos"</span>,y<span class="op">=</span><span class="st">"Defunciones por cada mil habitantes"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672"></div>
 <p>¿Cómo explicarías la relación entre la variable creada, densidad de casos positivos, y las defunciones por cada mil habitables?</p>
 <hr>
 <p><strong>Ejercicio</strong></p>

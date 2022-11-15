@@ -361,7 +361,7 @@ Múltiples elementos de personalización de ésta y otras gráficas asociadas al
 
 **Ejercicio**
  
-¿Es posible construir un diagrama de Moran usando el paquete ggplot2? De ser así, ¿cómo lo harías de ser así?
+¿Es posible construir un diagrama de Moran usando el paquete ggplot2? De ser así, ¿cómo lo harías?
 
 ------------------------------------------------------------------------
 
@@ -438,7 +438,7 @@ cortes <- c(0,1,2,3,4)
 colores <- c("white","blue",rgb(0,0,1,alpha=0.4),rgb(1,0,0,alpha=0.4),"red")
 plot(mapa.moran, border="lightgray",col=colores[findInterval(cuadrantes,cortes,all.inside=FALSE)])
 box()
-legend("bottomleft",legend=c("No signficativo","Bajo-Bajo","Bajo-alto","Alto-Bbajo","Alto-Alto"),
+legend("bottomleft",legend=c("No signficativo","Bajo-Bajo","Bajo-Alto","Alto-Bajo","Alto-Alto"),
        fill=colores,bty="n")
 ```
 

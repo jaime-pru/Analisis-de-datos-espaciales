@@ -110,7 +110,7 @@
 <p>“La construcción de un modelo de regresión es un proceso iterativo. Comienza utilizando conocimiento teórico del proceso que se está estudiando y los datos disponibles para especificar un modelo de regresión inicial. Las visualizaciones de datos gráficos suelen ser muy útiles para especificar el modelo inicial. Luego, los parámetros del modelo se estiman, normalmente por mínimos cuadrados (…). Luego debe evaluarse la adecuación del modelo. Consiste en buscar posibles errores de especificación de la formula del modelo, como no incluir variables importantes, o incluir variables innecesarias, o datos inusuales o inapropiados. Si el modelo es inadecuado, entonces debe proponerse nuevamente uno diferente y estimar nuevamente los parámetros. Este proceso puede repetirse varias veces hasta obtener un modelo adecuado. Finalmente, la validación del modelo debe llevarse a cabo para asegurar que el modelo producirá resultados que sean aceptables en la aplicación final” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3-10</a>)</span>.</p>
 La idea anterior aparece esquematizada en la figura 4.1.
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-154"></span>
+<span style="display:block;" id="fig:unnamed-chunk-153"></span>
 <img src="recursos%202/Figura%201.jpg" alt="Construcción de un modelo de regresión" width="100%"><p class="caption">
 Figura 4.1: Construcción de un modelo de regresión
 </p>
@@ -205,7 +205,7 @@ Figura 4.1: Construcción de un modelo de regresión
 </ol>
 <p>El supuesto <em>v</em> o supuesto de no autocorrelación establece que dos errores, <span class="math inline">\(u_i\)</span> y <span class="math inline">\(u_j\)</span>, donde los subíndices <span class="math inline">\(j\)</span> e <span class="math inline">\(i\)</span> se refieren a que corresponden a perturbaciones de dos observaciones diferentes, no están asociados, es decir, que la covarianza entre ellos es igual a cero. Si se graficasen los errores en un diagrama de dispersión, lo que esperamos es que no haya ningún patrón sistemático. Reproducimos aquí la figura 3.6 de la obra de <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati y Porter 2011</a>)</span>, en donde los paneles <em>a</em> y <em>b</em> dan cuenta de un comportamiento sistemático o no aleatorio en los errores, lo que es indicio de autocorrelación o dependencia entre los errores, en cambio, en el panel <em>c</em> no se observa ningún patrón sistemático, esto es justamente lo que se busca en los errores del modelo, que los errores se distribuyan aleatoriamente.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-158"></span>
+<span style="display:block;" id="fig:unnamed-chunk-157"></span>
 <img src="recursos%204/Figura%20autocorrelaci%C3%B3n.jpg" alt="Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67" width="100%"><p class="caption">
 Figura 4.2: Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67
 </p>
@@ -264,11 +264,11 @@ El subíndice <span class="math inline">\(i\)</span> da cuenta de cada una de la
 <span></span>
 <span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672"></div>
 <div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">poss</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-162-2.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-161-2.png" width="672"></div>
 <p>El valor de <span class="math inline">\(\beta_1\)</span>, el coeficiente de la variable <code>ss</code>, es de 0.3949, lo que significa que cuando la proporción de población con acceso a servicios de salud aumenta en 1 punto porcentual (recuerda que así lo estamos midiendo), el número de casos positivos por cada 1 mil habitantes aumenta 0.39, en promedio. Dicho en otras palabras, el parámetro estimado de la pendiente, <span class="math inline">\(\hat \beta_1\)</span>, nos indica como la media de los casos positivos, <span class="math inline">\(y\)</span>, es afectada por un cambio en <span class="math inline">\(x\)</span>, el porcentaje de personas con acceso a servicios de salud. En este caso, el coeficiente estimado <span class="math inline">\(\hat \beta_0\)</span> carece de interpretación razonable. Así, el modelo estimado, usando los valores de los coeficientes obtenidos es:</p>
 <p><span class="math display">\[\hat y=\hat \beta_0+\hat\beta_1x\]</span>
 Es decir,</p>
@@ -301,7 +301,7 @@ Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores 
 <div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span>,y<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-164-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672"></div>
 <p>Claramente hay un patrón, por lo que probablemente un modelo lineal como el propuesto no sería la mejor opción. ¿Recuerdas cómo luce un diagrama de dispersión entre las dos variables de nuestro modelo?</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -315,13 +315,13 @@ Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores 
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-164-1.png" width="672"></div>
 <p>¿Notas los valores extremos en el histograma anterior? Una gráfica cuantil-cuantil o gráfica QQ, contrasta la distribución de una variable con una distribución teórica: si la distribución de la variable fuera idéntica a la distribución teórica, los puntos se alinearían sobre la línea de 45°. En este caso, la distribución teórica a probar es una distribución normal:</p>
 <div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-166-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672"></div>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
@@ -332,7 +332,7 @@ Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores 
 <div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">ajustados</span>,<span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-166-1.png" width="672"></div>
 <p>Patrones visuales de “tipo ventilador” o “embudo” no deberían ser observados cuando los errores son homoscedásticos, lo que no es el caso. Los ejercicios gráficos hechos aquí con los errores para verificar si se cumplen o no los supuestos de un modelo de MCO no son desde luego la única ruta para verificar los supuestos. El análisis de si una regresión cumple con los supuestos necesarios requiere de práctica. En <a href="https://gallery.shinyapps.io/slr_diag/">esta página</a> encontrarás una serie de ejemplos de cuando una regresión cumple o no con los supuestos enlistados antes y como lucen las gráficas mencionadas en cada caso. Sin embargo, como recordarás, existen pruebas formales que te permitirán determinar si el modelo cumple o no con los supuestos del caso.</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
