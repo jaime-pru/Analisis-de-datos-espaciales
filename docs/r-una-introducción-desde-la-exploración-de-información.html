@@ -358,7 +358,8 @@ Figura 1.1: Panel principal
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span></code></pre></div>
 <p>La función para cargar un libro de Excel es <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> y el argumento indispensable es la ruta o directorio donde está almacenado nuestro libro, el nombre y extensión del mismo, <code>path</code>. Creemos pues el objeto <code>covid_zmvm</code>:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>path<span class="op">=</span><span class="st">"base de datos\\covid_zmvm.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Al hacer uso de la notación readxl::read_excel, no es necesario usar library(readxl). Sin embargo, por cuestiones pedagógicas si lo haremos</span></span>
+<span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>path<span class="op">=</span><span class="st">"base de datos\\covid_zmvm.xlsx"</span><span class="op">)</span></span></code></pre></div>
 <p>Para que puedas cargar satisfactoriamente la base, deberás sustituir la ruta por el directorio en el que está almacenado el archivo en tu equipo de cómputo. Una función útil para generar la cadena de texto de la ruta es <code><a href="https://rdrr.io/r/base/file.choose.html">file.choose()</a></code>, del paquete <code>base</code> de R. Lleva a la consola el código:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/file.choose.html">file.choose</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -1185,7 +1186,7 @@ Figura 1.2: Importar datos de excel
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-11-15.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-11-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

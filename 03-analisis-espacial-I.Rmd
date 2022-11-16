@@ -438,7 +438,7 @@ cortes <- c(0,1,2,3,4)
 colores <- c("white","blue",rgb(0,0,1,alpha=0.4),rgb(1,0,0,alpha=0.4),"red")
 plot(mapa.moran, border="lightgray",col=colores[findInterval(cuadrantes,cortes,all.inside=FALSE)])
 box()
-legend("bottomleft",legend=c("No signficativo","Bajo-Bajo","Bajo-Alto","Alto-Bajo","Alto-Alto"),
+legend("bottomleft", title ="Clasificación de cuadrantes"  ,legend=c("No signficativo","Bajo-Bajo","Bajo-Alto","Alto-Bajo","Alto-Alto"),
        fill=colores,bty="n")
 ```
 

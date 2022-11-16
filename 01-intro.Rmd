@@ -262,6 +262,7 @@ library(readxl)
 La función para cargar un libro de Excel es `read_excel()` y el argumento indispensable es la ruta o directorio donde está almacenado nuestro libro, el nombre y extensión del mismo, `path`. Creemos pues el objeto `covid_zmvm`:
 
 ```{r}
+#Al hacer uso de la notación readxl::read_excel, no es necesario usar library(readxl). Sin embargo, por cuestiones pedagógicas si lo haremos
 covid_zmvm <- readxl::read_excel(path="base de datos\\covid_zmvm.xlsx")
 
 ```
