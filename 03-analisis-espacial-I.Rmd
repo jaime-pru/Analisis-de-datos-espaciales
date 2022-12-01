@@ -1,16 +1,35 @@
 # Análisis espacial I: autocorrelación
+<div style="text-align: justify">
+Observa el siguiente mapa. En él, se representa la variable índice de de desarrollo humano que calculó el Programa de Naciones Unidad para el Desarrollo (PNUD) en 2015.
 
-## Autocorrelación y dependencia espacial
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tmap)
+library(sf)
+base <-sf::st_read("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
+tmap::tm_shape(base) +
+  tmap::tm_borders()+
+  tmap::tm_fill("idh2015", 
+                style = "quantile", 
+                n=6,
+                title = "IDH 2015",
+                palette = "GnBu",
+                legend.format = list(text.separator="-",digits=2))+
+  tmap::tm_layout(main.title = "IDH, 2015", main.title.position = "center", title.size = 0.5)+
+  tm_text("nom_mun")
+
+```
+
+:Figura 3.1. Índice de desarrollo humano para los municipios de la ZMVM, 2015
+
+¿Notas algún patrón? ¿Detectas cómo los municipios con un valor alto del índice de desarrollo (Benito Juárez, Alvaro Obregón, Miguel Hidalgo, Coyoacán y otros) se encuentran _agrupados_ en la parte centro-sur de la región considerada? Esto es un ejemplo de la posible presencia de *autocorrelación espacial*. Cuando tratamos información espacial hay altas probabilidades de que los valores de un indicador en el espacio tengan en las cercanías valores muy parecidos (o a veces, al contrario, nada parecidos). Esta característica de los datos georeferenciados hace que sean necesarias ciertas técnicas para su tratamiento. En este capítulo trataremos con el concepto clave de autocorrelación espacial y veremos a través de que instrumentos es posible medirla para, más adelante, incorporar su riqueza informativa una explicación sustantiva de los fenómenos socioterritoriales analizados.
+
+## Autocorrelación espacial y definición de vecindad
 <div style="text-align: justify">
 La identificación de autocorrelación espacial es importante como parte del proceso de análisis del fenómeno socioterritoriales al menos por dos cuestiones, una de carácter técnico y otra de carácter sustantivo. Respecto a los elementos técnicos es posible sostener que, si existe autocorrelación espacial en nuestros datos, lo más probable es que los métodos de estimación de los parámetros del modelo propuesto a través de mínimos cuadrados ordinarios dejen de ser válidos, en la medida en que no se cumplen los supuestos que requiere dicho procedimiento, específicamente, que los errores o perturbaciones del modelo no estén correlacionados. Por otro lado, cuando nos referimos a elementos sustantivos estamos queriendo expresar que nuestro fenómeno de interés, aquél que buscamos captar a través del modelo propuesto, en realidad estaría dejando de lado un comportamiento sistemático de asociación a nivel territorial.
 
-Sobre este segundo punto detengámonos un momento. ¿Qué puede estar ocurriendo que hace que los fenómenos se no se distribuyan aleatoriamente en el espacio? Por ejemplo, ¿por qué se concentra la actividad económica en determinadas ciudades o por qué algunos servicios sólo se brindan en una zona de la ciudad? Esto respecto a fenómenos económicos, pero ¿qué hay con el hecho de que una enfermedad se concentra notoriamente en algunas áreas de la ciudad y no en otras? Dicho en otras palabras, ¿qué hay detrás de la formación de un patrón en la forma en que se distribuye un fenómeno en el espacio y cómo puede ser explicado? A eso nos referimos cuando decimos que hay elementos sustantivos para el análisis al hallar evidencia de autocorrelación espacial.
+Sobre este segundo punto detengámonos un momento. ¿Qué puede estar ocurriendo que hace que un fenómeno aparezca agrupado en el espacio, es decir, que no se distribuya aleatoriamente en el territorio? Por ejemplo, ¿por qué se concentra la actividad económica en determinadas ciudades o por qué algunos servicios sólo se brindan en una zona de la ciudad? Esto respecto a fenómenos económicos, pero ¿qué hay con el hecho de que una enfermedad se concentra notoriamente en algunas áreas de la ciudad y no en otras? Dicho en otras palabras, ¿qué hay detrás de la formación de un patrón en la forma en que se distribuye un fenómeno en el espacio y cómo puede ser explicado? A eso nos referimos cuando decimos que hay elementos sustantivos para el análisis al hallar evidencia de autocorrelación espacial. Una definición sintética de autocorrelación espacial es la que nos brinda Chasco (2003) como “la relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas” [@Chasco2003,p. 49]. Por ejemplo, un barrio de la ciudad donde vives presenta un alto número de contagios por COVID19 y, además, los barrios vecinos tienen ya sea valores también altos o valores bajos. 
 
-Un clásico ejemplo de lo provechoso que es el análisis espacial que indaga sobre patrones de relación espacial sustantivos es el caso de estudio de [John Snow](https://es.wikipedia.org/wiki/John_Snow) que en 1854 investigó las muertes por cólera en el barrio de Soho, en Londres. En esos años no se sabía con exactitud el mecanismo de transmisión del cólera, se creía que éste se adquiría por la ingesta de agua o alimentos contaminados (tal y cómo después se verificó gracias a los trabajos de Snow) o por respirar aire contaminado. En el material preparado por el *Center for Spatial Data Science* de la Universidad de Chicago, podrás encontrar el modo en que el análisis espacial puede ayudar a plantear y resolver las preguntas adecuadas: [Asking the right questions in spatial anaysis: the case of John Snow](https://uploads.knightlab.com/storymapjs/a0d512bc2bc17977f1029fedead0329a/trying-out/index.html).
-
-Una definición sintética de autocorrelación espacial es la que nos brinda Chasco (2003) como “la relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas” [@Chasco2003,p. 49]. 
-
-La definición se integra por tres elementos clave: i) valor de un indicador, ii) relación funcional y iii) zonas vecinas. Para dar sentido a nuestra definición pensemos en una afirmación como "los casos positivos de COVID19 en la alcaldía Azcapotzalco están asociados en forma directa con los casos positivos de COVID19 en las alcaldías y municipios vecinos que integran la Zona Metropolitana del Valle de México". Tendríamos entonces que:  
+Desmenucemos con cuidado la definición anterior. Ésta se integra por tres elementos clave: i) valor de un indicador, ii) relación funcional y iii) zonas vecinas. Para dar sentido a nuestra definición pensemos en una afirmación como "los casos positivos de COVID19 en la alcaldía Azcapotzalco están asociados en forma directa con los casos positivos de COVID19 en las alcaldías y municipios vecinos que integran la Zona Metropolitana del Valle de México". Tendríamos entonces que:  
 
 i) Indicador: casos positivos por COVID19.  
 ii) Relación funcional: asociación positiva o directa.  
@@ -28,28 +47,28 @@ i. ¿Se te ocurre algún otro criterio para establecer vecindad?
 
 ii. ¿Cómo llamarías a un criterio de vecindad donde elijas a los 3 vecinos más cercanos?  
 
-iii. ¿A partir de qué punto será más conveniente medir la distancia, desde el centro económico de la alcaldía o municipio (por ejemplo su zona industrial o comercial) o desde la sede de la administración local?  
+iii. ¿A partir de qué punto en el espacio será más conveniente medir la distancia, desde el centro económico de la alcaldía o municipio (por ejemplo su zona industrial o comercial) o desde la sede de la administración local?  
 
 iv. ¿La distancia más indicada usada como criterio de vecindad será una distancia lineal o una distancia por carretera?
  
 ------------------------------------------------------------------------
 
-Los interesados en el análisis espacial han propuesto un ingenioso instrumento matemático para captar y sintetizar cómo un objeto se relaciona con otros en el espacio, es decir, para captar la *estructura espacial* del área de interés. Piensa en un vecindario o área de estudio compuesto sólo por seis elementos, tal como se ilustra en la figura 3.1:
+Aquellas personas interesadas en el análisis espacial han propuesto un ingenioso instrumento matemático para captar y sintetizar cómo un objeto se relaciona con otros en el espacio, es decir, para captar la *estructura espacial* del área de interés. Piensa en un vecindario o área de estudio compuesto sólo por seis elementos, tal como se ilustra en la figura 3.2:
 
 
-```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Vecindario regular'} 
+```{r, echo=FALSE, fig.align='center', out.width='100%',fig.cap='Vecindario regular'} 
 knitr::include_graphics("recursos 3/Vecindario regular.jpg")
 ```
 
-A partir de la disposición de este hipotético vecindario nos interesa construir un instrumento para captar su estructura espacial a través de un criterio de adyacencia o contigüidad. A decir de Anselin (2020) "contigüidad significa que dos unidades espaciales comparten un borde común de longitud distinta de cero. Desde el punto de vista operativo, podemos distinguir aún más entre un criterio de contigüidad de tipo torre y de tipo reina, en analogía con los movimientos permitidos para las piezas así nombradas en un tablero de ajedrez. El criterio de la torre define a los vecinos por la existencia de un borde común entre dos unidades espaciales. El criterio de la reina es algo más amplio y define a los vecinos como unidades espaciales que comparten un borde o un vértice comunes" @Anselin2020.  
+A partir de la disposición de este hipotético vecindario nos interesa construir un instrumento para captar su estructura espacial a través de un criterio de adyacencia o contigüidad. A decir de Anselin (2020) "contigüidad significa que dos unidades espaciales comparten un borde común de longitud distinta de cero. Desde el punto de vista operativo, podemos distinguir aún más entre un criterio de contigüidad de tipo torre y de tipo reina, en analogía con los movimientos permitidos para las piezas así nombradas en un tablero de ajedrez. El criterio de la torre define a los vecinos por la existencia de un borde común entre dos unidades espaciales. El criterio de la reina es algo más amplio y define a los vecinos como unidades espaciales que comparten un borde o un vértice comunes" [@Anselin2020].  
 
-Ahora bien, ¿cómo podemos plasmar las relaciones de contigüidad de forma sintética. Pensemos en un cuadro que tiene tantas filas y columnas como objetos espaciales tiene nuestro vecindario, semejante al que aparece en la figura 3.2.
+Ahora bien, ¿cómo podemos plasmar las relaciones de contigüidad de forma sintética. Pensemos en un cuadro que tiene tantas filas y columnas como objetos espaciales tiene nuestro vecindario, semejante al que aparece en la figura 3.3.
 
 ```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Matriz ejemplo vacía'} 
 knitr::include_graphics("recursos 3/Matriz ejemplo-vacía.jpg")
 ```
 
-Coloquemos el número uno si el elemento 1 y el 2 comparten un lado, en caso contrario, coloquemos un cero. Hagamos esto para cada celda de este cuadro hasta que lo llenemos y obtengamos algo parecido a lo que aparece en la figura 3.3.
+Coloquemos un número uno si el elemento 1 y el 2 comparten un lado, en caso contrario, coloquemos un cero. Hagamos esto para cada celda de este cuadro hasta que lo llenemos y obtengamos algo parecido a lo que aparece en la figura 3.4.
 
 ```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Matriz ejemplo llena'} 
 knitr::include_graphics("recursos 3/Matriz ejemplo-llena.jpg")
@@ -57,20 +76,21 @@ knitr::include_graphics("recursos 3/Matriz ejemplo-llena.jpg")
 
 El cuadro que acabamos de llenar es conocido como *matriz de pesos espaciales*[^3]. Habrá, por tanto, diversos tipos de matrices en función del criterio de vecindad elegido y del propio fenómeno analizado. No obstante, la más usual es una matriz de contigüidad binaria de $n$ x $n$, donde $n$ es el número de objetos espaciales.  
 
-Este tipo de matriz, denotado por la letra mayúscula $W$, contiene como elementos $w_{ij}$ : el número 1 cuando el elemento $j$ y el elemento $i$ sean vecinos, o bien, 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos incorporar al espacio como variable a partir de lo que denominamos “rezago espacial”. De la imagen anterior es posible apuntar algunas de las características de esta matriz:
+Este tipo de matriz, denotado por la letra mayúscula $W$, está integrada por los elementos $w_{ij}$ que toman el valor de 1 cuando el elemento $j$ y el elemento $i$ sean vecinos, o bien, 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos incorporar al espacio como variable a partir de lo que denominamos “rezago espacial”, como más adelate veremos en este capítulo y en el 5. De la imagen anterior es posible apuntar algunas de las características de esta matriz:
   
-* Es una matriz que en la diagonal principal contiene sólo ceros, es decir, se asume que por definición no hay interacción espacial dentro de un mismo elemento (lo que no necesariamente es cierto y que dependerá de la dimensión espacial de análisis).  
-* Es una matriz simétrica, es decir, se asume que hay interacción de “ida y vuelta”, por lo que con un instrumento de estas características no es posible asumir efectos de interacción en un solo sentido.  
+* Es una matriz que en la diagonal principal contiene sólo ceros, es decir, se asume que por definición no hay interacciones dentro de un mismo elemento (lo que no necesariamente es cierto y que dependerá de la dimensión espacial de análisis).  
+* Es una matriz simétrica, es decir, se asume que hay interacción de “ida y vuelta”, por lo que con un instrumento de estas características no es posible asumir efectos de interacción en un solo sentido. 
+* Es una matriz cuadrada, es decir, de dimensiones $n \cdot n$, donde $n$ es el número de objetos espaciales.  
 
-Aquí acabamos de ilustrar la lógica con la que puede ser construida una matriz de pesos espaciales a partir de una retícula regular con apenas seis elementos. Veamos ahora cómo obtener matrices de pesos espaciales sirviéndonos de R, ya que desarrollar los pasos anteriores para un vecindario compuesto por 76 elementos como los que integran el Valle de México es tarea para una máquina, no para nosotros.
+Aquí acabamos de ilustrar la lógica con la que puede ser construida una matriz de pesos espaciales a partir de una retícula regular con apenas seis elementos. Veamos ahora cómo obtener matrices de pesos espaciales sirviéndonos de R, ya que desarrollar los pasos anteriores para un vecindario compuesto por 76 elementos u objetos espaciales como los que integran el Valle de México es tarea para una máquina, no para nosotros.
 
 ## Matrices de pesos espaciales en R
 <div style="text-align: justify">
 ### Los paquetes
 
-En R hay muchas rutas para desarrollar la misma tarea. Lo que presentamos en este capítulo es una de múltiples maneras que pueden encontrarse para la construcción de matrices de pesos espaciales en R. En el apéndice, encontrarás otra alternativa, un tanto más elaborada. La manera en que desarrollamos en esta sección la tarea de construir las matrices de pesos espaciales se sirve de los siguientes paquetes:
+En R hay muchas rutas para desarrollar la misma tarea. Lo que presentamos en este capítulo es una de múltiples maneras que pueden encontrarse para la construcción de matrices de pesos espaciales en R. En el apéndice de este capítulo, encontrarás otra alternativa, un tanto más elaborada. La manera en que desarrollamos en esta sección la tarea de construir las matrices de pesos espaciales se sirve de los siguientes paquetes:
 
-* `rgdal`: según se lee en la documentación, "proporciona enlaces a la biblioteca de abstracción de datos 'geoespaciales'"
+* `rgdal`: es una librería que vincula a R con otras librerías especializadas en la transformación de datos espaciales.
 * `spdep`: contiene todo un arsenal de funciones para el análisis espacial, que permiten crear matrices de pesos espaciales, así como evaluar autocorrelación espacial. 
 
 Como es usual, se deben descargar e instalar los paquetes:
@@ -88,25 +108,23 @@ library(rgdal)
 
 ### Matrices de contigüidad: el argumento `queen` de la función `poly2nb()`
 
-Primero, carguemos la base de datos espacial. En este caso, recurrimos a la función `readOGR` que forma parte del paquete `rgdal` para leer los archivos de tipo SHP.
+Primero, carguemos la base de datos espacial. En este caso, recurrimos a la función `readOGR` que forma parte del paquete `rgdal` para leer los archivos de tipo SHP:
 
 ```{r}
 covid_zmvm <-rgdal::readOGR("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
 ```
 
-Observa el objeto en tu ambiente de trabajo. Notaras que es un objeto de tipo *Spatial polygons data frame* y al hacer clic en la imagen de la lente de aumento no se desplegará la base de datos como es usual, sino que estará almacenada y agrupada de otra manera:  
+Observa el objeto en tu ambiente de trabajo. Notarás que es un objeto de tipo *Spatial polygons data frame* y al hacer clic en la imagen de la lente de aumento no se desplegará la base de datos como es usual, sino que estará almacenada y agrupada de otra manera:  
 
 * *data*: aquí están almacenados los datos de nuestro archivo .dbf.    
 * *polygons*: la geometría del área estudiada se almacena aquí y se identifica a cada polígono (municipio o alcaldía) con un número del 1 al 76.    
-* proj4string: recoge la información relativa al tipo de proyección cartográfica usada en nuestra base.   
+* *proj4string*: recoge la información relativa al tipo de proyección cartográfica usada en nuestra base.   
 
-Cuando en la computadora queremos definir una estructura espacial lo hacemos con un tipo de objeto que denominamos lista y no con matrices, es decir, el objeto con el que interactuaremos en R no será uno de tipo `matrix`, sino una especie de lista. El hecho de que se usen listas y no matrices para el proceso de cómputo es porque resulta más conveniente en términos de la cantidad ocupada de recursos del sistema puesto que las matrices, como las comentadas en la sección anterior, son *matrices dispersas*, es decir, contienen muchos elementos que son cero.
+Si bien se dijo en la sección anterior que se definía la estructura espacial a través de una matriz, la matriz de pesos espaciales, cuando en la computadora queremos definirla  lo hacemos con un tipo de objeto que denominamos lista y no con matrices, es decir, el objeto con el que interactuaremos en R no será uno de tipo `matrix`, sino un tipo de lista. El hecho de que se usen listas y no matrices para el proceso de cómputo de las estructuras espaciales es porque resulta más conveniente en términos de la cantidad ocupada de recursos del sistema puesto que las matrices, como las comentadas en la sección anterior, son *matrices dispersas*, es decir, contienen muchos elementos que son cero. Veamos pues cómo construir este tipo de objetos en R.
 
-La función `poly2nb()` del paquete `spdep` nos permite calcular dos tipos de vecindad por adyacencia a través del argumento lógico `queen`. En la documentación de la función podemos leer que: “si es VERDADERO, `TRUE`, un solo punto límite compartido cumple la condición de contigüidad; si es FALSO, `FALSE`, se requiere más de un punto compartido; ten en cuenta que más de un punto límite compartido no significa necesariamente una línea límite compartida".  
+La función `poly2nb()` del paquete `spdep` nos permite calcular estructuras espaciales dadas a paritr de dos tipos de vecindad por adyacencia mediante uno de sus argumentos: `queen=`, que es de tipo lógico. En la documentación de la función podemos leer que: “si es VERDADERO, `TRUE`, un solo punto límite compartido cumple la condición de contigüidad; si es FALSO, `FALSE`, se requiere más de un punto compartido; ten en cuenta que más de un punto límite compartido no significa necesariamente una línea límite compartida".  
 
-Lo dicho en el párrafo anterior es relevante en el sentido de que los estos criterios, los usados por R en la construcción de matrices, no son exactamente los mismos que definimos antes (contigüidad reina y torre). Aquí la diferencia entre asignar como verdadero o falso el argumento `queen=`, puede ser interpretado como un criterio menos estricto o más estricto, respectivamente.
-
-Vamos a construir un objeto que llamaremos `mTRUE`, dicho objeto contendrá los elementos que definen la vecindad: 
+Lo dicho en el párrafo anterior es relevante en el sentido de que estos criterios no son exactamente los mismos que definimos antes (contigüidad reina y torre). Aquí la diferencia entre asignar como verdadero o falso el argumento `queen=`, puede ser interpretado como un criterio menos estricto o más estricto, respectivamente. Vamos a construir pues un objeto que llamaremos `mTRUE`, dicho objeto contendrá los elementos que definen la vecindad: 
 
 ```{r}
 mTRUE <- spdep::poly2nb(covid_zmvm)
@@ -114,7 +132,7 @@ mTRUE <- spdep::poly2nb(covid_zmvm)
 
 El segmento de código anterior genera un objeto de tipo `nb`. Verifica sus características con `class()` y `str()` . Además, nota que en la sección de ambiente de trabajo (cuadrante superior derecho, en la pestaña ambiente) aparece el objeto creado. Da clic en la imagen de la lupa para visualizarlo e intenta interpretar el resultado de la ventana.
 
-Ahora, llama a el objeto y presta atención sobre los resultados que ofrece:
+Ahora, llama al objeto y presta atención sobre los resultados que aparecen en la consola:
 
 ```{r}
 mTRUE
@@ -125,7 +143,7 @@ En la consola aparecen los siguientes elementos:
 _Objeto de lista de vecinos:_  
 
 * Número de regiones: 76. Corresponde al número de alcaldías y municipios que componen la Zona Metropolitana del Valle de México.  
-* Número de enlaces distintos de cero: 380. Es el número de elementos de una matriz de 76x76 diferentes de cero.  
+* Número de enlaces distintos de cero: 380. Es el número de elementos de una matriz de 76x76 que registran vecidadn, es decir que tomarían un valor de 1.  
 * Porcentaje de pesos distintos de cero: 6.57. Resultado de dividir 380 entre (76x76).  
 * Número promedio de vecinos o vínculos: 5. Número de vecinos que en promedio tiene cada municipio o alcaldía.  
 
@@ -151,11 +169,9 @@ ii. ¿Por qué crees que esto es así?
 
 ------------------------------------------------------------------------
 
-Es posible observar que, con base en este segundo criterio de vecindad, se identificaron un menor número de vecinos (número de vínculos diferente de cero). 
+Estas listas, que contienen nuestras estructuras espaciales almacenadas en los objeto de tipo `nb` llamados `mTRUE` y `mFALSE`, pueden representarse visualmente a través de un *gráfico de conectividad* que representa la estructura espacial definida por cada criterio a través de líneas que unen a los municipios considerados vecinos.  
 
-Estas listas, que contienen nuestras estructuras espaciales en los objeto de tipo `nb` llamados `mTRUE` y `mFALSE`, pueden representarse visualmente a través de un *gráfico de conectividad* que representa la estructura espacial definida por cada criterio a través de líneas que unen a los municipios considerados vecinos.  
-
-Para visualizar el mapa de conectividad recurrimos a la función `plot()` y superpondremos dos gráficas: una sólo con los bordes o límites a nivel municipal y otra con los centroides y la estructura espacial. Aquí se muestra el mapa de conectividad resultado de la matriz `mTRUE`
+Para visualizar el mapa de conectividad recurriremos a la función `plot()` y se superpondran dos gráficas: una sólo con los bordes o límites a nivel municipal y otra con los centroides y la estructura espacial. Aquí se muestra el mapa de conectividad resultado de la matriz `mTRUE`
 
 ```{r}
 plot(covid_zmvm, border = 'lightgrey')
@@ -209,15 +225,18 @@ Notaras cómo en el ambiente de trabajo se ha creado un objeto nuevo de tipo `li
 
 **Ejercicio**
  
-i. ¿Logras comprender por qué se le denomina matriz (lista) estandarizada?
+i. ¿Explica por qué se le denomina matriz (lista) estandarizada?
 
-ii. ¿Logras identificar cómo la suma de cada renglón de la lista es igual a uno? ¿Cómo se relaciona la forma en que aparecen enlistados los elementos con el número de vecinos que tiene cada objeto espacial?
+ii. ¿A cuanto es igual la suma de cada renglón de la lista?  
+
+iii. ¿Cómo se relaciona la forma en que aparecen enlistados los elementos con el número de vecinos que tiene cada objeto espacial?
 
 ------------------------------------------------------------------------
 
 ### El rezago o retardo espacial
 
-Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas. Ya hemos visto cómo podemos operacionalizar el concepto de vecindad, por lo que podemos ahora concentrémonos en los otros elementos. Comencemos con aquel que define el valor de una variable en las zonas vecinas, a lo que llamaremos *variable espacialmente rezagada*. Una variable espacialmente rezagada no es otra cosa que un promedio ponderado del valor de una variable en un sitio y sus locaciones vecinas [@Chasco2003,p. 61; @Anselin2020]. Siguiendo a [@Anselin2020], "el rezago espacial de $y$ del objeto espacial $i$ es expresado como $Wy_{i}$:
+Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio con respecto a sus zonas vecinas. Ya hemos visto cómo podemos operacionalizar el concepto de vecindad, por lo que podemos ahora concentrémonos en los otros elementos. Comencemos con aquel que define el valor de una variable en las zonas vecinas, a lo que llamaremos *variable espacialmente rezagada*. El rezago espacial de una región dada es el promedio ponderado del valor de la variable de los vecinos
+ [@Chasco2003, p. 61; @Anselin2020]. Siguiendo a Anselin (2020), "el rezago espacial de $y$ del objeto espacial $i$ es expresado como $Wy_{i}$:
 
 $$
 \begin{aligned}
@@ -231,14 +250,14 @@ Recuerda que $w_{ij}$ no es otra cosa que cada uno de los elementos de la matriz
 Construiremos un rezago espacial de la variable `pos_hab` con ayuda de la función `lag.listw()` del paquete `spdep`. Indicamos dos argumentos en la función: la estructura espacial dada por la matriz estandarizada, `mTRUE.pesos`, y la variable de la que deseamos el rezago espacial, `pos_hab`, esto es guardado en un nuevo objeto, `lag_poshab`, tal y como se muestra en el siguiente segmento de código:
 
 ```{r}
-lag_poshab <- lag.listw(mTRUE.pesos, covid_zmvm$pos_hab)
+lag_poshab <- spdep::lag.listw(mTRUE.pesos, covid_zmvm$pos_hab)
 ```
 
 Para lograr apreciar mejor nuestro rezago espacial, construiremos una tabla de dos columnas que almacenaremos en el objeto `df`, la primera contendrá la variable original y la segunda el rezago espacial, luego pediremos que nos muestre los primeros registros de la tabla con la función `head()` en un formato estilizado a través de la función `kable()` del paquete `knitr`:
 
 ```{r warning=FALSE}
 #Crea un nuevo arreglo de datos donde se almacena la variable original y el rezago espacial
-df <- data.frame(pos_hab = covid_zmvm$pos_hab, lag_poshab)
+df <- base::data.frame(pos_hab = covid_zmvm$pos_hab, lag_poshab)
 
 library(knitr)
 
@@ -246,42 +265,49 @@ library(knitr)
 kable(head(df))
 ```
 
-El valor de la segunda columna, `lag_poshab`, es el promedio ponderado de los casos positivos de los vecinos de cada uno de los 76 municipios y alcaldías de nuestra base. Para inspeccionar esto, observemos tanto a los vecinos de una unidad espacial como a sus respectivos valores de `pos_hab`.  
+El valor de la segunda columna, `lag_poshab`, es el promedio ponderado de los casos positivos de los vecinos de cada uno de los 76 municipios y alcaldías que integran esta región de México. Para inspeccionar esto, observemos tanto a los vecinos de una unidad espacial como a los valores de la variable `pos_hab`.  
 
-Para identificar a los vecinos de cada observación hay que extraer el dato utilizando dobles corchetes desde el objeto que contiene la estructura espacial no ponderada, `mTRUE`. Para nuestra observación identificada con el número 1 tenemos:
+Para identificar a los vecinos de cada objeto espacial (municipio o alcaldía), así como el respectivo valor del rezago espacial hay que extraer dicha información utilizando una notación de dobles corchetes. Vayamos por pasos. Primero, para conocer cual es el primer elemento u objeto espacial de nuestra base usamos la notación del doble corchete sobre el objeto `covid_zmvm`: 
 
 ```{r}
-#Devuelve el nombre del municipio identificado con el número 1
-covid_zmvm$nom_mun[[1]]
-
-#Devuelve los números de identificación de los municipios y alcaldías vecinas del Álvaro Obregón, la observación identificada con el número 1.
-mTRUE[[1]]
+covid_zmvm$nom_mun[[1]] #Devuelve el nombre del municipio identificado con el número 1
 ```
+
+Una vez que sabemos que dicho objeto es la alcaldía llamada Álvaro Obregón, pidamos a R que nos muestre cuáles son sus vecinos. Para ello, usando de nuevo la notación de doble corchete sobre la estructura espacial, el objeto `mTRUE`:
+
+```{r}
+mTRUE[[1]]#Devuelve los números de identificación de los municipios y alcaldías vecinas del Álvaro Obregón, la observación identificada con el número 1.
+```
+
+Los números anteriores corresponden a los vecinos de Álvaro Obregón, pero, ¿cómo saber su nombre y el número de casos positivos de cada uno? El siguiente segmento de código nos dará los nombres de los vecinos y el número de casos positivos en cada uno.
+
+```{r}
+#Crea un objeto que contienw el nombre de las alcaldías y municipios vecinos de Álvaro Obregón
+nom_vec <- covid_zmvm$nom_mun[mTRUE[[1]]]
+
+#Crea un objeto que contiene el valor de pos_hab para cada observación vecina de Álvaro Obregón
+covi_vec <- covid_zmvm$pos_hab[mTRUE[[1]]]
+
+# Guarda los dos objetos anteriores en un dataframe y lo muestra en una tabla
+db <- data.frame(nom_vec,covi_vec)
+kable(db)
+```
+
+Los valores previamente listados corresponden tanto al nombre como al número de casos positivos de los vecinos de Álvaro Obregón. Así, el rezago espacial de Álvaro Obregón es el resultado de sumar los valores de la tabla anterior y multiplicarlos por $\frac {1}{6}$, es decir, 15.99.
 
 ------------------------------------------------------------------------
 
 **Ejercicio**
  
-i. ¿Cómo interpretas el resultado anterior?  
+i. ¿Por que para el caso de Álvaro Obregón hubo que multiplicar por un sexto?
 
-ii. ¿Qué son los números que se desplegaron?  
+ii. Obtén un cuadro con las lista de vecinos y los valores de casos positivos para el objeto espacial 35
 
 ------------------------------------------------------------------------
 
-Ahora bien, ¿cuál es el valor de los casos positivos por cada 100 mil habitantes para cada una de las observaciones recién obtenidas? Para llamarlas a la consola podemos escribir:
-
-```{r}
-#Devuelve el nombre de las alcaldías y municipios vecinos de Álvaro Obregón
-covid_zmvm$nom_mun[mTRUE[[1]]]
-
-#Devuelve el valor de pos_hab para cada observación vecina de Álvaro Obregón
-covid_zmvm$pos_hab[mTRUE[[1]]]
-```
-
-Los valores previamente listados corresponden tanto al nombre como al número de casos positivos de los vecinos de Álvaro Obregón. Así, el primer valor de la tabla es el resultado de (16.98 + 14.94 + 18.70 +13.67 + 20.55 + 11.08)/6, es decir, 15.99.
-
-
 ### Coeficiente de correlación espacial: la I de Moran
+
+Ahora que ya tenemos todos los elementos que integran la definición de autocorrelación espacial, ¿cómo la medimos? Es decir, como sabemos si la variable casos positivos por COVID19 presenta o no dicha característica. Para ello, debemos construir una medida, un coeficiente, es decir, un estadístico.
 
 Sin duda, el estadístico de asociación espacial más común es la I de Moran, que no es otra cosa que un coeficiente de correlación lineal que "incorpora al espacio", es decir, mide la asociación lineal entre la variable de interés y su rezago espacial.
 
@@ -620,6 +646,6 @@ Para visualizar la estructura espacial:
 plot(k6nb, coords, lwd=.2, col="blue", cex = .5)
 ```
 
-[^3]: "La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada “matriz de pesos, ponderaciones, distancias o contactos espaciales” [@Chasco2003,p. 55]
+[^3]: "La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada matriz de pesos, ponderaciones, distancias o contactos espaciales" [@Chasco2003, p. 55]
 
 

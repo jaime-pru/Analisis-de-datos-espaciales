@@ -164,7 +164,7 @@ x <- factor(c("yes","no","no","yes","no"))
 x
 ```
 
-Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como "masculino" y "femenino", es decir, es recomendable almacenar la información como factor.
+Por ejemplo, si la variable responde a la pregunta ¿el paciente recibió la vacuna contra COVID-19? y hay dos posibles respuestas, es recomendable que en lugar de designar cada alernativa como 1 o 2  se usen variables categóricas como "Vacuna aplicada" y "Vacuna no aplicada", es decir, es recomendable almacenar la información como factor.
 
 #### _Data frame_ o arreglo de datos
 
