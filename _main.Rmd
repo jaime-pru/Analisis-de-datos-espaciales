@@ -1,0 +1,185 @@
+--- 
+title: "Análisis de datos espaciales con R"
+author: "Jaime Alberto Prudencio Vázquez"
+date: "`r Sys.Date()`"
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+output:
+ bookdown::bs4_book:
+  theme:
+    primary: "#3860b6"
+    base_font: "Segoe UI"
+  
+documentclass: book
+bibliography: [book.bib]
+fontsize: 11pt
+fontfamily: times
+classoption: oneside
+openright: yes
+geometry: 
+- tmargin=2.5cm
+- bmargin=2.5cm
+- lmargin=2.5cm
+- rmargin=2.5cm
+link-citations: yes
+header-includes:
+  - \usepackage[utf8]{inputenc} #para usar accentos
+  - \usepackage[Glenn]{fncychap} #Formato de titulo de capitulo
+  - \pagestyle{plain}
+lang: es
+---
+
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# R: Una introducción desde la exploración de información
+
+Placeholder
+
+
+## R: Lenguaje de programación y plataforma de análisis
+## Códigos, objetos, paquetes
+### Código
+### Objetos, operadores y tipos de variables
+#### Vectores
+#### Matrices
+#### Factores
+#### _Data frame_ o arreglo de datos
+### Paquetes
+### Solicitar ayuda de un paquete o función de R
+## Cargar bases de datos
+### Cargar un archivo de Excel (xls, xslx)
+### Cargar archivos separados por comas (csv)
+### Cargar bases con la funcionalidad importar
+## Exploración inicial a través de gráficos
+## Manipulación de la información
+### Seleccionar variables
+### Filtrar (seleccionar casos)
+### Ordenar
+### Crear nuevas variables
+### Resúmenes de información y grupos
+
+<!--chapter:end:01-intro.Rmd-->
+
+
+# Mapas coropléticos en R
+
+Placeholder
+
+
+## Datos y datos espaciales
+## Los paquetes
+## Carga de la base de datos geográfica
+## Mapas coropléticos básicos
+## Personalización
+### Argumentos de personalización dentro de la función de relleno
+#### Paleta de colores
+#### Leyenda
+#### Métodos de clasificación en los mápas
+### Argumentos de personalización del borde
+## Función para elementos de diseño de salida, `tm_layout()`
+## Mapa base interactivo
+## Cartograma
+## Centroides o coordenadas geométricas (punto medio)
+## Tópico adicional: Mapas de clasificación especial (elementos de programación)
+### Una palabra de advertencia
+### Mapa de intervalos personalizados
+### Mapas de valores extremos
+#### Mapa de percentiles
+### Construcción de una función personalizada para hacer mapas de percentiles
+
+<!--chapter:end:02-Mapas.Rmd-->
+
+
+# Análisis espacial I: autocorrelación
+
+Placeholder
+
+
+## Autocorrelación espacial y definición de vecindad
+## Matrices de pesos espaciales en R
+### Los paquetes
+### Matrices de contigüidad: el argumento `queen` de la función `poly2nb()`
+## Estadísticos de correlación espacial
+### La matriz de pesos espaciales estandarizada
+### El rezago o retardo espacial
+### Coeficiente de correlación espacial: la I de Moran
+### Diagrama de dispersión de Moran
+## Índice de Moran local y mapa de clusters
+## Apéndice: Un enfoque adicional para construir matrices de pesos espaciales
+### Matriz tipo torre (*rook*)
+### Matriz tipo reyna (*queen*)
+### Matrices de contigüidad de orden superior
+## Visualización de la estructura espacial
+## Matrices de distancia: k-vecinos más cercanos
+
+<!--chapter:end:03-Analisis-espacial-I.Rmd-->
+
+
+# Modelos de regresión lineal
+
+Placeholder
+
+
+## Causalidad y correlación: el alcance del análisis de regresión
+## Lo "artesanal" de la econometría
+## Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)
+## Modelo de regresión lineal simple
+### Supuestos del módelo clásico de regresión lineal
+## Regresión lineal simple en R
+### Una exploración visual de los errores
+### El error estandar residual o error estándar de los errores
+### Coeficiente de determinación
+### Una aproximación a la predicción
+### Significancia individual de los coeficientes obtenidos
+## Algunos elementos de cuidado con las regresiones lineales
+## Regresión lineal múltiple: una propuesta de modelo 
+### Significancia conjunta de los coeficientes calculados
+
+<!--chapter:end:04-Regresion-lineal.Rmd-->
+
+
+# Análisis espacial II: modelos econométricos espaciales
+
+Placeholder
+
+
+## Diversas alternativas de modelos econométricos
+## Modelos espaciales en R: un ejemplo para el Valle de México
+## Modelos espaciales
+### Modelo de rezago espacial
+### Modelo de error espacial
+
+<!--chapter:end:05-Analisis-espacial-II.Rmd-->
+
+# Sobre el autor {-}
+
+<div style="text-align: justify">
+
+Jaime A. Prudencio Vázquez [ORCID](https://orcid.org/0000-0001-5866-1280)[Google Académico](https://scholar.google.com/citations?user=p083DDsAAAAJ&hl=es) es docente universitario desde 2013 en las Área de Investigación, Métodos cuantitativos, Economía Política y Economía Regional. Cursó sus estudios de maestría y doctorado en la Universidad Nacional Autónoma de México, en el campo de Economía Urbana y Regional.  
+
+Ha impartido talleres sobre análisis de datos espaciales y econometría espacial, tanto en el ámbito universitario como en el marco del Encuentro Nacional sobre Desarrollo Regional de la Asociación Mexicana de Ciencias para el Desarrollo Regional (AMECIDER).  
+
+Entre 2012 y 2015 colaboró como investigador asociado en el Centro de Estudios para el Desarrollo Alternativo, A. C. Ha participado, primero como becario y luego como académico, en diversos proyectos de investigación gestionados por la Coordinación de Investigación Científica de la UNAM para instituciones como INFONAVIT, BANCOMEXT y el Consejo de Investigación y Evaluación de la Política Social (CIEPS) del Estado de México.
+
+Actualmente es profesor visitante en el [Departamento de Economía, Área de Relaciones Productivas en México](https://rpm-uam.blogspot.com/) de la [Universidad Autónoma Metropolitana Unidad Azcapotzalco](https://www.azc.uam.mx/) con actividad docente en la Licenciatura en Economía en el Área de Concentración de Economía de la Innovación: empresas, redes y territorio.  
+
+Entre sus intereses de investigación se encuentran: Productividad laboral de la manufactura y desarrollo regional; Ciudades, economías de aglomeración y productividad laboral; Disparidad regiones y su medición, temas en los que cuenta con trabajos publicados.
+
+Correo electrónico: japv@azc.uam.mx. [Twitter](https://twitter.com/jaime_pru).
+
+
+El autor agradece a Montserrat Romero Martínez (vmrm@azc.uam.mx) y a Alvaro Martínez Rodríguez (amr@azc.uam.mx), ayudantes en el Área de Relaciones Productivas, quienes se encargaron respectivamente de la revisión de los materiales preliminares de este libro y de su edición para su publicación en línea con [Bookdown](https://bookdown.org/) en GitHub. 
+
+Ciudad de México, enero de 2022.
+
+<!--chapter:end:07-sobre-el-autor-y-creditos.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:08-references.Rmd-->
+

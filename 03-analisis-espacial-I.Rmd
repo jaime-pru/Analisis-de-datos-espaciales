@@ -282,10 +282,10 @@ mTRUE[[1]]#Devuelve los números de identificación de los municipios y alcaldí
 Los números anteriores corresponden a los vecinos de Álvaro Obregón, pero, ¿cómo saber su nombre y el número de casos positivos de cada uno? El siguiente segmento de código nos dará los nombres de los vecinos y el número de casos positivos en cada uno.
 
 ```{r}
-#Crea un objeto que contienw el nombre de las alcaldías y municipios vecinos de Álvaro Obregón
+#Crea un objeto que contiene el nombre de las alcaldías y municipios vecinos de Álvaro Obregón
 nom_vec <- covid_zmvm$nom_mun[mTRUE[[1]]]
 
-#Crea un objeto que contiene el valor de pos_hab para cada observación vecina de Álvaro Obregón
+#Crea un objeto que contiene el valor de la variable pos_hab (casos positivos por mil habitantes) para cada observación vecina de Álvaro Obregón
 covi_vec <- covid_zmvm$pos_hab[mTRUE[[1]]]
 
 # Guarda los dos objetos anteriores en un dataframe y lo muestra en una tabla
@@ -307,19 +307,21 @@ ii. Obtén un cuadro con las lista de vecinos y los valores de casos positivos p
 
 ### Coeficiente de correlación espacial: la I de Moran
 
-Ahora que ya tenemos todos los elementos que integran la definición de autocorrelación espacial, ¿cómo la medimos? Es decir, como sabemos si la variable casos positivos por COVID19 presenta o no dicha característica. Para ello, debemos construir una medida, un coeficiente, es decir, un estadístico.
+Una vez que hemos abordado y resuelto el problema de cómo definir vecindad a partir de la matriz de pesos espaciales, tenemos todos los elementos que integran la definición de autocorrelación espacial: relación funcional, valor de una variable y relación de vecindad. Ahora bien, ¿cómo la medimos? Es decir, cómo sabemos si la variable casos positivos por COVID19 está espacialmente correlacionada. Al principio de este capítulo dijimos que apreciar ciertos patrones de agrupamiento en un mapa, como el del índice de desarrollo humano, era un posible indicio de autocorrelación espacial. Es momento de formalizar dicho indicio a través de un indicador apropiado, debemos pues construir un estadístico, un estadístico de autocorrelación espacial.
 
-Sin duda, el estadístico de asociación espacial más común es la I de Moran, que no es otra cosa que un coeficiente de correlación lineal que "incorpora al espacio", es decir, mide la asociación lineal entre la variable de interés y su rezago espacial.
+El estadístico de asociación espacial más socorrido es el propuesto por [Patrick Moran](https://en.wikipedia.org/wiki/P._A._P._Moran) la I de Moran. La I de Moran es un coeficiente de correlación lineal que "incorpora al espacio", es decir, mide la asociación lineal entre una variable (digamos casos positivos) y su rezago espacial (el valor promedio de los casos positivos de los vecinos). Como todo coeficiente de asociación, el valor de la I de Moran se encuentra entre -1 y 1.  
 
-Para calcular el coeficiente o estadístico de Moran necesitamos recurrir a la función `moran.test()` del paquete `spdep`. Los argumentos de la función deben especificar el nombre de la variable y el tipo de estructura espacial dado por la matriz de pesos usada; adicionalmente, se puede indicar qué hacer en caso de que existan islas (objetos espaciales sin vecinos) con el argumento `zero.policy`.
+Si el valor de la I de Moran es positivo decimos que hay signos de concentración o patrones de aglomeración pues existe autocorrelación espacial positiva, por lo que existen unidades espaciales (alcaldías, municipios) que tienen valores altos en la variable medida rodeadas por otras que tienen valores también altos. Decir que existe autocorrelación espacial positiva también implica afirmar que hay unidades espaciales con valores bajos rodeadas de otras también con valores bajos. En tanto, si la I de Moran es negativa esto es evidencia de patrones de dispersión o repulsión: una alcaldía o municipio que tiene valores altos está rodeada de vecinos con valores bajos y viceversa.  
+
+Para calcular en R el coeficiente o estadístico de Moran necesitamos recurrir a la función `moran.test()` del paquete `spdep`. Los argumentos de la función deben especificar el nombre de la variable y el tipo de estructura espacial dado por la matriz de pesos usada; adicionalmente, se puede indicar qué hacer en caso de que existan islas (objetos espaciales sin vecinos) con el argumento `zero.policy`.
 
 ------------------------------------------------------------------------
 
 **Ejercicio**
  
-i. ¿Para qué sirve el argumento `randomization` de la función `moran.test()`?  
+i. Solicita ayuda del paquete `spdep` y responde, ¿para qué sirve el argumento `randomization` de la función `moran.test()`?  
 
-ii. ¿De qué modo es posible cambiar la hipótesis alternativa de la evaluación de autocorrelación espacial en la prueba de Moran?  
+ii. De nuevo, en la ayuda de la función, ¿con cuál de los argumentos es posible cambiar la hipótesis alternativa de la evaluación de autocorrelación espacial en la prueba de Moran?  
 
 ------------------------------------------------------------------------
 
@@ -329,7 +331,7 @@ Construyamos el estadístico de Moran para la variable `pos_hab` usando la estru
 spdep::moran.test(covid_zmvm$pos_hab, mTRUE.pesos)
 ```
 
-Del indicador obtenido nos interesan tres elementos, como es usual: la magnitud del coeficiente, su sentido y su significancia estadística. En los resultados que aparecen en tu consola identifica cada uno de ellos:
+Del indicador obtenido nos interesan tres elementos, como es usual: la magnitud del coeficiente, su sentido y su significancia estadística. En los resultados que aparecen en tu consola identifica cada uno de ellos y responde:
 
 
 ------------------------------------------------------------------------
@@ -342,12 +344,12 @@ Del indicador obtenido nos interesan tres elementos, como es usual: la magnitud 
 
 ------------------------------------------------------------------------
 
-Un coeficiente como el obtenido, de 0.657, indica que hay una relación positiva entre los valores de los casos positivos de COVID19 y los valores de los casos positivos por COVID19 en los entornos vecinos, además, podríamos decir que es relativamente alto en la medida en que el coeficiente puede tomar valores entre -1 y 1 y el que hemos obtenido está más cercano a 1. ¿Qué hay con su significancia estadística? ¿cómo podemos saber que dicho resultado no es producto del azar? Para evaluar su significancia estadística hay que observar el _p-value_, y evaluemos su significancia estadística a través del siguiente juego de hipótesis:
+Un coeficiente como el obtenido, de 0.657, indica que hay una relación positiva entre los valores de los casos positivos de COVID19 y los valores de los casos positivos por COVID19 en los entornos vecinos, además, podríamos decir que es relativamente alto. Ahora, ¿qué hay con su significancia estadística? ¿Cómo podemos saber que dicho resultado,. el 0.657, no es producto de una coincidencia del azar? Para ello, evaluaremos el siguiente juego de hipótesis:
   
 - $Ho:$ distribución espacial aleatoria  
 - $Ha:$ distribución espacial no aleatoria  
 
-Con la información disponible y fijando un nivel de significancia, $\alpha$, en 0.05 se rechaza la hipótesis nula en favor de la hipótesis alternativa, por tanto, la variable no se distribuye de forma aleatoria en el espacio, sino que muestra indicios de asociación espacial positiva y relativamente alta (0.657).
+Con la información disponible y fijando un nivel de significancia, $\alpha$, en 0.05 se rechaza la hipótesis nula en favor de la hipótesis alternativa, por tanto, la variable no se distribuye de forma aleatoria en el espacio, sino que muestra indicios de asociación espacial positiva relativamente alta (0.657).
 
 ------------------------------------------------------------------------
 
@@ -382,6 +384,10 @@ spdep::moran.plot(((covid_zmvm$pos_hab)-mean(covid_zmvm$pos_hab))/(sd(covid_zmvm
                   col="lightblue")
 ```
 
+En el diagrama de Moran recién construido notamos varias cosas:  
+i) Una parte importante de las observaciones caen en el cuadrante I y III, por lo que la relación funcional que predomina entre el conjunto de punto es positiva.  
+ii) Que la relación funcional dominante sea positiva no implica que no haya observaciones en los cuadrantes II y IV.  
+
 Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función `par()`. 
 ------------------------------------------------------------------------
 
@@ -393,19 +399,21 @@ Múltiples elementos de personalización de ésta y otras gráficas asociadas al
 
 ## Índice de Moran local y mapa de clusters
 <div style="text-align: justify">
-El índice de Moran que recién hemos descrito permite evaluar la existencia de un patrón espacial completo, por lo que no proporciona información de la ubicación de las agrupaciones, es decir, es una medida de autocorrelación espacial global. Para subsanar esta situación, [@Anselin1995] propuso la versión local de la I de Moran: LISA (local indicator of spatial association).
+El índice de Moran que recién hemos calculado permite evaluar la existencia de un patrón espacial completo o global, es decir, para el conjunto de observaciones. Por ello, no proporciona información de la ubicación de las agrupaciones particulares o exactas de nuestros datos. Por ello se dice que la I de Moran es una medida de autocorrelación espacial global: nos dice que hay concentración o aglomeración en el espacio de una variable, en este caso, casos positivos por COVID, pero no nos dice a qué municipios o alcaldías específicos es posible atribuir dichas fuerzas de aglomeración. Para subsanar esta situación, Anselin [-@Anselin1995] propuso la versión local de la I de Moran: el indicador local de asociación espacial o LISA (*local indicator of spatial association*).
 
-Este indicador:  
+El LISA:  
 
-* Proporciona un estadístico para cada ubicación con un nivel de significancia.  
+* Proporciona un estadístico para cada ubicación con un nivel de significancia y   
 * Establece una relación proporcional entre el estadístico local y el global.  
 
-La representación del LISA en un mapa, conocido como  **mapa de Cluster** (que permite clasificar las áreas significativas según el tipo de asociación identificada)  en compañía con un mapa que indique la significancia estadística de cada valor (muestra las ubicaciones con la I de Moran local que son representativas en diferentes niveles de $\alpha$) permite la clasificación de las áreas estadísticamente significativas en clusters o agrupamientos (alto-alto y bajo-bajo) y de áreas que se constituyen como observaciones espaciales atípicas o *spatial outliers* (agrupamientos bajo-alto y alto-bajo).  
+Es decir, nos permite identificar a que unidades espaciales (alcaldías o municipios) es posible atribuir la autocorrelación espacial de forma específica y con qué intensidad, en relación con el indicador global. La representación del LISA se hace con arreglo a dos mapas:  
+
+i) El **mapa de cluster** o mapa de agrupaciones: permite clasificar las áreas (alcaldías y municipios) con presencia de autocorrelación espacial según el tipo de asociación identificada. Este mapa permite la clasificación de las áreas estadísticamente significativas en clusters o agrupamientos (alto-alto y bajo-bajo) y de áreas que se constituyen como observaciones espaciales atípicas o *spatial outliers* (agrupamientos bajo-alto y alto-bajo).   
+ii) El **mapa de significancia**: muestra las ubicaciones con la I de Moran local que son representativas en diferentes niveles de significancia 
 
 El Índice local de Moran toma la forma de:
   
-$I_i = \frac{(x_i-\bar{x})}{{∑_{k=1}^{n}(x_k-\bar{x})^2}/(n-1)}{∑_{j=1}^{n}w_{ij}(x_j-\bar{x})}$
-  
+$$I_i = \frac{(x_i-\bar{x})}{{∑_{k=1}^{n}(x_k-\bar{x})^2}/(n-1)}{∑_{j=1}^{n}w_{ij}(x_j-\bar{x})}$$
   
 Para calcular un índice de Moran local en R usamos la función `localmoran()`. Creamos un objeto denominado `local` que echa mano de la matriz `mTRUE.pesos`:
   
@@ -413,15 +421,15 @@ Para calcular un índice de Moran local en R usamos la función `localmoran()`. 
 local <- spdep::localmoran(covid_zmvm$pos_hab, mTRUE.pesos)
 ```
 
-El objeto creado, `local` es de tipo "localmoran", no es otra cosa que una tabla que contiene múltiples variables cuyo contenido corresponde, según indica la propia ayuda de la función, a:
+El objeto creado, `local`, es de tipo "localmoran", no es otra cosa que una tabla que contiene múltiples variables cuyo contenido corresponde, según indica la propia ayuda de la función, a:
   
 * Ii: estadístico de Moran local.  
-* E.Ii: valor esperado del estadístico de Moran local.  
+* E.Ii: valor esperado o media del estadístico de Moran local.  
 * Var.Ii: varianza del estadístico local de Moran.  
 * Z.Ii: desviación estándar del estadístico de Moran local.  
 * Pr (): valor p del estadístico de Moran local.  
 
-Nos interesa la primera columna, `Ii`, el índice de Moran local  y la columna `Pr` que contiene la probabilidad asociada, por lo que uniremos los resultados del objeto `local` a la tabla original que contiene nuestra base de datos. Para eso hay que usar la función `cbind()` (combinar por columna) en un nuevo objeto que llamaremos `mapa.moran`:
+Para construir los mapas antes mencionados, debemos incorporar la información recien calculada a nuestra base original. De las columnas de `local` nos interesa particularmente la primera, `Ii`, el índice de Moran local  y la columna `Pr` que contiene la probabilidad asociada. Para unir estas columnas con la base original hay que usar la función `cbind()` (combinar por columna) en un nuevo objeto que llamaremos `mapa.moran`:
   
 ```{r}
 mapa.moran <- base::cbind(covid_zmvm, local)
@@ -433,17 +441,18 @@ Primero, llevemos los resultados del Moran Local a un mapa de quintiles aplicand
 tmap::tm_shape(mapa.moran) +
   tmap::tm_fill(col = "Ii", style = "quantile",
                 palette = "Spectral", midpoint= NA,
-                title = "I de Moran local") +
+                title = "I de Moran local",
+                legend.format = list(text.separator="a",digits=2)) +
   tmap::tm_borders()
 ```
 
-El mapa permite observar la manera en que varía la correlación espacial a nivel local. Pero necesitamos otro instrumento que nos permita identificar si los valores de la I de Moran local son o no significativos en esas áreas y de esta manera identificar agrupaciones o núcleos de cluster significativos, así como observaciones espaciales atípicas, es decir, un mapa de significancia. Esto lo hacemos siguiendo la propuesta de [@Lovelace2014]:
+El mapa permite observar la manera en que varía la correlación espacial a nivel local: es claro que la mayor parte de los valores altos del LISA se encuentran en la Ciudad de México (tonos en azul). Pero necesitamos otro instrumento que nos permita identificar si los valores de la I de Moran local son o no significativos (mapa de cluster y mapa de significancia) en esas áreas y de esta manera identificar agrupaciones o núcleos de cluster significativos, así como observaciones espaciales atípicas, es decir, un mapa de significancia. Esto lo hacemos siguiendo la propuesta de [@Lovelace2014]:
 
 ```{r}
 # crea un vector numérico de la misma longitud del tamaño de filas de la base "local"
 cuadrantes <- vector(mode="numeric",length=nrow(local))
 
-# Centra la variable de interés (CRIME) alrededor de su media
+# Centra la variable de interés (pos_hab) alrededor de su media
 m.COVID <- covid_zmvm$pos_hab - mean(covid_zmvm$pos_hab)
 
 # Centra el Índice de Moran local alrededor de su media (columna 1 de la base "local")
@@ -462,10 +471,10 @@ cuadrantes[local[,5]>signif] <- 0
 #Para graficarlo
 cortes <- c(0,1,2,3,4)
 colores <- c("white","blue",rgb(0,0,1,alpha=0.4),rgb(1,0,0,alpha=0.4),"red")
-plot(mapa.moran, border="lightgray",col=colores[findInterval(cuadrantes,cortes,all.inside=FALSE)])
+plot(mapa.moran, border="lightgray",col=colores[findInterval(cuadrantes,cortes,all.inside=FALSE)], max.plot = 1)
 box()
-legend("bottomleft", title ="Clasificación de cuadrantes"  ,legend=c("No signficativo","Bajo-Bajo","Bajo-Alto","Alto-Bajo","Alto-Alto"),
-       fill=colores,bty="n")
+legend("bottomleft",legend=c("No signficativo","Bajo-Bajo","Bajo-alto","Alto-Bbajo","Alto-Alto"),
+       fill=colores, bty="n")
 ```
 
 El mapa anterior permite identificar agrupamientos de valores significativos al 10%, núcleos de cluster que muestran municipios y alcaldías con valores altos de tasas positivas de COVID19 rodeados de vecinos con valores altos (agrupamiento Alto-Alto), así como agrupamientos de valores bajos (cuadrante Bajo-Bajo), además de observaciones espaciales atípicas (cuadrante Alto-bajo).
