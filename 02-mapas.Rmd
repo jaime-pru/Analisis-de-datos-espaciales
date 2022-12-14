@@ -3,7 +3,7 @@
 <div style="text-align: justify">
 De forma reciente, la información georreferenciada y los Sistemas de Información Geográfica (SIG) se han vuelto instrumentos de primer orden para el análisis y la presentación de fenómenos asociados al territorO. Por ejemplo, los [Tableros de la Universidad Johns Hopkins](https://coronavirus.jhu.edu/map.html) sobre la pandemia por COVID19, o los del [Gobierno de México y CentroGeo](https://coronavirus.gob.mx/datos/) han estado constantemente en los medios de comunicación.  
 
-En este capítulo apuntamos algunas de las características básicas de los datos y los datos espaciales; además,  buscamos brindar algunos elementos generales que te permitan familiarizarte con ese tipo de información y representarla gráficamente para usarla para en el analisis de fenómenos socioterritoriales.   
+En este capítulo apuntamos algunas de las características básicas de los datos y datos espaciales; además,  buscamos brindar algunos elementos generales que te permitan familiarizarte con ese tipo de información y representarla gráficamente para usarla para en el analisis de fenómenos socioterritoriales.   
 
 ## Datos y datos espaciales
 <div style="text-align: justify">
@@ -147,7 +147,7 @@ La función `tm_polygons()` representará la variable indicada en el argumento `
 
 Con lo anterior, tienes ya las bases y la lógica para construir mapas coropléticos en R, lo demás no son más que elementos de personalización para cada una de las funciones previas, además de la incorporación de funciones adicionales para elaborar mapas mucho más profesionales.  
 
-Te recomendamos consultar, además del libro de Víctor Olaya ya comentado previamente, el espléndido material [Geocomputation with R](https://geocompr.robinlovelace.net/) de [@Lovelace2019], así como el material y todo lo relacionado con el paquete `tmap` en [*tmap: Thematic Maps in R*](https://www.jstatsoft.org/article/view/v084i06) [@Tennekes2018].
+Te recomendamos consultar, además del libro de Víctor Olaya ya comentado previamente, el espléndido material [Geocomputation with R](https://geocompr.robinlovelace.net/) de [@Lovelace2019], así como el material y todo lo relacionado con el paquete `tmap` en [*tmap: Thematic Maps in R*](https://www.jstatsoft.org/article/view/v084i06)  [@Tennekes2018].
 
 
 ## Personalización
@@ -525,7 +525,7 @@ Como siempre, se recomienda revisar la documentación de ayuda de la función `s
 ### Una palabra de advertencia
 En esta sección se construyen dos tipos de mapas de clasificación especial, es decir, destinados a hacer notar los valores atípicos. No obstante, la construcción de dichos mapas en R supone cierto conocimiento sobre programación que está fuera del alcance de estas notas. Si deseas profundizar en el aprendizaje de programación en R, el libro de Roger D. Peng, [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) es un excelente material, particularmente el [capítulo 14 dedicado a las funciones en R](https://bookdown.org/rdpeng/rprogdatascience/functions.html) [@Peng2015].
 
-Con esta advertencia, llevamos a cabo la exposición de esta sección, esperando motivarte para que tu misma profundices en los tópicos de programación.
+Con esta advertencia, llevamos a cabo la exposición de esta sección, esperando motivarte para que tú misma profundices en los tópicos de programación.
 
 ### Mapa de intervalos personalizados
 
@@ -643,6 +643,6 @@ En el siguiente capítulo continuamos con la exploración de la información, pe
 
 
 
-[^1]:Vistita el [perfil de Inatagram](https://www.instagram.com/maxartechnologies/) de la empresa _Maxar technologies_ para mirar impresionantes y bellas imágenes satelitales. Empresas como ésta y otras se dedican a capturar y comercializar imágenes del territorio en formato ráster.
+[^1]:Vistita el [perfil de Instagram](https://www.instagram.com/maxartechnologies/) de la empresa _Maxar technologies_ para mirar impresionantes y bellas imágenes satelitales. Empresas como ésta y otras se dedican a capturar y comercializar imágenes del territorio en formato ráster.
 
 [^2]: Adicionalmente, es usual encontrar otros tipos de archivo: i) *prj*, que almacena la información relativa a la proyección cartográfica y ii) *cpg*, que especifica la página de códigos para identificar el juego de caracteres que se utilizará. Para más información de los tipos y formatos de archivos vectoriales visite [esta página](https://www.loc.gov/preservation/digital/formats/fdd/fdd000280.shtml) de la librería del congreso de los Estados Unidos y [esta entrada](https://mappinggis.com/2013/11/los-formatos-gis-vectoriales-mas-populares/) de MappingGIS.
