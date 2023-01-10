@@ -57,7 +57,7 @@ Ahora bien, antes de ejecutar los segmentos de código que aparecen más abajo, 
 - Dentro del paréntesis colocamos los argumentos con los que trabajará nuestra función y, entre las llaves, `{}`, indicamos los elementos con los que vamos a operar, incluidos los argumentos.  
 - Nuestra función tomará información de la base de datos llamada `Galton`, que viene con el paquete `HistData`, recuerda que Galton (1886) sentó las bases del análisis de regresión a través de un estudio de lo que podríamos aquí llamar informalmente “herencia genética”, en otras palabras, cómo la altura de padres e hijos adultos está asociada.  
 
-Después de haber leído el código, cópialo y pégalo en tu consola[^1]:
+Después de haber leído el código, cópialo y pégalo en tu consola[^5]:
 
 ```{r message=FALSE, warning=FALSE}
 #Para llamar las librerías que recién instalaste
@@ -219,7 +219,7 @@ Como puedes observar, entre ambas variables existe una relación positiva que pu
 Un elemento de interés para el análisis en la regresión lineal estimada son los errores observados, $u_i$, puesto que los supuestos sobre los que se basa el método de mínimos cuadrados ordinarios son, en buena medida, sobre dichos errores. Para lograr comprender mejor qué son los errores y su importancia analítica, conviene imaginar nuestro modelo como "Respuesta = Predicción + Error", es decir, $y=\hat y+u$. De esta manera podemos expresar el error como:
 
 $$u_i=y_i-\hat {y_i}$$
-Los errores observados, $u_i$, y los valores estimados, $\hat y_i$, de nuestro modelo son almacenados en el elemento `residuals` y `fitted.values`, respectivamente, dentro de la lista `lm`. Da clic en la lente de aumento al final de la fila que contiene el objeto de tipo `lm` en la sección de ambiente en tu entorno de trabajo para observarlos. Para poder analizar mejor los errores del modelo, vamos a crear un nuevo objeto que contenga, además de nuestras variables de interés, `pos_hab` y `ss`, la clave municipal, `cvemun`, los errores observados y los valores ajustados o predichos. Para ello, primero generamos una tabla con la función `data.frame()` que contentrán las variables mencionadas (aquí, los dobles corchetes, `[[]]`, son utilizados para extraer los elementos solicitados): 
+Los errores observados, $u_i$, y los valores estimados, $\hat y_i$, de nuestro modelo son almacenados en el elemento `residuals` y `fitted.values`, respectivamente, dentro de la lista `lm`. Da clic en la lente de aumento al final de la fila que contiene el objeto de tipo `lm` en la sección de ambiente en tu entorno de trabajo para observarlos. Para poder analizar mejor los errores del modelo, vamos a crear un nuevo objeto que contenga, además de nuestras variables de interés, `pos_hab` y `ss`, la clave municipal, `cvemun`, los errores observados y los valores ajustados o predichos. Para ello, primero generamos una tabla con la función `data.frame()` que contendrán las variables mencionadas (aquí, los dobles corchetes, `[[]]`, son utilizados para extraer los elementos solicitados): 
 
 ```{r}
 tabla <- data.frame(covid_zmvm$cvemun, covid_zmvm$ss, covid_zmvm$pos_hab, as.data.frame(modelo_simple[["fitted.values"]]),
@@ -460,4 +460,4 @@ Dejemos hasta aquí este somero repaso de los aspectos más elementales del aná
 
 
 
-[^1]: El código aquí replicado se tomó del Análisis de Información Geoespacial de CentroGeo impartido en 2020.
+[^5]: El código aquí replicado se tomó del Análisis de Información Geoespacial de CentroGeo impartido en 2020.

@@ -57,7 +57,7 @@ Ha &: \rho\not=0 \\
 \end {aligned}
 $$
 
-El estadístico usado es el multiplicador de Lagrange, que sigue una distribución $\chi^2$ con un grado de libertad[^5]. Así, dado determinado nivel de significancia, rechazar la hipótesis nula significará que el mejor modelo es un modelo de rezago espacial. De forma semejante, para evaluar la alternativa del modelo de error recuerda que:
+El estadístico usado es el multiplicador de Lagrange, que sigue una distribución $\chi^2$ con un grado de libertad[^6]. Así, dado determinado nivel de significancia, rechazar la hipótesis nula significará que el mejor modelo es un modelo de rezago espacial. De forma semejante, para evaluar la alternativa del modelo de error recuerda que:
 
 
 $$
@@ -271,7 +271,7 @@ Con estos resultados hemos completado la ruta más elemental para la estimación
 
 
 
-[^5]: Para una exposición detallada de la formulación de los multiplicadores de Lagrange para la selección de modelos alternativos consulta Anselin y Rey (2014: 104)
+[^6]: Para una exposición detallada de la formulación de los multiplicadores de Lagrange para la selección de modelos alternativos consulta Anselin y Rey (2014: 104)
 
 
 
