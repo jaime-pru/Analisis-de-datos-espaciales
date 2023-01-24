@@ -1,0 +1,22 @@
+Pauetes necesarios en R
+
+
+```{r}
+library(tmap)
+library(readxl)
+library(readr)
+library(tidyverse)
+library(GGally)
+library(sf)
+library(RColorBrewer)
+library(cartogram)
+library(spdep)
+library(rgdal)
+library(knitr)
+library(purrr)
+library(ggplot2)
+library(manipulate)
+library(UsingR)
+library(spatialreg)
+library(sp)
+```
