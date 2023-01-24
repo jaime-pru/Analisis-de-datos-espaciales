@@ -9,24 +9,13 @@ output:
   theme:
     primary: "#3860b6"
     base_font: "Segoe UI"
-  
 documentclass: book
 bibliography: [book.bib]
 fontsize: 11pt
 fontfamily: times
 classoption: oneside
 openright: yes
-geometry: 
-- tmargin=2.5cm
-- bmargin=2.5cm
-- lmargin=2.5cm
-- rmargin=2.5cm
 link-citations: yes
-header-includes:
-  - \usepackage[utf8]{inputenc} #para usar accentos
-  - \usepackage[Glenn]{fncychap} #Formato de titulo de capitulo
-  - \pagestyle{plain}
-lang: es
 ---
 ```{r setup, include=FALSE}
 chooseCRANmirror(graphics=FALSE, ind=1)
@@ -66,6 +55,6 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-[^1]: La lectora interesada en una exposición básica sobre el contenido de las ciencias regionales puede abundar a través del material de @Asuad2001. 
+[^1]: La lectora interesada en una exposición básica sobre el contenido de las ciencias regionales puede abundar a través del material de [@Asuad2001]. 
 
 <div/>

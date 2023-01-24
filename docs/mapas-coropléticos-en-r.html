@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -266,7 +266,7 @@
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672"></div>
 <p>La función <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons()</a></code> representará la variable indicada en el argumento <code>col=</code>. Además, tanto en esta función como en la de relleno, <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>, el método de clasificación es el método o estilo estético o “bonito” en el que los cortes o categorías se dividen en números enteros siempre que sea posible y los espacia uniformemente (argumento <code>style = "pretty"</code>).</p>
 <p>Con lo anterior, tienes ya las bases y la lógica para construir mapas coropléticos en R, lo demás no son más que elementos de personalización para cada una de las funciones previas, además de la incorporación de funciones adicionales para elaborar mapas mucho más profesionales.</p>
-<p>Te recomendamos consultar, además del libro de Víctor Olaya ya comentado previamente, el espléndido material <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> de <span class="citation">(<a href="references.html#ref-Lovelace2019" role="doc-biblioref">Lovelace, Nowosad, y Muenchow 2019</a>)</span>, así como el material y todo lo relacionado con el paquete <code>tmap</code> en <a href="https://www.jstatsoft.org/article/view/v084i06"><em>tmap: Thematic Maps in R</em></a> <span class="citation">(<a href="references.html#ref-Tennekes2018" role="doc-biblioref">Tennekes 2018</a>)</span>.</p>
+<p>Te recomendamos consultar, además del libro de Víctor Olaya ya comentado previamente, el espléndido material <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> de <span class="citation">(<a href="references.html#ref-Lovelace2019" role="doc-biblioref">Lovelace, Nowosad, and Muenchow 2019</a>)</span>, así como el material y todo lo relacionado con el paquete <code>tmap</code> en <a href="https://www.jstatsoft.org/article/view/v084i06"><em>tmap: Thematic Maps in R</em></a> <span class="citation">(<a href="references.html#ref-Tennekes2018" role="doc-biblioref">Tennekes 2018</a>)</span>.</p>
 </div>
 <div id="personalización" class="section level2" number="2.5">
 <h2>
@@ -281,7 +281,7 @@
 <h4>
 <span class="header-section-number">2.5.1.1</span> Paleta de colores<a class="anchor" aria-label="anchor" href="#paleta-de-colores"><i class="fas fa-link"></i></a>
 </h4>
-<p>Nos concentraremos ahora en revisar cómo podemos hacer “mapas a la medida”, es decir, personalizar prácticamente cada parte del mapa, desde la paleta de colores hasta títulos y leyendas. Comencemos revisando las posibilidades de personalización dentro de la función de relleno, <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>. Veremos primero cómo cambiar la paleta de colores de relleno a través del argumento <code>palette=</code>. Por defecto, los colores corresponden a una gama cromática de rojos, pero podemos cambiarla a una de color naranja:</p>
+<p>Nos concentraremos ahora en revisar cómo podemos hacer “mapas a la medida,” es decir, personalizar prácticamente cada parte del mapa, desde la paleta de colores hasta títulos y leyendas. Comencemos revisando las posibilidades de personalización dentro de la función de relleno, <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>. Veremos primero cómo cambiar la paleta de colores de relleno a través del argumento <code>palette=</code>. Por defecto, los colores corresponden a una gama cromática de rojos, pero podemos cambiarla a una de color naranja:</p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">zmvm_cov_sf</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
@@ -537,7 +537,7 @@
 <span class="header-section-number">2.7</span> Mapa base interactivo<a class="anchor" aria-label="anchor" href="#mapa-base-interactivo"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>En R es posible añadir a nuestros mapas temáticos un mapa base para dar contexto a nuestra representación. Para ello, es necesario activar una suerte de “modo interactivo”, para ser más exactos, lo que activamos es el <em>modo de visualización</em> para poder desplazarnos sobre los mapas. Para cambiar al modo de visualización:</p>
+<p>En R es posible añadir a nuestros mapas temáticos un mapa base para dar contexto a nuestra representación. Para ello, es necesario activar una suerte de “modo interactivo,” para ser más exactos, lo que activamos es el <em>modo de visualización</em> para poder desplazarnos sobre los mapas. Para cambiar al modo de visualización:</p>
 <div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tmap_mode.html">tmap_mode</a></span><span class="op">(</span><span class="st">"view"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
@@ -738,7 +738,7 @@
 <h3>
 <span class="header-section-number">2.10.2</span> Mapa de intervalos personalizados<a class="anchor" aria-label="anchor" href="#mapa-de-intervalos-personalizados"><i class="fas fa-link"></i></a>
 </h3>
-<p>Se señaló antes que, hasta donde tenemos conocimiento, en R no es posible construir mapas de clasificación especial con <code>tmap</code> a través de las opciones de estilo, no obstante, con algunos elementos de programación es posible solventar esta tarea. En esta sección nos servimos del código proporcionado por Luc Anselin y su equipo quienes, en un esfuerzo de difusión del conocimiento sobre el uso de estas herramientas, pone a nuestra disposición una basta cantidad de materiales en la página del <a href="https://spatial.uchicago.edu/">Center for Spatial Data Science</a> de la Universidad de Chicago <span class="citation">(<a href="references.html#ref-AnselinMorrison2018" role="doc-biblioref">Anselin y Morrison 2018</a>)</span>.</p>
+<p>Se señaló antes que, hasta donde tenemos conocimiento, en R no es posible construir mapas de clasificación especial con <code>tmap</code> a través de las opciones de estilo, no obstante, con algunos elementos de programación es posible solventar esta tarea. En esta sección nos servimos del código proporcionado por Luc Anselin y su equipo quienes, en un esfuerzo de difusión del conocimiento sobre el uso de estas herramientas, pone a nuestra disposición una basta cantidad de materiales en la página del <a href="https://spatial.uchicago.edu/">Center for Spatial Data Science</a> de la Universidad de Chicago <span class="citation">(<a href="references.html#ref-AnselinMorrison2018" role="doc-biblioref">Anselin and Morrison 2018</a>)</span>.</p>
 <p>Para construir un mapa de intervalos definidos por el usuario, hay que recurrir al argumento <code>breaks=</code> dentro de la función <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>. Para definir los intervalos de forma adecuada, se recomienda mirar las características resumen de la variable de interés, en este caso el número de casos positivos por COVID19 por cada mil habitantes, <code>pos_hab</code>:</p>
 <div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">zmvm_cov_sf</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span></span></code></pre></div>
@@ -847,7 +847,7 @@
 <div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">percentmap</span><span class="op">(</span><span class="st">"pos_hab"</span>,<span class="va">zmvm_cov_sf</span>, titulo.leyenda <span class="op">=</span> <span class="st">"Categorías"</span>, titulo.principal <span class="op">=</span> <span class="st">"El título que yo quiera"</span> <span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672"></div>
-<p>Los capítulos 1 y 2 de este libro, constituyen lo que suele ser denominado Análisis Exploratorio de Datos, (<em>Exploratory Data Analysis</em>, EDA). El <a href="https://www.itl.nist.gov/div898/handbook/eda/eda.htm">capítulo 1</a> del <em>e-Handbook of Statistical Methods</em> expone con detalle esta concepción en el análisis de información <span class="citation">(<a href="references.html#ref-Croarkin2014" role="doc-biblioref">Croarkin y Tobias 2014</a>)</span>. Además, en el <a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">capítulo 7</a> del ya citado libro <em>R for Data Science</em> también explica con detalle el enfoque EDA usando R.</p>
+<p>Los capítulos 1 y 2 de este libro, constituyen lo que suele ser denominado Análisis Exploratorio de Datos, (<em>Exploratory Data Analysis</em>, EDA). El <a href="https://www.itl.nist.gov/div898/handbook/eda/eda.htm">capítulo 1</a> del <em>e-Handbook of Statistical Methods</em> expone con detalle esta concepción en el análisis de información <span class="citation">(<a href="references.html#ref-Croarkin2014" role="doc-biblioref">Croarkin and Tobias 2014</a>)</span>. Además, en el <a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">capítulo 7</a> del ya citado libro <em>R for Data Science</em> también explica con detalle el enfoque EDA usando R.</p>
 <p>En el siguiente capítulo continuamos con la exploración de la información, pero incorporando una <strong>estructura de relaciones en el espacio</strong>, por lo que a dicho enfoque se le conoce como Análisis Exploratorio de Datos Espaciales. En dicho capítulo será de nuestro interés particular un rasgo que suele estar presente en la información georreferenciada: la autocorrelación espacial.</p>
 
 </div>
@@ -864,7 +864,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-01-10.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -367,7 +367,7 @@ Plantemos pues algunas preguntas y busquemos responderlas a través de un análi
 -   ¿Habrá alguna relación entre el número de casos positivos por cada mil habitantes, `pos_hab`, o muertes por cada mil habitantes, `def_hab`, con el nivel de estudios promedio de la población por municipio?
 -   Si esta relación existe, ¿es más intensa entre las muertes o los casos positivos?
 
-Para responder a esta pregunta podemos recurrir a la construcción de diagramas de dispersión. La elaboración de gráficas dentro de `tidyverse` corre a cargo del paquete `ggplot2`, una potente librería para la representación visual de información. Este paquete se basa en lo que se denomina "gramática de gráficas" que no es otra cosa que un conjunto de reglas coherentes con base en las cuales se elaboran los gráficos (@Wickham2016).
+Para responder a esta pregunta podemos recurrir a la construcción de diagramas de dispersión. La elaboración de gráficas dentro de `tidyverse` corre a cargo del paquete `ggplot2`, una potente librería para la representación visual de información. Este paquete se basa en lo que se denomina "gramática de gráficas" que no es otra cosa que un conjunto de reglas coherentes con base en las cuales se elaboran los gráficos [@Wickham2016].
 
 La construcción de gráficas con `ggplot2` se hace a partir de una suerte de "capas" o "enunciados". Cada enunciado constituye una parte de la gráfica. Según la hoja de trucos del paquete (que puedes consultar desde la barra de menú en la opción Help/CheatSheet):
 
