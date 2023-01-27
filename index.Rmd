@@ -55,7 +55,6 @@ Todos los ejercicios que se desarrollan en esta versión del libro corresponden 
 
 Este proyecto es un proyecto vivo, en permanente construcción y modificación, por lo que todas los comentarios y observaciones serán bienvenidas. Una guía de cómo contribuir a este proyecto puede ser [encontrada aquí](https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/Contributing.md)
 
-
 Finalmente, es necesario mencionar que este libro no es más que un esfuerzo de recopilación, sistematización y aplicación que se ha hecho a partir de infinidad de materiales que la activa comunidad de R, interesada en el análisis espacial en México y el mundo, comparte desinteresadamente a través de internet. Creemos que así debería ser siempre el conocimiento: libre y abierto, como el software que es usado aquí. Así pues, si algún mérito tiene este material es justamente su sentido didáctico que confiamos permita contribuir a la formación de profesionales interesandas en las ciencias regionales y en la mejora de las condiciones de vida de las mayorías. 
 
 
