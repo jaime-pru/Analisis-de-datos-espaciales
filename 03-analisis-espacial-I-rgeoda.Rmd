@@ -14,9 +14,11 @@ tmap::tm_shape(base) +
                 title = "IDH 2015",
                 palette = "GnBu",
                 legend.format = list(text.separator="-",digits=2))+
+   tm_shape(filter(base, nom_mun %in% c("Benito Juárez", "Álvaro Obregón", "Miguel Hidalgo")))+
   tmap::tm_layout(main.title = "IDH, 2015", main.title.position = "center", title.size = 0.5)+
-  tm_text("nom_mun")
-
+  tm_text("nom_mun", ymod = 0.5, offset(0.70), )+ 
+  tm_shape(filter(base, nom_mun %in% c("Coyoacán"))) +
+  tm_text("nom_mun", ymod = 0, offset(0.70), )
 ```
 
 :Figura 3.1. Índice de desarrollo humano para los municipios de la ZMVM, 2015
