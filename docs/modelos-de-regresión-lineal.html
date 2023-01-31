@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -44,9 +44,9 @@
     }
   </style>
 <link rel="stylesheet" href="css/style.css">
-<meta name="description" content="4.1 Causalidad y correlación: el alcance del análisis de regresión  En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser...">
-<meta property="og:description" content="4.1 Causalidad y correlación: el alcance del análisis de regresión  En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser...">
-<meta name="twitter:description" content="4.1 Causalidad y correlación: el alcance del análisis de regresión  En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser...">
+<meta name="description" content="Hasta este punto hemos hecho un recorrido que va desde los elementos más básicos sobre la exploración de información (capítulo 1), pasando por la representación de información espacial a través de...">
+<meta property="og:description" content="Hasta este punto hemos hecho un recorrido que va desde los elementos más básicos sobre la exploración de información (capítulo 1), pasando por la representación de información espacial a través de...">
+<meta name="twitter:description" content="Hasta este punto hemos hecho un recorrido que va desde los elementos más básicos sobre la exploración de información (capítulo 1), pasando por la representación de información espacial a través de...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -87,57 +87,62 @@
 <h1>
 <span class="header-section-number">4</span> Modelos de regresión lineal<a class="anchor" aria-label="anchor" href="#modelos-de-regresi%C3%B3n-lineal"><i class="fas fa-link"></i></a>
 </h1>
+<div style="text-align: justify">
+<p>Hasta este punto hemos hecho un recorrido que va desde los elementos más básicos sobre la exploración de información (capítulo 1), pasando por la representación de información espacial a través de mapas coropléticos (capítulo 2), hasta la exploración de patrones de asociación de una variable en el espacio, la llamada autocorrelación (capítulo 3).</p>
+<p>Antes de avanzar en el conocimiento de las herramientas que nos permitirán elaborar algunos modelos básicos que incorporen los patrones espaciales que hemos identificado a través de econometría espacial (capítulo 5), en este capítulo hacemos un pequeño paréntesis en el tratamiento de la información espacial para llevar a cabo un repaso elemental, desde una perspectiva práctica, del modelo clásico de regresión lineal. Esto nos permitirá que tengas en la mente dos cosas: i) qué es lo que se busca a través de modelos econométricos y ii) cuáles son los supuestos detrás del modelo clásico de regresión lineal estimado con el método de Mínimos Cuadrados Ordinarios (MCO).</p>
 <div id="causalidad-y-correlación-el-alcance-del-análisis-de-regresión" class="section level2" number="4.1">
 <h2>
 <span class="header-section-number">4.1</span> Causalidad y correlación: el alcance del análisis de regresión<a class="anchor" aria-label="anchor" href="#causalidad-y-correlaci%C3%B3n-el-alcance-del-an%C3%A1lisis-de-regresi%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
-<div style="text-align: justify">
-<p>En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser respondidas, nos permitan tener una descripción general del fenómeno, habrá otras que nos permitan explorar la relación entre dos fenómenos, o bien, preguntas cuya respuesta nos permita predecir el comportamiento futuro del elemento estudiado. Así pues, hay <a href="https://bit.ly/DatSciQ">diferentes tipos de preguntas</a>, dependiendo de su grado de complejidad.</p>
-<p>Entre los tipos de preguntas planteadas se halla uno que es de particular interés: el análisis causal. El objetivo del análisis causal es “ver qué sucede con una variable cuando manipulamos otra variable -mirar la causa y el efecto de una relación”<span class="citation">(<a href="references.html#ref-JHU2020" role="doc-biblioref">University 2020</a>)</span>. Con el análisis causal se busca saber si un par de variables están asociadas, más aún, si si el cambio en una variable causa cambios en la otra. Responder este tipo de preguntas exige el dominio de diversas herramientas estadísticas, cuyo abordaje está completamente fuera del alcance de este capítulo. No obstante, el anális de regresión nos brinda una oportunidad que, cuando es bien utilizada, nos permite aproximarnos al análisis causal.</p>
-<p>La regresión como instrumento analítico nos brinda los elementos para acercarnos a la comprensión de la <em>asociación entre dos variables</em>, aunque no es posible hablar en sentido estricto de causalidad como resultado del análisis efectuado. Así, “El análisis de regresión solo puede abordar los problemas de correlación. No puede abordar el problema de la necesidad (causalidad). Por tanto, nuestras expectativas de descubrir relaciones de causa y efecto a partir de la regresión deberían ser modestas <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3</a>)</span>.</p>
-<p>Entonces, ¿de qué modo el análisis de regresión se convierte potencialmente en un elemento que nos permita analizar causalidad? Lo que resultará fundamental en el proceso de investigación en donde se incorpore esta herramienta es la pregunta que se plantee el investigador. Y lo fundamental es plantear nuestras preguntas desde el conocimiento científico previamente existente, ¿qué dice la teoría sobre la relación entre la variable A y la variable B?</p>
+<p>En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser respondidas, nos permitan tener una descripción general del fenómeno, habrá otras que nos permitan explorar la relación entre dos fenómenos, o bien, preguntas cuya respuesta nos permita predecir el comportamiento futuro del elemento estudiado. Así pues, hay <a href="https://bookdown.org/rdpeng/artofdatascience/types-of-questions.html">diferentes tipos de preguntas de investigación</a>, dependiendo de su grado de complejidad. En su libro “El arte de la ciencia de datos,” Roger Peng y Elizabeth Matsui<span class="citation">(<a href="references.html#ref-PengMatzui2017" role="doc-biblioref">2017</a>)</span>, abordan sistemáticamente esta cuestión.</p>
+<p>Entre los tipos de preguntas planteadas se halla uno que es de particular interés: el análisis causal. El objetivo del análisis causal indagar si el cambio en una variable provoca el cambio en otra, es decir, interesa descubrir la relación de causa efecto entre ellas. Con el análisis causal se busca saber si un par de variables están asociadas, más aún, si el cambio en una variable causa cambios en la otra.</p>
+<p>Responder este tipo de preguntas exige el dominio de diversas herramientas estadísticas, cuyo abordaje está fuera del alcance de este capítulo. No obstante, el análisis de regresión nos brinda una oportunidad que, cuando es bien utilizada, nos permite aproximarnos al análisis causal.</p>
+<p>La regresión como instrumento analítico nos brinda elementos para acercarnos a la comprensión de la <em>asociación entre dos variables</em>, aunque no es posible hablar en sentido estricto descubrir relaciones de causalidad como resultado del análisis de regresión. Así, “El análisis de regresión solo puede abordar los problemas de correlación. No puede abordar el problema de la necesidad (causalidad). Por tanto, nuestras expectativas de descubrir relaciones de causa y efecto a partir de la regresión deberían ser modestas” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., and Geoffrey 2012, 81:3</a>)</span>.</p>
+<p>Entonces, ¿de qué modo el análisis de regresión se convierte potencialmente en un elemento que nos permite analizar causalidad? Lo que resultará fundamental en el proceso de investigación que recurre a esta herramienta es pues la pregunta que se plantee el investigador, preguntas que deben ser planteadas desde el conocimiento científico previamente existente. Dicho en otros términos, el análisis de causalidad que nos da la regresión, sí lo puede ofrecer la teoría existente en determinado campo de conocimiento: ¿qué dice la teoría sobre la relación entre la variable A y la variable B?</p>
 <p>¿Qué asociaciones entre pares de variables recuerdas de tus cursos teoría económica? Quizá los siguientes ejemplos te resulten familiares: i) la asociación entre la tasa de interés y eficiencia marginal del capital en la teoría de la inversión de Keynes, ii) la relación entre la composición orgánica del capital y tasa de ganancia en la perspectiva de Marx sobre el comportamiento de largo plazo del capitalismo (la teoría de la tasa de ganancia decreciente), iii) los rendimientos decrecientes en el producto al añadir una unidad adicional de trabajo, <em>ceteris paribus</em>, en la teoría del productor de los neoclásicos.</p>
 <p>En el proceso de investigación científica, las preguntas planteadas deberán hacerse desde el conocimiento previamente existente, es decir, se plantean desde determinados cuerpos teóricos reconocidos y validados, o bien, a partir de los resultados de investigaciones previas. Antes del método está la pregunta de investigación que establece la línea de causalidad entre las variables postuladas en el modelo. Esta base teórica ha de ser complementada con los resultados arrojados en el análisis exploratorio.</p>
 <p>Así pues, es relevante la siguiente advertencia:</p>
-<p>“Para establecer la causalidad, la relación entre los regresores y la variable de respuesta debe tener una base fuera de los datos de la muestra; por ejemplo, la relación puede ser sugerida por consideraciones teóricas. El análisis de regresión puede ayudar a confirmar una relación de causa y efecto, pero no puede ser la única base de tal afirmación” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3</a>)</span>.</p>
+<p>“Para establecer la causalidad, la relación entre los regresores y la variable de respuesta debe tener una base fuera de los datos de la muestra; por ejemplo, la relación puede ser sugerida por consideraciones teóricas. El análisis de regresión puede ayudar a confirmar una relación de causa y efecto, pero no puede ser la única base de tal afirmación” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., and Geoffrey 2012, 81:3</a>)</span>.</p>
 </div>
 <div id="lo-artesanal-de-la-econometría" class="section level2" number="4.2">
 <h2>
 <span class="header-section-number">4.2</span> Lo “artesanal” de la econometría<a class="anchor" aria-label="anchor" href="#lo-artesanal-de-la-econometr%C3%ADa"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>No cabe duda que la especificación de un buen modelo econométrico tiene algo de artesanal, es decir, serán pocas las ocasiones en las que no tendremos que proponer diferentes alternativas de modelo, probar con múltiples variables y llevar a cabo un sin número de ajustes. Conviene desde un momento inicial eliminar la idea de que “sólo hay que aplicar una técnica”: todas las técnicas requieren práctica y repetición pues no siempre enfrentaremos un mismo problema en las mismas condiciones. A este respecto puede ser apuntado que:</p>
-<p>“La construcción de un modelo de regresión es un proceso iterativo. Comienza utilizando conocimiento teórico del proceso que se está estudiando y los datos disponibles para especificar un modelo de regresión inicial. Las visualizaciones de datos gráficos suelen ser muy útiles para especificar el modelo inicial. Luego, los parámetros del modelo se estiman, normalmente por mínimos cuadrados (…). Luego debe evaluarse la adecuación del modelo. Consiste en buscar posibles errores de especificación de la formula del modelo, como no incluir variables importantes, o incluir variables innecesarias, o datos inusuales o inapropiados. Si el modelo es inadecuado, entonces debe proponerse nuevamente uno diferente y estimar nuevamente los parámetros. Este proceso puede repetirse varias veces hasta obtener un modelo adecuado. Finalmente, la validación del modelo debe llevarse a cabo para asegurar que el modelo producirá resultados que sean aceptables en la aplicación final” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3-10</a>)</span>.</p>
-La idea anterior aparece esquematizada en la figura 4.1.
+<p>No cabe duda que la especificación de un buen modelo econométrico tiene algo de artesanal, es decir, serán pocas las ocasiones en las que no tendremos que proponer diferentes alternativas de modelo, probar con múltiples variables y llevar a cabo un sin número de ajustes. Conviene desde este momento eliminar la idea de que “solo hay que aplicar una técnica”: todas las técnicas requieren práctica y el desarrollo de habilidad en su uso pues no siempre enfrentaremos un mismo problema en las mismas condiciones. A este respecto puede ser apuntado que:</p>
+<p>“La construcción de un modelo de regresión es un proceso iterativo. Comienza utilizando conocimiento teórico del proceso que se está estudiando y los datos disponibles para especificar un modelo de regresión inicial. Las visualizaciones de datos gráficos suelen ser muy útiles para especificar el modelo inicial. Luego, los parámetros del modelo se estiman, normalmente por mínimos cuadrados (…). Luego debe evaluarse la adecuación del modelo. Consiste en buscar posibles errores de especificación de la formula del modelo, como no incluir variables importantes, o incluir variables innecesarias, o datos inusuales o inapropiados. Si el modelo es inadecuado, entonces debe proponerse nuevamente uno diferente y estimar nuevamente los parámetros. Este proceso puede repetirse varias veces hasta obtener un modelo adecuado. Finalmente, la validación del modelo debe llevarse a cabo para asegurar que el modelo producirá resultados que sean aceptables en la aplicación final” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., and Geoffrey 2012, 81:3–10</a>)</span>.</p>
+La idea anterior aparece esquematizada en la figura 4.1, que es tomada de Montgomery et al. (2012: p. 10)y .
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-153"></span>
+<span style="display:block;" id="fig:unnamed-chunk-152"></span>
 <img src="recursos%202/Figura%201.jpg" alt="Construcción de un modelo de regresión" width="100%"><p class="caption">
 Figura 4.1: Construcción de un modelo de regresión
 </p>
 </div>
-<p>En este capítulo buscamos que recuerdes algunos de los elementos fundamentales del análisis de regresión, como sus supuestos básicos y la interpretación de los resultados que nos ofrece este instrumento. Para ilustrar dichos elementos nos serviremos de la <a href="https://bit.ly/covid_zmvm">base de datos sobre COVID19</a> que contiene información sobre las condiciones sociodemodráficas y económicas de los municipios en la Zona Metropolitana del Valle de México, la misma base que hemos explorado en los capítulos previos. La pregunta que nos interesa responder es de carácter preliminar y no atiende a cuerpo teórico alguno, por lo que los resultados son sólo ilustrativos y tienen sólo fines didácticos. La pregunta planteada es: ¿de qué manera se asocian las condiciones sociales, demográficas y económicas, tanto con los casos positivos de COVID19 por cada 1 mil habitantes, como con las muertes provocadas por este mal por cada 1 mil habitantes? Para lograr dar solución a la pregunta propondremos algunos modelos econométricos y buscaremos interpretarlos.</p>
+<p>En este capítulo buscamos que recuerdes algunos de los elementos fundamentales del análisis de regresión, como sus supuestos básicos y la interpretación de los resultados que nos ofrece este instrumento. Para ilustrar dichos elementos nos serviremos de la <a href="https://bit.ly/covid_zmvm">base de datos sobre COVID19</a> que contiene información sobre las condiciones sociodemodráficas y económicas de los municipios en la Zona Metropolitana del Valle de México, la misma base que hemos explorado en los capítulos previos. La pregunta que nos interesa responder es de carácter preliminar y no atiende a cuerpo teórico alguno, por lo que los resultados son solo ilustrativos y tienen solo fines didácticos. La pregunta planteada es: ¿de qué manera se asocian las condiciones sociales, demográficas y económicas, tanto con los casos positivos de COVID19 por cada 1 mil habitantes, como con las muertes provocadas por este mal por cada 1 mil habitantes? Para lograr dar solución a la pregunta propondremos algunos modelos econométricos y buscaremos interpretarlos.</p>
 </div>
 <div id="qué-buscamos-a-través-de-una-regresión-con-mínimos-cuadrados-ordinarios" class="section level2" number="4.3">
 <h2>
 <span class="header-section-number">4.3</span> Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)<a class="anchor" aria-label="anchor" href="#qu%C3%A9-buscamos-a-trav%C3%A9s-de-una-regresi%C3%B3n-con-m%C3%ADnimos-cuadrados-ordinarios"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>Una regresión lineal pretende <em>encontrar la recta que mejor se ajusta a los datos observados</em>. La técnica más usual para lograr esto es a través de <strong>mínimos cuadrados ordinarios</strong>, MCO. Los MCO minimizan la suma de los residuales al cuadrado. Veamos este principio de forma interactiva. Para ello, crearemos una función en R que tendrá un sólo parámetro al cual llamaremos <code>beta</code>,el cual será el valor de la pendiente de la recta. Lo que pretendemos es encontrar el mejor valor de <code>beta</code>, es decir, el valor que permita minimizar la distancia entre los puntos dados por los pares ordenados (variable <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>) y la recta, en otras palabras, buscamos un valor de <code>beta</code> que minimice los errores.</p>
+<p>Un modelo es una representación simplificada de la realidad. En el caso particular de un modelo econométrico y de la regresión lineal lo que se pretende <em>encontrar la recta que mejor se ajusta a los datos observados</em>.
+La técnica más usual para lograrlo son los llamados <strong>mínimos cuadrados ordinarios</strong>, MCO, justamente poque este método minimiza la suma de los <em>residuales</em> al cuadrado.</p>
+<p>Veamos esta idea de forma interactiva a través de una sencilla ilustración en R. Para ello, crearemos una función que tendrá un solo parámetro al cual llamaremos <code>beta</code> y que será el valor de la pendiente de una recta que buscaremos ajustar a un conjunto de datos. Lo que pretendemos pues es encontrar el mejor valor de <code>beta</code>, es decir, el valor que permita minimizar la distancia entre los puntos dados por los pares ordenados (variable <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>) y la recta, en otras palabras, buscamos un valor de <code>beta</code> que minimice los errores.</p>
 <p>Para usar la aplicación interactiva, debes instalar los siguientes paquetes:</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Instalar dos paquetes</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"manipulate"</span>, <span class="st">"UsingR"</span><span class="op">)</span></span></code></pre></div>
-<p>Ahora bien, antes de ejecutar los siguientes segmentos de código, leélos e intenta comprender qué es lo que hace cada línea:</p>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"manipulate"</span>, <span class="st">"UsingR"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Ahora bien, antes de ejecutar los segmentos de código que aparecen más abajo, leélos e intenta comprender qué es lo que hace cada línea:</p>
 <ul>
 <li>Se usa <code>function()</code> justamente para crear para crear una función que llevará por nombre <code>Gráfica</code> (<code>function()</code> es una función como cualquier otra en R, semejante a la función para calcular una media, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, o para crear una gráfica,<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>).<br>
 </li>
 <li>Dentro del paréntesis colocamos los argumentos con los que trabajará nuestra función y, entre las llaves, <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, indicamos los elementos con los que vamos a operar, incluidos los argumentos.<br>
 </li>
-<li>Nuestra función tomará información de la base de datos llamada <code>Galton</code>, que viene con el paquete <code>HistData</code>, recuerda que Galton (1886) sentó las bases del análisis de regresión a través de un estudio de lo que podríamos aquí llamar informalmente “herencia genética”, en otras palabras, cómo la altura de padres e hijos adultos está asociada.</li>
+<li>Nuestra función tomará información de la base de datos llamada <code>Galton</code>, que viene con el paquete <code>HistData</code>, recuerda que Galton (1886) sentó las bases del análisis de regresión a través de un estudio de lo que podríamos aquí llamar informalmente “herencia genética,” en otras palabras, cómo la altura de padres e hijos adultos está asociada.</li>
 </ul>
-<p>Después de haber leído el código, cópialo y pégalo en tu consola<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El código aquí replicado se tomó del Análisis de Información Geoespacial de CentroGeo impartido en 2020.&lt;/p&gt;"><sup>4</sup></a>:</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Para llamar las librerías que recien instalaste</span></span>
+<p>Después de haber leído el código, cópialo y pégalo en tu consola<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El código aquí replicado se tomó del Análisis de Información Geoespacial de CentroGeo impartido en 2020.&lt;/p&gt;"><sup>5</sup></a>:</p>
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Para llamar las librerías que recién instalaste</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">manipulate</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">UsingR</span><span class="op">)</span></span>
 <span></span>
@@ -159,35 +164,29 @@ Figura 4.1: Construcción de un modelo de regresión
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">2</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="co">#Añade puntos</span></span>
 <span>  <span class="va">mse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="op">(</span><span class="va">y</span> <span class="op">-</span> <span class="va">beta</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span> <span class="co">#Muestra el valor de la suma de los residuales al cuadrado </span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"beta = "</span>, <span class="va">beta</span>, <span class="st">"mse = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mse</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">}</span> <span class="co">#Añade títulos a la gráfica</span></span></code></pre></div>
-<p>Una vez que has ejecutado el código, observa la sección de ambiente en RStudio donde deberás ver la función creada, <code>Gráfica()</code>. Vamos a interactuar con ella y para ello ejecutaremos el siguiente segmento de código:</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<p>Una vez que has ejecutado el código, observa la sección de ambiente en RStudio y deberás ver la función creada, <code>Gráfica()</code>. Vamos a interactuar con ella y para ello ejecutaremos el siguiente segmento de código:</p>
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/manipulate/man/manipulate.html">manipulate</a></span><span class="op">(</span><span class="fu">Gráfica</span><span class="op">(</span><span class="va">beta</span><span class="op">)</span>, beta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/manipulate/man/slider.html">slider</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, step <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Verás en la sección de gráficos el resultado del código anterior: una gráfica con círculos de diferente tamaño que representan la altura de padres y sus hijos adultos; además, identificarás una línea (nuestra recta de ajuste). Como encabezado encontraras el nombre del único argumento de nuestra función, <code>beta</code>. Recuerda: <code>beta</code> es el valor de la pendiente de esa recta. Junto al valor del argumento de nuestra función aparece la suma de los residuales al cuadrado, o Error Cuadrático Medio (<em>Mean Squared Error</em>, MSE). ¿Logras observar el engrane en la parte superior izquierda de la gráfica? Usa el deslizador que aparece cuando das clic en él para elegir diferentes valores para <code>beta</code> y seleccionar aquel que te permita obtener el menor valor de MSE: ese valor de beta es el que buscamos con los MCO.</p>
-<p>Como verás, lo que buscamos es justamente <em>un modelo que describa nuestros datos</em>. Hay muchos tipos de modelos para describir el comportamiento entre dos variables (curvas cuadráticas, curvas exponenciales o curvas polinomiales). Aquí buscamos expresar la relación entre nuestro par de variables de la forma más simple posible: a través de una línea recta. Te recomendamos ámpliamente el material de David Dalpiaz, <a href="http://daviddalpiaz.github.io/appliedstats/">Applied Statistics with R</a>, particularmente el <a href="http://daviddalpiaz.github.io/appliedstats/simple-linear-regression.html">capítulo 7</a> en caso de que quieras recordar con todo detalle los fundamentos estadísticos de la regresión <span class="citation">(<a href="references.html#ref-Dalpiaz2022" role="doc-biblioref">Dalpiaz, s. f.</a>)</span>, así como el material de <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012</a>)</span>.</p>
+<p>Como verás, lo que buscamos es justamente <em>un modelo que describa nuestros datos</em>. Hay muchos tipos de modelos para describir el comportamiento entre dos variables (curvas cuadráticas, curvas exponenciales o curvas polinomiales). Aquí buscamos expresar la relación entre nuestro par de variables de la forma más simple posible: a través de una línea recta.</p>
+<p>Te recomendamos ampliamente el material de David Dalpiaz, <a href="http://daviddalpiaz.github.io/appliedstats/">Applied Statistics with R</a>, particularmente el <a href="http://daviddalpiaz.github.io/appliedstats/simple-linear-regression.html">capítulo 7</a> en caso de que quieras recordar con todo detalle los fundamentos estadísticos de la regresión <span class="citation">(<a href="references.html#ref-Dalpiaz2022" role="doc-biblioref">Dalpiaz, n.d.</a>)</span>.</p>
 </div>
 <div id="modelo-de-regresión-lineal-simple" class="section level2" number="4.4">
 <h2>
 <span class="header-section-number">4.4</span> Modelo de regresión lineal simple<a class="anchor" aria-label="anchor" href="#modelo-de-regresi%C3%B3n-lineal-simple"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>Ya que tenemos una noción básica de lo que buscamos con una regresión, es decir, un modelo lineal que describa el comportamiento de nuestros datos, es momento de dar una definición más precisa: “El análisis de regresión es una técnica estadística para investigar y modelar la relación entre variables” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012</a>)</span>. Un modelo de regresión lineal simple es un modelo con una sola regresora (una variable <span class="math inline">\(x\)</span>) cuya relación con la variable de respuesta (<span class="math inline">\(y\)</span>) está dada por una línea recta:</p>
+<p>Ya que tenemos una noción básica de lo que buscamos con una regresión, es decir, un modelo lineal que describa el comportamiento de nuestros datos, es momento de dar una definición más precisa: “El análisis de regresión es una técnica estadística para investigar y modelar la relación entre variables” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., and Geoffrey 2012</a>)</span>. Un modelo de regresión lineal simple es un modelo con una sola regresora (una variable <span class="math inline">\(x\)</span>) cuya relación con la variable de respuesta (<span class="math inline">\(y\)</span>) está dada por una línea recta:</p>
 <p><span class="math display">\[y=\beta_0+\beta_1x+u \]</span></p>
 <p>En donde <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> son constates desconocidas, el intercepto y la pendiente, respectivamente; en tanto, <span class="math inline">\(u\)</span> es el componente de error aleatorio (que se asume con una distribución normal con media cero y varianza constante, <span class="math inline">\(N(\mu=0,\sigma_u^2=\sigma^2)\)</span>), que es la “falla” de nuestro modelo, es decir, la diferencia entre el valor observado de <span class="math inline">\(y\)</span> y el valor estimado por nuestro modelo.</p>
-<p>¿Cómo deben ser entendidos los coeficientes <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, el intercepto y la pendiente? “La pendiente, <span class="math inline">\(\beta_1\)</span> se puede interpretar como el cambio en la media de <span class="math inline">\(y\)</span> para un cambio unitario en <span class="math inline">\(x\)</span>” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:3</a>)</span>. En tanto, “si el rango de datos en <span class="math inline">\(x\)</span> incluye <span class="math inline">\(x = 0\)</span>, entonces la intersección <span class="math inline">\(\beta_0\)</span> es la media de la distribución de la variable de respuesta <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x = 0\)</span> (…es decir, la media de la variable <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x=0\)</span>…) Si el rango de <span class="math inline">\(x\)</span> no incluye cero, entonces <span class="math inline">\(β_0\)</span> no tiene una interpretación práctica”.</p>
-<p>Una regresión lineal es pues el método que nos permite <strong>evaluar la relación lineal entre variables numéricas</strong> y se le llama precisamente lineal por la linealidad de sus parámetros (las betas). Lo que buscamos con el análisis de regresión es encontrar los valores estimados de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, es decir, <span class="math inline">\(\hat\beta_0\)</span> y <span class="math inline">\(\hat\beta_1\)</span>, que nos permitan describir con una línea recta el par de variables consideradas y el método más usual son los Mínimos Cuadrados Ordinarios (MCO.</p>
-<p>Los estimadores obtenidos por MCO tienen las siguientes propiedades (<span class="citation"><a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey</a> (<a href="references.html#ref-Montgomery2012" role="doc-biblioref">2012</a>)</span>,: 19):</p>
-<ul>
-<li>Son combinaciones lineales de las observaciones de <span class="math inline">\(y_i\)</span>.<br>
-</li>
-<li>Son estimadores insesgados, es decir, <span class="math inline">\(E(\hat\beta_1)=\beta_1\)</span>.<br>
-</li>
-<li>Su varianza es constante.</li>
-</ul>
+<p>¿Cómo deben ser entendidos los coeficientes <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, el intercepto y la pendiente? “La pendiente, <span class="math inline">\(\beta_1\)</span> se puede interpretar como el cambio en la media de <span class="math inline">\(y\)</span> para un cambio unitario en <span class="math inline">\(x\)</span>” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., and Geoffrey 2012, 81:3</a>)</span>. En tanto, “si el rango de datos en <span class="math inline">\(x\)</span> incluye <span class="math inline">\(x = 0\)</span>, entonces la intersección <span class="math inline">\(\beta_0\)</span> es la media de la distribución de la variable de respuesta <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x = 0\)</span> (…es decir, la media de la variable <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x=0\)</span>…) Si el rango de <span class="math inline">\(x\)</span> no incluye cero, entonces <span class="math inline">\(β_0\)</span> no tiene una interpretación práctica.”</p>
+<p>Una regresión lineal es pues el método que nos permite <strong>evaluar la relación lineal entre variables numéricas</strong> y se le llama precisamente lineal por la linealidad de sus parámetros (las betas que, como notarás, están elevadas al exponente 1). Lo que buscamos con el análisis de regresión es encontrar los valores estimados de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, es decir, <span class="math inline">\(\hat\beta_0\)</span> y <span class="math inline">\(\hat\beta_1\)</span>, que nos permitan describir con una línea recta el par de variables consideradas y el método más usual para hallarlas son los Mínimos Cuadrados Ordinarios, MCO.</p>
+<p>Los estimadores de MCO ordinarios, tienen tres propiedades: son lineales, insesgados y de varianza mínima.</p>
 <div id="supuestos-del-módelo-clásico-de-regresión-lineal" class="section level3" number="4.4.1">
 <h3>
 <span class="header-section-number">4.4.1</span> Supuestos del módelo clásico de regresión lineal<a class="anchor" aria-label="anchor" href="#supuestos-del-m%C3%B3delo-cl%C3%A1sico-de-regresi%C3%B3n-lineal"><i class="fas fa-link"></i></a>
 </h3>
-<p>En esta sección enlistamos los elementos sobre los que se funda la estimación de un modelo clásico de regresión lineal con mínimos cuadrados y haremos énfasis en uno de ellos que se vincula directamente con los contenidos del capítulo siguiente: la autocorrelación. Para una explicación más detallada de estos <em>supuestos</em> en los que se basa la estimación con MCO, conviene que revises el capítulo 3 de la clásica obra de Gujarati y Porter <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati y Porter 2011</a>)</span>.</p>
+<p>En esta sección enlistamos los elementos sobre los que se funda la estimación de un modelo clásico de regresión lineal con mínimos cuadrados ordinarios y haremos énfasis en uno de ellos que se vincula directamente con los contenidos del capítulo siguiente: la autocorrelación. Los supuestos sobre los que se funda en modelo clásico de regresión lineal son:</p>
 <ol style="list-style-type: lower-roman">
 <li>El modelo es líneal en los parámetros, aunque no necesariamente en sus variables.<br>
 </li>
@@ -203,15 +202,15 @@ Figura 4.1: Construcción de un modelo de regresión
 </li>
 <li>La variable o variables explicativas debe tener <em>suficiente</em> variabilidad.</li>
 </ol>
-<p>El supuesto <em>v</em> o supuesto de no autocorrelación establece que dos errores, <span class="math inline">\(u_i\)</span> y <span class="math inline">\(u_j\)</span>, donde los subíndices <span class="math inline">\(j\)</span> e <span class="math inline">\(i\)</span> se refieren a que corresponden a perturbaciones de dos observaciones diferentes, no están asociados, es decir, que la covarianza entre ellos es igual a cero. Si se graficasen los errores en un diagrama de dispersión, lo que esperamos es que no haya ningún patrón sistemático. Reproducimos aquí la figura 3.6 de la obra de <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati y Porter 2011</a>)</span>, en donde los paneles <em>a</em> y <em>b</em> dan cuenta de un comportamiento sistemático o no aleatorio en los errores, lo que es indicio de autocorrelación o dependencia entre los errores, en cambio, en el panel <em>c</em> no se observa ningún patrón sistemático, esto es justamente lo que se busca en los errores del modelo, que los errores se distribuyan aleatoriamente.</p>
+<p>El supuesto <em>v</em> o supuesto de no autocorrelación establece que dos errores, <span class="math inline">\(u_i\)</span> y <span class="math inline">\(u_j\)</span>, donde los subíndices <span class="math inline">\(j\)</span> e <span class="math inline">\(i\)</span> corresponden a perturbaciones de dos observaciones diferentes, no están asociados, es decir, que la covarianza entre ellos es igual a cero. Si se grafican los errores de un modelo en un diagrama de dispersión, lo que esperamos es que no haya ningún patrón sistemático. Reproducimos aquí la figura 3.6 de la obra de <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati and Porter 2011</a>)</span>, en donde los paneles <em>a</em> y <em>b</em> dan cuenta de un comportamiento sistemático o no aleatorio en los errores, lo que es indicio de autocorrelación o dependencia entre los errores, en cambio, en el panel <em>c</em> no se observa ningún patrón sistemático, esto es justamente lo que se busca en los errores del modelo, que los errores se distribuyan aleatoriamente.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-157"></span>
+<span style="display:block;" id="fig:unnamed-chunk-156"></span>
 <img src="recursos%204/Figura%20autocorrelaci%C3%B3n.jpg" alt="Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67" width="100%"><p class="caption">
 Figura 4.2: Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67
 </p>
 </div>
-<p>De forma simple, el supuesto de no autocorrelación “se afirma que se considerará el efecto sistemático, si existe, de <span class="math inline">\(X_t\)</span> sobre <span class="math inline">\(Y_t\)</span>, sin preocuparse por las demás influencias que podrían actuar sobre <span class="math inline">\(Y\)</span> como resultado de las posibles correlaciones entre las <span class="math inline">\(u\)</span>” <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati y Porter 2011, 67</a>)</span>.</p>
-<p>El tipo de datos que son objeto de este libro, los datos espaciales, suelen presentar entre sus características autocorrelación espacial, por tanto, recurrir a una estimación con MCO violará este supuesto, por lo que tendremos que recurrir a técnicas específicas para la modelación con datos espaciales, esto será objeto del capítulo 5 donde veremos algunos modelos para solventar este problema. En tanto, veamos cómo construir un modelo de regresión lineal con mínimos cuadros ordinarios en R y cómo interpretar nuestros resultados.</p>
+<p>De forma simple, con el supuesto de no autocorrelación “se afirma que se considerará el efecto sistemático, si existe, de <span class="math inline">\(X_t\)</span> sobre <span class="math inline">\(Y_t\)</span>, sin preocuparse por las demás influencias que podrían actuar sobre <span class="math inline">\(Y\)</span> como resultado de las posibles correlaciones entre las <span class="math inline">\(u\)</span>” <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati and Porter 2011, 67</a>)</span>.</p>
+<p>Como vimos en el capítulo previo, los datos espaciales suelen presentar entre sus características autocorrelación. Estimar con MCO un modelo econométrico con este tipo de datos muy probablemente violará este supuesto, por lo que se recurre a técnicas específicas para la modelación con datos espaciales, esto será objeto del capítulo 5 donde veremos algunos modelos para solventar este problema. En el resto del capítulo se presenta la manera de construir e interpretar modelos econométricos lineales en R a través de MCO.</p>
 </div>
 </div>
 <div id="regresión-lineal-simple-en-r" class="section level2" number="4.5">
@@ -219,11 +218,11 @@ Figura 4.2: Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67
 <span class="header-section-number">4.5</span> Regresión lineal simple en R<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-lineal-simple-en-r"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>Para ilustrar cómo emplear una regresión lineal en R usaremos de nuevo la base de datos <code>covid_zmvm</code>, conformada por 54 variables de 76 observaciones, municipios y alcaldías, que conforman la Zona Metropolitana del Valle de México. Carguemos nuestra base:</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<p>Para ilustrar cómo emplear una regresión lineal en R usaremos de nuevo la base de datos <code>covid_zmvm</code>, conformada por 54 variables de 76 observaciones, municipios y alcaldías, que conforman la Zona Metropolitana del Valle de México. Carguemos nuestra base de datos:</p>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>path<span class="op">=</span><span class="st">"base de datos\\covid_zmvm.xlsx"</span><span class="op">)</span></span></code></pre></div>
-<p>La base recién cargada es de tamaño considerable, por lo que te recomendamos revisar <a href="https://bit.ly/diccionario_covid_zmvm">el diccionario</a> que la acompaña para que comprendas el significado las etiquetas usadas para cada variable. Será más sencillo que comprendas cómo está integrada la base si agrupamos en tres categorías las variables relevantes para elaborar nuestro modelo:</p>
+<p>La base recién cargada es de tamaño considerable, por lo que te recomendamos revisar <a href="https://bit.ly/diccionario_covid_zmvm">el diccionario</a> que la acompaña para que comprendas el significado las etiquetas usadas para cada variable. Para mejor comprender el tipo de variables de la base, podemos dividirlas en tres categorías:</p>
 <ul>
 <li>COVID19: cuatro variables sobre casos positivos y defunciones por COVID19 durante la primera ola de contagios, en términos absolutos y relativos.<br>
 </li>
@@ -231,25 +230,25 @@ Figura 4.2: Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67
 </li>
 <li>Estructura económica: nueve variables que describen la estructura económica y remuneraciones medias por gran sector de actividad.</li>
 </ul>
-<p>Para ilustrar el método de regresión con MCO y estimar los parámetros <span class="math inline">\(\beta_1\)</span> y <span class="math inline">\(\beta_0\)</span> propondremos un modelo de regresión lineal simple, es decir, compuesto sólo por la variable de respuesta (nuestra <span class="math inline">\(y\)</span>). De modo que la variable que buscaremos explicar con nuestro modelo son los casos positivos a COVID19 por cada 1 mil habitantes, <code>pos_hab</code>) a través de sólo un predictor (nuestra <span class="math inline">\(x\)</span>, en este caso el porcentaje de población con acceso a a servicios de salud, <code>ss</code>). El modelo a estimar será entonces:</p>
+<p>Para ilustrar el método de regresión con MCO y estimar los parámetros <span class="math inline">\(\beta_1\)</span> y <span class="math inline">\(\beta_0\)</span> propondremos un modelo de regresión lineal simple, es decir, compuesto solo por una variable explicativa o predictoria, <span class="math inline">\(x\)</span>, y una sola variable a explicar o variable de respuesta, <span class="math inline">\(y\)</span>. Con base en la información que integra la base, la variable que buscamos explicar con nuestro modelo será casos positivos a COVID19 por cada 1 mil habitantes, <code>pos_hab</code>, explicada a través del porcentaje de población con acceso a a servicios de salud, <code>ss</code>. El modelo a estimar tomaría la forma de:</p>
 <p><span class="math display">\[poshab_i=\beta_0+\beta_1ss_i+u_i\]</span>
 El subíndice <span class="math inline">\(i\)</span> da cuenta de cada una de las 76 unidades espaciales que conforman la Zona Metropolitana del Valle de México. Para estimar un modelo como el anterior, en R recurrimos a la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <em>linear model</em>, del paquete <code>stats</code> que se instala desde que añades R a tu equipo de cómputo. La función usada cuenta con dos argumentos <code>data=</code> y <code>formula=</code> que indican la fuente de datos y la expresión a estimar, respectivamente. El resultado lo guardaremos en un nuevo objeto que nombraremos <code>modelo_simple</code>:</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modelo_simple</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">)</span></span></code></pre></div>
-<p>Nota cómo la especificación del modelo tiene la forma “variable de respuesta ~ variable explicativa”. Observa la parte superior derecha de tu ambiente de trabajo, donde aparece el objeto que se ha creado, éste es de tipo <code>lm</code>, es una lista con 12 elementos. Da clic en el icono de la lente de aumento y podrás observar que el resultado de la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> contiene muchos datos de interés.</p>
+<p>Nota cómo la especificación del modelo tiene la forma “variable de respuesta ~ variable explicativa.” Observa la parte superior derecha de tu ambiente de trabajo, donde aparece el objeto que se ha creado, éste es de tipo <code>lm</code>, una lista con 12 elementos. Da clic en el icono de la lente de aumento y podrás observar que el resultado de la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> contiene muchos datos de interés.</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <p>Revisa la documentación de la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> y responde:</p>
 <ol style="list-style-type: lower-roman">
 <li><p>¿Es posible ponderar el proceso de ajuste con base en alguna variable? De ser así, ¿cuál es el argumento que lo permite?</p></li>
-<li><p>Si alguna de las variables usadas en el modelo tiene registros vacíos, ¿a qué argumento debo recurrir para corregir esta situación?</p></li>
+<li><p>Si alguna de las variables usadas en el modelo tiene registros vacíos, ¿a qué argumento debes recurrir para corregir esta situación?</p></li>
 <li><p>¿Qué elemento del objeto de tipo <code>lm</code> contiene los coeficientes estimados?</p></li>
 <li><p>¿Al menos cuántos componentes podría contener la lista de tipo <code>lm</code>?</p></li>
 <li><p>¿Para qué sirven las funciones <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code>, <code><a href="https://rdrr.io/r/stats/residuals.html">resid()</a></code> y <code><a href="https://rdrr.io/r/stats/fitted.values.html">fitted()</a></code> aplicadas a un objeto de tipo <code>lm</code>?</p></li>
 </ol>
 <hr>
 <p>Para observar los resultados de nuestra estimación basta con llamar al objeto a nuestra consola:</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modelo_simple</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -258,120 +257,133 @@ El subíndice <span class="math inline">\(i\)</span> da cuenta de cada una de la
 ## Coefficients:
 ## (Intercept)           ss  
 ##    -19.8622       0.3949</code></pre>
-<p>Una correcta interpretación de los resultados atraviesa por recordar cómo están medidas cada una de las variables, en este caso la variable <code>pos_hab</code> es el número de casos positivos por cada 1 mil habitantes. Tomemos un municipio en particular, por ejemplo, Isidro Fabela, en el Estado de México que tiene 1.71 casos por cada 1 mil habitantes. En tanto, la variable <code>ss</code> es la proporción de población con afiliación a servicios de salud de cada municipio o alcaldía, que para Isidro Fabela es de 78.6, es decir, la proporción de población con acceso a servicios de salud es de 78.6%. Veamos un par de gráficas para recordar cómo se comportan este par de variables:</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<p>Una correcta interpretación de los resultados atraviesa por recordar cómo están medidas cada una de las variables usadas en el modelo. La variable <code>pos_hab</code> es el número de casos positivos por cada 1 mil habitantes; tomemos un municipio en particular, por ejemplo, Isidro Fabela, en el Estado de México, que tiene 1.71 casos por cada 1 mil habitantes. En tanto, la variable <code>ss</code> es la proporción de población con afiliación a servicios de salud de cada municipio o alcaldía, que para Isidro Fabela es de 78.6, es decir, la proporción de población con acceso a servicios de salud es de 78.6%. Veamos un par de gráficas para recordar cómo se comportan este par de variables:</p>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672"></div>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672"></div>
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">poss</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-161-2.png" width="672"></div>
-<p>El valor de <span class="math inline">\(\beta_1\)</span>, el coeficiente de la variable <code>ss</code>, es de 0.3949, lo que significa que cuando la proporción de población con acceso a servicios de salud aumenta en 1 punto porcentual (recuerda que así lo estamos midiendo), el número de casos positivos por cada 1 mil habitantes aumenta 0.39, en promedio. Dicho en otras palabras, el parámetro estimado de la pendiente, <span class="math inline">\(\hat \beta_1\)</span>, nos indica como la media de los casos positivos, <span class="math inline">\(y\)</span>, es afectada por un cambio en <span class="math inline">\(x\)</span>, el porcentaje de personas con acceso a servicios de salud. En este caso, el coeficiente estimado <span class="math inline">\(\hat \beta_0\)</span> carece de interpretación razonable. Así, el modelo estimado, usando los valores de los coeficientes obtenidos es:</p>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-160-2.png" width="672"></div>
+<p>El valor de <span class="math inline">\(\hat \beta_1\)</span>, el coeficiente de la variable <code>ss</code>, es de 0.3949, lo que significa que cuando la proporción de población con acceso a servicios de salud aumenta en 1 punto porcentual (recuerda que así lo estamos midiendo), el número de casos positivos por cada 1 mil habitantes aumenta 0.39, en promedio. Dicho en otras palabras, el parámetro estimado de la pendiente, <span class="math inline">\(\hat \beta_1\)</span>, nos indica cómo la media de los casos positivos, <span class="math inline">\(y\)</span>, es afectada por un cambio en <span class="math inline">\(x\)</span>, el porcentaje de personas con acceso a servicios de salud. En este caso, el coeficiente estimado <span class="math inline">\(\hat \beta_0\)</span> carece de interpretación razonable. Así, el modelo estimado, usando los valores de los coeficientes obtenidos es:</p>
 <p><span class="math display">\[\hat y=\hat \beta_0+\hat\beta_1x\]</span>
 Es decir,</p>
 <p><span class="math display">\[\hat {poshab}=-19.8622+0.3949ss\]</span></p>
+<p>Adicionalmente, podemos construir un diagrama de dispersión entre las variables <code>pos_hab</code> y <code>ss</code> añadiendo un ajuste líneal, es decir, la recta de nuestro modelo regresión:</p>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">ss</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">ss</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span>,method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Población con acceso a servicios de salud (%)"</span>, y<span class="op">=</span><span class="st">"Casos positivos por COVID19"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672"></div>
+<p>Como puedes observar, entre ambas variables existe una relación positiva que puedes identificar por la línea con pendiente positiva que representa la recta de regresión que hemos obtenido, cuya pendiente es igual al valor de <span class="math inline">\(\hat \beta_1\)</span>, es decir, 0.3949. La distancia vertical entre cada punto y la recta de ajuste de la regresión es el error del modelo, es decir <span class="math inline">\(u_i\)</span></p>
 <div id="una-exploración-visual-de-los-errores" class="section level3" number="4.5.1">
 <h3>
 <span class="header-section-number">4.5.1</span> Una exploración visual de los errores<a class="anchor" aria-label="anchor" href="#una-exploraci%C3%B3n-visual-de-los-errores"><i class="fas fa-link"></i></a>
 </h3>
-<p>Un elemento de interés para el análisis en la regresión lineal estimada son los errores observados, <span class="math inline">\(u_i\)</span>. Para lograr comprender mejor este elemento conviene imaginar nuestro modelo como “Respuesta = Predicción + Error”, es decir, <span class="math inline">\(y=\hat y+u\)</span>. De esta manera podemos expresar el error como:</p>
+<p>Un elemento de interés para el análisis en la regresión lineal estimada son los errores observados, <span class="math inline">\(u_i\)</span>, puesto que los supuestos sobre los que se basa el método de mínimos cuadrados ordinarios son, en buena medida, sobre dichos errores. Para lograr comprender mejor qué son los errores y su importancia analítica, conviene imaginar nuestro modelo como “Respuesta = Predicción + Error,” es decir, <span class="math inline">\(y=\hat y+u\)</span>. De esta manera podemos expresar el error como:</p>
 <p><span class="math display">\[u_i=y_i-\hat {y_i}\]</span>
-Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores estimados, <span class="math inline">\(\hat y_i\)</span>, producto de nuestro modelo estimado para cada uno de los 76 municipios y alcaldías del Valle de México son almacenados en el elemento <code>residuals</code> y <code>fitted.values</code>, respectivamente, dentro de la lista <code>lm</code>, da clic en la lente de aumento al final de la fila que contiene el objeto de tipo <code>lm</code> en la sección de ambiente en tu entorno de trabajo. Para poder analizar mejor los errores del modelo, vamos a crear un nuevo objeto que contenga, además de nuestras variables de interés (<code>pos_hab</code> y <code>ss</code>), la clave municipal (<code>cvemun</code>), los errores observados y los valores ajustados o predichos:</p>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Generamos la tabla con la función data.frame(), aquí, los dobles corchetes, [[]], nos utilizados para extraer los elementos solicitados.</span></span>
-<span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">cvemun</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">ss</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modelo_simple</span><span class="op">[[</span><span class="st">"fitted.values"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>                    <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modelo_simple</span><span class="op">[[</span><span class="st">"residuals"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#Creamos una lista que contiene los nombres deseados para cada variable</span></span>
-<span><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cvemun"</span>,<span class="st">"ss"</span>, <span class="st">"pos_hab"</span>,<span class="st">"ajustados"</span>, <span class="st">"errores"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co">#Asignamos los nombres deseados a la tabla creada</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span><span class="op">&lt;-</span><span class="va">nombres</span></span></code></pre></div>
+Los errores observados, <span class="math inline">\(u_i\)</span>, y los valores estimados, <span class="math inline">\(\hat y_i\)</span>, de nuestro modelo son almacenados en el elemento <code>residuals</code> y <code>fitted.values</code>, respectivamente, dentro de la lista <code>lm</code>. Da clic en la lente de aumento al final de la fila que contiene el objeto de tipo <code>lm</code> en la sección de ambiente en tu entorno de trabajo para observarlos. Para poder analizar mejor los errores del modelo, vamos a crear un nuevo objeto que contenga, además de nuestras variables de interés, <code>pos_hab</code> y <code>ss</code>, la clave municipal, <code>cvemun</code>, los errores observados y los valores ajustados o predichos. Para ello, primero generamos una tabla con la función <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> que contendrán las variables mencionadas (aquí, los dobles corchetes, <code>[[]]</code>, son utilizados para extraer los elementos solicitados):</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">cvemun</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">ss</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modelo_simple</span><span class="op">[[</span><span class="st">"fitted.values"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>                    <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modelo_simple</span><span class="op">[[</span><span class="st">"residuals"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Luego, creamos una lista que contiene las etiquetas de los nombres deseados para cada variable:</p>
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cvemun"</span>,<span class="st">"ss"</span>, <span class="st">"pos_hab"</span>,<span class="st">"ajustados"</span>, <span class="st">"errores"</span><span class="op">)</span> </span></code></pre></div>
+<p>Y, finalmente, asignamos los nombres deseados a la tabla creada</p>
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span><span class="op">&lt;-</span><span class="va">nombres</span></span></code></pre></div>
 <hr>
-<p><strong>Ejercicio</strong></p>
+<p><strong>Ejercicio</strong>
+Con los datos de la <code>tabla</code> anterior:</p>
 <ol style="list-style-type: lower-roman">
-<li><p>¿Cómo esperarías que luzca un diagrama de dispersión entre los valores observados y ajustados de la variable de respuesta? Elabora dicho diagrama.</p></li>
-<li><p>Grafica los errores, primero respecto a un índice del 1 al 76 y luego respecto a los valores ajustados ¿puedes observar algún patrón en ellos?</p></li>
+<li><p>¿Cómo esperarías que luzca un diagrama de dispersión entre los valores observados, <code>pos_hab</code>, y los valores ajustados, <span class="math inline">\(\hat {poshab}\)</span>? Elabora dicho diagrama.</p></li>
+<li><p>Grafica los errores, primero respecto a un índice del 1 al 76 y luego respecto a los valores ajustados, ¿puedes observar algún patrón en ellos?</p></li>
 </ol>
 <hr>
-<p>El supuesto de linealidad de nuestro modelo puede ser verificado a partir de una exploración visual de un diagrama de dispersión entre los errores observados y la predictora. Si nuestro modelo es verdaderamente un modelo lineal, en la gráfica no debería mostrarse patrón alguno. Veamos:</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<p>El supuesto de linealidad de nuestro modelo puede ser verificado a partir de una exploración visual de un diagrama de dispersión entre los errores del modelo y la variable explicativa, nuestra <span class="math inline">\(x\)</span>, es decir, el porcentaje de población con acceso a servicios de salud. Si nuestro modelo es verdaderamente un modelo lineal, en la gráfica no debería mostrarse patrón alguno. Veamos:</p>
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span>,y<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672"></div>
-<p>Claramente hay un patrón, por lo que probablemente un modelo lineal como el propuesto no sería la mejor opción. ¿Recuerdas cómo luce un diagrama de dispersión entre las dos variables de nuestro modelo?</p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pos_hab</span>,y<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672"></div>
+<p>Claramente hay un patrón, por lo que probablemente un modelo lineal como el propuesto no sería la mejor opción. ¿Recuerdas cómo luce el diagrama de dispersión entre las dos variables de nuestro modelo?</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li>Elabora un diagrama de dispersión entre <code>pos_hab</code> y <code>ss</code> y añade un ajuste no lineal.</li>
 </ol>
 <hr>
-<p>Entonces, parece que el modelo lineal propuesto no capta con precisión la relación entre este par de variables, por lo que un modelo no lineal podría ser una mejor opción; sin embargo, esta alternativa de modelación no es objeto de estas notas, pero en el capítulo 14 de la obra de <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati y Porter 2011</a>)</span> puedes revisar con detalle una ruta para solventar esta situación.</p>
-<p>Otro de los supuestos mencionados es que los errores deberían tener una distribución normal, lo que no se cumplirá cuando haya observaciones inusuales. Para verificar esto visualmente, es posible recurrir a un histograma de los errores, o bien, a una gráfica de normalidad:</p>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<p>Entonces, parece que el modelo lineal propuesto no capta con precisión la relación entre este par de variables, por lo que un modelo no lineal podría ser una mejor opción; sin embargo, esta alternativa de modelación no es objeto de estas notas, pero en el capítulo 14 de la obra de Gujarati y Porter <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">2011</a>)</span> puedes revisar con detalle una ruta para solventar esta situación.</p>
+<p>Otro de los supuestos sobre los que se basa la estimación de modelos con MCO es que los errores deberían tener una distribución normal, lo que no se cumplirá cuando haya observaciones atípicas, los llamados <em>outliers</em>. Para verificar esto visualmente, es posible recurrir a un histograma de los errores, o bien, a una gráfica de normalidad:</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-164-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-166-1.png" width="672"></div>
 <p>¿Notas los valores extremos en el histograma anterior? Una gráfica cuantil-cuantil o gráfica QQ, contrasta la distribución de una variable con una distribución teórica: si la distribución de la variable fuera idéntica a la distribución teórica, los puntos se alinearían sobre la línea de 45°. En este caso, la distribución teórica a probar es una distribución normal:</p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample<span class="op">=</span><span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672"></div>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
-<li>Consulta la ayuda de las funciones <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq()</a></code> y <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line()</a></code>, ¿qué otras distribuciones es posible verificar y con qué argumento se hace?</li>
+<li>Consulta la ayuda de las funciones <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">geom_qq()</a></code> y <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line()</a></code>, ¿qué otras distribuciones es posible verificar y con qué argumentos?</li>
 </ol>
 <hr>
 <p>Finalmente, el supuesto de varianza constante de los errores también puede explorarse visualmente a través de una gráfica donde se debería lograr ver variabilidad constante de los errores alrededor de la recta de ajuste: este es el denominado supuesto de homoscedasticidad. Exploremos si los errores de nuestro modelo cumplen o no con este supuesto a través de una gráfica de dispersión:</p>
-<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">ajustados</span>,<span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-166-1.png" width="672"></div>
-<p>Patrones visuales de “tipo ventilador” o “embudo” no deberían ser observados cuando los errores son homoscedásticos, lo que no es el caso. Los ejercicios gráficos hechos aquí con los errores para verificar si se cumplen o no los supuestos de un modelo de MCO no son desde luego la única ruta para verificar los supuestos. El análisis de si una regresión cumple con los supuestos necesarios requiere de práctica. En <a href="https://gallery.shinyapps.io/slr_diag/">esta página</a> encontrarás una serie de ejemplos de cuando una regresión cumple o no con los supuestos enlistados antes y como lucen las gráficas mencionadas en cada caso. Sin embargo, como recordarás, existen pruebas formales que te permitirán determinar si el modelo cumple o no con los supuestos del caso.</p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">ajustados</span>,<span class="va">errores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672"></div>
+<p>Patrones visuales de “tipo ventilador” o “embudo” no deberían ser observados cuando los errores son homoscedásticos, lo que no es el caso. Los ejercicios gráficos hechos aquí con los errores para verificar si se cumplen o no los supuestos de un modelo de MCO no son, desde luego, la única ruta para verificar los supuestos, analizar si una regresión cumple con los supuestos necesarios requiere de práctica. En <a href="https://gallery.shinyapps.io/slr_diag/">esta página</a> encontrarás una serie de ejemplos de cuando una regresión cumple o no con los supuestos enlistados antes y cómo lucen las gráficas mencionadas en cada caso. Sin embargo, como recordarás, existen pruebas formales que te permitirán determinar si el modelo cumple o no con los supuestos del caso.</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>¿Cuál es el nombre de la prueba más popular para evaluar normalidad y cómo se interpreta?</p></li>
-<li><p>Menciona dos pruebas para evaluar homoscedasticidad y cómo son interpretadas.</p></li>
+<li><p>Menciona una prueba para evaluar homoscedasticidad y cómo es interpretada.</p></li>
 </ol>
 <hr>
 </div>
-<div id="el-error-estandar-residual-o-error-estándar-de-los-errores" class="section level3" number="4.5.2">
+<div id="coeficiente-de-determinación" class="section level3" number="4.5.2">
 <h3>
-<span class="header-section-number">4.5.2</span> El error estandar residual o error estándar de los errores<a class="anchor" aria-label="anchor" href="#el-error-estandar-residual-o-error-est%C3%A1ndar-de-los-errores"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.2</span> Coeficiente de determinación<a class="anchor" aria-label="anchor" href="#coeficiente-de-determinaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<p>Además, los errores del modelo nos sirven para calcular la varianza, <span class="math inline">\(\sigma^2\)</span> del modelo estadístico propuesto. Para ello, recuerda que:</p>
-<p><span class="math display">\[
-\begin{aligned}
-s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat y _i)^2 \\
-  s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(e_i)^2 \\
-  \end{aligned}
-\]</span></p>
-<p>Este dato por sí mismo no ofrece mucha información de la variabilidad de nuestro modelo, pero, si obtenemos su raíz cuadrada. La cifra estará ya en las mismas unidades que las usadas en el modelo y tendremos la desviación estándar, también conocida como <em>error estándar residual</em>.</p>
-<hr>
-<p><strong>Ejercicio</strong></p>
-<ol style="list-style-type: lower-roman">
-<li><p>¿A cuánto asciende el error estándar residual, <em>residual standard error</em>, de nuestro modelo?</p></li>
-<li><p>¿Cómo interpretarías dicha cifra?</p></li>
-<li><p>¿Un modelo con error estándar residual pequeño es preferible a uno que tenga un error estándar residual alto?</p></li>
-</ol>
-<hr>
+<p>El <span class="math inline">\(R^2\)</span> o coeficiente de determinación es una medida de bondad de ajuste, es decir, un número de nos indica qué tanto nuestro modelo es capaz de explicar la variable de interés. El <span class="math inline">\(R^2\)</span> es la proporción de la variabilidad de <span class="math inline">\(y\)</span> que es explicada por <span class="math inline">\(x\)</span>. Valores más cercanos a 1 significan que una mayor parte de la variabilidad de <span class="math inline">\(y\)</span> es explicada por <span class="math inline">\(x\)</span>. Solicita de nuevo un resumen del objeto <code>modelo_simple</code> e identifica la sección <em>Multiple R-squared</em>:</p>
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelo_simple</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## stats::lm(formula = pos_hab ~ ss, data = covid_zmvm)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.4391 -2.7744 -0.6709  1.5324 14.9969 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -19.86224    5.80867  -3.419  0.00102 ** 
+## ss            0.39490    0.08516   4.637 1.49e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.572 on 74 degrees of freedom
+## Multiple R-squared:  0.2252, Adjusted R-squared:  0.2147 
+## F-statistic:  21.5 on 1 and 74 DF,  p-value: 1.488e-05</code></pre>
+<p>En nuestro caso, hemos obtenido un <span class="math inline">\(R^2\)</span> de 0.2252, lo que puede ser interpretado de la siguiente manera: poco más de la quinta parte de la variabilidad de los casos positivos por cada 1 mil habitantes es explicada por el porcentaje de población con acceso a servicios de salud.</p>
 </div>
-<div id="coeficiente-de-determinación" class="section level3" number="4.5.3">
+<div id="una-aproximación-a-la-predicción" class="section level3" number="4.5.3">
 <h3>
-<span class="header-section-number">4.5.3</span> Coeficiente de determinación<a class="anchor" aria-label="anchor" href="#coeficiente-de-determinaci%C3%B3n"><i class="fas fa-link"></i></a>
-</h3>
-<p>El <span class="math inline">\(R^2\)</span> o coeficiente de determinación es una medida de bondad de ajuste, es decir, un número de nos indica qué tanto nuestro modelo explica a la variable de interés. El <span class="math inline">\(R^2\)</span> es la proporción de la variabilidad de <span class="math inline">\(y\)</span> que es explicada por <span class="math inline">\(x\)</span>. Los valores más cercanos a 1 significan que una mayor parte de la variabilidad de <span class="math inline">\(y\)</span> es explicada por <span class="math inline">\(x\)</span>. En nuestro caso, hemos obtenido un <span class="math inline">\(R^2\)</span> de 0.22, lo que puede ser interpretado de la siguiente manera: poco más de la quinta parte de la variabilidad de los casos positivos por cada 1 mil habitantes es explicada por el porcentaje de población con acceso a servicios de salud.</p>
-</div>
-<div id="una-aproximación-a-la-predicción" class="section level3" number="4.5.4">
-<h3>
-<span class="header-section-number">4.5.4</span> Una aproximación a la predicción<a class="anchor" aria-label="anchor" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.3</span> Una aproximación a la predicción<a class="anchor" aria-label="anchor" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
 <p>A través de nuestro modelo estimado (también llamado ajustado) es posible hacer predicciones de <span class="math inline">\(y\)</span>, es decir, de los casos positivos por cada 1 mil habitantes, siempre que los valores de la variable predictora estén dentro del rango original.</p>
 <hr>
@@ -380,21 +392,21 @@ s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat y _i)^2 \\
 <hr>
 <p>Hagamos una predicción de los casos positivos cuando <span class="math inline">\(x\)</span> toma el valor de 60%:</p>
 <p><span class="math display">\[\hat {poshab}=-19.8622+0.3949(60)\]</span></p>
-<p>Con independencia de la consistencia y validez de nuestro modelo, situación que de momento no estamos evaluando, ¿cuál es el valor promedio de los casos positivos de COVID19 por cada 100 mil habitantes cuando el porcentaje de población con acceso a servicios de salud es de 60%? Bastará resolver la expresión anterior para saber que el valor estimado promedio de los casos activos por cada 1 mil habitantes cuando el porcentaje de población con acceso a servicios de salud es de 60%, es decir, 3.83 casos por cada 1 mil habitantes, aproximadamente.</p>
+<p>Con independencia de la consistencia y validez de nuestro modelo, situación que de momento no estamos evaluando, ¿cuál es el valor promedio de los casos positivos de COVID19 por cada 1 mil habitantes cuando el porcentaje de población con acceso a servicios de salud es de 60%? Bastará resolver la expresión anterior para responder a la pregunta: 3.83 casos por cada 1 mil habitantes, aproximadamente; es decir, si un municipio tiene un porcentaje de población con acceso a servicios de salud de 60%, nuestro modelo estima un total de 3.83 casos positivos de COVID19.</p>
 <p>Alternativamente, en R contamos con la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> para llevar a cabo, justamente, predicciones. La función requiere de dos argumentos forzosos: i) el modelo usado para la predicción (argumento <code>object=</code>) y ii) los valores de la regresión (argumento <code>newdata=</code>). Así:</p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">modelo_simple</span>, newdata<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ss<span class="op">=</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        1 
 ## 3.831836</code></pre>
 <p>En este caso, estamos indicando los nuevos datos de forma manual para la variable de interés, <code>ss</code>.</p>
 </div>
-<div id="significancia-individual-de-los-coeficientes-obtenidos" class="section level3" number="4.5.5">
+<div id="significancia-individual-de-los-coeficientes-obtenidos" class="section level3" number="4.5.4">
 <h3>
-<span class="header-section-number">4.5.5</span> Significancia individual de los coeficientes obtenidos<a class="anchor" aria-label="anchor" href="#significancia-individual-de-los-coeficientes-obtenidos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.4</span> Significancia individual de los coeficientes obtenidos<a class="anchor" aria-label="anchor" href="#significancia-individual-de-los-coeficientes-obtenidos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Uno de los aspectos más importantes del análisis de regresión es la interpretación de los coeficientes obtenidos. Será de particular interés para nosotros tener la información para cada coeficiente: i) conocer el sentido de su asociación con la variable dependiente, es decir, el signo del coeficiente; ii) identificar la magnitud de la asociación lineal, qué tan grande es dicho coeficiente en el contexto de las unidades de la variable y iii) su significancia estadística, si hay evidencia de que el verdadero valor del estimador es correspondiente con el estimado.</p>
+<p>Uno de los aspectos más importantes del análisis de regresión es la interpretación de los coeficientes obtenidos. Será de particular interés para nosotros conocer, de cada coeficiente: i) el sentido de su asociación con la variable dependiente, es decir, el signo del coeficiente; ii) la magnitud de la asociación lineal, qué tan grande es dicho coeficiente en términos de las unidades de la variable y iii) su significancia estadística, es decir, si hay evidencia de que el verdadero valor del estimador se corresponde con el estimado.</p>
 <p>Los dos primeros elementos, sentido y magnitud, ya fueron comentados con anterioridad y pueden ser conocidos llamando al objeto que contiene los resultados de nuestro modelo:</p>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modelo_simple</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -403,7 +415,7 @@ s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat y _i)^2 \\
 ## Coefficients:
 ## (Intercept)           ss  
 ##    -19.8622       0.3949</code></pre>
-<p>R despliega en su consola el valor de los dos coeficientes estimados, en este caso <span class="math inline">\(\hat \beta_0\)</span> es negativo y <span class="math inline">\(\hat \beta_1\)</span> es positivo. El punto iii consiste en verificar si, en términos estadísticos, nuestros coeficientes estimados son iguales o no a determinado valor, concretamente, buscamos llevar a cabo una <strong>prueba de hipótesis</strong> sobre dichos coeficientes.</p>
+<p>R despliega en tu consola el valor de los dos coeficientes estimados, en este caso <span class="math inline">\(\hat \beta_0\)</span> es negativo y <span class="math inline">\(\hat \beta_1\)</span> es positivo. El punto iii consiste en verificar si, en términos estadísticos, nuestros coeficientes estimados son iguales o no a determinado valor, concretamente, buscamos llevar a cabo una <strong>prueba de hipótesis</strong> sobre dichos coeficientes.</p>
 <p>Sinteticemos el procedimiento de <strong>prueba de hipótesis</strong> desde una perspectiva netamente práctica y simplificada:</p>
 <ol style="list-style-type: lower-roman">
 <li>Definir el juego de hipótesis a verificar, la hipótesis nula (Ho) y la hipótesis alternativa (Ha).<br>
@@ -414,11 +426,11 @@ s_e ^2 &amp;=\frac{1}{n-2}\sum_{i=1}^n(y_i-\hat y _i)^2 \\
 a. Si el <em>valor-p</em> &lt; <span class="math inline">\(\alpha\)</span>: se rechaza Ho en favor de Ha.<br>
 b. Si el <em>valor-p</em> &gt; <span class="math inline">\(\alpha\)</span>: no se rechaza Ho.</li>
 </ol>
-<p>El juego de hipótesis a verificar sobre cada uno de los coeficientes estimados es:</p>
+<p>El juego de hipótesis sobre la significancia individual de los estimadores calculados:</p>
 <p><span class="math display">\[H_o:\hat\beta_i=0 \\
 H_a:\hat\beta_i\not=0 \]</span></p>
-<p>Ahora bien, <span class="math inline">\(\alpha\)</span> usualmente toma valores de <code>0.1</code>, <code>0.05</code> y <code>0.01</code>, lo que equivale a niveles de confianza de <code>0.9</code>, <code>0.95</code> y <code>0.99</code>, es decir, de 90%, 95% y 99%, respectivamente. ¿Pero de dónde obtendremos el <em>valor-p</em> para tomar la decisión? La salida de la regresión viene acompañada de él y con base en él llevaremos a cabo la comparación. Para observar los <em>valores-p</em> de cada uno de los coeficientes estimados solicitamos un resumen del objeto <code>modelo_mco</code> con la función <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<p>Ahora bien, <span class="math inline">\(\alpha\)</span> usualmente toma valores de <code>0.1</code>, <code>0.05</code> y <code>0.01</code>, lo que equivale a niveles de confianza de <code>0.9</code>, <code>0.95</code> y <code>0.99</code>, es decir, de 90%, 95% y 99%, respectivamente; en tanto, el <em>valor-p</em> para tomar la decisión lo tomamos del resumen del objeto <code>modelo_simple</code>. Para observar los <em>valores-p</em> de cada uno de los coeficientes estimados solicitamos un resumen del objeto <code>modelo_simple</code> con la función <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelo_simple</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -441,7 +453,6 @@ H_a:\hat\beta_i\not=0 \]</span></p>
 <p>Observa con cuidado los resultados que ahora se presentan como una tabla en su consola. Identifica las columnas <em>estimate</em> y <em>Pr(&gt;|t|)</em>: en esta última aparece el <em>valor-p</em> y es el elemento con base en el cual tomaremos la decisión sobre la significancia estadística de los coeficientes obtenidos.</p>
 <p>Veamos los valores de los coeficientes estimados: el intercepto, <span class="math inline">\(\hat \beta_0\)</span> es igual a -19.8 y el coeficiente vinculado a <code>ss</code>, <span class="math inline">\(\hat \beta_1\)</span>, tiene un valor de 0.394. Ahora bien, recuerda el juego de hipótesis a verificar: <span class="math inline">\(H_o:\hat\beta_i=0\)</span> y <span class="math inline">\(H_a:\hat\beta_i\not=0\)</span> (paso 1), elijamos un nivel de significancia, <span class="math inline">\(\alpha\)</span>, de <code>0.05</code> (paso 2) y comparemos el <em>valor p</em> asociado a cada coeficiente con <span class="math inline">\(\alpha\)</span> (paso 3). El siguiente cuadro sintentiza lo anterior:</p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Cuadro 4.1</caption>
 <thead><tr class="header">
 <th>Variable</th>
 <th>Coeficiente</th>
@@ -476,11 +487,11 @@ H_a:\hat\beta_i\not=0 \]</span></p>
 <div style="text-align: justify">
 <p>Antes de concluir esta sección, es importante tener en mente los siguientes puntos cuando usemos regresiones:</p>
 <ol style="list-style-type: lower-roman">
-<li>Los modelos de regresión son útiles para llevar a cabo intrapolación, es decir, para obtener valores en el rango de nuestras variables explicativas. No obstante, deben ser usados con cuidado cuando lo que se pretende es extrapolar datos, es decir, conocer los valores de <span class="math inline">\(y\)</span> que no están en el rango original de <span class="math inline">\(X\)</span>.<br>
+<li>Los modelos de regresión son útiles para llevar a cabo intrapolación, es decir, para obtener valores en el rango de nuestras variables explicativas. No obstante, deben ser usados con cuidado cuando lo que se pretende es extrapolar datos, es decir, conocer los valores de <span class="math inline">\(y\)</span> que no están en el rango original de <span class="math inline">\(x\)</span>.<br>
 </li>
 <li>Como el ajuste de mínimos cuadrados depende en buena medida de los valores de <span class="math inline">\(x\)</span> y con este método cada punto <span class="math inline">\(x\)</span> tiene la misma ponderación, la pendiente de la regresión está mayormente influenciada por los valores más extremos de <span class="math inline">\(x\)</span>. Cuando se tienen valores inusuales se podría proceder a eliminarlos, o bien, recurrir a técnicas diferentes a los mínimos cuadrados ordinarios que sean menos sensibles a estos puntos.<br>
 </li>
-<li>Que la regresión tuviera como resultado que dos variables están asociadas, no significa que entre ellas haya una relación causal. Causalidad implica asociación, pero lo opuesto no es necesariamente cierto.</li>
+<li>Que la regresión tuviera como resultado que dos variables están asociadas, no significa que entre ellas haya una relación causal, tal como se indicó al inicio de este capítulo. Causalidad implica asociación, pero lo opuesto no es necesariamente cierto.</li>
 </ol>
 </div>
 <div id="regresión-lineal-múltiple-una-propuesta-de-modelo" class="section level2" number="4.7">
@@ -488,19 +499,42 @@ H_a:\hat\beta_i\not=0 \]</span></p>
 <span class="header-section-number">4.7</span> Regresión lineal múltiple: una propuesta de modelo<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-lineal-m%C3%BAltiple-una-propuesta-de-modelo"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<p>La regresión lineal múltiple es, en esencia, una extensión lógica de todos los elementos descritos antes. En palabras de <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., y Geoffrey 2012, 81:67</a>)</span>, “Un modelo de regresión que involucra más de una variable regresora se llama modelo de regresión múltiple”. Así, por ejemplo, un modelo con dos regresoras, <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> luciría como:</p>
-<p><span class="math display">\[y=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon\]</span></p>
-<p>Esta expresión que incluye tres variables aún es posible representarse en espacio tridimensional con los ejes <span class="math inline">\(y\)</span>, <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> y correspondería a múltiples planos en el espacio. El parámetro <span class="math inline">\(\beta_0\)</span> es el intercepto del plano de la regresión que, cuando el origen está incluido en el rango de <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span>, <span class="math inline">\(\beta_0\)</span> indica la media de <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x_1=x_2=0\)</span>. En tanto, <span class="math inline">\(\beta_1\)</span> es el cambio esperado <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x_1\)</span> varia en una unidad, siempre que <span class="math inline">\(x_2\)</span> permanezca constante, análogamente para <span class="math inline">\(\beta_2\)</span>. ¿Qué variables de nuestra base incluirías en un modelo que incluya dos regresoras?</p>
+<p>La regresión lineal múltiple es, en esencia, una extensión lógica de todos los elementos descritos antes: “Un modelo de regresión que involucra más de una variable regresora se llama modelo de regresión múltiple” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">C., A., and Geoffrey 2012, 81:67</a>)</span>. Así, por ejemplo, un modelo con dos regresoras, <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> luciría como:</p>
+<p><span class="math display">\[y=\beta_0+\beta_1x_1+\beta_2x_2+u\]</span></p>
+<p>Esta expresión que incluye tres variables, dos independientes y una dependiente, aún es posible representarse en espacio tridimensional con los ejes <span class="math inline">\(y\)</span>, <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span>. El parámetro <span class="math inline">\(\beta_0\)</span> es el intercepto del plano de la regresión que, cuando el origen está incluido en el rango de <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span>, <span class="math inline">\(\beta_0\)</span> indica la media de <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x_1=x_2=0\)</span>. En tanto, <span class="math inline">\(\beta_1\)</span> es el cambio esperado <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x_1\)</span> varia en una unidad, siempre que <span class="math inline">\(x_2\)</span> permanezca constante, análogamente para <span class="math inline">\(\beta_2\)</span>. ¿Qué variables de nuestra base incluirías en un modelo que incluya dos regresoras?</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
-<p>¿Recuerdas cómo construir una matriz de diagramas de dispersión a través del paquete <code>GGally</code>? Explora el conjunto de variables de la base <code>covid_zmvm</code> y construye una matriz de diagramas de dispersión sólo con 4 o 5 variables que presenten el mayor nivel de correlación tanto con los casos positivos como con las defunciones por cada 1 mil habitantes, <code>pos_hab</code> y <code>def_hab</code>.</p>
+<p>¿Recuerdas cómo construir una matriz de diagramas de dispersión a través del paquete <code>GGally</code>? Explora el conjunto de variables de la base <code>covid_zmvm</code> y construye una matriz de diagramas de dispersión solo con 4 o 5 variables que presenten el mayor nivel de correlación tanto con los casos positivos como con las defunciones por cada 1 mil habitantes, <code>pos_hab</code> y <code>def_hab</code>.</p>
 <hr>
-<p>Un modelo con buen nivel de ajuste debería procurar que las variables explicativas propuestas presenten una alta correlación con la variable a explicar. Como podrás haberte dado cuenta, las variables que presentan el mayor nivel de asociación lineal negativa son: <code>ppob_basi</code>, <code>pocom</code>, <code>occu</code>, <code>sbasc</code>, <code>ppob_5_o_m</code>. En tanto, las variables que muestran el mayor nivel de asociación lineal positiva son: <code>poss</code>, <code>grad_m</code>, <code>ppob_sup</code>, <code>grad</code>, <code>grad_h</code>, <code>tmss</code> y <code>rmss</code>. No obstante, otro principio recomendable a la hora de proponer un modelo, amén de su consistencia teórica, es su simpleza: ¿qué relevancia tendrá incluir el grado promedio de escolaridad total, además del de hombres y mujeres por separado? Bastaría incluir sólo una de ellas. Por otro lado, ¿qué tan oportuno sería incluir simultáneamente variables que buscan recoger el mismo aspecto de la realidad? Tanto las variables <code>grad</code>, <code>ppob_basi</code> y <code>sbasc</code> refieren el nivel de educación formal de la población, así, bastaría usar alternativamente alguna de ellas, algo parecido pasa con <code>occu</code> y <code>ppob_5_o_m</code> que expresan las condiciones de vivienda y habitación de las personas. En tanto, parece que de los grandes sectores: industria, comercio y servicios, las variables de éste último son las que muestran un mayor nivel de asociación lineal: <code>poss</code>, <code>tmss</code> y <code>rmss</code>, ¿será relevante incluir todas en el modelo? .</p>
-<p>Con base en lo dicho antes, propongamos un primer modelo lo más sencillo posible:</p>
+<p>Un modelo con buen nivel de ajuste debería procurar que las variables explicativas propuestas presenten una alta correlación con la variable a explicar. Como podrás haberte dado cuenta, las variables que presentan el mayor nivel de asociación lineal negativa son: <code>ppob_basi</code>, <code>pocom</code>, <code>occu</code>, <code>sbasc</code>, <code>ppob_5_o_m</code>. En tanto, las variables que muestran el mayor nivel de asociación lineal positiva son: <code>poss</code>, <code>grad_m</code>, <code>ppob_sup</code>, <code>grad</code>, <code>grad_h</code>, <code>tmss</code> y <code>rmss</code>.</p>
+<p>Otro principio recomendable a la hora de proponer un modelo, amén de su consistencia teórica, es su simpleza: ¿qué relevancia tendrá incluir en un modelo el grado promedio de escolaridad total, el de hombres y el de mujeres por separado? Bastaría incluir solo una de ellas. Por otro lado, ¿qué tan oportuno sería incluir simultáneamente variables que buscan recoger el mismo aspecto de la realidad? Esto es así porque tanto las variables <code>grad</code>, <code>ppob_basi</code> y <code>sbasc</code> refieren el nivel de educación formal de la población, así, bastaría usar alternativamente alguna de ellas, algo parecido pasa con <code>occu</code> y <code>ppob_5_o_m</code> que expresan las condiciones de vivienda y habitación de las personas. En tanto, parece que de los grandes sectores: industria, comercio y servicios, las variables de éste último son las que muestran un mayor nivel de asociación lineal: <code>poss</code>, <code>tmss</code> y <code>rmss</code>, ¿será relevante incluir todas en el modelo?</p>
+<p>Con base en lo dicho antes, propongamos un primer modelo, lo más sencillo posible:</p>
 <p><span class="math display">\[poshab_i=\beta_0+\beta_1grad_i+\beta_2occu_i+\beta_3poss_i+\beta_4pocom_i+\epsilon_i\]</span>
 De nuevo, a través de la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> estimaremos este modelo y al resultado lo guardaremos en un nuevo objeto llamado <code>modelo_multi</code></p>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">modelo_multi</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">grad</span><span class="op">+</span><span class="va">occu</span><span class="op">+</span><span class="va">poss</span><span class="op">+</span><span class="va">pocom</span>, data <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">modelo_multi</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">grad</span><span class="op">+</span><span class="va">occu</span><span class="op">+</span><span class="va">poss</span><span class="op">+</span><span class="va">pocom</span>, data <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelo_multi</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## stats::lm(formula = pos_hab ~ grad + occu + poss + pocom, data = covid_zmvm)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.0017 -2.4621 -0.7526  1.2428 16.6659 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.43576   15.07149   0.095 0.924374    
+## grad         0.09555    1.01112   0.094 0.924981    
+## occu        -4.25136    7.65251  -0.556 0.580264    
+## poss        21.80677    5.91896   3.684 0.000445 ***
+## pocom        0.07430    6.71860   0.011 0.991208    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.843 on 71 degrees of freedom
+## Multiple R-squared:  0.4748, Adjusted R-squared:  0.4452 
+## F-statistic: 16.04 on 4 and 71 DF,  p-value: 2.112e-09</code></pre>
 <hr>
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
@@ -536,7 +570,7 @@ Ha&amp;: al.menos.una. \hat\beta_i\not=0 \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-11-16.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -594,10 +628,9 @@ for (let popover of popovers) {
 <li>
 <a class="nav-link" href="#regresi%C3%B3n-lineal-simple-en-r"><span class="header-section-number">4.5</span> Regresión lineal simple en R</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#una-exploraci%C3%B3n-visual-de-los-errores"><span class="header-section-number">4.5.1</span> Una exploración visual de los errores</a></li>
-<li><a class="nav-link" href="#el-error-estandar-residual-o-error-est%C3%A1ndar-de-los-errores"><span class="header-section-number">4.5.2</span> El error estandar residual o error estándar de los errores</a></li>
-<li><a class="nav-link" href="#coeficiente-de-determinaci%C3%B3n"><span class="header-section-number">4.5.3</span> Coeficiente de determinación</a></li>
-<li><a class="nav-link" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><span class="header-section-number">4.5.4</span> Una aproximación a la predicción</a></li>
-<li><a class="nav-link" href="#significancia-individual-de-los-coeficientes-obtenidos"><span class="header-section-number">4.5.5</span> Significancia individual de los coeficientes obtenidos</a></li>
+<li><a class="nav-link" href="#coeficiente-de-determinaci%C3%B3n"><span class="header-section-number">4.5.2</span> Coeficiente de determinación</a></li>
+<li><a class="nav-link" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><span class="header-section-number">4.5.3</span> Una aproximación a la predicción</a></li>
+<li><a class="nav-link" href="#significancia-individual-de-los-coeficientes-obtenidos"><span class="header-section-number">4.5.4</span> Significancia individual de los coeficientes obtenidos</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#algunos-elementos-de-cuidado-con-las-regresiones-lineales"><span class="header-section-number">4.6</span> Algunos elementos de cuidado con las regresiones lineales</a></li>

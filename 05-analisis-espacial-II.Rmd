@@ -119,7 +119,11 @@ Ha &: \rho\not=0 \\
 \end {aligned}
 $$
 
+<<<<<<< HEAD
 Según lo que nos indique el multiplicador de Lagrange y su valor-p asociado, a determinado nivel de significancia, rechazar la hipótesis nula significará que, entre el modelo lineal y el modelo de rezago, el mejor modelo es un modelo de rezago espacial.
+=======
+El estadístico usado es el multiplicador de Lagrange, que sigue una distribución $\chi^2$ con un grado de libertad[^6]. Así, dado determinado nivel de significancia, rechazar la hipótesis nula significará que el mejor modelo es un modelo de rezago espacial. De forma semejante, para evaluar la alternativa del modelo de error recuerda que:
+>>>>>>> 6d2bf35c51da5d42ee94ac1d5a1e6c9a2fbaa8e7
 
 En esta misma línea de razonamiento, del modelo de error nos interesa saber si $\lambda$ es diferente de 0 y, por tanto, si juega algún papel relevante en la relación propuesta. Recuerda que el modelo de error luce como:
 
@@ -429,7 +433,7 @@ Esperamos que estas notas contribuyan a alimentar tu curiosidad sobre el tratami
 
 
 
-[^5]: Para una exposición detallada de la formulación de los multiplicadores de Lagrange para la selección de modelos alternativos consulta Anselin y Rey (2014: 104)
+[^6]: Para una exposición detallada de la formulación de los multiplicadores de Lagrange para la selección de modelos alternativos consulta Anselin y Rey (2014: 104)
 
 
 

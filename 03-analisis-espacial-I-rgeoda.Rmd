@@ -81,7 +81,7 @@ Dicho cuadro será nuestra matriz de pesos espaciales y contendrá la estructura
 knitr::include_graphics("recursos 3/Matriz ejemplo-llena.jpg")
 ```
 
-Resumamos lo dicho hasta este punto. El cuadro que acabamos de llenar es conocido como *matriz de pesos espaciales*[^3] y es el instrumento que nos permite sintetizar las relaciones espaciales o estructura de vecindad que corresponde a determinado criterio. Habrá, por tanto, diversos tipos de matrices en función del criterio de vecindad elegido. Esta matriz se denotada por la letra mayúscula $W$ y está integrada por los elementos $w_{ij}$ que toman el valor de 1 cuando el elemento $j$ y el elemento $i$ son vecinos y 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos *incorporar al espacio* como variable a partir de lo que denominamos “rezago espacial”, como más adelante veremos en este y en el siguiente capítulo. Las características de la matriz de pesos espaciales son:
+Resumamos lo dicho hasta este punto. El cuadro que acabamos de llenar es conocido como *matriz de pesos espaciales*[^4] y es el instrumento que nos permite sintetizar las relaciones espaciales o estructura de vecindad que corresponde a determinado criterio. Habrá, por tanto, diversos tipos de matrices en función del criterio de vecindad elegido. Esta matriz se denotada por la letra mayúscula $W$ y está integrada por los elementos $w_{ij}$ que toman el valor de 1 cuando el elemento $j$ y el elemento $i$ son vecinos y 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos *incorporar al espacio* como variable a partir de lo que denominamos “rezago espacial”, como más adelante veremos en este y en el siguiente capítulo. Las características de la matriz de pesos espaciales son:
   
 * Es una matriz que en la diagonal principal contiene sólo ceros, es decir, se asume que por definición no hay interacciones dentro de un mismo elemento (lo que no necesariamente es cierto y que dependerá de la escala de análisis).  
 * Es una matriz simétrica, es decir, se asume que hay interacción de “ida y vuelta”, por lo que con un instrumento de estas características no es posible asumir efectos de interacción en un solo sentido. 
@@ -295,14 +295,14 @@ Para construir una matriz de pesos espaciales basada este criterio tenemos proce
 Para definir el umbral usamos la función `min_distthreshold()` del paquete `rgeoda``:
 
 ```{r}
-umbral <- rgeoda::min_distthreshold(covid_zmvm)
+umbral <- rgeoda::min_distthreshold(covid_zmvm_sf)
 umbral
 ```
 
 La distancia mínima para que cada uno de los 76 municipios y alcaldías tenga un vecino es 13,943.63 metros. Sabemos que las unidades del resultado anterior son metros puesto que en el archivo con extensión .prj (el archivo que contiene la información sobre la proyección cartográfica utilizada) así se indica. Ahora bien, definido el umbral ya podemos construir la matriz:
 
 ```{r}
-dist_w <- rgeoda::distance_weights(covid_zmvm, umbral)
+dist_w <- rgeoda::distance_weights(covid_zmvm_sf, umbral)
 summary(dist_w)
 ```
 
@@ -311,7 +311,7 @@ summary(dist_w)
 Cuando decimos k-vecinos más cercanos, con ello queremos decir que se identificará determinado número "k" de vecinos más cercanos: los 2 más cercanos (k=2), los 8 más cercanos (k=8), etcétera. Para ello nos servimos de la función `knn_weights()`. Si quiseramos una matriz con los 4 vecinos más cercanos, tenemos que:
 
 ```{r}
-k4_w <- knn_weights(covid_zmvm, 4)
+k4_w <- knn_weights(covid_zmvm_sf, 4)
 summary(k4_w)
 ```
 
@@ -701,6 +701,6 @@ iv) Cómo identificar agrupaciones locales a través del indicador LISA.
 En el capítulo 5 nos adentraremos en cómo incorporar la riqueza que proporciona el análisis espacial en un modelo econométrico. Mientras tanto, en el capítulo 4 llevaremos a cabo un repaso de elementos básicos sobre los modelos de regresión lineal clásica con mínimos cuadrados ordinarios.
 
 
-[^3]: "La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada matriz de pesos, ponderaciones, distancias o contactos espaciales" [@Chasco2003, p. 55]
+[^4]: "La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada matriz de pesos, ponderaciones, distancias o contactos espaciales" [@Chasco2003, p. 55]
 
 

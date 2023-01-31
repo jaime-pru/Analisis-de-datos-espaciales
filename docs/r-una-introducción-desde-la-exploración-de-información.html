@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -131,7 +131,7 @@ Figura 1.1: Panel principal
 <span class="header-section-number">1.2.1</span> Código<a class="anchor" aria-label="anchor" href="#c%C3%B3digo"><i class="fas fa-link"></i></a>
 </h3>
 <p>Los programas informáticos están construidos a partir de código, éste puede ser entendido como un lenguaje a partir del cual se dan las instrucciones a la computadora para que realice alguna acción. Como en todo lenguaje, un aspecto sustantivo es la sintaxis y la ortografía, es decir, el orden y la corrección en la forma en que uno se comunica con el sistema de cómputo, de modo que si se escribe alguna instrucción de forma incorrecta o incompleta (faltas de ortografía o errores de sintaxis) la instrucción no se ejecutará.</p>
-<p>En este sentido, se debe señalar que R es sensible al uso de mayúsculas y minúsculas, esto quiere decir para nuestro programa no es lo mismo Árbol y árbol. Además, en este programa constantemente estará usando paréntesis y comas en las instrucciones, por lo que hay que poner especial atención para no olvidar colocar alguno de ellos en la sentencia escrita. Otro elemento importante son las llamadas “palabras clave”, <em>Keywords</em>. Éstas son palabras reservadas, es decir, palabras con un significado especial para R y que hacen referencia a instrucciones que pertenecen a la estructura base del programa R por lo que no está recomendado su uso. Algunos ejemplos de palabras reservadas son son: <em>if</em>, <em>else</em>, <em>break</em>. Además, el nombre de las variables no debe comenzar con caracteres especiales (&amp;,#,$,%) o números.</p>
+<p>En este sentido, se debe señalar que R es sensible al uso de mayúsculas y minúsculas, esto quiere decir para nuestro programa no es lo mismo Árbol y árbol. Además, en este programa constantemente estará usando paréntesis y comas en las instrucciones, por lo que hay que poner especial atención para no olvidar colocar alguno de ellos en la sentencia escrita. Otro elemento importante son las llamadas “palabras clave,” <em>Keywords</em>. Éstas son palabras reservadas, es decir, palabras con un significado especial para R y que hacen referencia a instrucciones que pertenecen a la estructura base del programa R por lo que no está recomendado su uso. Algunos ejemplos de palabras reservadas son son: <em>if</em>, <em>else</em>, <em>break</em>. Además, el nombre de las variables no debe comenzar con caracteres especiales (&amp;,#,$,%) o números.</p>
 </div>
 <div id="objetos-operadores-y-tipos-de-variables" class="section level3" number="1.2.2">
 <h3>
@@ -190,7 +190,7 @@ Figura 1.1: Panel principal
 <code class="sourceCode R"><span><span class="fl">5</span><span class="op">+</span><span class="fl">10</span></span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p>En R, todos los elementos con los que se interactúa son denominados objetos (por eso se dice que es un lenguaje de programación orientado a objetos), los hay de distintas clases y cada clase se puede identificar por un nombre. Los objetos más comunes en R son: constantes, variables, vectores, listas, matrices y arreglos de datos (<em>data frames</em>). Estos últimos los hay en diferentes versiones dependiendo de algunas de sus características.</p>
-<p>Los objetos pueden contener diferentes tipos de información como: números enteros (<em>integer</em>), valores numéricos (<em>numeric</em>), números complejos (<em>complex</em>) o valores lógicos (<em>logic</em>) y de cadena/texto (<em>character</em>). Distinguir entre los tipos de información que contiene cada objeto es importante para conocer las operaciones que se pueden hacer entre ellos. Por ejemplo, no es posible hacer operaciones matemáticas con variables tipo <em>character</em> ya que no tiene sentido sumar aritméticamente “casa” y “azul”, pero sí es posible concatenarlos.</p>
+<p>Los objetos pueden contener diferentes tipos de información como: números enteros (<em>integer</em>), valores numéricos (<em>numeric</em>), números complejos (<em>complex</em>) o valores lógicos (<em>logic</em>) y de cadena/texto (<em>character</em>). Distinguir entre los tipos de información que contiene cada objeto es importante para conocer las operaciones que se pueden hacer entre ellos. Por ejemplo, no es posible hacer operaciones matemáticas con variables tipo <em>character</em> ya que no tiene sentido sumar aritméticamente “casa” y “azul,” pero sí es posible concatenarlos.</p>
 <p>Para crear objetos, en R se utiliza el signo “menor que” seguido de un guion para formar una suerte de flecha que apunta a la izquierda, <code>&lt;-</code>, éste singo es llamado <strong>operador de asignación</strong> y precisamente asigna contenido a objetos, es decir, con el operador <code>&lt;-</code> creamos un objeto que tendrá determinado contenido. Ve a la sección consola de tu entorno de trabajo e ingresa las siguientes líneas de instrucciones (o simplemente da click en el ícono de copiar que aparece en la esquina superior derecha del cuadro que contiene el código y pégalo en la consola):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Nota: el símbolo de # representa un comentario y no se ejecuta con el código</span></span>
@@ -202,7 +202,7 @@ Figura 1.1: Panel principal
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">+</span><span class="fl">10</span></span></code></pre></div>
 <p>Como es posible identificar, si en una sesión de R se utiliza dos veces el mismo nombre para una variable, se sobrescribe la información asignada a esa variable, es decir, sólo permanece el último valor asignado: <code>x</code> ya no contiene la primera asignación, 3, solamente la última, 15.</p>
-<p>Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: la función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto <code>y</code> es de tipo carácter y su contenido es la expresión “Hello World”.</p>
+<p>Hay dos funciones muy útiles para conocer el tipo de objeto que tenemos en nuestro entorno de trabajo: la función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. La primera indica el tipo de objeto, en tanto, la segunda nos dice el tipo de objeto y su valor. En el siguiente ejemplo puedes ver que el objeto <code>y</code> es de tipo carácter y su contenido es la expresión “Hello World.”</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
@@ -279,7 +279,7 @@ Figura 1.1: Panel principal
 <span><span class="va">x</span></span></code></pre></div>
 <pre><code>## [1] yes no  no  yes no 
 ## Levels: no yes</code></pre>
-<p>Por ejemplo, cuando una variable contiene información sobre el sexo de un individuo es recomendable que en lugar de designar cada caso como 1 y 2 respectivamente, se usen variables categóricas como “masculino” y “femenino”, es decir, es recomendable almacenar la información como factor.</p>
+<p>Por ejemplo, si la variable responde a la pregunta ¿el paciente recibió la vacuna contra COVID-19? y hay dos posibles respuestas, es recomendable que en lugar de designar cada alernativa como 1 o 2 se usen variables categóricas como “Vacuna aplicada” y “Vacuna no aplicada,” es decir, es recomendable almacenar la información como factor.</p>
 </div>
 <div id="data-frame-o-arreglo-de-datos" class="section level4" number="1.2.2.4">
 <h4>
@@ -326,7 +326,7 @@ Figura 1.1: Panel principal
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></span></code></pre></div>
-<p>En la cinta de menú, en la sección ayuda, <em>Help</em>, encontrarás una serie de materiales muy útiles para familiarizarse con los paquetes instalados. Estos materiales reciben el nombre de “hojas de trucos”, <em>Cheatsheet</em>. Se recomienda ampliamente revisar cada uno de ellos. Además, R es un programa con un sin número de entusiastas usuarios y con un amplio soporte técnico por lo que cuando te encuentres con una dificultad para usar algún paquete o función puedes remitite al sitio de <a href="https://www.r-project.org/help.html">Ayuda del R</a>, o bien, a alguno de los repositorios especializados para presentar y resolver dudas como <a href="https://es.stackoverflow.com/">Stackoverflow</a>. Para ilustrar esto, ingresa al sitio de Stackoverflow y coloca en la búsqueda “histograma en R”.</p>
+<p>En la cinta de menú, en la sección ayuda, <em>Help</em>, encontrarás una serie de materiales muy útiles para familiarizarse con los paquetes instalados. Estos materiales reciben el nombre de “hojas de trucos,” <em>Cheatsheet</em>. Se recomienda ampliamente revisar cada uno de ellos. Además, R es un programa con un sin número de entusiastas usuarios y con un amplio soporte técnico por lo que cuando te encuentres con una dificultad para usar algún paquete o función puedes remitite al sitio de <a href="https://www.r-project.org/help.html">Ayuda del R</a>, o bien, a alguno de los repositorios especializados para presentar y resolver dudas como <a href="https://es.stackoverflow.com/">Stackoverflow</a>. Para ilustrar esto, ingresa al sitio de Stackoverflow y coloca en la búsqueda “histograma en R.”</p>
 </div>
 </div>
 <div id="cargar-bases-de-datos" class="section level2" number="1.3">
@@ -351,7 +351,7 @@ Figura 1.1: Panel principal
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div>
 <p>Si deseas aprender cómo usar con detalle los paquetes de la familia <code>tidyverse</code> y elementos básicos de Ciencia de Datos, el libro de Hadley Wickham y Garrett Grolemund, <a href="https://r4ds.had.co.nz/index.html">R for Data Science</a> es una magnífica opción.</p>
-<p>Utilizando el paquete <code>readxl</code> de la familia <code>tidyverse</code> es posible cargar una base de datos en el formato de la popular hoja de cálculo de Microsoft Office. A partir de aquí introduciremos una notación particular al usar una función en R, lo que te permitirá recordar a qué paquete pertenece dicha función. La notación es: “paquete :: función()”, es decir, primero se colocará el nombre del paquete y, separado por dos pares de dos puntos, en el nombre de la función que pertenece a dicho paquete (resulta claro que los paquetes están entonces integrados por múltiples funciones).</p>
+<p>Utilizando el paquete <code>readxl</code> de la familia <code>tidyverse</code> es posible cargar una base de datos en el formato de la popular hoja de cálculo de Microsoft Office. A partir de aquí introduciremos una notación particular al usar una función en R, lo que te permitirá recordar a qué paquete pertenece dicha función. La notación es: “paquete :: función(),” es decir, primero se colocará el nombre del paquete y, separado por dos pares de dos puntos, en el nombre de la función que pertenece a dicho paquete (resulta claro que los paquetes están entonces integrados por múltiples funciones).</p>
 <p>Sigamos los siguientes pasos para cargar la base de datos <a href="https://bit.ly/covid_zmvm"><code>covid_zmvm.xlsx</code></a> que contiene información de los casos positivos y defunciones por COVID19 en los municipios de la Zona Metropolitana del Valle de México durante la primera ola de la pandemia, entre marzo a septiembre de 2020, así como múltiples variables sociodemográficas y económicas.</p>
 <p>Llamemos específicamente al paquete que nos interesa:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
@@ -363,7 +363,7 @@ Figura 1.1: Panel principal
 <p>Para que puedas cargar satisfactoriamente la base, deberás sustituir la ruta por el directorio en el que está almacenado el archivo en tu equipo de cómputo. Una función útil para generar la cadena de texto de la ruta es <code><a href="https://rdrr.io/r/base/file.choose.html">file.choose()</a></code>, del paquete <code>base</code> de R. Lleva a la consola el código:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/file.choose.html">file.choose</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>y presiona <em>enter</em>, verás que aparece un cuadro de diálogo en el que deberás seleccionar el archivo deseado y luego pulsar “abrir”. El resultado aparecerá en tu consola como una cadena de texto entre comillas. Usa esa información para leer la base <code>covid_zmvm</code>.</p>
+<p>y presiona <em>enter</em>, verás que aparece un cuadro de diálogo en el que deberás seleccionar el archivo deseado y luego pulsar “abrir.” El resultado aparecerá en tu consola como una cadena de texto entre comillas. Usa esa información para leer la base <code>covid_zmvm</code>.</p>
 <p>Revisa la ayuda de la función <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> para comprender todos los argumentos con los que puede operar la función y que te permitirán personalizar la carga de la base de datos en caso de que tengas múltiples hojas en el libro de Excel o desees rangos personalizados para importar.</p>
 <hr>
 <p><strong>Ejercicio</strong></p>
@@ -418,12 +418,13 @@ Figura 1.2: Importar datos de excel
 ## [26] "pintegra6_" "pintegra8_" "ppob_5_o_m" "ppob_3_o_m" "ppob_1"    
 ## [31] "ppob_1dorm" "ppob_2dorm" "ppob_3dorm" "pviv_ocu5_" "pviv_ocu7_"
 ## [36] "pviv_ocu9_" "analf"      "sbasc"      "vhac"       "po2sm"     
-## [41] "im"         "gm_2020"    "grad"       "grad_h"     "grad_m"    
-## [46] "poind"      "pocom"      "poss"       "tmind"      "tmcom"     
-## [51] "tmss"       "rmind"      "rmcom"      "rmss"       "den"</code></pre>
+## [41] "idh2015"    "im"         "gm_2020"    "grad"       "grad_h"    
+## [46] "grad_m"     "poind"      "pocom"      "poss"       "tmind"     
+## [51] "tmcom"      "tmss"       "rmind"      "rmcom"      "rmss"      
+## [56] "den"</code></pre>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Estructura de la base de datos</span></span></code></pre></div>
-<pre><code>## tibble [76 × 55] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tibble [76 × 56] (S3: tbl_df/tbl/data.frame)
 ##  $ cvemun    : chr [1:76] "09010" "09012" "09015" "09017" ...
 ##  $ cve_mun   : chr [1:76] "010" "012" "015" "017" ...
 ##  $ nom_mun   : chr [1:76] "Álvaro Obregón" "Tlalpan" "Cuauhtémoc" "Venustiano Carranza" ...
@@ -464,6 +465,7 @@ Figura 1.2: Importar datos de excel
 ##  $ sbasc     : num [1:76] 19 18.2 13.5 16.9 20.3 ...
 ##  $ vhac      : num [1:76] 15.25 15.19 9.42 14.43 18.3 ...
 ##  $ po2sm     : num [1:76] 49.3 61.2 41.4 57.2 65.4 ...
+##  $ idh2015   : num [1:76] 0.815 0.832 0.854 0.826 0.784 0.842 0.868 0.812 0.812 0.888 ...
 ##  $ im        : num [1:76] 60.4 59.5 61.3 60.3 59.3 ...
 ##  $ gm_2020   : chr [1:76] "Muy Bajo" "Muy Bajo" "Muy Bajo" "Muy Bajo" ...
 ##  $ grad      : num [1:76] 11.3 11.5 12.4 11.5 10.5 ...
@@ -481,7 +483,7 @@ Figura 1.2: Importar datos de excel
 ##  $ den       : num [1:76] 7895 2255 16786 13104 4575 ...</code></pre>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Dimensiones de la base</span></span></code></pre></div>
-<pre><code>## [1] 76 55</code></pre>
+<pre><code>## [1] 76 56</code></pre>
 <p>Recuerda la notación que mencionamos antes, “paquete::función”; además, si el paquete está cargado, no es necesario especificar su nombre al usar la función; al arrancar cada sesión de R, un conjunto de paquetes se cargan de forma automática, dichos paquetes aparecen marcados con una palomita, <span class="math inline">\(\checkmark\)</span>, en la pestaña <em>Packages</em> en la sección de archivo.</p>
 <p>Ahora bien, si deseas ver la base completa puedes llamarla a una nueva pestaña que se visualizará en la sección de fuente. Usa la siguiente instrucción:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
@@ -491,7 +493,7 @@ Figura 1.2: Importar datos de excel
 <p>Alternativamente, puedes llamar la base para que aparezca en la consola, lo que no siempre es recomendable si la base es muy grande.</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 76 × 55
+<pre><code>## # A tibble: 76 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 09010  010     Álvaro Obre… 09      Ciudad… CDMX    Valle…  9.01  96.2 759137
@@ -504,7 +506,7 @@ Figura 1.2: Importar datos de excel
 ##  8 09013  013     Xochimilco   09      Ciudad… CDMX    Valle…  9.01 118.  442178
 ##  9 09004  004     Cuajimalpa … 09      Ciudad… CDMX    Valle…  9.01  71.2 217686
 ## 10 09016  016     Miguel Hida… 09      Ciudad… CDMX    Valle…  9.01  46.4 414470
-## # … with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 66 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
@@ -514,7 +516,7 @@ Figura 1.2: Importar datos de excel
 <p>En su lugar, podrías preferir ver en la consola sólo los últimos y primeros casos:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para los primeros casos</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 × 55
+<pre><code>## # A tibble: 6 × 56
 ##   cvemun cve_mun nom_mun       cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 09010  010     Álvaro Obreg… 09      Ciudad… CDMX    Valle…  9.01  96.2 759137
@@ -523,7 +525,7 @@ Figura 1.2: Importar datos de excel
 ## 4 09017  017     Venustiano C… 09      Ciudad… CDMX    Valle…  9.01  33.9 443704
 ## 5 09011  011     Tláhuac       09      Ciudad… CDMX    Valle…  9.01  85.8 392313
 ## 6 09002  002     Azcapotzalco  09      Ciudad… CDMX    Valle…  9.01  33.5 432205
-## # … with 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
+## # … with 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
 ## #   defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;, def_hab &lt;dbl&gt;, ss &lt;dbl&gt;,
 ## #   ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;, ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;,
 ## #   ocviv &lt;dbl&gt;, occu &lt;dbl&gt;, pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;,
@@ -532,7 +534,7 @@ Figura 1.2: Importar datos de excel
 ## #   pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, analf &lt;dbl&gt;, sbasc &lt;dbl&gt;, vhac &lt;dbl&gt;, …</code></pre>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para los últimos casos</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 × 55
+<pre><code>## # A tibble: 6 × 56
 ##   cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm    ext  pob20
 ##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 15120  120     Zumpango     15      México  Mex.    Valle…  9.01 224.   2.80e5
@@ -541,7 +543,7 @@ Figura 1.2: Importar datos de excel
 ## 4 15125  125     Tonanitla    15      México  Mex.    Valle…  9.01   9.04 1.49e4
 ## 5 15058  058     Nezahualcóy… 15      México  Mex.    Valle…  9.01  63.3  1.08e6
 ## 6 09005  005     Gustavo A. … 09      Ciudad… CDMX    Valle…  9.01  87.9  1.17e6
-## # … with 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
+## # … with 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
 ## #   defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;, def_hab &lt;dbl&gt;, ss &lt;dbl&gt;,
 ## #   ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;, ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;,
 ## #   ocviv &lt;dbl&gt;, occu &lt;dbl&gt;, pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;,
@@ -551,7 +553,7 @@ Figura 1.2: Importar datos de excel
 <p>¿Qué tan grande es la base de datos? Si bien ya la función <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> nos brindó información sobre la estructura de la base, puedes conocer el número de filas y columnas que componen tu arreglo de datos con las siguientes funciones:</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para conocer el número de columnas</span></span></code></pre></div>
-<pre><code>## [1] 55</code></pre>
+<pre><code>## [1] 56</code></pre>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span> <span class="co">#Para conocer el número de filas</span></span></code></pre></div>
 <pre><code>## [1] 76</code></pre>
@@ -561,10 +563,10 @@ Figura 1.2: Importar datos de excel
 <li>¿Habrá alguna relación entre el número de casos positivos por cada mil habitantes, <code>pos_hab</code>, o muertes por cada mil habitantes, <code>def_hab</code>, con el nivel de estudios promedio de la población por municipio?</li>
 <li>Si esta relación existe, ¿es más intensa entre las muertes o los casos positivos?</li>
 </ul>
-<p>Para responder a esta pregunta podemos recurrir a la construcción de diagramas de dispersión. La elaboración de gráficas dentro de <code>tidyverse</code> corre a cargo del paquete <code>ggplot2</code>, una potente librería para la representación visual de información. Este paquete se basa en lo que se denomina “gramática de gráficas” que no es otra cosa que un conjunto de reglas coherentes con base en las cuales se elaboran los gráficos (<span class="citation"><a href="references.html#ref-Wickham2016" role="doc-biblioref">Wickham y Grolemund</a> (<a href="references.html#ref-Wickham2016" role="doc-biblioref">2016</a>)</span>).</p>
-<p>La construcción de gráficas con <code>ggplot2</code> se hace a partir de una suerte de “capas” o “enunciados”. Cada enunciado constituye una parte de la gráfica. Según la hoja de trucos del paquete (que puedes consultar desde la barra de menú en la opción Help/CheatSheet):</p>
+<p>Para responder a esta pregunta podemos recurrir a la construcción de diagramas de dispersión. La elaboración de gráficas dentro de <code>tidyverse</code> corre a cargo del paquete <code>ggplot2</code>, una potente librería para la representación visual de información. Este paquete se basa en lo que se denomina “gramática de gráficas” que no es otra cosa que un conjunto de reglas coherentes con base en las cuales se elaboran los gráficos <span class="citation">(<a href="references.html#ref-Wickham2016" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span>.</p>
+<p>La construcción de gráficas con <code>ggplot2</code> se hace a partir de una suerte de “capas” o “enunciados.” Cada enunciado constituye una parte de la gráfica. Según la hoja de trucos del paquete (que puedes consultar desde la barra de menú en la opción Help/CheatSheet):</p>
 <blockquote>
-<p>ggplot2 se basa en la gramática de los gráficos, la idea de que puedes construir cada gráfico a partir de los mismos componentes: un conjunto de datos, un sistema de coordenadas y “geoms”, es decir, marcas visuales que representan puntos de datos.</p>
+<p>ggplot2 se basa en la gramática de los gráficos, la idea de que puedes construir cada gráfico a partir de los mismos componentes: un conjunto de datos, un sistema de coordenadas y “geoms,” es decir, marcas visuales que representan puntos de datos.</p>
 </blockquote>
 <p>Asi pues, se requieren tres elementos para la construcción de una gráfica con <code>ggplot2</code>: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base <code>covid_zmvm</code> pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
@@ -572,7 +574,7 @@ Figura 1.2: Importar datos de excel
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
-<p>Tenemos pues dos enunciados o “capas”. La primera corresponde a la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, <code>geom_</code> cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en <code>ggplot2</code> aparecen en el cuadro 1.2:</p>
+<p>Tenemos pues dos enunciados o “capas.” La primera corresponde a la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, <code>geom_</code> cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en <code>ggplot2</code> aparecen en el cuadro 1.2:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>Cuadro 1.2</caption>
 <thead><tr class="header">
@@ -725,6 +727,9 @@ Figura 1.2: Importar datos de excel
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Indicando el número de columna según el lugar que ocupa en la base</span></span>
 <span><span class="fu">GGally</span><span class="fu">::</span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">41</span>,<span class="fl">43</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-46-2.png" width="672"></div>
 <p>La matriz de diagramas de dispersión construida con <code>ggpairs</code> es, desde mi personal punto de vista, no sólo muy elegante, sino que ofrece elementos informativos en el gráfico que antes no teníamos, tales como el coeficiente de correlación lineal y su nivel de significancia.</p>
 <p>Antes de pasar a tratar otro elemento, hay que decir que RStudio permite exportar las gráficas hechas, tanto en diversos formatos de imagen (jpg, png, tiff) como en PDF.</p>
@@ -744,11 +749,11 @@ Figura 1.2: Importar datos de excel
 <h3>
 <span class="header-section-number">1.5.1</span> Seleccionar variables<a class="anchor" aria-label="anchor" href="#seleccionar-variables"><i class="fas fa-link"></i></a>
 </h3>
-<p>Tareas relacionadas con la preparación y manipulación de datos, que en una hoja de cálculo como Excel de Office o Calc de LibreOffice, son rutinarias y muy sencillas, a veces en R pueden significar un dolor de cabeza. No obstante, dentro de los paquetes de la familia <code>tidyverse</code> encontramos <code>dplyr</code>. Este paquete brinda herramientas de manipulación de datos basadas en “gramática”, que no es otra cosa que funciones (“verbos”) que permiten seleccionar o filtrar elementos en una base de datos, o bien, agrupar y crear nuevas variables.</p>
+<p>Tareas relacionadas con la preparación y manipulación de datos, que en una hoja de cálculo como Excel de Office o Calc de LibreOffice, son rutinarias y muy sencillas, a veces en R pueden significar un dolor de cabeza. No obstante, dentro de los paquetes de la familia <code>tidyverse</code> encontramos <code>dplyr</code>. Este paquete brinda herramientas de manipulación de datos basadas en “gramática,” que no es otra cosa que funciones (“verbos”) que permiten seleccionar o filtrar elementos en una base de datos, o bien, agrupar y crear nuevas variables.</p>
 <p>Si deseas profundizar en el conocimiento de este potente paquete consulta la <a href="https://dplyr.tidyverse.org/">Introducción al paquete <code>dplyr</code></a>, o bien, su <a href="http://127.0.0.1:28602/library/dplyr/doc/dplyr.html">Viñeta de ayuda</a>.</p>
-<p>La base de datos que cargamos contiene 55 columnas, es decir, 55 variables. Quizá para su análisis no te sean de interés todas, por lo que querrías generar una base de datos más compacta mediante la <strong>selección</strong> de algunas que son de utilidad. Para llevar a cabo dicha tarea echaremos mano de la función <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, pero antes de hacerlo, es necesario introducir el operador “tubería”, <em>pipe</em> (<code>%&gt;%</code>).</p>
+<p>La base de datos que cargamos contiene 55 columnas, es decir, 55 variables. Quizá para su análisis no te sean de interés todas, por lo que querrías generar una base de datos más compacta mediante la <strong>selección</strong> de algunas que son de utilidad. Para llevar a cabo dicha tarea echaremos mano de la función <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, pero antes de hacerlo, es necesario introducir el operador “tubería,” <em>pipe</em> (<code>%&gt;%</code>).</p>
 <p>Este operador sirve para indicar cada fase del proceso por el que un objeto es tratado a través de la aplicación de diferentes funciones u operaciones. Por ejemplo, queremos que la base <code>covid_zmvm</code> “pase” por un proceso que consiste en la selección de sólo algunas variables. Comencemos usando el “verbo” seleccionar, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, para una sola variable, por ejemplo <code>pos_hab</code>:</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pos_hab</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 1
 ##    pos_hab
@@ -765,7 +770,7 @@ Figura 1.2: Importar datos de excel
 ## 10    13.7
 ## # … with 66 more rows</code></pre>
 <p>La instrucción anterior es equivalente a escribir lo siguiente:</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">covid_zmvm</span>,<span class="va">pos_hab</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 1
 ##    pos_hab
@@ -782,7 +787,7 @@ Figura 1.2: Importar datos de excel
 ## 10    13.7
 ## # … with 66 more rows</code></pre>
 <p>Así, usar el operador tubería permite no sólo ahorrar la escritura de algunos argumentos, sino simplificar la forma en que las instrucciones dadas a R son leídas por un ser humano. Veamos cómo seleccionar ahora, por ejemplo, tres variables: la clave de municipio (<code>cvemun</code>), los casos positivos (<code>pos_hab</code>) y el grado de marginación (<code>gm_2020</code>):</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">pos_hab</span>,<span class="va">gm_2020</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 3
 ##    cvemun pos_hab gm_2020 
@@ -799,9 +804,9 @@ Figura 1.2: Importar datos de excel
 ## 10 09016     13.7 Muy Bajo
 ## # … with 66 more rows</code></pre>
 <p>Ahora, imagina que queremos todas las variables excepto el nombre de la Zona Metropolitana, <code>nom_zm</code>. Sería ocioso colocar todos los nombres de las variables menos el citado. Para hacer esto más eficiente es necesario introducir solamente un signo de menos (<code>-</code>) antes del nombre de la variable, para de esta sencilla forma seleccionar todas las variables menos <code>nom_zm</code>.</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">nom_zm</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 76 × 54
+<pre><code>## # A tibble: 76 × 55
 ##    cvemun cve_mun nom_mun     cve_ent nom_ent nom_abr   cvm   ext  pob20 pob20_h
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 09010  010     Álvaro Obr… 09      Ciudad… CDMX     9.01  96.2 759137  361007
@@ -814,7 +819,7 @@ Figura 1.2: Importar datos de excel
 ##  8 09013  013     Xochimilco  09      Ciudad… CDMX     9.01 118.  442178  215452
 ##  9 09004  004     Cuajimalpa… 09      Ciudad… CDMX     9.01  71.2 217686  104149
 ## 10 09016  016     Miguel Hid… 09      Ciudad… CDMX     9.01  46.4 414470  195467
-## # … with 66 more rows, and 44 more variables: pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
+## # … with 66 more rows, and 45 more variables: pob20_m &lt;dbl&gt;, positivos &lt;dbl&gt;,
 ## #   defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;, def_hab &lt;dbl&gt;, ss &lt;dbl&gt;,
 ## #   ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;, ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;,
 ## #   ocviv &lt;dbl&gt;, occu &lt;dbl&gt;, pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;,
@@ -822,7 +827,7 @@ Figura 1.2: Importar datos de excel
 ## #   ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;, ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;,
 ## #   pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, analf &lt;dbl&gt;, sbasc &lt;dbl&gt;, vhac &lt;dbl&gt;, …</code></pre>
 <p>En lugar de usar los nombres de las variables, puedes recurrir al número de columna en la que se hallan, contando a partir del 1. Por ejemplo, <code>nom_mun</code> es la columna 3 y <code>pos_hab</code> es la columna 16, entonces podríamos escribir:</p>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 2
 ##    nom_mun               pos_hab
@@ -839,7 +844,7 @@ Figura 1.2: Importar datos de excel
 ## 10 Miguel Hidalgo           13.7
 ## # … with 66 more rows</code></pre>
 <p>Y si es de nuestro interés seleccionar un número consecutivo de columnas, podemos servirnos de:</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 10
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
@@ -864,7 +869,7 @@ Figura 1.2: Importar datos de excel
 <h3>
 <span class="header-section-number">1.5.2</span> Filtrar (seleccionar casos)<a class="anchor" aria-label="anchor" href="#filtrar-seleccionar-casos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro “verbo”, es decir, de la función filtrar, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor “México” en la variable <code>nom_ent</code> (nombre de entidad), o bien, tener el valor “15” en el de <code>cve_ent</code> (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.3:</p>
+<p>Si ahora lo que te interesa es seleccionar filas o casos en lugar de columnas, hay que echar mano de otro “verbo,” es decir, de la función filtrar, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Por ejemplo, imagina que deseamos seleccionar sólo los municipios del Estado de México. Estos municipios cumplen con la condición de que todos ellos tienen el valor “México” en la variable <code>nom_ent</code> (nombre de entidad), o bien, tener el valor “15” en el de <code>cve_ent</code> (clave de entidad). Para poder hacer un uso eficiente de la función de filtrado es necesario introducir también otro tipo de operadores, los llamados operadores lógicos, que aparecen en el cuadro 1.3:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>Cuadro 1.3</caption>
 <thead><tr class="header">
@@ -907,9 +912,9 @@ Figura 1.2: Importar datos de excel
 </tbody>
 </table></div>
 <p>Entonces, para usar la función <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> y tomando como base la información previa:</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">==</span><span class="st">"15"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 59 × 55
+<pre><code>## # A tibble: 59 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 15002  002     Acolman      15      México  Mex.    Valle…  9.01  83.9 171507
@@ -922,17 +927,17 @@ Figura 1.2: Importar datos de excel
 ##  8 15017  017     Ayapango     15      México  Mex.    Valle…  9.01  36.4  10053
 ##  9 15020  020     Coacalco de… 15      México  Mex.    Valle…  9.01  35.1 293444
 ## 10 15022  022     Cocotitlán   15      México  Mex.    Valle…  9.01  15.0  15107
-## # … with 49 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 49 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
 ## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
 ## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
 ## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, …</code></pre>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#O bien</span></span>
 <span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_ent</span><span class="op">==</span><span class="st">"México"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 59 × 55
+<pre><code>## # A tibble: 59 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 15002  002     Acolman      15      México  Mex.    Valle…  9.01  83.9 171507
@@ -945,17 +950,17 @@ Figura 1.2: Importar datos de excel
 ##  8 15017  017     Ayapango     15      México  Mex.    Valle…  9.01  36.4  10053
 ##  9 15020  020     Coacalco de… 15      México  Mex.    Valle…  9.01  35.1 293444
 ## 10 15022  022     Cocotitlán   15      México  Mex.    Valle…  9.01  15.0  15107
-## # … with 49 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 49 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
 ## #   pintegra4_ &lt;dbl&gt;, pintegra6_ &lt;dbl&gt;, pintegra8_ &lt;dbl&gt;, ppob_5_o_m &lt;dbl&gt;,
 ## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
 ## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, …</code></pre>
-<p>Para hacer una selección de dos entidades, incluiremos dos expresiones en una misma consulta echando mano del operador lógico “o”, identificado con el signo <code>|</code>:</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<p>Para hacer una selección de dos entidades, incluiremos dos expresiones en una misma consulta echando mano del operador lógico “o,” identificado con el signo <code>|</code>:</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">==</span><span class="st">"09"</span><span class="op">|</span><span class="va">cve_ent</span><span class="op">==</span><span class="st">"15"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 75 × 55
+<pre><code>## # A tibble: 75 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 09010  010     Álvaro Obre… 09      Ciudad… CDMX    Valle…  9.01  96.2 759137
@@ -968,7 +973,7 @@ Figura 1.2: Importar datos de excel
 ##  8 09013  013     Xochimilco   09      Ciudad… CDMX    Valle…  9.01 118.  442178
 ##  9 09004  004     Cuajimalpa … 09      Ciudad… CDMX    Valle…  9.01  71.2 217686
 ## 10 09016  016     Miguel Hida… 09      Ciudad… CDMX    Valle…  9.01  46.4 414470
-## # … with 65 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 65 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
@@ -990,9 +995,9 @@ Figura 1.2: Importar datos de excel
 <span class="header-section-number">1.5.3</span> Ordenar<a class="anchor" aria-label="anchor" href="#ordenar"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una operación útil, cuando se analiza información, tiene que ver con ordenar la base de datos con arreglo al valor de una variable. En R con <code>dplyr</code> de <code>tidyverse</code> esto se hace con la función <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, por ejemplo:</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cvemun</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 76 × 55
+<pre><code>## # A tibble: 76 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 09002  002     Azcapotzalco 09      Ciudad… CDMX    Valle…  9.01  33.5 4.32e5
@@ -1005,7 +1010,7 @@ Figura 1.2: Importar datos de excel
 ##  8 09009  009     Milpa Alta   09      Ciudad… CDMX    Valle…  9.01 298.  1.53e5
 ##  9 09010  010     Álvaro Obre… 09      Ciudad… CDMX    Valle…  9.01  96.2 7.59e5
 ## 10 09011  011     Tláhuac      09      Ciudad… CDMX    Valle…  9.01  85.8 3.92e5
-## # … with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 66 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
@@ -1013,9 +1018,9 @@ Figura 1.2: Importar datos de excel
 ## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
 ## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, …</code></pre>
 <p>El resultado de la función anterior ordena nuestra base de menor a mayor, con base en la clave municipal. Además, es posible incluir varios criterios de ordenación, por ejemplo, si tuvieras los campos año, mes y día podría ordenarse conforme al calendario. En el caso del ejemplo siguiente, primero se ordena con arreglo a la clave de entidad y luego con respecto a la clave municipal y luego por la extensión territorial por cada mil habitantes:</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">ext</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 76 × 55
+<pre><code>## # A tibble: 76 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 09002  002     Azcapotzalco 09      Ciudad… CDMX    Valle…  9.01  33.5 4.32e5
@@ -1028,7 +1033,7 @@ Figura 1.2: Importar datos de excel
 ##  8 09009  009     Milpa Alta   09      Ciudad… CDMX    Valle…  9.01 298.  1.53e5
 ##  9 09010  010     Álvaro Obre… 09      Ciudad… CDMX    Valle…  9.01  96.2 7.59e5
 ## 10 09011  011     Tláhuac      09      Ciudad… CDMX    Valle…  9.01  85.8 3.92e5
-## # … with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 66 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
@@ -1036,9 +1041,9 @@ Figura 1.2: Importar datos de excel
 ## #   ppob_3_o_m &lt;dbl&gt;, ppob_1 &lt;dbl&gt;, ppob_1dorm &lt;dbl&gt;, ppob_2dorm &lt;dbl&gt;,
 ## #   ppob_3dorm &lt;dbl&gt;, pviv_ocu5_ &lt;dbl&gt;, pviv_ocu7_ &lt;dbl&gt;, pviv_ocu9_ &lt;dbl&gt;, …</code></pre>
 <p>Si deseas ordenar de forma descendente, es decir, de mayor a menor hay que introducir una función adicional, <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code>, por ejemplo:</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">ext</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 76 × 55
+<pre><code>## # A tibble: 76 × 56
 ##    cvemun cve_mun nom_mun      cve_ent nom_ent nom_abr nom_zm   cvm   ext  pob20
 ##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ##  1 09002  002     Azcapotzalco 09      Ciudad… CDMX    Valle…  9.01  33.5 4.32e5
@@ -1051,7 +1056,7 @@ Figura 1.2: Importar datos de excel
 ##  8 09009  009     Milpa Alta   09      Ciudad… CDMX    Valle…  9.01 298.  1.53e5
 ##  9 09010  010     Álvaro Obre… 09      Ciudad… CDMX    Valle…  9.01  96.2 7.59e5
 ## 10 09011  011     Tláhuac      09      Ciudad… CDMX    Valle…  9.01  85.8 3.92e5
-## # … with 66 more rows, and 45 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
+## # … with 66 more rows, and 46 more variables: pob20_h &lt;dbl&gt;, pob20_m &lt;dbl&gt;,
 ## #   positivos &lt;dbl&gt;, defuncione &lt;dbl&gt;, pos_mil &lt;dbl&gt;, pos_hab &lt;dbl&gt;,
 ## #   def_hab &lt;dbl&gt;, ss &lt;dbl&gt;, ppob_sines &lt;dbl&gt;, ppob_basi &lt;dbl&gt;,
 ## #   ppob_media &lt;dbl&gt;, ppob_sup &lt;dbl&gt;, ocviv &lt;dbl&gt;, occu &lt;dbl&gt;,
@@ -1072,7 +1077,7 @@ Figura 1.2: Importar datos de excel
 <span class="header-section-number">1.5.4</span> Crear nuevas variables<a class="anchor" aria-label="anchor" href="#crear-nuevas-variables"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para añadir una nueva variable a partir de las existentes recurrimos a la función <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Por ejemplo, calculemos la variable densidad de casos positivos, es decir, número de casos positivos dividido entre la extensión territorial, a dicha variable la llamaremos <code>pos_den</code>. Pero antes, generemos una nueva base de datos que sólo contenga algunas de las variables de la base original:</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">nom_mun</span>,<span class="va">positivos</span>,<span class="va">pos_hab</span>,<span class="va">ext</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pos_den<span class="op">=</span><span class="va">positivos</span><span class="op">/</span><span class="va">ext</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 6
@@ -1090,7 +1095,7 @@ Figura 1.2: Importar datos de excel
 ## 10 09016  Miguel Hidalgo             5669    13.7  46.4   122. 
 ## # … with 66 more rows</code></pre>
 <p>Notarás como la nueva variable aparece al final de la base. Vamos a intentar unir varios de los elementos que hemos aprendido hasta este punto para que veas el potencial de uso de la tubería. Vamos a crear una nueva variable, la misma que hace un momento, luego, tomaremos la base que contiene la nueva variable y construiremos con ella un diagrama de dispersión con la nueva variable y el número de defunciones por cada mil habitantes:</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pos_den<span class="op">=</span><span class="va">positivos</span><span class="op">/</span><span class="va">ext</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
@@ -1107,7 +1112,7 @@ Figura 1.2: Importar datos de excel
 </ol>
 <hr>
 <p>Quizá lo que te interese sea sólo quedarte con algunas de las variables originales y las nuevas variables creadas a partir de la información de la variable original. Para ello es útil la función <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute()</a></code>:</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span><span class="va">cvemun</span>,<span class="va">nom_mun</span>,<span class="va">pos_hab</span>,<span class="va">def_hab</span>,pos_den<span class="op">=</span><span class="va">positivos</span><span class="op">/</span><span class="va">ext</span>,def_den<span class="op">=</span><span class="va">defuncione</span><span class="op">/</span><span class="va">ext</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 76 × 6
@@ -1131,7 +1136,7 @@ Figura 1.2: Importar datos de excel
 <span class="header-section-number">1.5.5</span> Resúmenes de información y grupos<a class="anchor" aria-label="anchor" href="#res%C3%BAmenes-de-informaci%C3%B3n-y-grupos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Quizá una de las funciones más potentes y sencillas que tiene <code>dplyr</code> es la función de resumen (<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>). Veamos cómo opera. Imagina que deseas un promedio del número de casos que terminaron en muerte:</p>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>promedio_def<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">def_hab</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
@@ -1139,7 +1144,7 @@ Figura 1.2: Importar datos de excel
 ##          &lt;dbl&gt;
 ## 1        0.683</code></pre>
 <p>Esto no es particularmente útil si se le compara con la función del paquete base de R, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, pero si la combinamos con la función de agrupamiento, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> la situación cambia. Imagina que queremos el promedio de casos positivos por cada mil habitantes para cada conjunto de municipios de las tres entidades que componen el Valle de México:</p>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>promedio_def<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">def_hab</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, promedio_pos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1150,7 +1155,7 @@ Figura 1.2: Importar datos de excel
 ## 2 13             0.790         5.88
 ## 3 15             0.572         4.57</code></pre>
 <p>El en segmento de código anterior primero se agrupa la información con arreglo al criterio de clave de entidad, <code>cve_ent</code>, y luego, para cada grupo, calcula el resultado especificado: un promedio. Dentro de la función de resumen, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, se puede llevar a cabo no sólo múltiples operaciones sino que estas pueden ser de diferente naturaleza, incluso por ejemplo una suma o una cuenta:</p>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cve_ent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>pob_tot<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pob20</span><span class="op">)</span>,im_medio<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">im</span><span class="op">)</span>,tot_mun<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1186,7 +1191,7 @@ Figura 1.2: Importar datos de excel
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2022-11-16.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
