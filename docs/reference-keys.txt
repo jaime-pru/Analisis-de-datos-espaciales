@@ -7,8 +7,8 @@ fig:unnamed-chunk-141
 fig:unnamed-chunk-152
 fig:unnamed-chunk-156
 fig:unnamed-chunk-174
-fig:unnamed-chunk-175
-fig:unnamed-chunk-176
+fig:unnamed-chunk-177
+fig:unnamed-chunk-178
 r-una-introducción-desde-la-exploración-de-información
 r-lenguaje-de-programación-y-plataforma-de-análisis
 códigos-objetos-paquetes
@@ -83,8 +83,13 @@ algunos-elementos-de-cuidado-con-las-regresiones-lineales
 regresión-lineal-múltiple-una-propuesta-de-modelo
 significancia-conjunta-de-los-coeficientes-calculados
 análisis-espacial-ii-modelos-econométricos-espaciales
+econometría-espacial
 diversas-alternativas-de-modelos-econométricos
+los-modelos-econométricos-de-error-espacial-y-rezago-espacial
+secuencia-general-para-la-estimación
 modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-méxico
-modelos-espaciales
+recapitulación-la-necesidad-de-un-modelo-espacial
+estimación-de-los-modelos-espaciales
 modelo-de-rezago-espacial
 modelo-de-error-espacial
+reflexiones-finales
