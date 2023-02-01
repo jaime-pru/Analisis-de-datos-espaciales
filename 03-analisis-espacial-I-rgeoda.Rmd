@@ -21,7 +21,7 @@ tmap::tm_shape(base) +
   tm_text("nom_mun", ymod = 0, offset(0.70), )
 ```
 
-:Figura 3.1. Índice de desarrollo humano para los municipios de la ZMVM, 2015
+Figura 3.1. Índice de desarrollo humano para los municipios de la ZMVM, 2015
 
 ¿Notas algún patrón? ¿Detectas cómo los municipios con un valor alto del índice de desarrollo (Benito Juárez, Alvaro Obregón, Miguel Hidalgo, Coyoacán y otros) se encuentran _agrupados_ en la parte centro-sur de la región considerada? Dicho patrón ilustra la posible presencia de *autocorrelación espacial*, es decir, que los valores de un indicador en una zona estén rodeados por valores muy semejantes o nada semejantes: en ambos casos decimos que hay autocorrelación. Cuando tratamos con datos de una variable georeferenciada hay altas probabilidades de que dicha variable esté autocorrelacionada y esto hace necesario que sean necesarias ciertas técnicas para su tratamiento, es decir, para su representación y modelación. En este capítulo trataremos con el concepto clave de autocorrelación espacial y veremos a través de que instrumentos es posible medirla para, más adelante, incorporar su riqueza informativa a una explicación sustantiva de los fenómenos socioterritoriales analizados.
 
@@ -108,7 +108,7 @@ install.packages(c("spdep", "rgdal"))
 
 Primero, llamemos las librerías y carguemos la base de datos:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(rgdal)
 library(spdep)
 covid_zmvm <-rgdal::readOGR("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
