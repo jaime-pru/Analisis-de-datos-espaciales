@@ -68,9 +68,7 @@ This book is, to some extent, an effort to compile and systematize multiple mate
 
 I believe that this is how knowledge should always be: free, open and collaborative, like the software that is used here. Thus, this project is a living one, in permanent construction and modification, so all comments and observations will be welcome, both from the students who have used it, and from the teachers who consider it appropriate to include it in their reference materials.
 
-A guide on how to contribute to this project can be found in the GitHub repository, [here](https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/Contributing.md).
-
-All comments are welcome.
+A guide on how to contribute to this project can be found in the GitHub repository, [here](https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/Contributing.md), but the interested people could contact directly via e-mail (japv@azc.uam.mx) or even in social media on [twitter](https://twitter.com/jaime_pru). All comments are welcome.
 
 # Acknowledgements
 
