@@ -298,7 +298,7 @@ summary(modelo_mco)
 
 Una vez que hemos estimado el modelo lineal a través del MCO, hemos completado el paso i de nuestra secuencia general. Debemos ahora evaluar la presencia de autocorrelación en los térinos de error del modelo, es decir, el paso ii. De nueva cuenta insistimos en la diferencia entre evaluar la autocorrelación sobre la variable de interés (lo que hicimos hace un momento con la I de Moran y su diagrama sobre la variable `pos_hab`) y evaluar la autocorrelación sobre los errores del modelo, lo que haremos en este momento.
 
-Verificamos la presencia de autocorrelación espacial de los errores a través de la I de Moran, lo que nos permitirá responder a la pregunta ¿los errores de nuestro modelo están correlacionados? Para ello, nos servimos de la función `moran.test()` del paquete `spdep`. Como recordarás, la función requiere dos argumentos: el vector número a evaluar (en este caso los errores del modelo MCO) y la estructura espacial.
+Verificamos la presencia de autocorrelación espacial de los errores a través de la I de Moran, lo que nos permitirá responder a la pregunta _¿los errores de nuestro modelo están correlacionados?_ Para ello, nos servimos de la función `moran.test()` del paquete `spdep`. Como recordarás, la función requiere dos argumentos: el vector número a evaluar (en este caso los errores del modelo MCO) y la estructura espacial.
 
 En el capítulo relativo al análisis exploratorio de datos espaciales vimos que la definición de una estructura espacial atraviesa por la construcción de una matriz de pesos espaciales, recuerda que a través de la función `poly2nb()` del paquete `spdep` construimos nuestra lista de vecinos con base en los criterios de contigüidad de tipo reina (`queen=TRUE`):
 
