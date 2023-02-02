@@ -83,6 +83,7 @@ significancia-individual-de-los-coeficientes-obtenidos
 algunos-elementos-de-cuidado-con-las-regresiones-lineales
 regresión-lineal-múltiple-una-propuesta-de-modelo
 significancia-conjunta-de-los-coeficientes-calculados
+alcance-de-la-regresión-y-en-análisis-causal
 análisis-espacial-ii-modelos-econométricos-espaciales
 econometría-espacial
 diversas-alternativas-de-modelos-econométricos
