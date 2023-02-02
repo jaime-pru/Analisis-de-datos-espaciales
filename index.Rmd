@@ -16,7 +16,7 @@ fontfamily: times
 classoption: oneside
 openright: yes
 link-citations: yes
-leng: es
+
 ---
 ```{r setup, include=FALSE}
 chooseCRANmirror(graphics=FALSE, ind=1)
@@ -28,6 +28,15 @@ Análisis de datos espaciales con R {-}
 
 <div style="text-align: justify">
 <img src="Portada.png" width="300" height="425" alt="Portada del libro electrónico 'Análisis de datos espaciales con R'" align="right" style="margin: 0 1em 0 1em" /></a>
+
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.es">
+  <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
+</a>
+<br />
+Este obra está bajo una
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.es">
+  Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional
+</a>.
   
 # Prólogo {-}
 <div style="text-align: justify">
