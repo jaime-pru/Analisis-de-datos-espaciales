@@ -26,7 +26,7 @@ u &=\lambda Wu+\epsilon  \\
 \end{aligned}
 $$
 
-Siguiendo a Elhorst [@Elhorst2006: 10], se le denomina modelo general justamente por le hecho de que incorporara todos los tipos de efectos espaciales posibles. Veamos con cuidado la expresión anterior para distinguir cada uno de sus términos y ver con claridad los diferentes tipos de efectos espaciales.
+Siguiendo a Elhorst [-@Elhorst2006: 10], se le denomina modelo general justamente por le hecho de que incorporara todos los tipos de efectos espaciales posibles. Veamos con cuidado la expresión anterior para distinguir cada uno de sus términos y ver con claridad los diferentes tipos de efectos espaciales.
 
 El término identificado como $Y$ no es otro que el vector que contiene la variable dependiente de nuestro modelo, por ejemplo, el número de casos positivos por COVID19; $X$ corresponde a la matriz de variables independientes que pueden ser, por ejemplo, el acceso a los servicios de salud y la proporción promedio de ocupantes por vivienda; el término $\beta$ corresponde al conjunto de parámetros a ser estimados, además, seguro que te resulta familiar el término $W$ que no es otra cosa que la estructura espacial definida a partir de la matriz de pesos espaciales; finalmente, listemos los diferentes efectos espaciales que aparecen en la expresión:
 
@@ -119,11 +119,7 @@ Ha &: \rho\not=0 \\
 \end {aligned}
 $$
 
-<<<<<<< HEAD
 Según lo que nos indique el multiplicador de Lagrange y su valor-p asociado, a determinado nivel de significancia, rechazar la hipótesis nula significará que, entre el modelo lineal y el modelo de rezago, el mejor modelo es un modelo de rezago espacial.
-=======
-El estadístico usado es el multiplicador de Lagrange, que sigue una distribución $\chi^2$ con un grado de libertad[^6]. Así, dado determinado nivel de significancia, rechazar la hipótesis nula significará que el mejor modelo es un modelo de rezago espacial. De forma semejante, para evaluar la alternativa del modelo de error recuerda que:
->>>>>>> 6d2bf35c51da5d42ee94ac1d5a1e6c9a2fbaa8e7
 
 En esta misma línea de razonamiento, del modelo de error nos interesa saber si $\lambda$ es diferente de 0 y, por tanto, si juega algún papel relevante en la relación propuesta. Recuerda que el modelo de error luce como:
 
@@ -208,10 +204,16 @@ Por otro lado, el interés central de este libro ha sido brindar algunas herrami
 
 Por ejemplo, ¿hay algún patrón en cómo se dieron los casos positivos por COVID19 en el Valle de México? Para tener una primera idea de esto, podemos construir un mapa, como los expuestos en el capítulo 2, cuando tratamos con los mapas de coropletas:
 
-```{r echo=FALSE}
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tmap)
 library(sf)
 base <-sf::st_read("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
+```
+
+```{r}
 tmap::tm_shape(base) +
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab", 
@@ -223,6 +225,7 @@ tmap::tm_shape(base) +
                 legend.format = list(text.separator="-",digits=2))+
   tmap::tm_layout(main.title = "Positivos", main.title.position = "center", title.size = 0.5)
 ```
+
 
 Es valido sostener, al menos inicialmente que, en efecto, hay una concentración de los casos positivos en la zona sur del área estudiada, la Ciudad de México, donde se muestran los colores en azul más intenso. Esta concentración identificada visualmente, nos lleva a pensar en la necesidad de evaluar formalmente si los datos sobre los casos positivos por COVID19 muestran patrones sistemáticos de agrupamiento en el territorio. Para ello, podemos recurrir a la prueba de autocorrelación espacial que vimos en el capítulo 3, la I de Moran. Como recordarás del capítulo 3, para construir el estadístico de asociación espacial de Moran hay que definir una estructura espacial, es decir, definir entre qué unidades espaciales hay una relación de vecindad, misma que es recogida en la llamada matriz de pesos espaciales. Con una relación de vecindad de tipo reina, la I de Moran y el diagrama de Moran sobre el número de casos positivos luce como:
 
