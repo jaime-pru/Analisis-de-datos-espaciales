@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>3 Mapas coropléticos en R | Análisis de datos espaciales con R</title>
+<title>2 Mapas coropléticos en R | Análisis de datos espaciales con R</title>
 <meta name="author" content="Jaime Alberto Prudencio Vázquez">
 <meta name="generator" content="bookdown 0.30 with bs4_book()">
-<meta property="og:title" content="3 Mapas coropléticos en R | Análisis de datos espaciales con R">
+<meta property="og:title" content="2 Mapas coropléticos en R | Análisis de datos espaciales con R">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3 Mapas coropléticos en R | Análisis de datos espaciales con R">
+<meta name="twitter:title" content="2 Mapas coropléticos en R | Análisis de datos espaciales con R">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -69,12 +69,12 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Análisis de datos espaciales con R</a></li>
-<li><a class="" href="pr%C3%B3logo.html"><span class="header-section-number">1</span> Prólogo</a></li>
-<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">2</span> R: Una introducción desde la exploración de información</a></li>
-<li><a class="active" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">3</span> Mapas coropléticos en R</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">5</span> Modelos de regresión lineal</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="active" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
 <li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -84,16 +84,16 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="mapas-coropléticos-en-r" class="section level1" number="3">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="mapas-coropléticos-en-r" class="section level1" number="2">
 <h1>
-<span class="header-section-number">3</span> Mapas coropléticos en R<a class="anchor" aria-label="anchor" href="#mapas-coropl%C3%A9ticos-en-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2</span> Mapas coropléticos en R<a class="anchor" aria-label="anchor" href="#mapas-coropl%C3%A9ticos-en-r"><i class="fas fa-link"></i></a>
 </h1>
 <div style="text-align: justify">
 <p>De forma reciente, la información georreferenciada y los Sistemas de Información Geográfica (SIG) se han vuelto instrumentos de primer orden para el análisis y la presentación de fenómenos asociados al territorO. Por ejemplo, los <a href="https://coronavirus.jhu.edu/map.html">Tableros de la Universidad Johns Hopkins</a> sobre la pandemia por COVID19, o los del <a href="https://coronavirus.gob.mx/datos/">Gobierno de México y CentroGeo</a> han estado constantemente en los medios de comunicación.</p>
 <p>En este capítulo señalamos algunas de las características básicas de los datos y datos espaciales; además, buscamos brindar algunos elementos generales que te permitan familiarizarte con ese tipo de información y representarla gráficamente para usarla para en el analisis de fenómenos socioterritoriales.</p>
-<div id="datos-y-datos-espaciales" class="section level2" number="3.1">
+<div id="datos-y-datos-espaciales" class="section level2" number="2.1">
 <h2>
-<span class="header-section-number">3.1</span> Datos y datos espaciales<a class="anchor" aria-label="anchor" href="#datos-y-datos-espaciales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.1</span> Datos y datos espaciales<a class="anchor" aria-label="anchor" href="#datos-y-datos-espaciales"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
@@ -139,9 +139,9 @@
 <p>Existen diversas herramientas informáticas para el análisis de información espacial y su representación, entre ellos se cuentan las alternativas de ESRI: ArcGIS y ArcMap. No obstante, el precio de una licencia individual es considerablemente alto, convirtiéndolos en inaccesibles a las mayorías. Una alternativa cada vez más popular es el programa <a href="https://es.wikipedia.org/wiki/QGIS">QGIS</a>, una iniciativa de software libre de la <a href="https://www.osgeo.org/">Fundación OSGeo</a>, o bien, otra posibilidad también libre es el intuitivo programa de Luc Anselin (Universidad de Chicago, Centro para las Ciencias de Datos Espaciales) y su equipo para iniciarse en el análisis espacial, <a href="https://geodacenter.github.io/">GeoDa</a>.</p>
 <p>Además, la popularidad del software R como plataforma de análisis ha hecho que múltiples entusiastas programadoras interesadas en el análisis espacial desarrollaran paquetes enfocados en el tratamiento y representación de datos espaciales para esta plataforma. Además de ser libre, entre las ventajas que tiene usar R como Sistema de Información Goegráfica y como espacio para el tratamiento de datos espaciales, es que se puede tener no sólo pleno control de la edición de los materiales cartográficos, sino que permite un entorno de trabajo integrado. En el resto de este capítulo se presenta de forma introductoria la manera en que R, a través de algunos paquetes, se puede convertir en un espacio de edición de mapas.</p>
 </div>
-<div id="los-paquetes" class="section level2" number="3.2">
+<div id="los-paquetes" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">3.2</span> Los paquetes<a class="anchor" aria-label="anchor" href="#los-paquetes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> Los paquetes<a class="anchor" aria-label="anchor" href="#los-paquetes"><i class="fas fa-link"></i></a>
 </h2>
 <p>Para la elaboración de mapas en R requeriremos de los siguientes paquetes:</p>
 <ul>
@@ -167,9 +167,9 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sjewo/cartogram">cartogram</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="carga-de-la-base-de-datos-geográfica" class="section level2" number="3.3">
+<div id="carga-de-la-base-de-datos-geográfica" class="section level2" number="2.3">
 <h2>
-<span class="header-section-number">3.3</span> Carga de la base de datos geográfica<a class="anchor" aria-label="anchor" href="#carga-de-la-base-de-datos-geogr%C3%A1fica"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3</span> Carga de la base de datos geográfica<a class="anchor" aria-label="anchor" href="#carga-de-la-base-de-datos-geogr%C3%A1fica"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
@@ -240,9 +240,9 @@
 ## all</code></pre>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672"></div>
 </div>
-<div id="mapas-coropléticos-básicos" class="section level2" number="3.4">
+<div id="mapas-coropléticos-básicos" class="section level2" number="2.4">
 <h2>
-<span class="header-section-number">3.4</span> Mapas coropléticos básicos<a class="anchor" aria-label="anchor" href="#mapas-coropl%C3%A9ticos-b%C3%A1sicos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4</span> Mapas coropléticos básicos<a class="anchor" aria-label="anchor" href="#mapas-coropl%C3%A9ticos-b%C3%A1sicos"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
@@ -273,18 +273,18 @@
 <p>Con lo anterior, tienes ya las bases y la lógica para construir mapas coropléticos en R, lo demás no son más que elementos de personalización para cada una de las funciones previas, además de la incorporación de funciones adicionales para elaborar mapas mucho más profesionales.</p>
 <p>Te recomendamos consultar, además del libro de Víctor Olaya ya comentado previamente, el espléndido material <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> de <span class="citation">(<a href="references.html#ref-Lovelace2019" role="doc-biblioref">Lovelace, Nowosad, and Muenchow 2019</a>)</span>, así como el material y todo lo relacionado con el paquete <code>tmap</code> en <a href="https://www.jstatsoft.org/article/view/v084i06"><em>tmap: Thematic Maps in R</em></a> <span class="citation">(<a href="references.html#ref-Tennekes2018" role="doc-biblioref">Tennekes 2018</a>)</span>.</p>
 </div>
-<div id="personalización" class="section level2" number="3.5">
+<div id="personalización" class="section level2" number="2.5">
 <h2>
-<span class="header-section-number">3.5</span> Personalización<a class="anchor" aria-label="anchor" href="#personalizaci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5</span> Personalización<a class="anchor" aria-label="anchor" href="#personalizaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
-<div id="argumentos-de-personalización-dentro-de-la-función-de-relleno" class="section level3" number="3.5.1">
+<div id="argumentos-de-personalización-dentro-de-la-función-de-relleno" class="section level3" number="2.5.1">
 <h3>
-<span class="header-section-number">3.5.1</span> Argumentos de personalización dentro de la función de relleno<a class="anchor" aria-label="anchor" href="#argumentos-de-personalizaci%C3%B3n-dentro-de-la-funci%C3%B3n-de-relleno"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.1</span> Argumentos de personalización dentro de la función de relleno<a class="anchor" aria-label="anchor" href="#argumentos-de-personalizaci%C3%B3n-dentro-de-la-funci%C3%B3n-de-relleno"><i class="fas fa-link"></i></a>
 </h3>
-<div id="paleta-de-colores" class="section level4" number="3.5.1.1">
+<div id="paleta-de-colores" class="section level4" number="2.5.1.1">
 <h4>
-<span class="header-section-number">3.5.1.1</span> Paleta de colores<a class="anchor" aria-label="anchor" href="#paleta-de-colores"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.1.1</span> Paleta de colores<a class="anchor" aria-label="anchor" href="#paleta-de-colores"><i class="fas fa-link"></i></a>
 </h4>
 <p>Nos concentraremos ahora en revisar cómo podemos hacer “mapas a la medida,” es decir, personalizar prácticamente cada parte del mapa, desde la paleta de colores hasta títulos y leyendas. Comencemos revisando las posibilidades de personalización dentro de la función de relleno, <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>. Veremos primero cómo cambiar la paleta de colores de relleno a través del argumento <code>palette=</code>. Por defecto, los colores corresponden a una gama cromática de rojos, pero podemos cambiarla a una de color naranja:</p>
 <div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
@@ -337,9 +337,9 @@
 <span><span class="co">#El modo estatico del libro no permite que se pueda correr este codigo, no obstante, con R en ejecución no existe ningún problema</span></span></code></pre></div>
 <hr>
 </div>
-<div id="leyenda" class="section level4" number="3.5.1.2">
+<div id="leyenda" class="section level4" number="2.5.1.2">
 <h4>
-<span class="header-section-number">3.5.1.2</span> Leyenda<a class="anchor" aria-label="anchor" href="#leyenda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.1.2</span> Leyenda<a class="anchor" aria-label="anchor" href="#leyenda"><i class="fas fa-link"></i></a>
 </h4>
 <p>Para modificar el título de la leyenda, el argumento del caso es justamente <code>title=</code>, dentro de la función <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>, a través de una cadena de texto. Por ejemplo:</p>
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
@@ -362,9 +362,9 @@
 <span>                legend.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>text.separator<span class="op">=</span><span class="st">"a"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672"></div>
 </div>
-<div id="métodos-de-clasificación-en-los-mápas" class="section level4" number="3.5.1.3">
+<div id="métodos-de-clasificación-en-los-mápas" class="section level4" number="2.5.1.3">
 <h4>
-<span class="header-section-number">3.5.1.3</span> Métodos de clasificación en los mápas<a class="anchor" aria-label="anchor" href="#m%C3%A9todos-de-clasificaci%C3%B3n-en-los-m%C3%A1pas"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.1.3</span> Métodos de clasificación en los mápas<a class="anchor" aria-label="anchor" href="#m%C3%A9todos-de-clasificaci%C3%B3n-en-los-m%C3%A1pas"><i class="fas fa-link"></i></a>
 </h4>
 <p>Quizá el elemento de personalización más importante en la edición de mapas tiene que ver con el método de clasificación de la variable que busca ser representada. Todas las alternativas de cómo deben construirse las categorías resultado de la clasificación deben ser especificadas dentro de la función <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>.</p>
 <p>Hay diferentes métodos de clasificación y, por tanto, diferentes tipos de mapas según el método de clasificación. Podemos organizar dichos tipos de mapas de coropletas en tres grandes familias, tal como se muestra en el cuadro 2.1:</p>
@@ -474,9 +474,9 @@
 <hr>
 </div>
 </div>
-<div id="argumentos-de-personalización-del-borde" class="section level3" number="3.5.2">
+<div id="argumentos-de-personalización-del-borde" class="section level3" number="2.5.2">
 <h3>
-<span class="header-section-number">3.5.2</span> Argumentos de personalización del borde<a class="anchor" aria-label="anchor" href="#argumentos-de-personalizaci%C3%B3n-del-borde"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.2</span> Argumentos de personalización del borde<a class="anchor" aria-label="anchor" href="#argumentos-de-personalizaci%C3%B3n-del-borde"><i class="fas fa-link"></i></a>
 </h3>
 <p>Se dijo antes que a pesar de no haber especificado argumento alguno en la función de borde, en ésta operan argumentos por defecto. Es momento de modificar dichos argumentos. Las opciones de borde se especifican dentro de <code>tm_border()</code> donde es posible modificar el color (<code>col=</code>), grosor (<code>lwd=</code>) y tipo de borde (<code>lty=</code>):</p>
 <div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
@@ -490,9 +490,9 @@
 <hr>
 </div>
 </div>
-<div id="función-para-elementos-de-diseño-de-salida-tm_layout" class="section level2" number="3.6">
+<div id="función-para-elementos-de-diseño-de-salida-tm_layout" class="section level2" number="2.6">
 <h2>
-<span class="header-section-number">3.6</span> Función para elementos de diseño de salida, <code>tm_layout()</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-para-elementos-de-dise%C3%B1o-de-salida-tm_layout"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.6</span> Función para elementos de diseño de salida, <code>tm_layout()</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-para-elementos-de-dise%C3%B1o-de-salida-tm_layout"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
@@ -526,9 +526,9 @@
 <span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>main.title <span class="op">=</span> <span class="st">"Casos positivos COVID19 por cada mil habitantes"</span>, main.title.position <span class="op">=</span> <span class="st">"center"</span>, title.size <span class="op">=</span> <span class="fl">1.3</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672"></div>
 </div>
-<div id="mapa-base-interactivo" class="section level2" number="3.7">
+<div id="mapa-base-interactivo" class="section level2" number="2.7">
 <h2>
-<span class="header-section-number">3.7</span> Mapa base interactivo<a class="anchor" aria-label="anchor" href="#mapa-base-interactivo"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.7</span> Mapa base interactivo<a class="anchor" aria-label="anchor" href="#mapa-base-interactivo"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>En R es posible añadir a nuestros mapas temáticos un mapa base para dar contexto a nuestra representación. Para ello, es necesario activar una suerte de “modo interactivo,” para ser más exactos, lo que activamos es el <em>modo de visualización</em> para poder desplazarnos sobre los mapas. Para cambiar al modo de visualización:</p>
@@ -552,9 +552,9 @@
 <code class="sourceCode R"><span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tmap_mode.html">tmap_mode</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## tmap mode set to plotting</code></pre>
 </div>
-<div id="cartograma" class="section level2" number="3.8">
+<div id="cartograma" class="section level2" number="2.8">
 <h2>
-<span class="header-section-number">3.8</span> Cartograma<a class="anchor" aria-label="anchor" href="#cartograma"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.8</span> Cartograma<a class="anchor" aria-label="anchor" href="#cartograma"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>Un cartograma es un tipo de mapa que deforma la geometría de las áreas de interés en figuras cuyo tamaño depende de la magnitud de la variable representada. Para elaborar un cartograma con circulos, debemos primero generar la geometría deformada por la variable para luego rellenarla. Para tal efecto, usamos la función <code><a href="https://rdrr.io/pkg/cartogram/man/cartogram_dorling.html">cartogram_dorling()</a></code> que nos permitirá generar un nuevo objeto que contiene las geometrías deformadas. Luego, usaremos dicha geometría como argumento de <code><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape()</a></code>. Primero creamos la nueva geometría circular:</p>
@@ -578,9 +578,9 @@
 <span>  <span class="fu">tmap</span><span class="fu">::</span> <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672"></div>
 </div>
-<div id="centroides-o-coordenadas-geométricas-punto-medio" class="section level2" number="3.9">
+<div id="centroides-o-coordenadas-geométricas-punto-medio" class="section level2" number="2.9">
 <h2>
-<span class="header-section-number">3.9</span> Centroides o coordenadas geométricas (punto medio)<a class="anchor" aria-label="anchor" href="#centroides-o-coordenadas-geom%C3%A9tricas-punto-medio"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.9</span> Centroides o coordenadas geométricas (punto medio)<a class="anchor" aria-label="anchor" href="#centroides-o-coordenadas-geom%C3%A9tricas-punto-medio"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>En el <a href="https://mappinggis.com/2018/09/como-calcular-las-coordenadas-de-una-geometria-con-qgis/">blog de mappingGIS</a> encontramos la siguiente definición de punto medio:</p>
@@ -715,22 +715,22 @@
 <code class="sourceCode R"><span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_write.html">st_write</a></span><span class="op">(</span>obj<span class="op">=</span><span class="va">zmvm_cntrds</span>, <span class="st">"zmvm_cntrds"</span>, driver <span class="op">=</span> <span class="st">"ESRI Shapefile"</span><span class="op">)</span></span></code></pre></div>
 <p>Como siempre, se recomienda revisar la documentación de ayuda de la función <code><a href="https://r-spatial.github.io/sf/reference/st_write.html">st_write()</a></code> para conocer todos los detalles de los argumentos.</p>
 </div>
-<div id="tópico-adicional-mapas-de-clasificación-especial-elementos-de-programación" class="section level2" number="3.10">
+<div id="tópico-adicional-mapas-de-clasificación-especial-elementos-de-programación" class="section level2" number="2.10">
 <h2>
-<span class="header-section-number">3.10</span> Tópico adicional: Mapas de clasificación especial (elementos de programación)<a class="anchor" aria-label="anchor" href="#t%C3%B3pico-adicional-mapas-de-clasificaci%C3%B3n-especial-elementos-de-programaci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10</span> Tópico adicional: Mapas de clasificación especial (elementos de programación)<a class="anchor" aria-label="anchor" href="#t%C3%B3pico-adicional-mapas-de-clasificaci%C3%B3n-especial-elementos-de-programaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
-<div id="una-palabra-de-advertencia" class="section level3" number="3.10.1">
+<div id="una-palabra-de-advertencia" class="section level3" number="2.10.1">
 <h3>
-<span class="header-section-number">3.10.1</span> Una palabra de advertencia<a class="anchor" aria-label="anchor" href="#una-palabra-de-advertencia"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10.1</span> Una palabra de advertencia<a class="anchor" aria-label="anchor" href="#una-palabra-de-advertencia"><i class="fas fa-link"></i></a>
 </h3>
 <p>En esta sección se construyen dos tipos de mapas de clasificación especial, es decir, destinados a hacer notar los valores atípicos. No obstante, la construcción de dichos mapas en R supone cierto conocimiento sobre programación que está fuera del alcance de estas notas. Si deseas profundizar en el aprendizaje de programación en R, el libro de Roger D. Peng, <a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science</a> es un excelente material, particularmente el <a href="https://bookdown.org/rdpeng/rprogdatascience/functions.html">capítulo 14 dedicado a las funciones en R</a> <span class="citation">(<a href="references.html#ref-Peng2015" role="doc-biblioref">Roger D. Peng 2015</a>)</span>.</p>
 <p>Con esta advertencia, llevamos a cabo la exposición de esta sección, esperando motivarte para que tú misma profundices en los tópicos de programación.</p>
 </div>
-<div id="mapa-de-intervalos-personalizados" class="section level3" number="3.10.2">
+<div id="mapa-de-intervalos-personalizados" class="section level3" number="2.10.2">
 <h3>
-<span class="header-section-number">3.10.2</span> Mapa de intervalos personalizados<a class="anchor" aria-label="anchor" href="#mapa-de-intervalos-personalizados"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10.2</span> Mapa de intervalos personalizados<a class="anchor" aria-label="anchor" href="#mapa-de-intervalos-personalizados"><i class="fas fa-link"></i></a>
 </h3>
 <p>Se señaló antes que, hasta donde tenemos conocimiento, en R no es posible construir mapas de clasificación especial con <code>tmap</code> a través de las opciones de estilo, no obstante, con algunos elementos de programación es posible solventar esta tarea. En esta sección nos servimos del código proporcionado por Luc Anselin y su equipo quienes, en un esfuerzo de difusión del conocimiento sobre el uso de estas herramientas, pone a nuestra disposición una basta cantidad de materiales en la página del <a href="https://spatial.uchicago.edu/">Center for Spatial Data Science</a> de la Universidad de Chicago <span class="citation">(<a href="references.html#ref-AnselinMorrison2018" role="doc-biblioref">Anselin and Morrison 2018</a>)</span>.</p>
 <p>Para construir un mapa de intervalos definidos por el usuario, hay que recurrir al argumento <code>breaks=</code> dentro de la función <code><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill()</a></code>. Para definir los intervalos de forma adecuada, se recomienda mirar las características resumen de la variable de interés, en este caso el número de casos positivos por COVID19 por cada mil habitantes, <code>pos_hab</code>:</p>
@@ -747,13 +747,13 @@
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Cortes personalizados"</span>, title.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"center"</span>,<span class="st">"top"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672"></div>
 </div>
-<div id="mapas-de-valores-extremos" class="section level3" number="3.10.3">
+<div id="mapas-de-valores-extremos" class="section level3" number="2.10.3">
 <h3>
-<span class="header-section-number">3.10.3</span> Mapas de valores extremos<a class="anchor" aria-label="anchor" href="#mapas-de-valores-extremos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10.3</span> Mapas de valores extremos<a class="anchor" aria-label="anchor" href="#mapas-de-valores-extremos"><i class="fas fa-link"></i></a>
 </h3>
-<div id="mapa-de-percentiles" class="section level4" number="3.10.3.1">
+<div id="mapa-de-percentiles" class="section level4" number="2.10.3.1">
 <h4>
-<span class="header-section-number">3.10.3.1</span> Mapa de percentiles<a class="anchor" aria-label="anchor" href="#mapa-de-percentiles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10.3.1</span> Mapa de percentiles<a class="anchor" aria-label="anchor" href="#mapa-de-percentiles"><i class="fas fa-link"></i></a>
 </h4>
 <div style="text-align: justify">
 <p>Un mapa de percentiles es un tipo espacial de mapa de cuantiles en el que se especifican seis categorías: 0-1%,1-10%, 10-50%,50-90%,90-99% y 99-100%; de ellas las que interesan son las categorías que agrupan el 1% de los valores más bajos (0-1%) y el 1% de los valores más altos (99-100%), es decir, las observaciones extremas. Este tipo de mapas es útil, justamente, para identificar la localización de valores atíticos en el espacio. Para poder construirlo, en R debemos llevar a cabo los siguientes pasos:</p>
@@ -804,9 +804,9 @@
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672"></div>
 </div>
 </div>
-<div id="construcción-de-una-función-personalizada-para-hacer-mapas-de-percentiles" class="section level3" number="3.10.4">
+<div id="construcción-de-una-función-personalizada-para-hacer-mapas-de-percentiles" class="section level3" number="2.10.4">
 <h3>
-<span class="header-section-number">3.10.4</span> Construcción de una función personalizada para hacer mapas de percentiles<a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-una-funci%C3%B3n-personalizada-para-hacer-mapas-de-percentiles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10.4</span> Construcción de una función personalizada para hacer mapas de percentiles<a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-una-funci%C3%B3n-personalizada-para-hacer-mapas-de-percentiles"><i class="fas fa-link"></i></a>
 </h3>
 <p>Con el camino que hemos seguido en la sección previa, es posible ahorrarnos muchos pasos y crear nuestra propia función (que opera en el entorno de trabajo activo de la sesión) para construir mapas de percentiles. Nuestra función se llamará <code>percentmap()</code> y tendrá los siguientes argumentos:</p>
 <ul>
@@ -906,32 +906,32 @@ for (let popover of popovers) {
 </div>
 </div>
 <div class="chapter-nav">
-<div class="prev"><a href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">2</span> R: Una introducción desde la exploración de información</a></div>
-<div class="next"><a href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></div>
+<div class="prev"><a href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></div>
+<div class="next"><a href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#mapas-coropl%C3%A9ticos-en-r"><span class="header-section-number">3</span> Mapas coropléticos en R</a></li>
-<li><a class="nav-link" href="#datos-y-datos-espaciales"><span class="header-section-number">3.1</span> Datos y datos espaciales</a></li>
-<li><a class="nav-link" href="#los-paquetes"><span class="header-section-number">3.2</span> Los paquetes</a></li>
-<li><a class="nav-link" href="#carga-de-la-base-de-datos-geogr%C3%A1fica"><span class="header-section-number">3.3</span> Carga de la base de datos geográfica</a></li>
-<li><a class="nav-link" href="#mapas-coropl%C3%A9ticos-b%C3%A1sicos"><span class="header-section-number">3.4</span> Mapas coropléticos básicos</a></li>
+<li><a class="nav-link" href="#mapas-coropl%C3%A9ticos-en-r"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="nav-link" href="#datos-y-datos-espaciales"><span class="header-section-number">2.1</span> Datos y datos espaciales</a></li>
+<li><a class="nav-link" href="#los-paquetes"><span class="header-section-number">2.2</span> Los paquetes</a></li>
+<li><a class="nav-link" href="#carga-de-la-base-de-datos-geogr%C3%A1fica"><span class="header-section-number">2.3</span> Carga de la base de datos geográfica</a></li>
+<li><a class="nav-link" href="#mapas-coropl%C3%A9ticos-b%C3%A1sicos"><span class="header-section-number">2.4</span> Mapas coropléticos básicos</a></li>
 <li>
-<a class="nav-link" href="#personalizaci%C3%B3n"><span class="header-section-number">3.5</span> Personalización</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#argumentos-de-personalizaci%C3%B3n-dentro-de-la-funci%C3%B3n-de-relleno"><span class="header-section-number">3.5.1</span> Argumentos de personalización dentro de la función de relleno</a></li>
-<li><a class="nav-link" href="#argumentos-de-personalizaci%C3%B3n-del-borde"><span class="header-section-number">3.5.2</span> Argumentos de personalización del borde</a></li>
+<a class="nav-link" href="#personalizaci%C3%B3n"><span class="header-section-number">2.5</span> Personalización</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#argumentos-de-personalizaci%C3%B3n-dentro-de-la-funci%C3%B3n-de-relleno"><span class="header-section-number">2.5.1</span> Argumentos de personalización dentro de la función de relleno</a></li>
+<li><a class="nav-link" href="#argumentos-de-personalizaci%C3%B3n-del-borde"><span class="header-section-number">2.5.2</span> Argumentos de personalización del borde</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#funci%C3%B3n-para-elementos-de-dise%C3%B1o-de-salida-tm_layout"><span class="header-section-number">3.6</span> Función para elementos de diseño de salida, tm_layout()</a></li>
-<li><a class="nav-link" href="#mapa-base-interactivo"><span class="header-section-number">3.7</span> Mapa base interactivo</a></li>
-<li><a class="nav-link" href="#cartograma"><span class="header-section-number">3.8</span> Cartograma</a></li>
-<li><a class="nav-link" href="#centroides-o-coordenadas-geom%C3%A9tricas-punto-medio"><span class="header-section-number">3.9</span> Centroides o coordenadas geométricas (punto medio)</a></li>
+<li><a class="nav-link" href="#funci%C3%B3n-para-elementos-de-dise%C3%B1o-de-salida-tm_layout"><span class="header-section-number">2.6</span> Función para elementos de diseño de salida, tm_layout()</a></li>
+<li><a class="nav-link" href="#mapa-base-interactivo"><span class="header-section-number">2.7</span> Mapa base interactivo</a></li>
+<li><a class="nav-link" href="#cartograma"><span class="header-section-number">2.8</span> Cartograma</a></li>
+<li><a class="nav-link" href="#centroides-o-coordenadas-geom%C3%A9tricas-punto-medio"><span class="header-section-number">2.9</span> Centroides o coordenadas geométricas (punto medio)</a></li>
 <li>
-<a class="nav-link" href="#t%C3%B3pico-adicional-mapas-de-clasificaci%C3%B3n-especial-elementos-de-programaci%C3%B3n"><span class="header-section-number">3.10</span> Tópico adicional: Mapas de clasificación especial (elementos de programación)</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#una-palabra-de-advertencia"><span class="header-section-number">3.10.1</span> Una palabra de advertencia</a></li>
-<li><a class="nav-link" href="#mapa-de-intervalos-personalizados"><span class="header-section-number">3.10.2</span> Mapa de intervalos personalizados</a></li>
-<li><a class="nav-link" href="#mapas-de-valores-extremos"><span class="header-section-number">3.10.3</span> Mapas de valores extremos</a></li>
-<li><a class="nav-link" href="#construcci%C3%B3n-de-una-funci%C3%B3n-personalizada-para-hacer-mapas-de-percentiles"><span class="header-section-number">3.10.4</span> Construcción de una función personalizada para hacer mapas de percentiles</a></li>
+<a class="nav-link" href="#t%C3%B3pico-adicional-mapas-de-clasificaci%C3%B3n-especial-elementos-de-programaci%C3%B3n"><span class="header-section-number">2.10</span> Tópico adicional: Mapas de clasificación especial (elementos de programación)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#una-palabra-de-advertencia"><span class="header-section-number">2.10.1</span> Una palabra de advertencia</a></li>
+<li><a class="nav-link" href="#mapa-de-intervalos-personalizados"><span class="header-section-number">2.10.2</span> Mapa de intervalos personalizados</a></li>
+<li><a class="nav-link" href="#mapas-de-valores-extremos"><span class="header-section-number">2.10.3</span> Mapas de valores extremos</a></li>
+<li><a class="nav-link" href="#construcci%C3%B3n-de-una-funci%C3%B3n-personalizada-para-hacer-mapas-de-percentiles"><span class="header-section-number">2.10.4</span> Construcción de una función personalizada para hacer mapas de percentiles</a></li>
 </ul>
 </li>
 </ul>

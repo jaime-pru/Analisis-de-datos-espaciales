@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>6 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R</title>
+<title>5 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R</title>
 <meta name="author" content="Jaime Alberto Prudencio Vázquez">
 <meta name="generator" content="bookdown 0.30 with bs4_book()">
-<meta property="og:title" content="6 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R">
+<meta property="og:title" content="5 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="6 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R">
+<meta name="twitter:title" content="5 Análisis espacial II: modelos econométricos espaciales | Análisis de datos espaciales con R">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -69,12 +69,12 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Análisis de datos espaciales con R</a></li>
-<li><a class="" href="pr%C3%B3logo.html"><span class="header-section-number">1</span> Prólogo</a></li>
-<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">2</span> R: Una introducción desde la exploración de información</a></li>
-<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">3</span> Mapas coropléticos en R</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">5</span> Modelos de regresión lineal</a></li>
-<li><a class="active" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="active" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
 <li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -84,23 +84,23 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análisis-espacial-ii-modelos-econométricos-espaciales" class="section level1" number="6">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análisis-espacial-ii-modelos-econométricos-espaciales" class="section level1" number="5">
 <h1>
-<span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><i class="fas fa-link"></i></a>
 </h1>
 <div style="text-align: justify">
 <p>En el capítulo 3 nos hemos referido a la necesidad de identificar la presencia de autocorrelación espacial en el conjunto de información utilizado. Mencionamos dos razones por las que conviene saber si la información usada presenta este rasgo: una de carácter técnico y otra que llamamos sustantiva. En términos de la segunda, la presencia de autocorrelación espacial significa que el fenómeno de interés no se distribuye de manera aleatoria en el espacio por lo que <em>algo está pasando y debe ser investigado</em>, ¿por qué la variable exhibe patrones en su distribución en el espacio? Por otro lado, en términos de la razón de carácter técnico, que no está desvinculada necesariamente de la razón previa, al estimar un modelo clásico de regresión lineal usando datos espaciales a través del método de Mínimos Cuadrados Ordinarios seguramente se violaría uno de sus supuestos, específicamente, aquel que tiene que ver con la independencia de los términos de error. Por tanto, por razones de la técnica utilizada y del interés de la investigadora, es necesario recurrir a un modelo econométrico espacial. Al hacerlo, se puede resolver el problema de la violación del citado supuesto y a la vez brindar elementos para buscar las causas que explican la formación de patrones en el espacio.</p>
 <p>En este capítulo nos dedicamos a mostrar dos de las alternativas de modelos econométricos espaciales, es decir, modelos econométricos que incorporan diversos tipos de interacciones que se suceden en el espacio. Es crucial que, antes de abordar este capítulo, hayas asimilado los contenidos del capítulo 3 y 4, en la medida en que lo expuesto aquí se basa en los conocimientos previos.</p>
-<div id="econometría-espacial" class="section level2" number="6.1">
+<div id="econometría-espacial" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">6.1</span> Econometría espacial<a class="anchor" aria-label="anchor" href="#econometr%C3%ADa-espacial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Econometría espacial<a class="anchor" aria-label="anchor" href="#econometr%C3%ADa-espacial"><i class="fas fa-link"></i></a>
 </h2>
 <p>La econometría espacial puede ser entendida como una rama de la econometría que incluye “…aquellos métodos y técnicas que, sustentados en una representación formal de la <em>estructura de la dependencia y heterogeneidad espacial</em>, provee el medio para llevar a cabo la adecuada especificación, estimación, prueba de hipótesis y predicción para modelos en la ciencia regional” (Anselin, 1988, citado por Quintana y Mendoza <span class="citation">(<a href="references.html#ref-Quintana2016" role="doc-biblioref">2016</a>: 356)</span>.</p>
 <p>Desde una perspectiva teórica, la econometría espacial se ha desarrollado para resolver dos problemas que presenta la modelación econométrica con datos espaciales, relacionados con la violación de los supuestos del modelo clásico de regresión lineal que se expusieron en el capítulo previo: la heteroscedasticiadad (varianza no constante de los errores) y la autocorrelación (la dependencia entre los términos de error). No obstante, la econometría espacial se ha ocupado fundamentalmente del segundo problema, puesto que la heteroscedasticidad ha podido ser abordada en el marco de la econometría convencional.</p>
 <p>No existe una única manera de incorporar en un modelo econométrico los efectos de interacción que se dan en el espacio y, por tanto, existe una amplia variedad de modelos econométricos espaciales, dependiendo del tipo de interacciones que en cada uno se incorpore.</p>
-<div id="diversas-alternativas-de-modelos-econométricos" class="section level3" number="6.1.1">
+<div id="diversas-alternativas-de-modelos-econométricos" class="section level3" number="5.1.1">
 <h3>
-<span class="header-section-number">6.1.1</span> Diversas alternativas de modelos econométricos<a class="anchor" aria-label="anchor" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1.1</span> Diversas alternativas de modelos econométricos<a class="anchor" aria-label="anchor" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Existen múltiples modelos econométricos espaciales que buscan resolver el problema de la autocorrelación espacial. En todos los casos se trata de captar las interacciones que se dan en el espacio entre las variables consideradas. Estas interacciones son de diferente naturaleza, las puede haber en la varible dependiente y entonces se las denomina interacciones endógenas, las puede haber en la o las variables independientes y entonces se les llama interacciones exógenas, o bien, se pueden incorporar a través del término de error de la regresión.</p>
 <p>El modelo que incorpora todas las posibles interacciones espaciales recibe el nombre de <strong>Modelo General Anidado</strong> (<em>General Nesting Spatial Model</em> <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">Elhorst 2006, 7</a>)</span> y puede ser escrito, en términos matriciales, como:</p>
@@ -123,7 +123,7 @@ u &amp;=\lambda Wu+\epsilon  \\
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-176"></span>
 <img src="recursos%205/figura%201.jpg" alt="Clasificación de modelos espaciales, Elhorst (2006)" width="100%"><p class="caption">
-Figura 6.1: Clasificación de modelos espaciales, Elhorst (2006)
+Figura 5.1: Clasificación de modelos espaciales, Elhorst (2006)
 </p>
 </div>
 <p>Cada uno de los modelos econométricos espaciales de la figura buscan responder diferentes preguntas en relación a cómo la variable de interés, nuestra variable dependiente, se ve afectada por las interacciones espaciales que hemos mencionado. Por ejemplo, quizá como parte de la exploración de la pandemia por COVID19 nos dimos cuenta de que el número de casos positivos por este mal está asociado con el acceso a los servicios de salud <em>en los municipios vecinos</em>, es decir, el rezago espacial de la población con acceso a servicios de salud, tal como se aprecia en el siguiente diagrama de dispersión:</p>
@@ -138,21 +138,21 @@ Figura 6.1: Clasificación de modelos espaciales, Elhorst (2006)
 <p>Así pues, la elección del tipo de modelo espacial depende, en lo fundamental, de dos elementos: i) la evidencia de asociación espacial entre el conjunto de variables disponibles y que se revela a través del análisis exploratorio de datos espaciales (definición de criterios de vecindad, construcción de índices de Moran) y ii) los intereses y propósitos de la investigación.</p>
 </div>
 </div>
-<div id="los-modelos-econométricos-de-error-espacial-y-rezago-espacial" class="section level2" number="6.2">
+<div id="los-modelos-econométricos-de-error-espacial-y-rezago-espacial" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">6.2</span> Los modelos econométricos de error espacial y rezago espacial<a class="anchor" aria-label="anchor" href="#los-modelos-econom%C3%A9tricos-de-error-espacial-y-rezago-espacial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> Los modelos econométricos de error espacial y rezago espacial<a class="anchor" aria-label="anchor" href="#los-modelos-econom%C3%A9tricos-de-error-espacial-y-rezago-espacial"><i class="fas fa-link"></i></a>
 </h2>
 <p>De toda la gama de modelos econométricos espaciales que es posible construir, aquí sólo nos ocuparemos de dos de ellos, el <strong>modelo de rezago espacial</strong> y el <strong>modelo de error espacial</strong>.</p>
 <p>Para ello, seguimos la ruta metodológica propuesta por Anselin y Rey <span class="citation">(<a href="references.html#ref-Anselin2014" role="doc-biblioref">2014</a>)</span> que consiste en comenzar con un modelo lineal no espacial estimado con mínimos cuadrados ordinarios (MCO) que luego es extendido con la incorporación de interacciones espaciales, ya sea incluyendo a <span class="math inline">\(\rho\)</span>, el coeficiente autoregresivo espacial o a <span class="math inline">\(\lambda\)</span>, el término de autocorrelación espacial, tal y como se muestra en la figura 5.2.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-179"></span>
 <img src="recursos%205/figura%202.jpg" alt="De un modelo con MCO a un modelo espacial" width="100%"><p class="caption">
-Figura 6.2: De un modelo con MCO a un modelo espacial
+Figura 5.2: De un modelo con MCO a un modelo espacial
 </p>
 </div>
-<div id="secuencia-general-para-la-estimación" class="section level3" number="6.2.1">
+<div id="secuencia-general-para-la-estimación" class="section level3" number="5.2.1">
 <h3>
-<span class="header-section-number">6.2.1</span> Secuencia general para la estimación<a class="anchor" aria-label="anchor" href="#secuencia-general-para-la-estimaci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.1</span> Secuencia general para la estimación<a class="anchor" aria-label="anchor" href="#secuencia-general-para-la-estimaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
 <p>La estimación de un modelo econométrico de error o rezago espacial, siguiendo a Anselin y a Rey (2014), puede ser dividida en los siguientes pasos:</p>
 <ol style="list-style-type: lower-roman">
@@ -206,20 +206,20 @@ Ha &amp;: \lambda\not=0 \\
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-180"></span>
 <img src="recursos%205/figura%203.jpg" alt="Árbol de decisión de regresión espacial, Anselin y Rey (2014)" width="100%"><p class="caption">
-Figura 6.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
+Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 </p>
 </div>
 <p>En las siguientes sección se ilustra cómo seguir esta hoja de ruta para estimar los dos modelos que incluyen efectos espaciales: el de error y el de rezago y decidir cuál es el mejor.</p>
 </div>
 </div>
-<div id="modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-méxico" class="section level2" number="6.3">
+<div id="modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-méxico" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">6.3</span> Modelos espaciales en R: un ejemplo para el Valle de México<a class="anchor" aria-label="anchor" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Modelos espaciales en R: un ejemplo para el Valle de México<a class="anchor" aria-label="anchor" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><i class="fas fa-link"></i></a>
 </h2>
 <p>En esta sección exponemos cómo, a través de algunos paquetes y funciones en R, podemos recorrer el camino propuesto en la sección anterior, que nos llevará a decidir cuál es el mejor modelo que capta las interacciones que se dan en el espacio, uno de error o de rezago. No obstante, antes e ello, aprovecharemos para hacer un brevísimo recordatorio de algunas de las herramientas mostradas en los capítulos previos, a fin de mostrar su uso de forma integrada en el contexto del planteamiento de un modelo econométrico espacial.</p>
-<div id="recapitulación-la-necesidad-de-un-modelo-espacial" class="section level3" number="6.3.1">
+<div id="recapitulación-la-necesidad-de-un-modelo-espacial" class="section level3" number="5.3.1">
 <h3>
-<span class="header-section-number">6.3.1</span> Recapitulación: la necesidad de un modelo espacial<a class="anchor" aria-label="anchor" href="#recapitulaci%C3%B3n-la-necesidad-de-un-modelo-espacial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> Recapitulación: la necesidad de un modelo espacial<a class="anchor" aria-label="anchor" href="#recapitulaci%C3%B3n-la-necesidad-de-un-modelo-espacial"><i class="fas fa-link"></i></a>
 </h3>
 <p>Antes de emprender la tarea de la estimación de los modelos espaciales siguiendo la secuencia anterior, llevaremos a cabo un recuento de diversos elementos que nos permitirán poner en contexto el problema de la selección del modelo espacial y, al mismo tiempo, recapitular algunos de los tópicos tratados a lo largo de este libro.</p>
 <p>Hemos estado analizando un conjunto de variables sociodemográficas y económicas con la intensión de indagar cuál es su relación con la situación de la pandemia por COVID19 durante la primera ola en una región del centro de México llamada Zona Metropolitana del Valle de México.</p>
@@ -262,9 +262,9 @@ Figura 6.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <p>La respuesta a esta pregunta es compleja y, desde luego, requiere una reflexión cuidadosa sobre las teorías y trabajos previos de especialistas en el tema que han tratado sobre los patrones espaciales en la transmisión de una enfermedad, como el clásico trabajo de Cliff y sus colaboradores <span class="citation">(<a href="references.html#ref-Cliff1981" role="doc-biblioref">Cliff et al. 1981</a>)</span> sobre la dinámica espacial de las pandemias en Islandia, aunque ciertamente se ha aceptado que las epidemias pueden y deben analizarse desde una perspectiva espacial <span class="citation">(<a href="references.html#ref-Rezaeian2007" role="doc-biblioref">Rezaeian et al. 2007</a>)</span>.</p>
 <p>El caso es que hay tanto evidencia en los datos, como en trabajos previos que nos llevan a pensar en la pertinencia de un modelo econométrico espacial que incorpore el comportamiento que hemos identificado en un nivel exploratorio: la autocorrelación espacial en los casos positivos por COVID19. Ahora entonces, cuál es el mejor modelo que podemos usar, ¿uno de rezago espacial o de error espacial? Seguiremos pues la secuencia de la sección anterior para decidir, mientras ilustramos el proceso a través de los paquetes y funciones que nos ofrece R.</p>
 </div>
-<div id="estimación-de-los-modelos-espaciales" class="section level3" number="6.3.2">
+<div id="estimación-de-los-modelos-espaciales" class="section level3" number="5.3.2">
 <h3>
-<span class="header-section-number">6.3.2</span> Estimación de los modelos espaciales<a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-los-modelos-espaciales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2</span> Estimación de los modelos espaciales<a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-los-modelos-espaciales"><i class="fas fa-link"></i></a>
 </h3>
 <p>Ahora que tenemos claro que requerimos un modelo espacial si lo que prentedemos es explicar los casos positivos por COVID19 en el Valle de México, veamos cómo llevar a cabo esto a través de R.</p>
 <p>Los paquetes utilizados para la estimación de modelos econométricos espaciales son:</p>
@@ -447,9 +447,9 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <li>Las versiones robustas de los multiplicadores de Lagrange mostraron que, entre un modelo MCO y uno de rezago, el mejor era el de rezago, y que entre un modelo MCO y uno de error es mejor el de MCO, pero por las razones i y ii, y por la versión robusta sobre el modelo de rezago, resulta que el mejor modelo es el de rezago espacial.</li>
 </ol>
 <p>Revisa de nueva cuenta la figura 5.3 para mejor entender nuestra decisión. Finalmente, los tanto el modelo de rezago como el de error serán estimados, con ello, llegamos al paso iv y habremos terminado la secuencia.</p>
-<div id="modelo-de-rezago-espacial" class="section level4" number="6.3.2.1">
+<div id="modelo-de-rezago-espacial" class="section level4" number="5.3.2.1">
 <h4>
-<span class="header-section-number">6.3.2.1</span> Modelo de rezago espacial<a class="anchor" aria-label="anchor" href="#modelo-de-rezago-espacial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2.1</span> Modelo de rezago espacial<a class="anchor" aria-label="anchor" href="#modelo-de-rezago-espacial"><i class="fas fa-link"></i></a>
 </h4>
 <p>El modelo de rezago espacial se invoca con al función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">lagsarlm()</a></code> del paquete <code>spatialreg</code> en la que la estimación corre a cargo del método de máxima verosimilitud. En la función se especifica el modelo (<code>formula=</code>), la base de datos (<code>data=</code>) y la estructura espacial (<code>listw=</code>).</p>
 <div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
@@ -503,9 +503,9 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <p>Con base en los resultados de la I de Moran sobre los términos de error del modelo de rezago, ¿dirías que persite el problema de autocorrelación espacial en los errores en el modelo de rezago?</p>
 <hr>
 </div>
-<div id="modelo-de-error-espacial" class="section level4" number="6.3.2.2">
+<div id="modelo-de-error-espacial" class="section level4" number="5.3.2.2">
 <h4>
-<span class="header-section-number">6.3.2.2</span> Modelo de error espacial<a class="anchor" aria-label="anchor" href="#modelo-de-error-espacial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2.2</span> Modelo de error espacial<a class="anchor" aria-label="anchor" href="#modelo-de-error-espacial"><i class="fas fa-link"></i></a>
 </h4>
 <p>El modelo de error espacial es llamado con la función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm()</a></code> y los argumentos son los mismos:</p>
 <div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
@@ -555,9 +555,9 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 </div>
 </div>
 </div>
-<div id="reflexiones-finales" class="section level2" number="6.4">
+<div id="reflexiones-finales" class="section level2" number="5.4">
 <h2>
-<span class="header-section-number">6.4</span> Reflexiones finales<a class="anchor" aria-label="anchor" href="#reflexiones-finales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> Reflexiones finales<a class="anchor" aria-label="anchor" href="#reflexiones-finales"><i class="fas fa-link"></i></a>
 </h2>
 <p>Hay una serie de tópicos que han quedado fuera de estas notas, tales como los modelos que buscan resolver la heterogeneidad espacial, aquellos que atienden la violación del supuesto de homoscedasticidad en las perturbaciones, o bien, la incorporación de la dimensión temporal a nuestro análisis, a través de instrumentos como los modelos de panel, por lo que este material no es sino sólo un abordaje introductorio, una invitación a que profundices por tu propia cuenta en el manejo de las herramientas para el tratamiento de datos espaciales.</p>
 <p>Cerramos este libro recomendado una serie de materiales para cada uno de los capítulos que hemos tratado aquí.</p>
@@ -576,25 +576,25 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 
 </div>
 <div class="chapter-nav">
-<div class="prev"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">5</span> Modelos de regresión lineal</a></div>
+<div class="prev"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></div>
 <div class="next"><a href="sobre-el-autor.html">Sobre el autor</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="nav-link" href="#an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
 <li>
-<a class="nav-link" href="#econometr%C3%ADa-espacial"><span class="header-section-number">6.1</span> Econometría espacial</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><span class="header-section-number">6.1.1</span> Diversas alternativas de modelos econométricos</a></li></ul>
+<a class="nav-link" href="#econometr%C3%ADa-espacial"><span class="header-section-number">5.1</span> Econometría espacial</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#diversas-alternativas-de-modelos-econom%C3%A9tricos"><span class="header-section-number">5.1.1</span> Diversas alternativas de modelos econométricos</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#los-modelos-econom%C3%A9tricos-de-error-espacial-y-rezago-espacial"><span class="header-section-number">6.2</span> Los modelos econométricos de error espacial y rezago espacial</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#secuencia-general-para-la-estimaci%C3%B3n"><span class="header-section-number">6.2.1</span> Secuencia general para la estimación</a></li></ul>
+<a class="nav-link" href="#los-modelos-econom%C3%A9tricos-de-error-espacial-y-rezago-espacial"><span class="header-section-number">5.2</span> Los modelos econométricos de error espacial y rezago espacial</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#secuencia-general-para-la-estimaci%C3%B3n"><span class="header-section-number">5.2.1</span> Secuencia general para la estimación</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><span class="header-section-number">6.3</span> Modelos espaciales en R: un ejemplo para el Valle de México</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#recapitulaci%C3%B3n-la-necesidad-de-un-modelo-espacial"><span class="header-section-number">6.3.1</span> Recapitulación: la necesidad de un modelo espacial</a></li>
-<li><a class="nav-link" href="#estimaci%C3%B3n-de-los-modelos-espaciales"><span class="header-section-number">6.3.2</span> Estimación de los modelos espaciales</a></li>
+<a class="nav-link" href="#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-m%C3%A9xico"><span class="header-section-number">5.3</span> Modelos espaciales en R: un ejemplo para el Valle de México</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#recapitulaci%C3%B3n-la-necesidad-de-un-modelo-espacial"><span class="header-section-number">5.3.1</span> Recapitulación: la necesidad de un modelo espacial</a></li>
+<li><a class="nav-link" href="#estimaci%C3%B3n-de-los-modelos-espaciales"><span class="header-section-number">5.3.2</span> Estimación de los modelos espaciales</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#reflexiones-finales"><span class="header-section-number">6.4</span> Reflexiones finales</a></li>
+<li><a class="nav-link" href="#reflexiones-finales"><span class="header-section-number">5.4</span> Reflexiones finales</a></li>
 </ul>
 
       <div class="book-extra">

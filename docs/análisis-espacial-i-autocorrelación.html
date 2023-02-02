@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>4 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R</title>
+<title>3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R</title>
 <meta name="author" content="Jaime Alberto Prudencio Vázquez">
 <meta name="generator" content="bookdown 0.30 with bs4_book()">
-<meta property="og:title" content="4 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
+<meta property="og:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
+<meta name="twitter:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -69,12 +69,12 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Análisis de datos espaciales con R</a></li>
-<li><a class="" href="pr%C3%B3logo.html"><span class="header-section-number">1</span> Prólogo</a></li>
-<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">2</span> R: Una introducción desde la exploración de información</a></li>
-<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">3</span> Mapas coropléticos en R</a></li>
-<li><a class="active" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">5</span> Modelos de regresión lineal</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="active" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
 <li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -84,9 +84,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análisis-espacial-i-autocorrelación" class="section level1" number="4">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análisis-espacial-i-autocorrelación" class="section level1" number="3">
 <h1>
-<span class="header-section-number">4</span> Análisis espacial I: autocorrelación<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3</span> Análisis espacial I: autocorrelación<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h1>
 <div style="text-align: justify">
 <p>Observa el siguiente mapa. En él, se representa la variable índice de de desarrollo humano que calculó el Programa de Naciones Unidad para el Desarrollo (PNUD) en 2015.</p>
@@ -101,9 +101,9 @@
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672"></div>
 <p>Figura 3.1. Índice de desarrollo humano para los municipios de la ZMVM, 2015</p>
 <p>¿Notas algún patrón? ¿Detectas cómo los municipios con un valor alto del índice de desarrollo (Benito Juárez, Alvaro Obregón, Miguel Hidalgo, Coyoacán y otros) se encuentran <em>agrupados</em> en la parte centro-sur de la región considerada? Dicho patrón ilustra la posible presencia de <em>autocorrelación espacial</em>, es decir, que los valores de un indicador en una zona estén rodeados por valores muy semejantes o nada semejantes: en ambos casos decimos que hay autocorrelación. Cuando tratamos con datos de una variable georeferenciada hay altas probabilidades de que dicha variable esté autocorrelacionada y esto hace necesario que sean necesarias ciertas técnicas para su tratamiento, es decir, para su representación y modelación. En este capítulo trataremos con el concepto clave de autocorrelación espacial y veremos a través de que instrumentos es posible medirla para, más adelante, incorporar su riqueza informativa a una explicación sustantiva de los fenómenos socioterritoriales analizados.</p>
-<div id="autocorrelación-espacial-y-definición-de-vecindad" class="section level2" number="4.1">
+<div id="autocorrelación-espacial-y-definición-de-vecindad" class="section level2" number="3.1">
 <h2>
-<span class="header-section-number">4.1</span> Autocorrelación espacial y definición de vecindad<a class="anchor" aria-label="anchor" href="#autocorrelaci%C3%B3n-espacial-y-definici%C3%B3n-de-vecindad"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.1</span> Autocorrelación espacial y definición de vecindad<a class="anchor" aria-label="anchor" href="#autocorrelaci%C3%B3n-espacial-y-definici%C3%B3n-de-vecindad"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
@@ -137,7 +137,7 @@
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-113"></span>
 <img src="recursos%203/Vecindario%20regular.jpg" alt="Vecindario regular" width="100%"><p class="caption">
-Figura 4.1: Vecindario regular
+Figura 3.1: Vecindario regular
 </p>
 </div>
 <p>A partir de la disposición de este hipotético vecindario nos interesa construir una matriz de pesos espaciales, el instrumento para captar la estructura espacial de dicho vecindario. De los múltiples criterios de vecindad existentes, comencemos por el de <em>adyacencia</em> o <em>contigüidad</em>. A decir de Anselin (2020) “contigüidad significa que dos unidades espaciales comparten un borde común de longitud distinta de cero. Desde el punto de vista operativo, podemos distinguir entre un criterio de contigüidad de <em>tipo torre</em> y de <em>tipo reina</em>, en analogía con los movimientos permitidos para las piezas así nombradas en un tablero de ajedrez. El criterio de la torre define a los vecinos por la existencia de un borde común entre dos unidades espaciales. El criterio de la reina es algo más amplio y define a los vecinos como unidades espaciales que comparten un borde o un vértice comunes” <span class="citation">(<a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>.</p>
@@ -145,14 +145,14 @@ Figura 4.1: Vecindario regular
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-114"></span>
 <img src="recursos%203/Matriz%20ejemplo-vac%C3%ADa.jpg" alt="Matriz ejemplo vacía" width="100%"><p class="caption">
-Figura 4.2: Matriz ejemplo vacía
+Figura 3.2: Matriz ejemplo vacía
 </p>
 </div>
 <p>Dicho cuadro será nuestra matriz de pesos espaciales y contendrá la estructura espacial del vecindario de la figura 3.2. Para un criterio de vecindad por adyacencia de tipo reina, ¿el elemento 1 y 2, son vecinos? Las unidades espaciales 1 y 2 de nuestro vecindario comparten un borde, por tanto, son vecinos y en el elemento (1,2) de nuestra matriz colocaremos un número 1; lo mismo ocurre entre las unidades espaciales 1 y 3 que, al compartir un lado, son vecinos y por tanto el elemento (1,3) de la matriz será también un 1. ¿Qué pasa entre los objetos 1 y 4? En este caso, no hay ni bordes ni vértices en común, por tanto, no hay una relación de vecindad, entonces, en el elemento (1,4) habremos de colocar un 0 que indica ausencia de vecindad. En síntesis, dado determinado criterio de vecindad, si dos objetos espaciales son vecinos, la relación de vecindad se indica mediante un número 1, en tanto, cuando no hay relación de vecindad su ausencia se indica colocando un 0. Hagamos esto para cada celda de la matriz hasta llenarla completamente y obtener algo parecido a lo que aparece en la figura 3.4.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-115"></span>
 <img src="recursos%203/Matriz%20ejemplo-llena.jpg" alt="Matriz ejemplo llena" width="100%"><p class="caption">
-Figura 4.3: Matriz ejemplo llena
+Figura 3.3: Matriz ejemplo llena
 </p>
 </div>
 <p>Resumamos lo dicho hasta este punto. El cuadro que acabamos de llenar es conocido como <em>matriz de pesos espaciales</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;“La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada matriz de pesos, ponderaciones, distancias o contactos espaciales” &lt;span class="citation"&gt;(&lt;a href="references.html#ref-Chasco2003" role="doc-biblioref"&gt;Chasco 2003, 55&lt;/a&gt;)&lt;/span&gt;&lt;/p&gt;'><sup>5</sup></a> y es el instrumento que nos permite sintetizar las relaciones espaciales o estructura de vecindad que corresponde a determinado criterio. Habrá, por tanto, diversos tipos de matrices en función del criterio de vecindad elegido. Esta matriz se denotada por la letra mayúscula <span class="math inline">\(W\)</span> y está integrada por los elementos <span class="math inline">\(w_{ij}\)</span> que toman el valor de 1 cuando el elemento <span class="math inline">\(j\)</span> y el elemento <span class="math inline">\(i\)</span> son vecinos y 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos <em>incorporar al espacio</em> como variable a partir de lo que denominamos “rezago espacial,” como más adelante veremos en este y en el siguiente capítulo. Las características de la matriz de pesos espaciales son:</p>
@@ -164,16 +164,16 @@ Figura 4.3: Matriz ejemplo llena
 </ul>
 <p>Acabamos de ilustrar la lógica con la que puede ser construida una matriz de pesos espaciales a partir de una retícula regular con apenas seis elementos. Veamos ahora cómo obtener matrices de pesos espaciales sirviéndonos de R, ya que desarrollar los pasos anteriores para un vecindario compuesto por 76 objetos espaciales que son las alcaldías y municipios que integran el Valle de México es tarea para una máquina, no para nosotros.</p>
 </div>
-<div id="matrices-de-pesos-espaciales-en-r" class="section level2" number="4.2">
+<div id="matrices-de-pesos-espaciales-en-r" class="section level2" number="3.2">
 <h2>
-<span class="header-section-number">4.2</span> Matrices de pesos espaciales en R<a class="anchor" aria-label="anchor" href="#matrices-de-pesos-espaciales-en-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2</span> Matrices de pesos espaciales en R<a class="anchor" aria-label="anchor" href="#matrices-de-pesos-espaciales-en-r"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
 <p>En R hay muchas rutas para desarrollar la misma tarea. Presentamos en este capítulo dos rutas: la primera se sirve del paquete <code>spdep</code> de <a href="https://en.wikipedia.org/wiki/Roger_Bivand">Roger Bivand</a>, en tanto que la segunda sigue la propuesta de <a href="https://lixun910.github.io/">Xun Li</a> y su paquete <code>rgeoda</code>, una librería para llevar a cabo análisis espacial basado en la funcionalidades del <a href="https://geodacenter.github.io/">software GeoDa</a>.</p>
-<div id="construcción-de-matrices-con-spdep" class="section level3" number="4.2.1">
+<div id="construcción-de-matrices-con-spdep" class="section level3" number="3.2.1">
 <h3>
-<span class="header-section-number">4.2.1</span> Construcción de matrices con <code>spdep</code><a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-matrices-con-spdep"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2.1</span> Construcción de matrices con <code>spdep</code><a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-matrices-con-spdep"><i class="fas fa-link"></i></a>
 </h3>
 <p>Roger Bivand y un <a href="https://github.com/r-spatial/spdep">equipo de colaboradores</a> desarrollaron el paquete <code>spdep</code> para la construcción de matrices de pesos espaciales y el análisis espacial. En este enfoque la función <code><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb()</a></code> nos permite calcular estructuras espaciales dadas a partir de dos tipos de vecindad por adyacencia, una más estricta (argumento <code>queen=FALSE</code>) y que la otra (argumento <code>queen=TRUE</code>). En la documentación de la función podemos leer que: “si es VERDADERO, <code>TRUE</code>, un solo punto límite compartido cumple la condición de contigüidad; si es FALSO, <code>FALSE</code>, se requiere más de un punto compartido; ten en cuenta que más de un punto límite compartido no significa necesariamente una línea límite compartida.” Además, para cargar la base de datos espacial recurriremos al paquete <code>rgdal</code>.</p>
 <p>Lo dicho en el párrafo anterior es relevante en el sentido de que estos criterios no son exactamente los mismos que definimos antes (contigüidad reina y torre). Procedamos pues a la instalación de los paquetes, en caso de que aún no estén en nuestro sistema:</p>
@@ -243,9 +243,9 @@ Figura 4.3: Matriz ejemplo llena
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672"></div>
 <p>Como puedes observar, son estructuras muy parecidas, aunque aun así es posible notar sus diferencias.</p>
 </div>
-<div id="construcción-de-matrices-con-rgeoda" class="section level3" number="4.2.2">
+<div id="construcción-de-matrices-con-rgeoda" class="section level3" number="3.2.2">
 <h3>
-<span class="header-section-number">4.2.2</span> Construcción de matrices con <code>rgeoda</code><a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-matrices-con-rgeoda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2.2</span> Construcción de matrices con <code>rgeoda</code><a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-matrices-con-rgeoda"><i class="fas fa-link"></i></a>
 </h3>
 <p>A diferencia del enfoque previo, con el paquete <code>rgeoda</code> es necesario cargar la base de datos espacial a través del paquete <code>sf</code>. Si no los has instalado:</p>
 <div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
@@ -283,9 +283,9 @@ Figura 4.3: Matriz ejemplo llena
 <li>Matrices de pesos por kernel</li>
 </ul>
 <p>De ellas, aquí construiremos sólo las tres primeras.</p>
-<div id="matrices-basadas-en-contigüidad" class="section level4" number="4.2.2.1">
+<div id="matrices-basadas-en-contigüidad" class="section level4" number="3.2.2.1">
 <h4>
-<span class="header-section-number">4.2.2.1</span> Matrices basadas en contigüidad<a class="anchor" aria-label="anchor" href="#matrices-basadas-en-contig%C3%BCidad"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2.2.1</span> Matrices basadas en contigüidad<a class="anchor" aria-label="anchor" href="#matrices-basadas-en-contig%C3%BCidad"><i class="fas fa-link"></i></a>
 </h4>
 <p>En <code>rgeoda</code> hay dos matrices de pesos espaciales basadas en contigüidad, tal y como lo expisimos en la primera sección de este capítulo, las de tipo reina y las de tipo torre. Para construir una matriz de tipo reina recurrimos a la función <code>queen_weight()</code> y para una de tipo torre usamos <code><a href="https://geodacenter.github.io/rgeoda/reference/rook_weights.html">rook_weights()</a></code>, ambas funciones tienen cuatro argumentos:</p>
 <ul>
@@ -363,14 +363,14 @@ ii. ¿Cuáles opcionales?</td>
 ## 8           has isolates:              FALSE</code></pre>
 <p>De dicho resumen es posible apuntar que: nuestro vecindario, la Zona Metropolitana del Valle de México, tiene 76 unidades espaciales (<em>number of observations</em>), la matriz construida es simétrica (<code>is symmetric: TRUE</code>), los municipios y alcaldías tienen al menos un vecino (<code># min neighbors: 1</code>), el número máximo de vecinos es de 9 (<code># max neighbors: 9</code>), la media de 4.68 (<code># mean neighbors</code>), la mediana de 4 (<code># median neighbors</code>) y que no hay observaciones sin vecinos (<code>has isolates: FALSE</code>). El elemento que no hemos indicado es <code>sparsity:</code> que tiene un valor de 0.0616. Dicho valor corresponde a la proporción de elementos diferentes a cero en una matriz de 76x76 objetos, es decir, nuestra matriz sólo tiene 6.16% son diferentes de cero.</p>
 </div>
-<div id="matrices-basadas-en-distancia" class="section level4" number="4.2.2.2">
+<div id="matrices-basadas-en-distancia" class="section level4" number="3.2.2.2">
 <h4>
-<span class="header-section-number">4.2.2.2</span> Matrices basadas en distancia<a class="anchor" aria-label="anchor" href="#matrices-basadas-en-distancia"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2.2.2</span> Matrices basadas en distancia<a class="anchor" aria-label="anchor" href="#matrices-basadas-en-distancia"><i class="fas fa-link"></i></a>
 </h4>
 <p>En `rgeoda`` hay dos tipos de matrices que recurren a la distancia: la matriz de úmbral de distancia mínima y la matriz de k-vecinos más cercanos. Para el caso de la matriz de umbral, se considera que dos objetos espaciales, en el caso aquí analizado, dos municipios o alcaldías, son vecinos siempre que estén dentro de cierto umbral de distancia dado. Para el caso de la matriz de k-vecinos más cercanos, la idea es que un objeto espacial tendrá como vecinos a los k-objetos más cercanos.</p>
-<div id="matriz-basada-en-umbral-distancia" class="section level5" number="4.2.2.2.1">
+<div id="matriz-basada-en-umbral-distancia" class="section level5" number="3.2.2.2.1">
 <h5>
-<span class="header-section-number">4.2.2.2.1</span> Matriz basada en umbral distancia<a class="anchor" aria-label="anchor" href="#matriz-basada-en-umbral-distancia"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2.2.2.1</span> Matriz basada en umbral distancia<a class="anchor" aria-label="anchor" href="#matriz-basada-en-umbral-distancia"><i class="fas fa-link"></i></a>
 </h5>
 <p>Para construir una matriz de pesos espaciales basada este criterio tenemos proceder en dos pasos: i) definir un umbral de distancia mínimo en el cual todas las unidades espaciales tienen al menos un vecino, ii) usar dicho umbral para hallar cada uno de los vecinos, dado ese umbral.</p>
 <p>Para definir el umbral usamos la función <code><a href="https://geodacenter.github.io/rgeoda/reference/min_distthreshold.html">min_distthreshold()</a></code> del paquete `rgeoda``:</p>
@@ -392,9 +392,9 @@ ii. ¿Cuáles opcionales?</td>
 ## 7     # median neighbors:                5.5
 ## 8           has isolates:              FALSE</code></pre>
 </div>
-<div id="matriz-de-k-vecinos-más-cercanos" class="section level5" number="4.2.2.2.2">
+<div id="matriz-de-k-vecinos-más-cercanos" class="section level5" number="3.2.2.2.2">
 <h5>
-<span class="header-section-number">4.2.2.2.2</span> Matriz de k-vecinos más cercanos<a class="anchor" aria-label="anchor" href="#matriz-de-k-vecinos-m%C3%A1s-cercanos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2.2.2.2</span> Matriz de k-vecinos más cercanos<a class="anchor" aria-label="anchor" href="#matriz-de-k-vecinos-m%C3%A1s-cercanos"><i class="fas fa-link"></i></a>
 </h5>
 <p>Cuando decimos k-vecinos más cercanos, con ello queremos decir que se identificará determinado número “k” de vecinos más cercanos: los 2 más cercanos (k=2), los 8 más cercanos (k=8), etcétera. Para ello nos servimos de la función <code><a href="https://geodacenter.github.io/rgeoda/reference/knn_weights.html">knn_weights()</a></code>. Si quiseramos una matriz con los 4 vecinos más cercanos, tenemos que:</p>
 <div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
@@ -414,9 +414,9 @@ ii. ¿Cuáles opcionales?</td>
 </div>
 </div>
 </div>
-<div id="variables-espacialmente-rezagadas" class="section level2" number="4.3">
+<div id="variables-espacialmente-rezagadas" class="section level2" number="3.3">
 <h2>
-<span class="header-section-number">4.3</span> Variables espacialmente rezagadas<a class="anchor" aria-label="anchor" href="#variables-espacialmente-rezagadas"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3</span> Variables espacialmente rezagadas<a class="anchor" aria-label="anchor" href="#variables-espacialmente-rezagadas"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 
@@ -448,9 +448,9 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 \]</span></p>
 <p>Donde <span class="math inline">\(w_{ij(s)}\)</span> es cada uno de los elementos de la matriz de pesos estandarizada por fila y <span class="math inline">\(y_n\)</span> es el valor de la variable de interés. Así pues, el rezago espacial pondera la variable de interés a través del número de vecinos que cada unidad espacial posee.</p>
 <p>De nueva cuenta, es posible construir rezagos espaciales ya sea con el paquete <code>spded</code> o <code>rgeoda</code>. Primero ilustraremos la alternativa con <code>spdep</code> y en seguida con <code>rgeoda</code>.</p>
-<div id="rezagos-espaciales-con-spdep" class="section level3" number="4.3.1">
+<div id="rezagos-espaciales-con-spdep" class="section level3" number="3.3.1">
 <h3>
-<span class="header-section-number">4.3.1</span> Rezagos espaciales con <code>spdep</code><a class="anchor" aria-label="anchor" href="#rezagos-espaciales-con-spdep"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3.1</span> Rezagos espaciales con <code>spdep</code><a class="anchor" aria-label="anchor" href="#rezagos-espaciales-con-spdep"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para construir con <code>spdep</code> el rezago espacial de una variable, digamos de los casos positivos por COVID19, debemos primero estandarizar los objetos que contienen las estructuras espaciales que previamente construimos: <code>mTRUE</code> y <code>mFALSE</code>. Este proceso corre a cuenta de la función <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code> del paquete <code>spdep</code>:</p>
 <div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
@@ -595,9 +595,9 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 </ol>
 <hr>
 </div>
-<div id="rezagos-espaciales-con-rgeoda" class="section level3" number="4.3.2">
+<div id="rezagos-espaciales-con-rgeoda" class="section level3" number="3.3.2">
 <h3>
-<span class="header-section-number">4.3.2</span> Rezagos espaciales con <code>rgeoda</code><a class="anchor" aria-label="anchor" href="#rezagos-espaciales-con-rgeoda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3.2</span> Rezagos espaciales con <code>rgeoda</code><a class="anchor" aria-label="anchor" href="#rezagos-espaciales-con-rgeoda"><i class="fas fa-link"></i></a>
 </h3>
 <p>Con el paquete <code>rgeoda</code> calcular rezagos espaciales es sencillo con la función <code><a href="https://geodacenter.github.io/rgeoda/reference/spatial_lag.html">spatial_lag()</a></code>, en la que hay que especificar dos argumentos: <code>gda_w=</code> la matriz de pesos espaciales y <code>df=</code> la variable sobre la que se desea el rezago espacial, que proviene del objeto de tipo <code>sf</code>. Por ejemplo, para la variable casos positivos, <code>pos_hab</code> y con una matriz de tipo reina, <code>queen_w</code>:</p>
 <div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
@@ -656,9 +656,9 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 <hr>
 </div>
 </div>
-<div id="coeficiente-de-correlación-espacial-la-i-de-moran" class="section level2" number="4.4">
+<div id="coeficiente-de-correlación-espacial-la-i-de-moran" class="section level2" number="3.4">
 <h2>
-<span class="header-section-number">4.4</span> Coeficiente de correlación espacial: la I de Moran<a class="anchor" aria-label="anchor" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4</span> Coeficiente de correlación espacial: la I de Moran<a class="anchor" aria-label="anchor" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><i class="fas fa-link"></i></a>
 </h2>
 <p>Una vez que hemos abordado y resuelto el problema de cómo definir vecindad a partir de la matriz de pesos espaciales y que hemos operacionalizado la definición de valor de la variable en los vecinos a través de la noción de rezago espacial, tenemos todos los elementos que integran la definición de autocorrelación espacial: i) relación funcional, ii) valor de una variable y iii) relación de vecindad.</p>
 <p>Ahora bien, ¿cómo medimos la autocorrelación? Es decir, cómo sabemos si, por ejemplo, la variable casos positivos por COVID19 está autocorrelacionada. Al principio de este capítulo dijimos que apreciar ciertos patrones de agrupamiento en un mapa, como el del índice de desarrollo humano, era un posible indicio de autocorrelación espacial. Es momento de formalizar dicho indicio a través de un indicador apropiado. Debemos pues construir un estadístico, un estadístico de autocorrelación espacial.</p>
@@ -714,15 +714,15 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 <li><p>¿Dirías que dicha relación es producto del azar o que existe un comportamiento sistemático?</p></li>
 </ol>
 <hr>
-<div id="diagrama-de-moran" class="section level3" number="4.4.1">
+<div id="diagrama-de-moran" class="section level3" number="3.4.1">
 <h3>
-<span class="header-section-number">4.4.1</span> Diagrama de Moran<a class="anchor" aria-label="anchor" href="#diagrama-de-moran"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.1</span> Diagrama de Moran<a class="anchor" aria-label="anchor" href="#diagrama-de-moran"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una forma creativa de expresar gráficamente la autocorrelación es a través de un diagrama de dispersión cuyo eje <span class="math inline">\(x\)</span> corresponde a la variable de interés, casos positivos de COVID19 por cada 1 mil habitantes, y el eje <span class="math inline">\(y\)</span> a su rezago espacial; además, al agregar una recta de ajuste sobre los datos estandarizados lograremos que la pendiente de dicha recta corresponda exactamente al valor de la I de Moran. Una de las características del diagrama de Moran es que se descompone en cuatro cuadrantes, tal como aparece en la figura 3.5.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-143"></span>
 <img src="recursos%203/Diagrama%20de%20Moran.jpg" alt="Diagrama de dispersión de Moran" width="100%"><p class="caption">
-Figura 4.4: Diagrama de dispersión de Moran
+Figura 3.4: Diagrama de dispersión de Moran
 </p>
 </div>
 <p>Para representar el diagrama de Moran recurrimos a la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> del paquete <code>spdep</code> que para una matriz de tipo reina con el argumento <code>queen=TRUE</code> y la base de datos de tipo <code>SpatialPolygonsDataFrame</code>:</p>
@@ -739,17 +739,17 @@ i) Una parte importante de las observaciones caen en el cuadrante I y III, por l
 ii) Que la relación funcional dominante sea positiva no implica que no haya observaciones en los cuadrantes II y IV.</p>
 </div>
 </div>
-<div id="múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par." class="section level2" number="4.5">
+<div id="múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par." class="section level2" number="3.5">
 <h2>
-<span class="header-section-number">4.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función <code>par()</code>.<a class="anchor" aria-label="anchor" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función <code>par()</code>.<a class="anchor" aria-label="anchor" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Ejercicio</strong></p>
 <p>¿Es posible construir un diagrama de Moran usando el paquete ggplot2? De ser así, ¿cómo lo harías?</p>
 <hr>
 </div>
-<div id="índice-de-moran-local-y-mapa-de-clusters" class="section level2" number="4.6">
+<div id="índice-de-moran-local-y-mapa-de-clusters" class="section level2" number="3.6">
 <h2>
-<span class="header-section-number">4.6</span> Índice de Moran local y mapa de clusters<a class="anchor" aria-label="anchor" href="#%C3%ADndice-de-moran-local-y-mapa-de-clusters"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.6</span> Índice de Moran local y mapa de clusters<a class="anchor" aria-label="anchor" href="#%C3%ADndice-de-moran-local-y-mapa-de-clusters"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>El índice de Moran que recién hemos calculado permite evaluar la existencia de un patrón espacial completo o global, es decir, para el conjunto de todas las observaciones. Por ello, no proporciona información de la ubicación de las agrupaciones o clusters de alcaldías y municipios. Por ello se dice que la I de Moran es una medida de autocorrelación espacial global: nos dice que hay patrones de concentración o dispersión pero no nos dice a qué municipios o alcaldías específicos es posible atribuir dichas fuerzas de aglomeración.</p>
@@ -907,30 +907,30 @@ for (let popover of popovers) {
 </div>
 </div>
 <div class="chapter-nav">
-<div class="prev"><a href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">3</span> Mapas coropléticos en R</a></div>
-<div class="next"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">5</span> Modelos de regresión lineal</a></div>
+<div class="prev"><a href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></div>
+<div class="next"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="nav-link" href="#autocorrelaci%C3%B3n-espacial-y-definici%C3%B3n-de-vecindad"><span class="header-section-number">4.1</span> Autocorrelación espacial y definición de vecindad</a></li>
+<li><a class="nav-link" href="#an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="nav-link" href="#autocorrelaci%C3%B3n-espacial-y-definici%C3%B3n-de-vecindad"><span class="header-section-number">3.1</span> Autocorrelación espacial y definición de vecindad</a></li>
 <li>
-<a class="nav-link" href="#matrices-de-pesos-espaciales-en-r"><span class="header-section-number">4.2</span> Matrices de pesos espaciales en R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#construcci%C3%B3n-de-matrices-con-spdep"><span class="header-section-number">4.2.1</span> Construcción de matrices con spdep</a></li>
-<li><a class="nav-link" href="#construcci%C3%B3n-de-matrices-con-rgeoda"><span class="header-section-number">4.2.2</span> Construcción de matrices con rgeoda</a></li>
+<a class="nav-link" href="#matrices-de-pesos-espaciales-en-r"><span class="header-section-number">3.2</span> Matrices de pesos espaciales en R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#construcci%C3%B3n-de-matrices-con-spdep"><span class="header-section-number">3.2.1</span> Construcción de matrices con spdep</a></li>
+<li><a class="nav-link" href="#construcci%C3%B3n-de-matrices-con-rgeoda"><span class="header-section-number">3.2.2</span> Construcción de matrices con rgeoda</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#variables-espacialmente-rezagadas"><span class="header-section-number">4.3</span> Variables espacialmente rezagadas</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rezagos-espaciales-con-spdep"><span class="header-section-number">4.3.1</span> Rezagos espaciales con spdep</a></li>
-<li><a class="nav-link" href="#rezagos-espaciales-con-rgeoda"><span class="header-section-number">4.3.2</span> Rezagos espaciales con rgeoda</a></li>
+<a class="nav-link" href="#variables-espacialmente-rezagadas"><span class="header-section-number">3.3</span> Variables espacialmente rezagadas</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rezagos-espaciales-con-spdep"><span class="header-section-number">3.3.1</span> Rezagos espaciales con spdep</a></li>
+<li><a class="nav-link" href="#rezagos-espaciales-con-rgeoda"><span class="header-section-number">3.3.2</span> Rezagos espaciales con rgeoda</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><span class="header-section-number">4.4</span> Coeficiente de correlación espacial: la I de Moran</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#diagrama-de-moran"><span class="header-section-number">4.4.1</span> Diagrama de Moran</a></li></ul>
+<a class="nav-link" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><span class="header-section-number">3.4</span> Coeficiente de correlación espacial: la I de Moran</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#diagrama-de-moran"><span class="header-section-number">3.4.1</span> Diagrama de Moran</a></li></ul>
 </li>
-<li><a class="nav-link" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><span class="header-section-number">4.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función par().</a></li>
-<li><a class="nav-link" href="#%C3%ADndice-de-moran-local-y-mapa-de-clusters"><span class="header-section-number">4.6</span> Índice de Moran local y mapa de clusters</a></li>
+<li><a class="nav-link" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><span class="header-section-number">3.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función par().</a></li>
+<li><a class="nav-link" href="#%C3%ADndice-de-moran-local-y-mapa-de-clusters"><span class="header-section-number">3.6</span> Índice de Moran local y mapa de clusters</a></li>
 </ul>
 
       <div class="book-extra">

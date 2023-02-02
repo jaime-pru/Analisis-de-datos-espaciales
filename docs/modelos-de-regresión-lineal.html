@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>5 Modelos de regresión lineal | Análisis de datos espaciales con R</title>
+<title>4 Modelos de regresión lineal | Análisis de datos espaciales con R</title>
 <meta name="author" content="Jaime Alberto Prudencio Vázquez">
 <meta name="generator" content="bookdown 0.30 with bs4_book()">
-<meta property="og:title" content="5 Modelos de regresión lineal | Análisis de datos espaciales con R">
+<meta property="og:title" content="4 Modelos de regresión lineal | Análisis de datos espaciales con R">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5 Modelos de regresión lineal | Análisis de datos espaciales con R">
+<meta name="twitter:title" content="4 Modelos de regresión lineal | Análisis de datos espaciales con R">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -69,12 +69,12 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Análisis de datos espaciales con R</a></li>
-<li><a class="" href="pr%C3%B3logo.html"><span class="header-section-number">1</span> Prólogo</a></li>
-<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">2</span> R: Una introducción desde la exploración de información</a></li>
-<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">3</span> Mapas coropléticos en R</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="active" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">5</span> Modelos de regresión lineal</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
+<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
+<li><a class="active" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
 <li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -84,16 +84,16 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="modelos-de-regresión-lineal" class="section level1" number="5">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="modelos-de-regresión-lineal" class="section level1" number="4">
 <h1>
-<span class="header-section-number">5</span> Modelos de regresión lineal<a class="anchor" aria-label="anchor" href="#modelos-de-regresi%C3%B3n-lineal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4</span> Modelos de regresión lineal<a class="anchor" aria-label="anchor" href="#modelos-de-regresi%C3%B3n-lineal"><i class="fas fa-link"></i></a>
 </h1>
 <div style="text-align: justify">
 <p>Hasta este punto hemos hecho un recorrido que va desde los elementos más básicos sobre la exploración de información (capítulo 1), pasando por la representación de información espacial a través de mapas coropléticos (capítulo 2), hasta la exploración de patrones de asociación de una variable en el espacio, la llamada autocorrelación (capítulo 3).</p>
 <p>Antes de avanzar en el conocimiento de las herramientas que nos permitirán elaborar algunos modelos básicos de econometría espacial que incorporen los patrones espaciales que hemos identificado (capítulo 5), en este capítulo hacemos un pequeño paréntesis en el tratamiento de la información espacial para llevar a cabo un repaso elemental, desde una perspectiva práctica, del modelo clásico de regresión lineal. Esto nos permitirá que tengas en la mente dos cosas: i) qué es lo que se busca a través de modelos econométricos y ii) cuáles son los supuestos detrás del modelo clásico de regresión lineal estimado con el método de mínimos cuadrados ordinarios (MCO).</p>
-<div id="causalidad-y-correlación-el-alcance-del-análisis-de-regresión" class="section level2" number="5.1">
+<div id="causalidad-y-correlación-el-alcance-del-análisis-de-regresión" class="section level2" number="4.1">
 <h2>
-<span class="header-section-number">5.1</span> Causalidad y correlación: el alcance del análisis de regresión<a class="anchor" aria-label="anchor" href="#causalidad-y-correlaci%C3%B3n-el-alcance-del-an%C3%A1lisis-de-regresi%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1</span> Causalidad y correlación: el alcance del análisis de regresión<a class="anchor" aria-label="anchor" href="#causalidad-y-correlaci%C3%B3n-el-alcance-del-an%C3%A1lisis-de-regresi%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
 <p>En términos de su origen etimológico, econometría significa <em>medición econonómica</em>. Pero su alcance se extiende más allá de la simple medición ya que a través de ella es posible contribuir a dar soporte empírico a la teoría económica a través del uso de herramientas estadísticas como los modelos de regresión y sus estimaciones <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati and Porter 2011</a>)</span>. Veamos esto con un poco más de detalle.</p>
 <p>En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser respondidas, nos permitan tener una descripción general del fenómeno, habrá otras que nos permitan explorar la relación entre dos fenómenos, o bien, preguntas cuya respuesta nos permita predecir el comportamiento futuro del elemento estudiado. Así pues, hay <a href="https://bookdown.org/rdpeng/artofdatascience/types-of-questions.html">diferentes tipos de preguntas de investigación</a>, dependiendo de su grado de complejidad. En su libro “El arte de la ciencia de datos,” Roger Peng y Elizabeth Matsui<span class="citation">(<a href="references.html#ref-PengMatzui2017" role="doc-biblioref">2017</a>)</span>, abordan sistemáticamente esta cuestión.<br>
@@ -107,9 +107,9 @@ Cuando, por ejemplo, nos preguntamos “¿el cambio en una variable provoca el c
 <p>“Para establecer la causalidad, la relación entre los regresores y la variable de respuesta debe tener una base fuera de los datos de la muestra; por ejemplo, la relación puede ser sugerida por consideraciones teóricas. El análisis de regresión puede ayudar a confirmar una relación de causa y efecto, pero no puede ser la única base de tal afirmación” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">Montgomery, Peck., and Vining. 2012, 81:3</a>)</span>.</p>
 <p>Los elementos anteriores, la metodología econométrica clásica, son explicados con detalle en el primer capítulo del libro Econometría Básica de Gujarati y Porter, del que existen varias ediciones y que se recomienda ampliamente consultar.</p>
 </div>
-<div id="lo-artesanal-de-la-econometría" class="section level2" number="5.2">
+<div id="lo-artesanal-de-la-econometría" class="section level2" number="4.2">
 <h2>
-<span class="header-section-number">5.2</span> Lo “artesanal” de la econometría<a class="anchor" aria-label="anchor" href="#lo-artesanal-de-la-econometr%C3%ADa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> Lo “artesanal” de la econometría<a class="anchor" aria-label="anchor" href="#lo-artesanal-de-la-econometr%C3%ADa"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>No cabe duda que la especificación de un buen modelo econométrico tiene algo de artesanal, es decir, serán pocas las ocasiones en las que no tendremos que proponer diferentes alternativas de modelo, probar con múltiples variables y llevar a cabo un sin número de ajustes. Conviene desde este momento eliminar la idea de que “solo hay que aplicar una técnica”: todas las técnicas requieren práctica y el desarrollo de habilidad en su uso pues no siempre enfrentaremos un mismo problema en las mismas condiciones. A este respecto puede ser apuntado que:</p>
@@ -118,14 +118,14 @@ La idea anterior aparece esquematizada en la figura 4.1, que es tomada de Montgo
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-154"></span>
 <img src="recursos%202/Figura%201.jpg" alt="Construcción de un modelo de regresión" width="100%"><p class="caption">
-Figura 5.1: Construcción de un modelo de regresión
+Figura 4.1: Construcción de un modelo de regresión
 </p>
 </div>
 <p>En este capítulo buscamos que recuerdes algunos de los elementos fundamentales del análisis de regresión, como sus supuestos básicos y la interpretación de los resultados que nos ofrece este instrumento. Para ilustrar dichos elementos nos serviremos de la <a href="https://bit.ly/covid_zmvm">base de datos sobre COVID19</a> que contiene información sobre las condiciones sociodemodráficas y económicas de los municipios en la Zona Metropolitana del Valle de México, la misma base que hemos explorado en los capítulos previos. La pregunta que nos interesa responder es de carácter preliminar y no atiende a cuerpo teórico alguno, por lo que los resultados son solo ilustrativos y tienen solo fines didácticos. La pregunta planteada es: ¿de qué manera se asocian las condiciones sociales, demográficas y económicas, tanto con los casos positivos de COVID19 por cada 1 mil habitantes, como con las muertes provocadas por este mal por cada 1 mil habitantes? Para lograr dar solución a la pregunta propondremos algunos modelos econométricos y buscaremos interpretarlos.</p>
 </div>
-<div id="qué-buscamos-a-través-de-una-regresión-con-mínimos-cuadrados-ordinarios" class="section level2" number="5.3">
+<div id="qué-buscamos-a-través-de-una-regresión-con-mínimos-cuadrados-ordinarios" class="section level2" number="4.3">
 <h2>
-<span class="header-section-number">5.3</span> Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)<a class="anchor" aria-label="anchor" href="#qu%C3%A9-buscamos-a-trav%C3%A9s-de-una-regresi%C3%B3n-con-m%C3%ADnimos-cuadrados-ordinarios"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3</span> Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)<a class="anchor" aria-label="anchor" href="#qu%C3%A9-buscamos-a-trav%C3%A9s-de-una-regresi%C3%B3n-con-m%C3%ADnimos-cuadrados-ordinarios"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>Un modelo es una representación simplificada de la realidad. En el caso particular de un modelo econométrico y de la regresión lineal lo que se pretende <em>encontrar la recta que mejor se ajusta a los datos observados</em>.
@@ -174,9 +174,9 @@ La técnica más usual para lograrlo son los llamados <strong>mínimos cuadrados
 <p>Como verás, lo que buscamos es justamente <em>un modelo que describa nuestros datos</em>. Hay muchos tipos de modelos para describir el comportamiento entre dos variables (curvas cuadráticas, curvas exponenciales o curvas polinomiales). Aquí buscamos expresar la relación entre nuestro par de variables de la forma más simple posible: a través de una línea recta.</p>
 <p>Te recomendamos ampliamente el material de David Dalpiaz, <a href="http://daviddalpiaz.github.io/appliedstats/">Applied Statistics with R</a>, particularmente el <a href="http://daviddalpiaz.github.io/appliedstats/simple-linear-regression.html">capítulo 7</a> en caso de que quieras recordar con todo detalle los fundamentos estadísticos de la regresión <span class="citation">(<a href="references.html#ref-Dalpiaz2022" role="doc-biblioref">Dalpiaz 2022</a>)</span>.</p>
 </div>
-<div id="modelo-de-regresión-lineal-simple" class="section level2" number="5.4">
+<div id="modelo-de-regresión-lineal-simple" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">5.4</span> Modelo de regresión lineal simple<a class="anchor" aria-label="anchor" href="#modelo-de-regresi%C3%B3n-lineal-simple"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> Modelo de regresión lineal simple<a class="anchor" aria-label="anchor" href="#modelo-de-regresi%C3%B3n-lineal-simple"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>Ya que tenemos una noción básica de lo que buscamos con una regresión, es decir, un modelo lineal que describa el comportamiento de nuestros datos, es momento de dar una definición más precisa: “El análisis de regresión es una técnica estadística para investigar y modelar la relación entre variables” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">Montgomery, Peck., and Vining. 2012</a>)</span>. Un modelo de regresión lineal simple es un modelo con una sola regresora (una variable <span class="math inline">\(x\)</span>) cuya relación con la variable de respuesta (<span class="math inline">\(y\)</span>) está dada por una línea recta:</p>
@@ -185,9 +185,9 @@ La técnica más usual para lograrlo son los llamados <strong>mínimos cuadrados
 <p>¿Cómo deben ser entendidos los coeficientes <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, el intercepto y la pendiente? “La pendiente, <span class="math inline">\(\beta_1\)</span> se puede interpretar como el cambio en la media de <span class="math inline">\(y\)</span> para un cambio unitario en <span class="math inline">\(x\)</span>” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">Montgomery, Peck., and Vining. 2012, 81:3</a>)</span>. En tanto, “si el rango de datos en <span class="math inline">\(x\)</span> incluye <span class="math inline">\(x = 0\)</span>, entonces la intersección <span class="math inline">\(\beta_0\)</span> es la media de la distribución de la variable de respuesta <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x = 0\)</span> (es decir, la media de la variable <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x=0\)</span>) Si el rango de <span class="math inline">\(x\)</span> no incluye cero, entonces <span class="math inline">\(β_0\)</span> no tiene una interpretación práctica.”</p>
 <p>Una regresión lineal es pues el método que nos permite <strong>evaluar la relación lineal entre variables numéricas</strong> y se le llama precisamente lineal por la linealidad de sus parámetros (las betas que, como notarás, están elevadas al exponente 1). Lo que buscamos con el análisis de regresión es encontrar los valores estimados de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, es decir, <span class="math inline">\(\hat\beta_0\)</span> y <span class="math inline">\(\hat\beta_1\)</span>, que nos permitan describir con una línea recta el par de variables consideradas y el método más usual para hallarlas son los Mínimos Cuadrados Ordinarios, MCO.</p>
 <p>Los estimadores de MCO ordinarios, tienen tres propiedades: son lineales, insesgados y de varianza mínima.</p>
-<div id="supuestos-del-módelo-clásico-de-regresión-lineal" class="section level3" number="5.4.1">
+<div id="supuestos-del-módelo-clásico-de-regresión-lineal" class="section level3" number="4.4.1">
 <h3>
-<span class="header-section-number">5.4.1</span> Supuestos del módelo clásico de regresión lineal<a class="anchor" aria-label="anchor" href="#supuestos-del-m%C3%B3delo-cl%C3%A1sico-de-regresi%C3%B3n-lineal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4.1</span> Supuestos del módelo clásico de regresión lineal<a class="anchor" aria-label="anchor" href="#supuestos-del-m%C3%B3delo-cl%C3%A1sico-de-regresi%C3%B3n-lineal"><i class="fas fa-link"></i></a>
 </h3>
 <p>En esta sección enlistamos los elementos sobre los que se funda la estimación de un modelo clásico de regresión lineal con mínimos cuadrados ordinarios y haremos énfasis en uno de ellos que se vincula directamente con los contenidos del capítulo siguiente: la autocorrelación. Los supuestos sobre los que se funda en modelo clásico de regresión lineal son:</p>
 <ol style="list-style-type: lower-roman">
@@ -223,16 +223,16 @@ La técnica más usual para lograrlo son los llamados <strong>mínimos cuadrados
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-158"></span>
 <img src="recursos%204/Figura%20autocorrelaci%C3%B3n.jpg" alt="Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67" width="100%"><p class="caption">
-Figura 5.2: Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67
+Figura 4.2: Patrones de correlación. Fuente: Gujarati y Porter, 2011, p. 67
 </p>
 </div>
 <p>De forma simple, con el supuesto de no autocorrelación “se afirma que se considerará el efecto sistemático, si existe, de <span class="math inline">\(X_t\)</span> sobre <span class="math inline">\(Y_t\)</span>, sin preocuparse por las demás influencias que podrían actuar sobre <span class="math inline">\(Y\)</span> como resultado de las posibles correlaciones entre las <span class="math inline">\(u\)</span>” <span class="citation">(<a href="references.html#ref-Gujarati2011" role="doc-biblioref">Gujarati and Porter 2011, 67</a>)</span>.</p>
 <p>Como vimos en el capítulo previo, los datos espaciales suelen presentar entre sus características autocorrelación. Estimar con MCO un modelo econométrico con este tipo de datos muy probablemente violará este supuesto, por lo que se recurre a técnicas específicas para la modelación con datos espaciales, esto será objeto del capítulo 5 donde veremos algunos modelos para solventar este problema. En el resto del capítulo se presenta la manera de construir e interpretar modelos econométricos lineales en R a través de MCO.</p>
 </div>
 </div>
-<div id="regresión-lineal-simple-en-r" class="section level2" number="5.5">
+<div id="regresión-lineal-simple-en-r" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">5.5</span> Regresión lineal simple en R<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-lineal-simple-en-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Regresión lineal simple en R<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-lineal-simple-en-r"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>Para ilustrar cómo emplear una regresión lineal en R usaremos de nuevo la base de datos <code>covid_zmvm</code>, conformada por 54 variables de 76 observaciones, municipios y alcaldías, que conforman la Zona Metropolitana del Valle de México. Carguemos nuestra base de datos:</p>
@@ -298,9 +298,9 @@ Es decir,</p>
 <pre><code>## `geom_smooth()` using formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672"></div>
 <p>Como puedes observar, entre ambas variables existe una relación positiva que puedes identificar por la línea con pendiente positiva que representa la recta de regresión que hemos obtenido, cuya pendiente es igual al valor de <span class="math inline">\(\hat \beta_1\)</span>, es decir, 0.3949. La distancia vertical entre cada punto y la recta de ajuste de la regresión es el error del modelo, es decir <span class="math inline">\(u_i\)</span></p>
-<div id="una-exploración-visual-de-los-errores" class="section level3" number="5.5.1">
+<div id="una-exploración-visual-de-los-errores" class="section level3" number="4.5.1">
 <h3>
-<span class="header-section-number">5.5.1</span> Una exploración visual de los errores<a class="anchor" aria-label="anchor" href="#una-exploraci%C3%B3n-visual-de-los-errores"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.1</span> Una exploración visual de los errores<a class="anchor" aria-label="anchor" href="#una-exploraci%C3%B3n-visual-de-los-errores"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un elemento de interés para el análisis en la regresión lineal estimada son los errores observados, <span class="math inline">\(u_i\)</span>, puesto que los supuestos sobre los que se basa el método de mínimos cuadrados ordinarios son, en buena medida, sobre dichos errores. Para lograr comprender mejor qué son los errores y su importancia analítica, conviene imaginar nuestro modelo como “Respuesta = Predicción + Error,” es decir, <span class="math inline">\(y=\hat y+u\)</span>. De esta manera podemos expresar el error como:</p>
 <p><span class="math display">\[u_i=y_i-\hat {y_i}\]</span>
@@ -371,9 +371,9 @@ Con los datos de la <code>tabla</code> anterior:</p>
 </ol>
 <hr>
 </div>
-<div id="coeficiente-de-determinación" class="section level3" number="5.5.2">
+<div id="coeficiente-de-determinación" class="section level3" number="4.5.2">
 <h3>
-<span class="header-section-number">5.5.2</span> Coeficiente de determinación<a class="anchor" aria-label="anchor" href="#coeficiente-de-determinaci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.2</span> Coeficiente de determinación<a class="anchor" aria-label="anchor" href="#coeficiente-de-determinaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
 <p>El <span class="math inline">\(R^2\)</span> o coeficiente de determinación es una medida de bondad de ajuste, es decir, un número de nos indica qué tanto nuestro modelo es capaz de explicar la variable de interés. El <span class="math inline">\(R^2\)</span> es la proporción de la variabilidad de <span class="math inline">\(y\)</span> que es explicada por <span class="math inline">\(x\)</span>. Valores más cercanos a 1 significan que una mayor parte de la variabilidad de <span class="math inline">\(y\)</span> es explicada por <span class="math inline">\(x\)</span>. Solicita de nuevo un resumen del objeto <code>modelo_simple</code> e identifica la sección <em>Multiple R-squared</em>:</p>
 <div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
@@ -398,9 +398,9 @@ Con los datos de la <code>tabla</code> anterior:</p>
 ## F-statistic:  21.5 on 1 and 74 DF,  p-value: 1.488e-05</code></pre>
 <p>En nuestro caso, hemos obtenido un <span class="math inline">\(R^2\)</span> de 0.2252, lo que puede ser interpretado de la siguiente manera: poco más de la quinta parte de la variabilidad de los casos positivos por cada 1 mil habitantes es explicada por el porcentaje de población con acceso a servicios de salud.</p>
 </div>
-<div id="una-aproximación-a-la-predicción" class="section level3" number="5.5.3">
+<div id="una-aproximación-a-la-predicción" class="section level3" number="4.5.3">
 <h3>
-<span class="header-section-number">5.5.3</span> Una aproximación a la predicción<a class="anchor" aria-label="anchor" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.3</span> Una aproximación a la predicción<a class="anchor" aria-label="anchor" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
 <p>A través de nuestro modelo estimado (también llamado ajustado) es posible hacer predicciones de <span class="math inline">\(y\)</span>, es decir, de los casos positivos por cada 1 mil habitantes, siempre que los valores de la variable predictora estén dentro del rango original.</p>
 <hr>
@@ -417,9 +417,9 @@ Con los datos de la <code>tabla</code> anterior:</p>
 ## 3.831836</code></pre>
 <p>En este caso, estamos indicando los nuevos datos de forma manual para la variable de interés, <code>ss</code>.</p>
 </div>
-<div id="significancia-individual-de-los-coeficientes-obtenidos" class="section level3" number="5.5.4">
+<div id="significancia-individual-de-los-coeficientes-obtenidos" class="section level3" number="4.5.4">
 <h3>
-<span class="header-section-number">5.5.4</span> Significancia individual de los coeficientes obtenidos<a class="anchor" aria-label="anchor" href="#significancia-individual-de-los-coeficientes-obtenidos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.4</span> Significancia individual de los coeficientes obtenidos<a class="anchor" aria-label="anchor" href="#significancia-individual-de-los-coeficientes-obtenidos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Uno de los aspectos más importantes del análisis de regresión es la interpretación de los coeficientes obtenidos. Será de particular interés para nosotros conocer, de cada coeficiente: i) el sentido de su asociación con la variable dependiente, es decir, el signo del coeficiente; ii) la magnitud de la asociación lineal, qué tan grande es dicho coeficiente en términos de las unidades de la variable y iii) su significancia estadística, es decir, si hay evidencia de que el verdadero valor del estimador se corresponde con el estimado.</p>
 <p>Los dos primeros elementos, sentido y magnitud, ya fueron comentados con anterioridad y pueden ser conocidos llamando al objeto que contiene los resultados de nuestro modelo:</p>
@@ -499,9 +499,9 @@ H_a:\hat\beta_i\not=0 \]</span></p>
 <p>Así, decimos que para el caso del coeficiente estimado de <code>ss</code> hay evidencia suficiente para afirmar que su verdadero valor es diferente de cero, por lo que decimos que es estadísticamente significativo, o lo que es lo mismo, hay evidencia suficiente con un nivel de confianza de 95% para sostener que entre el número de casos positivos por cada 1 mil habitantes y el porcentaje de población con acceso afiliación a servicios de salud presentan una asociación lineal.</p>
 </div>
 </div>
-<div id="algunos-elementos-de-cuidado-con-las-regresiones-lineales" class="section level2" number="5.6">
+<div id="algunos-elementos-de-cuidado-con-las-regresiones-lineales" class="section level2" number="4.6">
 <h2>
-<span class="header-section-number">5.6</span> Algunos elementos de cuidado con las regresiones lineales<a class="anchor" aria-label="anchor" href="#algunos-elementos-de-cuidado-con-las-regresiones-lineales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Algunos elementos de cuidado con las regresiones lineales<a class="anchor" aria-label="anchor" href="#algunos-elementos-de-cuidado-con-las-regresiones-lineales"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>Antes de concluir esta sección, es importante tener en mente los siguientes puntos cuando usemos regresiones:</p>
@@ -513,9 +513,9 @@ H_a:\hat\beta_i\not=0 \]</span></p>
 <li>Que la regresión tuviera como resultado que dos variables están asociadas, no significa que entre ellas haya una relación causal, tal como se indicó al inicio de este capítulo. Causalidad implica asociación, pero lo opuesto no es necesariamente cierto.</li>
 </ol>
 </div>
-<div id="regresión-lineal-múltiple-una-propuesta-de-modelo" class="section level2" number="5.7">
+<div id="regresión-lineal-múltiple-una-propuesta-de-modelo" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">5.7</span> Regresión lineal múltiple: una propuesta de modelo<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-lineal-m%C3%BAltiple-una-propuesta-de-modelo"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Regresión lineal múltiple: una propuesta de modelo<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-lineal-m%C3%BAltiple-una-propuesta-de-modelo"><i class="fas fa-link"></i></a>
 </h2>
 <div style="text-align: justify">
 <p>La regresión lineal múltiple es, en esencia, una extensión lógica de todos los elementos descritos antes: “Un modelo de regresión que involucra más de una variable regresora se llama modelo de regresión múltiple” <span class="citation">(<a href="references.html#ref-Montgomery2012" role="doc-biblioref">Montgomery, Peck., and Vining. 2012, 81:67</a>)</span>. Así, por ejemplo, un modelo con dos regresoras, <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> luciría como:</p>
@@ -561,9 +561,9 @@ De nuevo, a través de la función <code><a href="https://rdrr.io/r/stats/lm.htm
 <li><p>Aquí hemos expuesto una versión simplificada en extremo de cómo tomar decisiones a través de las pruebas de hipótesis, puedes remitirte a cualquier libro de econometría y responder, ¿de qué modo la prueba t (<em>t value</em>, penúltima columna del cuadro de resumen) nos permitiría llegar a las mismas conclusiones?</p></li>
 </ol>
 <hr>
-<div id="significancia-conjunta-de-los-coeficientes-calculados" class="section level3" number="5.7.1">
+<div id="significancia-conjunta-de-los-coeficientes-calculados" class="section level3" number="4.7.1">
 <h3>
-<span class="header-section-number">5.7.1</span> Significancia conjunta de los coeficientes calculados<a class="anchor" aria-label="anchor" href="#significancia-conjunta-de-los-coeficientes-calculados"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.1</span> Significancia conjunta de los coeficientes calculados<a class="anchor" aria-label="anchor" href="#significancia-conjunta-de-los-coeficientes-calculados"><i class="fas fa-link"></i></a>
 </h3>
 <p>Seguramente notaste que cuando se llamó el objeto <code>modelo_multi</code> a tu consola aparecieron otros tantos elementos ,además de los coeficientes, entre ellos uno llamado <em>F-statistic </em>, el estadístico F. En este contexto es utilizado para evaluar si la particular combinación de variables propuesta contribuye o no a explicar la variable de interés. En términos concretos, la prueba F y el valor p asociado a ella, permiten evaluar el siguiente juego de hipótesis:</p>
 <p><span class="math display">\[
@@ -575,9 +575,9 @@ Ha&amp;: al.menos.una. \hat\beta_i\not=0 \\
 <p>es decir, al menos uno de los coeficientes estimados, en su particular combinación, es diferente de cero. Así, con un valor p de casi cero (2.112e-09), resulta claro que se rechaza Ho en favor de Ha, es decir, que al menos uno de los coeficientes estimados es diferente de 0 en el modelo propuesto y que esta particular combinación de variables explicativas tiene algo interesante para decirnos.</p>
 </div>
 </div>
-<div id="alcance-de-la-regresión-y-en-análisis-causal" class="section level2" number="5.8">
+<div id="alcance-de-la-regresión-y-en-análisis-causal" class="section level2" number="4.8">
 <h2>
-<span class="header-section-number">5.8</span> Alcance de la regresión y en análisis causal<a class="anchor" aria-label="anchor" href="#alcance-de-la-regresi%C3%B3n-y-en-an%C3%A1lisis-causal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Alcance de la regresión y en análisis causal<a class="anchor" aria-label="anchor" href="#alcance-de-la-regresi%C3%B3n-y-en-an%C3%A1lisis-causal"><i class="fas fa-link"></i></a>
 </h2>
 <p>La primera parte de este capítulo llamó la atención sobre el llamado análisis causal, por lo que dedicaremos unas cuantas palabras para cerrar la discusión con la que comenzamos. La realidad social es compleja y si bien se han extendido las técnicas experimentales, incluso en disciplinas como la economía, la mayor parte de la información con la que cotidianamente trabaja un científico social son datos observados, no experimentales.</p>
 <p>Esto implica que el uso de técnicas de análisis de información como la regresión en ciencias sociales tienen un alcance limitado en términos del análisis de causalidad; no obstante, el análisis de regresión sí nos permite estudiar rigurosamente la correlación entre variables. Que exista correlación entre dos variables significa que sus movimientos están asociados, por ejemplo, que cuando el ingreso personal es alto, se consume más en servicios culturales, pero eso no implica que una elevación del ingreso <em>cause</em> el incremento en el consumo de los servicios culturales.</p>
@@ -640,31 +640,31 @@ for (let popover of popovers) {
 </div>
 </div>
 <div class="chapter-nav">
-<div class="prev"><a href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">4</span> Análisis espacial I: autocorrelación</a></div>
-<div class="next"><a href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">6</span> Análisis espacial II: modelos econométricos espaciales</a></div>
+<div class="prev"><a href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></div>
+<div class="next"><a href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#modelos-de-regresi%C3%B3n-lineal"><span class="header-section-number">5</span> Modelos de regresión lineal</a></li>
-<li><a class="nav-link" href="#causalidad-y-correlaci%C3%B3n-el-alcance-del-an%C3%A1lisis-de-regresi%C3%B3n"><span class="header-section-number">5.1</span> Causalidad y correlación: el alcance del análisis de regresión</a></li>
-<li><a class="nav-link" href="#lo-artesanal-de-la-econometr%C3%ADa"><span class="header-section-number">5.2</span> Lo “artesanal” de la econometría</a></li>
-<li><a class="nav-link" href="#qu%C3%A9-buscamos-a-trav%C3%A9s-de-una-regresi%C3%B3n-con-m%C3%ADnimos-cuadrados-ordinarios"><span class="header-section-number">5.3</span> Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)</a></li>
+<li><a class="nav-link" href="#modelos-de-regresi%C3%B3n-lineal"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
+<li><a class="nav-link" href="#causalidad-y-correlaci%C3%B3n-el-alcance-del-an%C3%A1lisis-de-regresi%C3%B3n"><span class="header-section-number">4.1</span> Causalidad y correlación: el alcance del análisis de regresión</a></li>
+<li><a class="nav-link" href="#lo-artesanal-de-la-econometr%C3%ADa"><span class="header-section-number">4.2</span> Lo “artesanal” de la econometría</a></li>
+<li><a class="nav-link" href="#qu%C3%A9-buscamos-a-trav%C3%A9s-de-una-regresi%C3%B3n-con-m%C3%ADnimos-cuadrados-ordinarios"><span class="header-section-number">4.3</span> Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)</a></li>
 <li>
-<a class="nav-link" href="#modelo-de-regresi%C3%B3n-lineal-simple"><span class="header-section-number">5.4</span> Modelo de regresión lineal simple</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#supuestos-del-m%C3%B3delo-cl%C3%A1sico-de-regresi%C3%B3n-lineal"><span class="header-section-number">5.4.1</span> Supuestos del módelo clásico de regresión lineal</a></li></ul>
+<a class="nav-link" href="#modelo-de-regresi%C3%B3n-lineal-simple"><span class="header-section-number">4.4</span> Modelo de regresión lineal simple</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#supuestos-del-m%C3%B3delo-cl%C3%A1sico-de-regresi%C3%B3n-lineal"><span class="header-section-number">4.4.1</span> Supuestos del módelo clásico de regresión lineal</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#regresi%C3%B3n-lineal-simple-en-r"><span class="header-section-number">5.5</span> Regresión lineal simple en R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#una-exploraci%C3%B3n-visual-de-los-errores"><span class="header-section-number">5.5.1</span> Una exploración visual de los errores</a></li>
-<li><a class="nav-link" href="#coeficiente-de-determinaci%C3%B3n"><span class="header-section-number">5.5.2</span> Coeficiente de determinación</a></li>
-<li><a class="nav-link" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><span class="header-section-number">5.5.3</span> Una aproximación a la predicción</a></li>
-<li><a class="nav-link" href="#significancia-individual-de-los-coeficientes-obtenidos"><span class="header-section-number">5.5.4</span> Significancia individual de los coeficientes obtenidos</a></li>
+<a class="nav-link" href="#regresi%C3%B3n-lineal-simple-en-r"><span class="header-section-number">4.5</span> Regresión lineal simple en R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#una-exploraci%C3%B3n-visual-de-los-errores"><span class="header-section-number">4.5.1</span> Una exploración visual de los errores</a></li>
+<li><a class="nav-link" href="#coeficiente-de-determinaci%C3%B3n"><span class="header-section-number">4.5.2</span> Coeficiente de determinación</a></li>
+<li><a class="nav-link" href="#una-aproximaci%C3%B3n-a-la-predicci%C3%B3n"><span class="header-section-number">4.5.3</span> Una aproximación a la predicción</a></li>
+<li><a class="nav-link" href="#significancia-individual-de-los-coeficientes-obtenidos"><span class="header-section-number">4.5.4</span> Significancia individual de los coeficientes obtenidos</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#algunos-elementos-de-cuidado-con-las-regresiones-lineales"><span class="header-section-number">5.6</span> Algunos elementos de cuidado con las regresiones lineales</a></li>
+<li><a class="nav-link" href="#algunos-elementos-de-cuidado-con-las-regresiones-lineales"><span class="header-section-number">4.6</span> Algunos elementos de cuidado con las regresiones lineales</a></li>
 <li>
-<a class="nav-link" href="#regresi%C3%B3n-lineal-m%C3%BAltiple-una-propuesta-de-modelo"><span class="header-section-number">5.7</span> Regresión lineal múltiple: una propuesta de modelo</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#significancia-conjunta-de-los-coeficientes-calculados"><span class="header-section-number">5.7.1</span> Significancia conjunta de los coeficientes calculados</a></li></ul>
+<a class="nav-link" href="#regresi%C3%B3n-lineal-m%C3%BAltiple-una-propuesta-de-modelo"><span class="header-section-number">4.7</span> Regresión lineal múltiple: una propuesta de modelo</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#significancia-conjunta-de-los-coeficientes-calculados"><span class="header-section-number">4.7.1</span> Significancia conjunta de los coeficientes calculados</a></li></ul>
 </li>
-<li><a class="nav-link" href="#alcance-de-la-regresi%C3%B3n-y-en-an%C3%A1lisis-causal"><span class="header-section-number">5.8</span> Alcance de la regresión y en análisis causal</a></li>
+<li><a class="nav-link" href="#alcance-de-la-regresi%C3%B3n-y-en-an%C3%A1lisis-causal"><span class="header-section-number">4.8</span> Alcance de la regresión y en análisis causal</a></li>
 </ul>
 
       <div class="book-extra">

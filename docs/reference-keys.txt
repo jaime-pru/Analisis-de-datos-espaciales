@@ -1,4 +1,3 @@
-fig:unnamed-chunk-2
 fig:unnamed-chunk-32
 fig:unnamed-chunk-113
 fig:unnamed-chunk-114
@@ -9,7 +8,6 @@ fig:unnamed-chunk-158
 fig:unnamed-chunk-176
 fig:unnamed-chunk-179
 fig:unnamed-chunk-180
-prólogo
 r-una-introducción-desde-la-exploración-de-información
 r-lenguaje-de-programación-y-plataforma-de-análisis
 códigos-objetos-paquetes
