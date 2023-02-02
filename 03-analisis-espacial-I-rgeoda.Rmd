@@ -108,7 +108,7 @@ install.packages(c("spdep", "rgdal"))
 
 Primero, llamemos las librerías y carguemos la base de datos:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(rgdal)
 library(spdep)
 covid_zmvm <-rgdal::readOGR("base de datos\\covid_zmvm shp\\covid_zmvm.shp")

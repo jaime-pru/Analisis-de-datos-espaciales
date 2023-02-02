@@ -1,5 +1,8 @@
 # R: Una introducción desde la exploración de información
 
+En este capítulo buscamos cubrir dos objetivos. El primero corresponde a que la estudiante se familiarice con los diversos elementos que componen la intefaz de trabajo en RStudio y conozca la definición de objeto y sus tipos, en el contexto de los lenguajes de programación. El segundo es que conozca cómo desarrollar un análisis exploratorio de datos, a través de un tipo de objetos específicos (los `dataframe`).
+
+
 ## R: Lenguaje de programación y plataforma de análisis
 <div style="text-align: justify">
 R es un lenguaje de programación orientado a objetos, libre y de código abierto y además un ambiente enfocado al análisis estadístico y gráfico. Que sea libre significa, a diferencia de otros programas, que cualquier persona puede usarlo, redistribuirlo o modificarlo, sin necesidad de contar con una licencia pago.  
@@ -70,7 +73,7 @@ Para crear objetos, en R se utiliza el signo "menor que" seguido de un guion par
 ```{r}
 #Nota: el símbolo de # representa un comentario y no se ejecuta con el código
 x <- 3 #Numérico
-y <- "Hola Mundo" #Carácter 
+y <- "Hola" #Carácter 
 z <- FALSE # Lógico
 ```
 
@@ -157,14 +160,12 @@ rbind(x,y)
 
 #### Factores
 
-Son un tipo especial de vectores y son utilizados para representar información categórica, lo que permite organizarla en niveles para analizarla mejor:
+Son un tipo especial de vectores y son utilizados para representar información categórica, lo que permite organizarla en niveles para analizarla mejor. Para mejor entender esto, basta recordar la definición de variable. Las “variables” o “atributos” son medidas o características de los elementos que conforman la población. Las medidas son cuantitativas y las características son cuantitativas. Justamente los factores se refieren a variables que recogen cualidades. Por ejemplo, si la variable responde a la pregunta "¿el paciente recibió la vacuna contra COVID-19?" y hay dos posibles respuestas, es recomendable que en lugar de designar cada alernativa como 1 o 2  se usen variables categóricas como "Vacuna aplicada" y "Vacuna no aplicada", es decir, es recomendable almacenar la información como factor:
 
 ```{r}
-x <- factor(c("yes","no","no","yes","no"))
+x <- factor(c("Vacuna no aplicada","Vacuna no aplicada","Vacuna no aplicada","Vacuna no aplicada","Vacuna no aplicada"))
 x
 ```
-
-Por ejemplo, si la variable responde a la pregunta ¿el paciente recibió la vacuna contra COVID-19? y hay dos posibles respuestas, es recomendable que en lugar de designar cada alernativa como 1 o 2  se usen variables categóricas como "Vacuna aplicada" y "Vacuna no aplicada", es decir, es recomendable almacenar la información como factor.
 
 #### _Data frame_ o arreglo de datos
 
@@ -174,10 +175,22 @@ Cuando arribemos un poco más adelante al proceso de importación de informació
 
 ### Paquetes
 
-Se dijo que R es un programa especializado en el análisis estadístico y la representación gráfica, pero R no sólo se limita a lo que ofrece cuando lo descarga por primera vez. Uno de los elementos que hace de R una potente herramienta es la posibilidad de ampliar su potencial a través de la instalación de paquetes que expanden sus funciones básicas. Existen paquetes de R para múltiples campos disciplinares y especialidades, por ejemplo estas notas se sirven de los paquetes especializados en el análisis espacial, como se observará en los capítulos subsecuentes. De momento mencionemos sólo un par:
+Se dijo que R es un programa especializado en el análisis estadístico y la representación gráfica, pero R no sólo se limita a lo que ofrece cuando lo descarga por primera vez, es decir a su paquete `base` o paquete base. Por ejemplo, dentro del paquete `base` se cuenta con la función para calcular la media de una muestra, `mean()`, entre otras tantas.
+
+Uno de los elementos que hace de R una potente herramienta es la posibilidad de ampliar su potencial a través de la instalación de paquetes que expanden sus funciones básicas. Existen paquetes de R para múltiples campos disciplinares y especialidades, por ejemplo estas notas se sirven de los paquetes especializados en el análisis espacial, como se observará en los capítulos subsecuentes. De momento mencionemos sólo un par:
 
 -   `tmap`: ofrece un enfoque flexible, basado en capas y fácil de usar para crear mapas temáticos.\
 -   `spatialreg`: paquete para la elaboración de regresiones con componentes espaciales.
+
+Los paquetes, que expanden las capaciades de la versión base de R, son elaborados por múltiples colaboradores. Para conocer quines están detrás de ello, podemos usar la función `citation()`, que nos muestra cómo dar crédito a los autores de los paquetes cuando los usamos.
+
+```{r include=FALSE}
+library(tmap)
+```
+
+```{r}
+citation("tmap")
+```
 
 Para poder hacer uso de los paquetes que amplían el potencial de R es necesario descargarlos, instalarlos y, en cada sesión de trabajo, llamarlos. Para la descarga e instalación podemos ir a Archivo (*File*) en la cinta de menú que se localiza en la parte superior de tu entorno de trabajo y seleccionar *tools/install package*. A continuación, deberás colocar el nombre del paquete deseado y dar click en *instalar*. O bien, alternativamente, puedes ir a la sección de Archivo, en la zona inferior derecha, seleccionar la pestaña *Packages* y a continuación el ícono de *Install*. Una tercera manera de instalar paquetes es desde la consola (sección inferior izquierda), para instalar un paquete a la vez:
 
@@ -219,7 +232,7 @@ help(matrix)
 help(mean)
 ```
 
-En la cinta de menú, en la sección ayuda, *Help*, encontrarás una serie de materiales muy útiles para familiarizarse con los paquetes instalados. Estos materiales reciben el nombre de "hojas de trucos", *Cheatsheet*. Se recomienda ampliamente revisar cada uno de ellos. Además, R es un programa con un sin número de entusiastas usuarios y con un amplio soporte técnico por lo que cuando te encuentres con una dificultad para usar algún paquete o función puedes remitite al sitio de [Ayuda del R](https://www.r-project.org/help.html), o bien, a alguno de los repositorios especializados para presentar y resolver dudas como [Stackoverflow](https://es.stackoverflow.com/). Para ilustrar esto, ingresa al sitio de Stackoverflow y coloca en la búsqueda "histograma en R".
+En la cinta de menú, en la sección ayuda, *Help*, encontrarás una serie de materiales muy útiles para familiarizarse con los paquetes instalados. Estos materiales reciben el nombre de "hojas de trucos", *Cheatsheet*. Se recomienda ampliamente revisar cada una de ellas, incluidas las [versiones en epañol](https://posit.co/resources/cheatsheets/?type=translations/). Además, R es un programa con un sin número de entusiastas usuarios y con un amplio soporte técnico por lo que cuando te encuentres con una dificultad para usar algún paquete o función puedes remitite al sitio de [Ayuda del R](https://www.r-project.org/help.html), o bien, a alguno de los repositorios especializados para presentar y resolver dudas como [Stackoverflow](https://es.stackoverflow.com/). Para ilustrar esto, ingresa al sitio de Stackoverflow y coloca en la búsqueda "histograma en R".
 
 ## Cargar bases de datos
 <div style="text-align: justify">
@@ -247,7 +260,7 @@ Como más adelante usaremos otros de los paquetes de la familia `tidyverse` inst
 install.packages("tidyverse")
 ```
 
-Si deseas aprender cómo usar con detalle los paquetes de la familia `tidyverse` y elementos básicos de Ciencia de Datos, el libro de Hadley Wickham y Garrett Grolemund, [R for Data Science](https://r4ds.had.co.nz/index.html) es una magnífica opción.
+Si deseas aprender cómo usar con detalle los paquetes de la familia `tidyverse` y elementos básicos de Ciencia de Datos, el libro de Hadley Wickham y Garrett Grolemund, [R for Data Science](https://r4ds.had.co.nz/index.html) es una magnífica opción de la que existe una [versión en castellano](https://es.r4ds.hadley.nz/).
 
 Utilizando el paquete `readxl` de la familia `tidyverse` es posible cargar una base de datos en el formato de la popular hoja de cálculo de Microsoft Office. A partir de aquí introduciremos una notación particular al usar una función en R, lo que te permitirá recordar a qué paquete pertenece dicha función. La notación es: "paquete :: función()", es decir, primero se colocará el nombre del paquete y, separado por dos pares de dos puntos, en el nombre de la función que pertenece a dicho paquete (resulta claro que los paquetes están entonces integrados por múltiples funciones). 
 
@@ -312,7 +325,7 @@ covid_zmvm <- utils::read.csv(ruta)
 
 ### Cargar bases con la funcionalidad importar
 
-Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono *Import Dataset*. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (*Update*) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (*Import*), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la figura 1.3:
+Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono *Import Dataset*. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (*Update*) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (*Import*), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la Figura 1.3:
 
 ```{r, echo=FALSE, fig.align='center',out.width='120%', fig.cap='Importar datos de excel'} 
 knitr::include_graphics("recursos intro/Figura_3-Importar.jpg")

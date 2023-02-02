@@ -64,7 +64,6 @@ La experiencia en el uso de este material indica que puede ser cubierto en 5 o 6
 
 Este libro es, en alguna medida, un esfuerzo de recopilación y sistematización de múltiples materiales que la activa comunidad de R, interesada en el análisis espacial en México y el mundo, comparte desinteresadamente.
 Considero que así debería ser siempre el conocimiento: libre, abierto y colaborativo, como el software que es usado aquí. Así pues, este proyecto es un proyecto vivo, en permanente construcción y modificación, por lo que todos los comentarios y observaciones serán bienvenidas, tanto de las estudiantes que lo han usado, como de las docentes que consideren oportuno incluirlo dentro de sus materiales de referencia.
-Una guía de cómo contribuir a este proyecto puede ser el repositorio de GitHub, [aquí](https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/Contributing.md). 
-Todos los comentarios serán bienvenidos.
+Una guía de cómo contribuir a este proyecto puede ser el repositorio de GitHub, [aquí](https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/Contributing.md), pero las interesadas pueden contactar directamente vía correo electrónico (japv@azc.uam.mx) o incluso en las redes sociales en [twitter](https://twitter.com/jaime_pru). Todos los comentarios serán bienvenidos.
 
 # Referencias

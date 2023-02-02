@@ -3,7 +3,7 @@
 <div style="text-align: justify">
 De forma reciente, la información georreferenciada y los Sistemas de Información Geográfica (SIG) se han vuelto instrumentos de primer orden para el análisis y la presentación de fenómenos asociados al territorO. Por ejemplo, los [Tableros de la Universidad Johns Hopkins](https://coronavirus.jhu.edu/map.html) sobre la pandemia por COVID19, o los del [Gobierno de México y CentroGeo](https://coronavirus.gob.mx/datos/) han estado constantemente en los medios de comunicación.  
 
-En este capítulo apuntamos algunas de las características básicas de los datos y datos espaciales; además,  buscamos brindar algunos elementos generales que te permitan familiarizarte con ese tipo de información y representarla gráficamente para usarla para en el analisis de fenómenos socioterritoriales.   
+En este capítulo señalamos algunas de las características básicas de los datos y datos espaciales; además,  buscamos brindar algunos elementos generales que te permitan familiarizarte con ese tipo de información y representarla gráficamente para usarla para en el analisis de fenómenos socioterritoriales.   
 
 ## Datos y datos espaciales
 <div style="text-align: justify">
@@ -14,16 +14,16 @@ Las variables pueden ser medidas o información sobre *cualidades* de los objeto
 
 Un tipo particular de datos son lo que denominamos datos espaciales o datos georeferenciados. Cuando utilizamos el apelativo "espaciales" o ["georeferenciados"](https://www.usgs.gov/faqs/what-does-georeferenced-mean) estamos diciendo con ello que dichos datos refieren un punto específico sobre la superficie terrestre. El proceso de referenciar geográficamente un dato es complejo pues remite a problemas sobre la forma de la Tierra y de su representación bidimencional a través de proyecciones cartográficas. Recomendamos revisar [este material](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/informaci%C3%B3n-geogr%C3%A1fica-y-mapas.html) de Antonio Vazquez Brust donde se abunda sobre este problema.  
 
-Los datos espaciales se caracterizan por poseer tres componentes: localización, atributos y tiempo. Hay otro aspecto relacionado con la información espacial denominado *calidad del dato geoespacial*, que se refiere a que nuestro conjunto de información cumpla los requisitos necesarios para satisfacer la necesidad para la que se recabó, es decir, que sea útil para resolver la pregunta que motivó su recolección o uso.
+Los datos espaciales se caracterizan por poseer tres componentes: localización, atributos y tiempo, aunque éste último no siempre aparece en todos los tipos de datos espaciales. Hay otro aspecto relacionado con la información espacial denominado *calidad del dato geoespacial*, que se refiere a que nuestro conjunto de información cumpla los requisitos necesarios para satisfacer la necesidad para la que se recabó, es decir, que sea útil para resolver la pregunta que motivó su recolección o uso.
 
 La realidad es continua y compleja, además, muchos fenómenos tienen un referente territorial, es decir, se desarrollan y ocurren en un determinado lugar. Los datos espaciales implican un esfuerzo de abstracción, es decir, de simplificación de la realidad, a esto se le suele denominar a veces _modelo espacial_ [@Olaya2020]. Este proceso de abstracción consiste en "reducir o dividir esta continuidad en entidades numéricas discretas, observables y susceptibles de medición matemática" (así, un dato espacial podría definirse como la) "observación de una variable asociada a una localización del espacio geográfico" [@Chasco2003,p. 17]. De forma general, es posible dividir los modelos de representación espacial de la realidad en dos tipos: ráster y vectorial.
 
 i. **Datos vectoriales**: es una forma de representación de la realidad que consiste en el uso  ya sea de puntos, líneas o polígonos (llamados a veces "primitivas") para recoger ciertos aspectos de la realidad. ¿A través de qué primitiva podrías representar un camino? ¿Cuál para representar los límites de la localidad donde resides? Quizá podrías representar una vialidad a través de líneas, por un lado, y la representación de los límites administrativos de una región, a través de polígonos, por otro.  
-ii. **Datos ráster**: es un modelo de representación espacial que "se basa en una división sistemática del espacio, la cual cubre todo este, caracterizándolo como un conjunto de unidades elementales" a los que se llama pixeles [@Olaya2020: Modelos de representación] . Por ejemplo, pueden ser imágenes del territorio provenientes de instrumentos ópticos (cámaras, sensores) e incluso el propio usuario puede definir dicha representación.[^2]  
+ii. **Datos ráster**: es un modelo de representación espacial que "se basa en una división sistemática del espacio, la cual cubre todo este, caracterizándolo como un conjunto de unidades elementales" a los que se llama pixeles [@Olaya2020: Modelos de representación] . Por ejemplo, pueden ser imágenes del territorio provenientes de instrumentos ópticos (cámaras, sensores, aunqe no se limitan a ellos) e incluso el propio usuario puede definir dicha representación.[^2]  
 
 Una definición mucho más cuidadosa de datos ráster y vectoriales puede encontrarse en el libro de Víctor Olaya sobre sistemas de información geográfica donde trata los [tipos de datos espaciales](https://volaya.github.io/libro-sig/chapters/Tipos_datos.html).  
 
-Los ejemplos y ejercicios aquí desarrollado se sirven de información espacial de tipo vectorial. Diversos formatos sirven para almacenar información de tipo vectorial, tales como Shape, GeoJSON (*Geográphical JavaScript Object Notation*), GeoPackage o KML (*Keyhole Markup Language*). No obstante, los *shapefiles* son aún los más comunes. 
+Los ejemplos y ejercicios aquí desarrollado utilizan información espacial de tipo vectorial. Diversos formatos sirven para almacenar información de tipo vectorial, tales como Shape, GeoJSON (*Geográphical JavaScript Object Notation*), GeoPackage o KML (*Keyhole Markup Language*). No obstante, los *shapefiles* son aún los más comunes. 
 
 Los archivos vectoriales de tipo [SHP](https://desktop.arcgis.com/es/arcmap/10.3/manage-data/shapefiles/what-is-a-shapefile.htm) fueron originalmente desarrollados por [ESRI](https://es.wikipedia.org/wiki/Esri), empresa dedicada a la cosultoría de fenómenos territoriales, aunque hoy día se usan extensamente prácticamente en cualquier ámbito de interés científico donde se involucre el territorio. Almacenar información vectorial en un archivo SHP implica usar en realidad, al menos, tres archivos diferentes:  
 
@@ -95,7 +95,15 @@ Nota cómo aparece en tu entorno de trabajo el objeto solicitado, `zmvm_cov_sf`,
 sf::st_crs(zmvm_cov_sf)
 ```
 
-De la mañana de información que aparece en tu consola, nota cómo la proyección de nuestra base de datos geográfica es la Cónica Conforme de Labert, *Lambert_Conformal_Conic*. Revisa [esta entrada de blog](https://rpm-uam.blogspot.com/2020/09/sistemas-de-referencia-coordenadas-crs.html) para aprender más sobre sistemas de coordenadas de referencia.  
+De la enorme cantidad de información que aparece en tu consola, nota cómo la proyección de nuestra base de datos geográfica es la Cónica Conforme de Labert, *Lambert_Conformal_Conic*. En su [Introducción ligera a los SIG](https://docs.qgis.org/2.14/es/docs/gentle_gis_introduction/coordinate_reference_systems.html#:~:text=El%20uso%20de%20Sistemas%20de,popular%20se%20denomina%20WGS%2084.) el equipo de QGIS señala que "Con la ayuda de Sistemas de Referencia de Coordenadas (SRC) cualquier punto de la tierra puede ser definido por tres números denominados coordenadas. En general, los CRS se pueden dividir en sistemas de referencia de coordenadas proyectados (también denominados Cartesianos o sistemas de referencia de coordenadas rectangulares) y sistemas de referencia de coordenadas geográficos". 
+
+Los sistemas proyectados están basados en determinada representación de los sistemas geográficos. La selección de un adecuado CRS asegura que las características deseadas se representen en el mapa de forma precisa. Existen varios elementos que diferencian los Sistema de Coordenadas Proyectadas (PCS) y los Sistema de coordenadas geográficas (GCS). Mientras que un "sistema de coordenadas geográficas es un método para describir la posición de una ubicación geográfica en la superficie de la Tierra utilizando mediciones esféricas de latitud y longitud (además de que) se trata de mediciones de los ángulos (en grados) desde el centro de la Tierra hasta un punto en la superficie de la Tierra representada como una esfera", tal y como se señala en la [ayuda del sitio](https://desktop.arcgis.com/es/arcmap/10.3/guide-books/map-projections/geographic-coordinate-system.htm#:~:text=Un%20sistema%20de%20coordenadas%20geogr%C3%A1ficas,esf%C3%A9ricas%20de%20latitud%20y%20longitud.) de internet de la aplicación de sistemas de información geográfica (SIG), ArcMap [@ESRI2023].
+
+En tanto, "un sistema de coordenadas proyectadas se define sobre una superficie plana de dos dimensiones. A diferencia de un sistema de coordenadas geográficas, un sistema de coordenadas proyectadas posee longitudes, ángulos y áreas constantes en las dos dimensiones. Un sistema de coordenadas proyectadas siempre está basado en un sistema de coordenadas geográficas basado en una esfera o un esferoide" [@ESRI2023b].
+
+Cuando se trabaja con datos espaciales es importante que todos ellos estén definidos en el mismo SRC, para que sean compatibles entre sí. Por ejemplo, si tengo datos de puntos que representan hospitales en un barrio, digamos el barrio Central, pero el polígono que representa a dicho barrio está en un SRC diferente al de los puntos, la representación de los hospitales en el polígono no se corresponderá con la realidad.
+
+A través de diversos programas es posible cambiar el sistema de referencia de coordenadas, es decir, reproyectar un conjunto de datos vectoriales desde un CRS a otro distinto. Es particularmente útil cambiar la proyección desde un sistema de coordenadas geográficas a un sistema de coordenadas proyectadas cuando se pretende calcular distancias. Esta operación puede [ejecutarse de forma muy sencilla en programas como QGIS](https://docs.qgis.org/3.10/en/docs/training_manual/vector_analysis/reproject_transform.html#moderate-fa-saving-a-dataset-to-another-crs), [o bien en R](https://docs.qgis.org/3.10/en/docs/training_manual/vector_analysis/reproject_transform.html#moderate-fa-saving-a-dataset-to-another-crs), pero ello está fuera del interés de este capítulo. 
 
 Usando la función `plot()` que pertenece al paquete `graphics`, es posible elaborar una primera representación de algunas de las variables de nuestra base. Esto es sólo para darnos cuenta de que ahora tratamos con información espacial, es decir, objetos espaciales (unidades adminsitrativas: alcaldías y municipios) a los que se asocian determinados atributos o variables.
 
@@ -268,28 +276,13 @@ Hay diferentes métodos de clasificación y, por tanto, diferentes tipos de mapa
 
 <div style="text-align: left">
 
-+--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
-| Familia                                    | Objetivo                                                                                                | Tipos de mapa                |
-+============================================+=========================================================================================================+==============================+
-| Clasificación común                        | Conocer la distribución espacial del atributo de interés a través de diversos métodos de clasificación. | -   Cuantiles                |
-|                                            |                                                                                                         |                              |
-|                                            |                                                                                                         | -   Intervalos iguales       |
-|                                            |                                                                                                         |                              |
-|                                            |                                                                                                         | -   Cortes naturales o Jenks |
-|                                            |                                                                                                         |                              |
-|                                            |                                                                                                         | -   Cortes estéticos         |
-+--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
-| Clasificación especial                     | Conocer si la variable presenta algún valor atípico y representar su ubicación.                         | -   Percentiles              |
-|                                            |                                                                                                         |                              |
-|                                            |                                                                                                         | -   Desviación estándar      |
-|                                            |                                                                                                         |                              |
-|                                            |                                                                                                         | -   Caja                     |
-+:--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
-| Clasificación por categorías preexistentes | Conocer la distribución espacial de una categoría predefinida.                                          | -   Valores únicos           |
-+--------------------------------------------+---------------------------------------------------------------------------------------------------------+------------------------------+
+| Familia 	| Objetivo 	| Tipos de mapa 	|
+|---	|---	|---	|
+| Clasificación común 	| Conocer la distribución espacial del atributo de interés a través de diversos métodos de clasificación. 	| - Cuantiles   - Intervalos iguales   - Cortes naturales   - Jenks   - Cortes estéticos   	|
+| Clasificación especial 	| Conocer si la variable presenta algún valor atípico y representar su ubicación. 	| - Percentiles   - Desviación estándar   	|
+| Clasificación por categorías preexistentes  	| Conocer la distribución espacial de una categoría predefinida. 	| - Caja   - Valores únicos 	|
 
 :Cuadro 2.1. Formas de clasificación de familias de mapas 
-
 
 Todos estos tipos de mapas pueden ser fácilmente invocados en un programa como GeoDa o QGIS, sin embargo, hasta donde sabemos, en R no todos están disponibles y a veces la construcción de alguno de ellos exige algunos fundamentos de programación. A pesar de ello, R ofrece bastantes alternativas sencillas para construir mapas de clasificación común.
 
@@ -486,7 +479,7 @@ En el [blog de mappingGIS](https://mappinggis.com/2018/09/como-calcular-las-coor
 
 > Toda geometría vectorial (punto, línea o polígono) contiene un punto central denominado centroide.
 
-Calcular el centroide de una geometría suele ser una tarea habitual cuando se trabaja con información espacial. Para crear una nueva capa que contenga los centroides de nuestra geometría usamos en R la función `st_centroid()`. La función generará una nueva serie de archivos SHP que contendrán el conjunto de variables de la base de datos y los centroides:
+Calcular el centroide de una geometría suele ser una tarea habitual cuando se trabaja con información espacial, por ejemplo, para contar con un punto de referencia a partir del cual contar distancias lineales entre polígonos para definir vecindades, como se verá en el capítulo siguiente. Para crear una nueva capa que contenga los centroides de nuestra geometría usamos en R la función `st_centroid()`. La función generará una nueva serie de archivos SHP que contendrán el conjunto de variables de la base de datos y los centroides:
 
 ```{r warning=FALSE}
 zmvm_cntrds <- st_centroid(zmvm_cov_sf)
@@ -552,7 +545,7 @@ tmap::tm_shape(zmvm_cov_sf) +
 
 #### Mapa de percentiles
 <div style="text-align: justify">
-Un mapa de percentiles es un tipo espacial de mapa de cuantiles en el que se especifican seis categorías: 0-1%,1-10%, 10-50%,50-90%,90-99% y 99-100%; de ellas las que interesan son las categorías que agrupan el 1% de los valores más bajos (0-1%) y el 1% de los valores más altos (99-100%), es decir, las observaciones extremas. Para poder construirlo, en R debemos llevar a cabo los siguientes pasos:
+Un mapa de percentiles es un tipo espacial de mapa de cuantiles en el que se especifican seis categorías: 0-1%,1-10%, 10-50%,50-90%,90-99% y 99-100%; de ellas las que interesan son las categorías que agrupan el 1% de los valores más bajos (0-1%) y el 1% de los valores más altos (99-100%), es decir, las observaciones extremas. Este tipo de mapas es útil, justamente, para identificar la localización de valores atíticos en el espacio. Para poder construirlo, en R debemos llevar a cabo los siguientes pasos:
 
 i)  Extraer la variable de nuestro arreglo de datos.  
 ii) Calcular los percentiles de nuestro interés, es decir, 0.0,0.01,0.1,0.5,0.9,0.99,1.0.  

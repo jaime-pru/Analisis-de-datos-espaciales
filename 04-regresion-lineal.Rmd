@@ -2,15 +2,14 @@
 <div style="text-align: justify">
 Hasta este punto hemos hecho un recorrido que va desde los elementos más básicos sobre la exploración de información (capítulo 1), pasando por la representación de información espacial a través de mapas coropléticos (capítulo 2), hasta la exploración de patrones de asociación de una variable en el espacio, la llamada autocorrelación (capítulo 3).  
 
-Antes de avanzar en el conocimiento de las herramientas que nos permitirán elaborar algunos modelos básicos de econometría espacial que incorporen los patrones espaciales que hemos identificado (capítulo 5), en este capítulo hacemos un pequeño paréntesis en el tratamiento de la información espacial para llevar a cabo un repaso elemental, desde una perspectiva práctica, del modelo clásico de regresión lineal. Esto nos permitirá que tengas en la mente dos cosas: i) qué es lo que se busca a través de modelos econométricos y ii) cuáles son los supuestos detrás del modelo clásico de regresión lineal estimado con el método de Mínimos Cuadrados Ordinarios (MCO). 
+Antes de avanzar en el conocimiento de las herramientas que nos permitirán elaborar algunos modelos básicos de econometría espacial que incorporen los patrones espaciales que hemos identificado (capítulo 5), en este capítulo hacemos un pequeño paréntesis en el tratamiento de la información espacial para llevar a cabo un repaso elemental, desde una perspectiva práctica, del modelo clásico de regresión lineal. Esto nos permitirá que tengas en la mente dos cosas: i) qué es lo que se busca a través de modelos econométricos y ii) cuáles son los supuestos detrás del modelo clásico de regresión lineal estimado con el método de mínimos cuadrados ordinarios (MCO). 
 
 ## Causalidad y correlación: el alcance del análisis de regresión
 
 En términos de su origen etimológico, econometría significa *medición econonómica*. Pero su alcance se extiende más allá de la simple medición ya que a través de ella es posible contribuir a dar soporte empírico a la teoría económica a través del uso de herramientas estadísticas como los modelos de regresión y sus estimaciones [@Gujarati2011]. Veamos esto con un poco más de detalle.  
 
 En el proceso de investigación podemos plantearnos preguntas con un grado de complejidad diverso. Habrá preguntas que, al ser respondidas, nos permitan tener una descripción general del fenómeno, habrá otras que nos permitan explorar la relación entre dos fenómenos, o bien, preguntas cuya respuesta nos permita predecir el comportamiento futuro del elemento estudiado. Así pues, hay [diferentes tipos de preguntas de investigación](https://bookdown.org/rdpeng/artofdatascience/types-of-questions.html), dependiendo de su grado de complejidad. En su libro "El arte de la ciencia de datos", Roger Peng y Elizabeth Matsui[-@PengMatzui2017], abordan sistemáticamente esta cuestión.   
-
-Entre los tipos de preguntas planteadas se halla uno que es de particular interés: el análisis causal. El objetivo del análisis causal indagar si el cambio en una variable provoca el cambio en otra, es decir, interesa descubrir la relación de causa efecto entre ellas. Con el análisis causal se busca saber si un par de variables están asociadas, más aún, si el cambio en una variable causa cambios en la otra.  
+Cuando, por ejemplo, nos preguntamos "¿el cambio en una variable provoca el cambio en otra diferente?", este tipo de pregunta es llamada  pregunta de análisis causal. Con el análisis causal se busca saber si un par de variables están asociadas, más aún, si el cambio en una variable causa cambios en la otra.  
 
 Responder este tipo de preguntas exige el dominio de diversas herramientas estadísticas, cuyo abordaje está  fuera del alcance de este capítulo. No obstante, la econometría a través del análisis de regresión nos brinda una oportunidad que, cuando es bien utilizada, permite aproximarnos al análisis causal. A partir de una relación causal anclada en la teoría (modelo teórico), es preciso indicar el tipo de relación específico entre las variables del caso (modelo matemático), para luego expresar dicha relación en una relación no exacta sino sujeta a variaciones individuales (modelo econométrico) [@Gujarati2011: 3-5].
 
@@ -18,7 +17,7 @@ La regresión como instrumento analítico nos brinda elementos para acercarnos a
 
 Entonces, ¿de qué modo el análisis de regresión se convierte potencialmente en un elemento que nos permite analizar causalidad? Lo que resultará fundamental en el proceso de investigación que recurre a esta herramienta es pues la pregunta que se plantee el investigador, preguntas que deben ser planteadas desde el conocimiento científico previamente existente. Dicho en otros términos, el análisis de causalidad que nos da la regresión, sí lo puede ofrecer la teoría existente en determinado campo de conocimiento: ¿qué dice la teoría sobre la relación entre la variable A y la variable B?
 
-¿Qué asociaciones entre pares de variables recuerdas de tus cursos teoría económica? Quizá los siguientes ejemplos te resulten familiares: i) la asociación entre la tasa de interés y eficiencia marginal del capital en la teoría de la inversión de Keynes, ii) la relación entre la composición orgánica del capital y tasa de ganancia en la perspectiva de Marx sobre el comportamiento de largo plazo del capitalismo (la teoría de la tasa de ganancia decreciente), iii) los rendimientos decrecientes en el producto al añadir una unidad adicional de trabajo, *ceteris paribus*, en la teoría del productor de los neoclásicos.
+¿Qué asociaciones entre pares de variables recuerdas de tus cursos teoría económica? Quizá los siguientes ejemplos te resulten familiares: i) la asociación entre la tasa de interés y eficiencia marginal del capital en la teoría de la inversión de Keynes, ii) la relación entre la composición orgánica del capital y tasa de ganancia en la perspectiva de Marx sobre el comportamiento de largo plazo del capitalismo (la teoría de la tasa de ganancia decreciente), iii) los rendimientos decrecientes en el producto al añadir una unidad adicional de trabajo, *ceteris paribus*, en la teoría del productor de los neoclásicos. o bien, preguntas de otra naturaleza como "¿una educación formal de más años está asociada a un ingreso personal más elevado?", o bien, "¿la población que vive barrios con viviendas de menores dimensiones está más expuesta al COVID19?"
 
 En el proceso de investigación científica, las preguntas planteadas deberán hacerse desde el conocimiento previamente existente, es decir, se plantean desde determinados cuerpos teóricos reconocidos y validados, o bien, a partir de los resultados de investigaciones previas. Antes del método está la pregunta de investigación que establece la línea de causalidad entre las variables postuladas en el modelo. Esta base teórica ha de ser complementada con los resultados arrojados en el análisis exploratorio.  
 
@@ -32,7 +31,7 @@ Los elementos anteriores, la metodología econométrica clásica, son explicados
 <div style="text-align: justify">
 No cabe duda que la especificación de un buen modelo econométrico tiene algo de artesanal, es decir, serán pocas las ocasiones en las que no tendremos que proponer diferentes alternativas de modelo, probar con múltiples variables y llevar a cabo un sin número de ajustes. Conviene desde este momento eliminar la idea de que "solo hay que aplicar una técnica": todas las técnicas requieren práctica y el desarrollo de habilidad en su uso pues no siempre enfrentaremos un mismo problema en las mismas condiciones. A este respecto puede ser apuntado que:
 
-"La construcción de un modelo de regresión es un proceso iterativo. Comienza utilizando conocimiento teórico del proceso que se está estudiando y los datos disponibles para especificar un modelo de regresión inicial. Las visualizaciones de datos gráficos suelen ser muy útiles para especificar el modelo inicial. Luego, los parámetros del modelo se estiman, normalmente por mínimos cuadrados (...). Luego debe evaluarse la adecuación del modelo. Consiste en buscar posibles errores de especificación de la formula del modelo, como no incluir variables importantes, o incluir variables innecesarias, o datos inusuales o inapropiados. Si el modelo es inadecuado, entonces debe proponerse nuevamente uno diferente y estimar nuevamente los parámetros. Este proceso puede repetirse varias veces hasta obtener un modelo adecuado. Finalmente, la validación del modelo debe llevarse a cabo para asegurar que el modelo producirá resultados que sean aceptables en la aplicación final" [@Montgomery2012, p.3-10].
+"La construcción de un modelo de regresión es un proceso iterativo. Comienza utilizando conocimiento teórico del proceso que se está estudiando y los datos disponibles para especificar un modelo de regresión inicial. Las visualizaciones de datos gráficos suelen ser muy útiles para especificar el modelo inicial. Luego, los parámetros del modelo se estiman, normalmente por mínimos cuadrados (...). Luego debe evaluarse la adecuación del modelo. Consiste en buscar posibles errores de especificación de la fórmula del modelo, como no incluir variables importantes, o incluir variables innecesarias, o datos inusuales o inapropiados. Si el modelo es inadecuado, entonces debe proponerse nuevamente uno diferente y estimar nuevamente los parámetros. Este proceso puede repetirse varias veces hasta obtener un modelo adecuado. Finalmente, la validación del modelo debe llevarse a cabo para asegurar que el modelo producirá resultados que sean aceptables en la aplicación final" [@Montgomery2012, p.3-10].
 
 La idea anterior aparece esquematizada en la figura 4.1, que es tomada de Montgomery et al. (2012: p. 10)y . 
 ```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Construcción de un modelo de regresión'} 
@@ -46,7 +45,7 @@ En este capítulo buscamos que recuerdes algunos de los elementos fundamentales 
 Un modelo es una representación simplificada de la realidad. En el caso particular de un modelo econométrico y de la regresión lineal lo que se pretende *encontrar la recta que mejor se ajusta a los datos observados*. 
 La técnica más usual para lograrlo son los llamados **mínimos cuadrados ordinarios**, MCO, justamente poque este método minimiza la suma de los *residuales* al cuadrado.  
 
-Veamos esta idea de forma interactiva a través de una sencilla ilustración en R. Para ello, crearemos una función que tendrá un solo parámetro al cual llamaremos `beta` y que será el valor de la pendiente de una recta que buscaremos ajustar a un conjunto de datos. Lo que pretendemos pues es encontrar el mejor valor de `beta`, es decir, el valor que permita minimizar la distancia entre los puntos dados por los pares ordenados (variable $x$ y $y$) y la recta, en otras palabras, buscamos un valor de `beta` que minimice los errores.
+Veamos esta idea de forma interactiva a través de una sencilla ilustración en R. Para ello, crearemos una función que tendrá un solo parámetro al cual llamaremos `beta` y que será el valor de la pendiente de una recta que buscaremos ajustar a un conjunto de datos. Lo que pretendemos pues es encontrar el mejor valor de `beta`, es decir, el valor que permita minimizar la distancia entre los puntos dados por los pares ordenados (variable $x$ y $y$) y la recta, en otras palabras, buscamos un valor de `beta` que minimice el error.
 
 Para usar la aplicación interactiva, debes instalar los siguientes paquetes:
 
@@ -108,7 +107,7 @@ $$y=\beta_0+\beta_1x+u $$
 
 En donde $\beta_0$ y $\beta_1$ son constates desconocidas, el intercepto y la pendiente, respectivamente; en tanto, $u$ es el componente de error aleatorio (que se asume con una distribución normal con media cero y varianza constante, $N(\mu=0,\sigma_u^2=\sigma^2)$), que es la "falla" de nuestro modelo, es decir, la diferencia entre el valor observado de $y$ y el valor estimado por nuestro modelo.
 
-¿Cómo deben ser entendidos los coeficientes $\beta_0$ y $\beta_1$, el intercepto y la pendiente? "La pendiente, $\beta_1$ se puede interpretar como el cambio en la media de $y$ para un cambio unitario en $x$" [@Montgomery2012, p.3]. En tanto, "si el rango de datos en $x$ incluye $x = 0$, entonces la intersección $\beta_0$ es la media de la distribución de la variable de respuesta $y$ cuando $x = 0$ (...es decir, la media de la variable $y$ cuando $x=0$...) Si el rango de $x$ no incluye cero, entonces $β_0$ no tiene una interpretación práctica".  
+¿Cómo deben ser entendidos los coeficientes $\beta_0$ y $\beta_1$, el intercepto y la pendiente? "La pendiente, $\beta_1$ se puede interpretar como el cambio en la media de $y$ para un cambio unitario en $x$" [@Montgomery2012, p.3]. En tanto, "si el rango de datos en $x$ incluye $x = 0$, entonces la intersección $\beta_0$ es la media de la distribución de la variable de respuesta $y$ cuando $x = 0$ (es decir, la media de la variable $y$ cuando $x=0$) Si el rango de $x$ no incluye cero, entonces $β_0$ no tiene una interpretación práctica".  
 
 Una regresión lineal es pues el método que nos permite **evaluar la relación lineal entre variables numéricas** y se le llama precisamente lineal por la linealidad de sus parámetros (las betas que, como notarás, están elevadas al exponente 1). Lo que buscamos con el análisis de regresión es encontrar los valores estimados de $\beta_0$ y $\beta_1$, es decir, $\hat\beta_0$ y $\hat\beta_1$, que nos permitan describir con una línea recta el par de variables consideradas y el método más usual para hallarlas son los Mínimos Cuadrados Ordinarios, MCO.  
 
@@ -125,6 +124,25 @@ iv) La varianza de los errores es constante (homoscedasticidad).
 v) Los errores o perturbaciones son independientes entre sí (no hay autocorrelación).  
 vi) El número de observaciones $n$ debe ser mayor que el número de parámetros a estimar.  
 vii) La variable o variables explicativas debe tener *suficiente* variabilidad.  
+
+Detengámonos un momento en el primer supuesto, relativo a la linealiadad de los parámetros. Trata de responder a la siguiente pregunta:
+
+---------------------------------------------------------------------
+
+**Ejercicio**
+
+De las siguientes expresiones, ¿cuál corresponde a un modelo líneal en los parámetros?
+
+a. $Y=\beta_1+\beta_2X +\beta_3X^2$  
+b. $Y=e^{\beta_1+\beta_2X}$
+c. $Y=\beta_1+\beta_2X $
+
+
+---------------------------------------------------------------------
+
+Como habrás podido notar, todas las opciones corresponden a modelos lineales en los parámetros, es decir, en las "betas". No importa si en en el modelo las variables explicativas, las $X$ aparecen elevadas a algún exponente o ellas mismas son exponentes. 
+
+Respecto al resto de los supuestos, no necesariamente éstos se cumplen cuando se recurre a la econometría. Para un exámen cuidadoso de la violación de estos supuestos y qué hacer en cada caso, remitimos a la estudiante al clásico libro de Gujarati y Porter [-@Gujarati2011], donde en la tabla 3.4 podrá encontrar una ruta que le guie en cómo atender cada caso. Aquí sólo haremos mención con un poco más de detalle sobre el supuesto *v* o supuesto de no autocorrelación de los errores, en la medida en que se vincula directamente con el contenido del siguiete capítulo.
 
 El supuesto *v* o supuesto de no autocorrelación establece que dos errores, $u_i$ y $u_j$, donde los subíndices $j$ e $i$ corresponden a perturbaciones de dos observaciones diferentes, no están asociados, es decir, que la covarianza entre ellos es igual a cero. Si se grafican los errores de un modelo en un diagrama de dispersión, lo que esperamos es que no haya ningún patrón sistemático. Reproducimos aquí la figura 3.6 de la obra de  [@Gujarati2011], en donde los paneles *a* y *b* dan cuenta de un comportamiento sistemático o no aleatorio en los errores, lo que es indicio de autocorrelación o dependencia entre los errores, en cambio, en el panel *c* no se observa ningún patrón sistemático, esto es justamente lo que se busca en los errores del modelo, que los errores se distribuyan aleatoriamente.
 
@@ -368,7 +386,11 @@ modelo_simple
 
 R despliega en tu consola el valor de los dos coeficientes estimados, en este caso $\hat \beta_0$ es negativo y $\hat \beta_1$ es positivo. El punto iii consiste en verificar si, en términos estadísticos, nuestros coeficientes estimados son iguales o no a determinado valor, concretamente, buscamos llevar a cabo una **prueba de hipótesis** sobre dichos coeficientes.
 
-Sinteticemos el procedimiento de **prueba de hipótesis** desde una perspectiva netamente práctica y simplificada:
+La prueba de hipótesis se refiere a la evaluación de si el valor de un estadístico, un valor observado u obtenido a través de un cálculo, se acerca lo suficiente a un valor hipotético. Por ejemplo, algún estudio puede sugerir que la relación entre la educación formal y el ingreso personal es de 0.25, es decir, que a medida que crece un año la educación formal el ingreso personal se incrementa en 0.25 unidades, a este valor llamémoslo $\nu$. Quiza en un estudio más reciente se encontró que $\nu$ es igual a 0.19, ¿está este último valor lo suficientemente cerca del 0.25 original para decir que no se rechaza el planteamiento original?
+
+Siguiendo a Gujarati y Damodar [-@Gujarati2011: 113], "la hipótesis planteada se conoce como hipótesis nula, y se denota con el símbolo $Ho$. La hipótesis nula suele probarse frente a una hipótesis alternativa (también conocida como hipótesis mantenida) denotada con $Ha$". Así, con relación al ajemplo anterior, la $Ho: \nu=0.19$ y la $Ha: \nu \neq 0.19$. 
+
+Sinteticemos el procedimiento de **prueba de hipótesis** desde una perspectiva netamente práctica y simplificada, desde el ángulo de la prueba de significancia:
 
 i) Definir el juego de hipótesis a verificar, la hipótesis nula (Ho) y la hipótesis alternativa (Ha).  
 ii) Definir un nivel de significancia, conocido como $\alpha$, valor con base en el cual tomarás una decisión en torno a las hipótesis propuestas. Además, recuerda que (1-$\alpha$) define el nivel de confianza con el que la decisión sobre el juego de hipótesis a verificar es tomada.  
@@ -459,6 +481,14 @@ Ha&: al.menos.una. \hat\beta_i\not=0 \\
 $$
 
 es decir, al menos uno de los coeficientes estimados, en su particular combinación, es diferente de cero. Así, con un valor p de casi cero (2.112e-09), resulta claro que se rechaza Ho en favor de Ha, es decir, que al menos uno de los coeficientes estimados es diferente de 0 en el modelo propuesto y que esta particular combinación de variables explicativas tiene algo interesante para decirnos.
+
+## Alcance de la regresión y en análisis causal
+
+La primera parte de este capítulo llamó la atención sobre el llamado análisis causal, por lo que dedicaremos unas cuantas palabras para cerrar la discusión con la que comenzamos. La realidad social es compleja y si bien se han extendido las técnicas experimentales, incluso en disciplinas como la economía, la mayor parte de la información con la que cotidianamente trabaja un científico social son datos observados, no experimentales.
+
+Esto implica que el uso de técnicas de análisis de información como la regresión en ciencias sociales tienen un alcance limitado en términos del análisis de causalidad; no obstante, el análisis de regresión sí nos permite estudiar rigurosamente la correlación entre variables. Que exista correlación entre dos variables significa que sus movimientos están asociados, por ejemplo, que cuando el ingreso personal es alto, se consume más en servicios culturales, pero eso no implica que una elevación del ingreso _cause_ el incremento en el consumo de los servicios culturales.
+
+En este sentido, lo que permite anclar la correlación identificada con la técnica a una línea de causalidad es la reflexión teórica, es decir, un estudio cuidadoso de las teóricas propuestas para la explicación de un fenómeno. Por eso, como se dijo en la primera parte de este capítulo, el análisis de regresión debe ser tomado con cautela.
 
 Dejemos hasta aquí este somero repaso de los aspectos más elementales del análisis de regresión. Es primordial que por tu propia cuenta estudies los materiales sugeridos, pues este capítulo en modo alguno suple un curso formal de los tópicos básicos de econometría. En el siguiente capítulo, retomamos el hilo del tratamiento de la información espacial a través de su incorporación a los modelos econométricos.
 
