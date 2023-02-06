@@ -110,7 +110,7 @@ Y &amp;= \rho WY +\alpha1_N+X\beta+WX\theta+u  \\
 u &amp;=\lambda Wu+\epsilon  \\
 \end{aligned}
 \]</span></p>
-<p>Siguiendo a Elhorst <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">Elhorst 2006</a>: 10)</span>, se le denomina modelo general justamente por le hecho de que incorporara todos los tipos de efectos espaciales posibles. Veamos con cuidado la expresión anterior para distinguir cada uno de sus términos y ver con claridad los diferentes tipos de efectos espaciales.</p>
+<p>Siguiendo a Elhorst <span class="citation">(<a href="references.html#ref-Elhorst2006" role="doc-biblioref">2006</a>: 10)</span>, se le denomina modelo general justamente por le hecho de que incorporara todos los tipos de efectos espaciales posibles. Veamos con cuidado la expresión anterior para distinguir cada uno de sus términos y ver con claridad los diferentes tipos de efectos espaciales.</p>
 <p>El término identificado como <span class="math inline">\(Y\)</span> no es otro que el vector que contiene la variable dependiente de nuestro modelo, por ejemplo, el número de casos positivos por COVID19; <span class="math inline">\(X\)</span> corresponde a la matriz de variables independientes que pueden ser, por ejemplo, el acceso a los servicios de salud y la proporción promedio de ocupantes por vivienda; el término <span class="math inline">\(\beta\)</span> corresponde al conjunto de parámetros a ser estimados, además, seguro que te resulta familiar el término <span class="math inline">\(W\)</span> que no es otra cosa que la estructura espacial definida a partir de la matriz de pesos espaciales; finalmente, listemos los diferentes efectos espaciales que aparecen en la expresión:</p>
 <ol style="list-style-type: lower-roman">
 <li>efectos de interacción endógenos, es decir, cuando la variable dependiente reaparece como independiente pero a través de su rezago espacial (<span class="math inline">\(WY\)</span>), aquí el sentido y magnitud de la interacción está dado por el parámetro <span class="math inline">\(\rho\)</span>, llamado coeficiente autoregresivo espacial;<br>
@@ -178,11 +178,7 @@ Ho &amp;: \rho=0 \\
 Ha &amp;: \rho\not=0 \\
 \end {aligned}
 \]</span></p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-Según lo que nos indique el multiplicador de Lagrange y su valor-p asociado, a determinado nivel de significancia, rechazar la hipótesis nula significará que, entre el modelo lineal y el modelo de rezago, el mejor modelo es un modelo de rezago espacial.
-=======
-El estadístico usado es el multiplicador de Lagrange, que sigue una distribución <span class="math inline">\(\chi^2\)</span> con un grado de libertad<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Para una exposición detallada de la formulación de los multiplicadores de Lagrange para la selección de modelos alternativos consulta Anselin y Rey (2014: 104)&lt;/p&gt;"><sup>7</sup></a>. Así, dado determinado nivel de significancia, rechazar la hipótesis nula significará que el mejor modelo es un modelo de rezago espacial. De forma semejante, para evaluar la alternativa del modelo de error recuerda que:
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 6d2bf35c51da5d42ee94ac1d5a1e6c9a2fbaa8e7</p>
+<p>Según lo que nos indique el multiplicador de Lagrange y su valor-p asociado, a determinado nivel de significancia, rechazar la hipótesis nula significará que, entre el modelo lineal y el modelo de rezago, el mejor modelo es un modelo de rezago espacial.</p>
 <p>En esta misma línea de razonamiento, del modelo de error nos interesa saber si <span class="math inline">\(\lambda\)</span> es diferente de 0 y, por tanto, si juega algún papel relevante en la relación propuesta. Recuerda que el modelo de error luce como:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -243,7 +239,18 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 ## Dimension:     XY
 ## Bounding box:  xmin: 2745632 ymin: 774927.1 xmax: 2855437 ymax: 899488.5
 ## Projected CRS: Lambert_Conformal_Conic</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-184-1.png" width="672"></div>
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"pos_hab"</span>, </span>
+<span>                style <span class="op">=</span> <span class="st">"quantile"</span>, </span>
+<span>                n<span class="op">=</span><span class="fl">6</span>,</span>
+<span>                title <span class="op">=</span> <span class="st">"Casos positivos COVID19"</span>,</span>
+<span>                </span>
+<span>                palette <span class="op">=</span> <span class="st">"GnBu"</span>,</span>
+<span>                legend.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>text.separator<span class="op">=</span><span class="st">"-"</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>main.title <span class="op">=</span> <span class="st">"Positivos"</span>, main.title.position <span class="op">=</span> <span class="st">"center"</span>, title.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672"></div>
 <p>Es valido sostener, al menos inicialmente que, en efecto, hay una concentración de los casos positivos en la zona sur del área estudiada, la Ciudad de México, donde se muestran los colores en azul más intenso. Esta concentración identificada visualmente, nos lleva a pensar en la necesidad de evaluar formalmente si los datos sobre los casos positivos por COVID19 muestran patrones sistemáticos de agrupamiento en el territorio. Para ello, podemos recurrir a la prueba de autocorrelación espacial que vimos en el capítulo 3, la I de Moran. Como recordarás del capítulo 3, para construir el estadístico de asociación espacial de Moran hay que definir una estructura espacial, es decir, definir entre qué unidades espaciales hay una relación de vecindad, misma que es recogida en la llamada matriz de pesos espaciales. Con una relación de vecindad de tipo reina, la I de Moran y el diagrama de Moran sobre el número de casos positivos luce como:</p>
 <pre><code>## 
 ##  Moran I test under randomisation
@@ -256,7 +263,7 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 ## sample estimates:
 ## Moran I statistic       Expectation          Variance 
 ##       0.656334129      -0.013333333       0.005709563</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672"></div>
 <p>La información que nos proporciona la I de Moran indica que los casos positivos por COVID19 en el Valle de México muestran un patrón de agrupamiento sistemático en las unidades territoriales analizadas: el coeficiente es positivo, relativamente alto y estadisticamente significativo. Así pues, a un nivel aún exploratorio, tanto el mapa como la I de Moran dan cuenta de que la variable a explicar presenta autocorrelación espacial.</p>
 <p>Hay varios elementos interesantes respecto a la evidencia anterior. El primero es que lo más probable es que, si estimamos un modelo econométrico lineal buscando explicar los casos positivos, se violaría el supuesto de independencia en los términos de error de la regresión que exige un modelo lineal clásico, por lo no sería el más apropiado para explicar dicho fenómeno. El segundo, y quizá el más interesante, es que debemos reflexionar sobre el hecho de que la variable a explicar presenta patrones de asociación en el espacio: ¿por qué los casos positivos de COVID19 son más altos en algunos grupos de municipios de la ciudad que en otros?</p>
 <p>La respuesta a esta pregunta es compleja y, desde luego, requiere una reflexión cuidadosa sobre las teorías y trabajos previos de especialistas en el tema que han tratado sobre los patrones espaciales en la transmisión de una enfermedad, como el clásico trabajo de Cliff y sus colaboradores <span class="citation">(<a href="references.html#ref-Cliff1981" role="doc-biblioref">Cliff et al. 1981</a>)</span> sobre la dinámica espacial de las pandemias en Islandia, aunque ciertamente se ha aceptado que las epidemias pueden y deben analizarse desde una perspectiva espacial <span class="citation">(<a href="references.html#ref-Rezaeian2007" role="doc-biblioref">Rezaeian et al. 2007</a>)</span>.</p>
@@ -275,11 +282,11 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <code>spdep</code>: es el mismo paquete que usamos en el capítulo 3 y que contiene funciones para evaluar dependencia espacial y construir matrices de pesos espaciales.</li>
 </ul>
 <p>Como es usual, la instalación desde la consola puede hacerse con:</p>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Instalar dos paquetes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spdep"</span>, <span class="st">"spatialreg"</span> <span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Además, echaremos mano de otros tantos paquetes previamente trabajados, por lo que deberán ser llamados junto con los recién instalados:</p>
-<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Paquetes recién instalados</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span></span>
@@ -287,7 +294,7 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rgdal.r-forge.r-project.org">rgdal</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/">sp</a></span><span class="op">)</span></span></code></pre></div>
 <p>La base de datos a usar en este ejercicio es la misma que hemos usando antes y que puedes <a href="https://bit.ly/covidSHP">descargar aquí</a>. Para cargar nuestra base de datos:</p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span><span class="fu">rgdal</span><span class="fu">::</span><span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
@@ -305,7 +312,7 @@ Figura 5.3: Árbol de decisión de regresión espacial, Anselin y Rey (2014)
 poshab_i=\beta_0+\beta_1ss_i+u_i
 \]</span>
 La variable que buscamos explicar con nuestro modelo será casos positivos a COVID19 por cada 1 mil habitantes, <code>pos_hab</code>, explicada a través del porcentaje de población con acceso a a servicios de salud, <code>ss</code>. La estimación del modelo lineal, tal y como se expuso en el capítulo 4, es:</p>
-<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modelo_mco</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelo_mco</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
@@ -333,13 +340,13 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <p>Una vez que hemos estimado el modelo lineal a través del MCO, hemos completado el paso i de nuestra secuencia general. Debemos ahora evaluar la presencia de autocorrelación en los térinos de error del modelo, es decir, el paso ii. De nueva cuenta insistimos en la diferencia entre evaluar la autocorrelación sobre la variable de interés (lo que hicimos hace un momento con la I de Moran y su diagrama sobre la variable <code>pos_hab</code>) y evaluar la autocorrelación sobre los errores del modelo, lo que haremos en este momento.</p>
 <p>Verificamos la presencia de autocorrelación espacial de los errores a través de la I de Moran, lo que nos permitirá responder a la pregunta <em>¿los errores de nuestro modelo están correlacionados?</em> Para ello, nos servimos de la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test()</a></code> del paquete <code>spdep</code>. Como recordarás, la función requiere dos argumentos: el vector número a evaluar (en este caso los errores del modelo MCO) y la estructura espacial.</p>
 <p>En el capítulo relativo al análisis exploratorio de datos espaciales vimos que la definición de una estructura espacial atraviesa por la construcción de una matriz de pesos espaciales, recuerda que a través de la función <code><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb()</a></code> del paquete <code>spdep</code> construimos nuestra lista de vecinos con base en los criterios de contigüidad de tipo reina (<code>queen=TRUE</code>):</p>
-<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mTRUE</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></span></code></pre></div>
 <p>Ahora, el objeto de tipo <code>nb</code> debe ser trasformado a uno que contenga los pesos espaciales, es decir, la matriz ponderada: un objeto de tipo <code>listw</code>:</p>
-<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mTRUE.pesos</span><span class="op">&lt;-</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mTRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Ahora, alculemos la I de Moran sobre los términos de error:</p>
-<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">modelo_mco</span><span class="op">$</span><span class="va">residuals</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Moran I test under randomisation
@@ -359,7 +366,7 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <p>Lo usual es que cuando la variable de interés presenta autocorrelación, esta característica termine por afectar los resultados de la estimación por mínimos cuadrados ordinarios, tal y como ha ocurrido en este caso en donde los errores del modelo lineal están correlacionados.</p>
 <p>Así pues, es necesario, siguiendo la ruta marcada por Anselin y Rey (2014), evaluar, alternativamente, la pertinencia de un modelo de rezago o de error espacial, es decir, el paso iii. Como dijimos antes, esto lo haremos con base en las pruebas sobre las dos alternativas propuestas (modelo de rezago o modelo de error), a través de los multiplicadores de Lagrange, primero observando sus versiones estándar y, sólo si éstas no son concluyentes, después, sus versiones robustas</p>
 <p>Las pruebas son llamadas con la función <code><a href="https://r-spatial.github.io/spdep/reference/lm.LMtests.html">lm.LMtests()</a></code> del paquete <code>spdep</code> que requiere de los siguientes argumentos: el modelo lineal a evaluar (<code>model=</code>), la estructura espacial (<code>listw=</code>) y los pruebas solicitadas (<code>test=</code>):</p>
-<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.LMtests.html">lm.LMtests</a></span><span class="op">(</span>model<span class="op">=</span><span class="va">modelo_mco</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span>, test<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LMlag"</span>,<span class="st">"LMerr"</span>, <span class="st">"RLMlag"</span>,<span class="st">"RLMerr"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Lagrange multiplier diagnostics for spatial dependence
@@ -452,7 +459,7 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <span class="header-section-number">5.3.2.1</span> Modelo de rezago espacial<a class="anchor" aria-label="anchor" href="#modelo-de-rezago-espacial"><i class="fas fa-link"></i></a>
 </h4>
 <p>El modelo de rezago espacial se invoca con al función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">lagsarlm()</a></code> del paquete <code>spatialreg</code> en la que la estimación corre a cargo del método de máxima verosimilitud. En la función se especifica el modelo (<code>formula=</code>), la base de datos (<code>data=</code>) y la estructura espacial (<code>listw=</code>).</p>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span></span>
 <span><span class="va">rezago</span> <span class="op">&lt;-</span> <span class="fu">spatialreg</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">lagsarlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data<span class="op">=</span><span class="va">covid_zmvm</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">rezago</span><span class="op">)</span></span></code></pre></div>
@@ -485,7 +492,7 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <p>De la salida debemos llamar la atención sobre los coeficientes de interés: <span class="math inline">\(\rho\)</span>, el coeficiente autoregresivo espacial, que en este caso es positivo, significativo y alto (0.83). ¿Qué es lo que dicho valor significa? La interpretación que podría darse a este coeficiente es que cuando aumenta en una unidad el número de casos positivos en los municipios y alcaldías vecinas, el número de casos positivos por COVID19 por cada 1 mil habitantes en el municipio de interés aumentará en 0.83. Hemos pues encontrado evidencia de que hay interacciones espaciales entre el estado y dinámica de la pandemía por COVID19 en la región estudiada: lo que pasa en las áreas territoriales vecinas afecta a la unidad territorial de referencia. Esto podría tener implicaciones sobre las medidas de política sanitaria en la contención de la enfermedad y en el posible desarrollo futuro de ésta.</p>
 <p>Por supuesto, hay que decir, que esto es sólo un ejercicio ilustrativo y que una interpretación más fina atraviesa por un concienzudo y sistemático estudio del carácter espacial de la transmisión de las enfermedades, lo que el autor de estas líneas está lejos de lograr, por lo que los resultados deben interpretarse con cautela y sólo con fines didácticos.</p>
 <p>Las líneas anteriores dan cuenta del elemento sustantivo del fenómeno de interés: la pandemia tiene un fuerte componente espacial y lo hemos logrado captar a través del coeficiente autorregresivo espacial en el modelo de rezago. Pero, ¿con este modelo hemos logrado resolver el problema de la autocorrelación en los errores? Los términos de error del modelo de rezago que recién hemos estimado pueden ser visualizados, guardados y evaluados para ver si presentan autocorrelación:</p>
-<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">rezago</span><span class="op">[[</span><span class="st">"residuals"</span><span class="op">]</span><span class="op">]</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Moran I test under randomisation
@@ -508,7 +515,7 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <span class="header-section-number">5.3.2.2</span> Modelo de error espacial<a class="anchor" aria-label="anchor" href="#modelo-de-error-espacial"><i class="fas fa-link"></i></a>
 </h4>
 <p>El modelo de error espacial es llamado con la función <code><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm()</a></code> y los argumentos son los mismos:</p>
-<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">error</span> <span class="op">&lt;-</span>  <span class="fu">spatialreg</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spatialreg/reference/ML_models.html">errorsarlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pos_hab</span> <span class="op">~</span> <span class="va">ss</span>, data<span class="op">=</span><span class="va">covid_zmvm</span>, listw<span class="op">=</span><span class="va">mTRUE.pesos</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">error</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
@@ -538,7 +545,7 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <p>Aquí, el parámetro de interés estimado es <span class="math inline">\(\lambda\)</span>, el coeficiente de autocorrelación espacial, que resultó positivo, alto y estadísticamente significativo, también (0.87). En este caso, las posibilidades de interpretación sustantiva del coeficiente obtenido son mucho más limitadas, ya que los efectos espaciales están modelados por el término de error.</p>
 <p>Recordemos que los términos de error incluyen los efectos de todas aquellas variables que no están siendo incluidas en nuestro modelo. En este caso, entonces, no es posible brindar una lectura explícita de la variable o variable que determinan las interacciones espaciales. Sólo podemos contentarnos con decir que el problema de la dependencia entre los términos de error ha sido resuelto y que el componente espacial es considerablemente alto.</p>
 <p>Con la siguiente línea, se verifica que se ha resuelto el problema de la autocorrelación en los errores:</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">error</span><span class="op">[[</span><span class="st">"residuals"</span><span class="op">]</span><span class="op">]</span>, <span class="va">mTRUE.pesos</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Moran I test under randomisation
@@ -569,7 +576,6 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 
 </div>
 </div>
-
   
 
   
@@ -609,7 +615,7 @@ La variable que buscamos explicar con nuestro modelo será casos positivos a COV
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-02-02.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-02-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
