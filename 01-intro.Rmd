@@ -23,7 +23,7 @@ En tanto, RStudio puede ser descargado de [aquí](https://www.rstudio.com/). Ve 
 
 Al abrir RStudio se mostrará una pantalla como la que aparece en la Figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (*New file*, parte superior izquierda de la pantalla) para que se despliegue.
 
-```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Panel principal', fig.alt = "Texto alternativo"} 
+```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Panel principal', fig.alt = ""El diseño de la pantalla principal de RStudio está organizado en cuatro secciones distintas, cada una con un propósito específico. Fuente u origen, Ambiente\Historial, Consola y Archivo\Paquetes\Ayuda"} 
 knitr::include_graphics("recursos intro/Figura_1-Entorno.jpg")
 
 ```
@@ -326,9 +326,9 @@ covid_zmvm <- utils::read.csv(ruta)
 
 ### Cargar bases con la funcionalidad importar
 
-Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono *Import Dataset*. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (*Update*) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (*Import*), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la Figura 1.3:
+Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono *Import Dataset*. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (*Update*) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (*Import*), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la Figura 1.2:
 
-```{r, echo=FALSE, fig.align='center',out.width='120%', fig.cap='Importar datos de excel'} 
+```{r, echo=FALSE, fig.align='center',out.width='120%', fig.cap='Importar datos de excel', fig.alt="Ventana panel que muestra una vista previa de los datos que se estan importando, incluye además, la opción del nombre que desea importar, la hoja que debe importar, el rango de la tabla, etc."} 
 knitr::include_graphics("recursos intro/Figura_3-Importar.jpg")
 ```
 
@@ -387,9 +387,9 @@ La construcción de gráficas con `ggplot2` se hace a partir de una suerte de "c
 
 > ggplot2 se basa en la gramática de los gráficos, la idea de que puedes construir cada gráfico a partir de los mismos componentes: un conjunto de datos, un sistema de coordenadas y "geoms", es decir, marcas visuales que representan puntos de datos.
 
-Asi pues, se requieren tres elementos para la construcción de una gráfica con `ggplot2`: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base `covid_zmvm` pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:
+Así pues, se requieren tres elementos para la construcción de una gráfica con `ggplot2`: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base `covid_zmvm` pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.alt= "Gráfico de dispersión que representa la relación entre los casos positivos (pos_hab) en el eje x y el número promedio de grados cursados (grad) en y. El gráfico muestra la mayor agrupación de dato por debajo de 10 en pos_hab y 12 en grad" }
 library(tidyverse)
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab))
@@ -412,7 +412,7 @@ Por favor, revisa la hoja de trucos del paquete para que te familiarices con las
 
 Añadamos una "capa" adicional a nuestra gráfica, combinando otra geometría como una línea de ajuste (pongamos atención en el uso del signo de más):
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.alt= "Muestra la relación entre el número promedio de grados cursados (grad) y los casos positivos (pos_hab) en la región de Zona Metropolitana del Valle de México.Este gráfico añade una linea de ajuste de color azul que muestra la tendencia general."}
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab))+
   ggplot2::geom_smooth(aes(x=grad,y=pos_hab))
@@ -428,7 +428,7 @@ ggplot2::ggplot(data=covid_zmvm)+
 
 Aquí, hemos añadido un argumento adicional, `method=`, para indicar un suavizamiento dado por un modelo lineal, `lm`, de *linear model*. Tenemos pues que entre el número de casos positivos y el número promedio de grados cursados hay una aparente relación positiva. ¿Qué hay para el caso de las defunciones:
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.alt=""}
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=def_hab))+
   ggplot2::geom_smooth(aes(x=grad,y=def_hab), method = "lm")
