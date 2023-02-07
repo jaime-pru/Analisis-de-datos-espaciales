@@ -329,7 +329,7 @@ covid_zmvm <- utils::read.csv(ruta)
 
 Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono *Import Dataset*. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (*Update*) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (*Import*), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la Figura 1.2:
 
-```{r, echo=FALSE, fig.align='center',out.width='120%', fig.cap='Importar datos de excel', fig.alt="Ventana panel que muestra una vista previa de los datos que se estan importando, incluye además, la opción del nombre que desea importar, la hoja que debe importar, el rango de la tabla, etc."} 
+```{r, echo=FALSE, fig.align='center',out.width='120%', fig.cap='Importar datos de excel', fig.alt='Ventana panel que muestra una vista previa de los datos que se estan importando, incluye además, la opción del nombre que desea importar, la hoja que debe importar, el rango de la tabla, etc.'} 
 knitr::include_graphics("recursos intro/Figura_3-Importar.jpg")
 ```
 
@@ -390,7 +390,7 @@ La construcción de gráficas con `ggplot2` se hace a partir de una suerte de "c
 
 Así pues, se requieren tres elementos para la construcción de una gráfica con `ggplot2`: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base `covid_zmvm` pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:
 
-```{r message=FALSE, warning=FALSE, fig.alt= "Gráfico de dispersión que representa la relación entre los casos positivos (pos_hab) en el eje x y el número promedio de grados cursados (grad) en y. El gráfico muestra la mayor agrupación de dato por debajo de 10 en pos_hab y 12 en grad" }
+```{r message=FALSE, warning=FALSE, fig.alt= 'Gráfico de dispersión que representa la relación entre los casos positivos (pos_hab) en el eje x y el número promedio de grados cursados (grad) en y. El gráfico muestra la mayor agrupación de datos por debajo de 10 en pos_hab y 12 en grad' }
 library(tidyverse)
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab))
@@ -413,7 +413,7 @@ Por favor, revisa la hoja de trucos del paquete para que te familiarices con las
 
 Añadamos una "capa" adicional a nuestra gráfica, combinando otra geometría como una línea de ajuste (pongamos atención en el uso del signo de más):
 
-```{r message=FALSE, warning=FALSE, fig.alt= "Muestra la relación entre el número promedio de grados cursados (grad) y los casos positivos (pos_hab) en la región de Zona Metropolitana del Valle de México.Este gráfico añade una linea de ajuste de color azul que muestra la tendencia general."}
+```{r message=FALSE, warning=FALSE, fig.alt= 'Muestra la relación entre el número promedio de grados cursados (grad) y los casos positivos (pos_hab) en la región de Zona Metropolitana del Valle de México.Este gráfico añade una linea de ajuste de color azul que muestra la tendencia general.'}
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab))+
   ggplot2::geom_smooth(aes(x=grad,y=pos_hab))
@@ -421,7 +421,7 @@ ggplot2::ggplot(data=covid_zmvm)+
 
 Puedes ver cómo, al añadir una nueva geometría, fue necesario especificar los elementos estéticos del caso, pero los tres enunciados nos permiten tener una sola gráfica. Observa cómo R en tu consola R indica que estás usando determinado método de suavizamiento, el llamado "loess" que significa *locally estimated scatterplot smoothing*, por tanto, es fácil deducir que debe haber otros métodos de suavizamiento. Observa las siguientes líneas de código:
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.alt='El argumento nuevo "method=" crea una recta de regresión lineal de color azul. La linea resultante va de forma ascendente de izquierda a derecha, es decir, muestra una ralación positiva entre las variables'}
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab))+
   ggplot2::geom_smooth(aes(x=grad,y=pos_hab), method = "lm")
@@ -429,7 +429,7 @@ ggplot2::ggplot(data=covid_zmvm)+
 
 Aquí, hemos añadido un argumento adicional, `method=`, para indicar un suavizamiento dado por un modelo lineal, `lm`, de *linear model*. Tenemos pues que entre el número de casos positivos y el número promedio de grados cursados hay una aparente relación positiva. ¿Qué hay para el caso de las defunciones:
 
-```{r message=FALSE, warning=FALSE, fig.alt=""}
+```{r message=FALSE, warning=FALSE, fig.alt='Grafico de dispersión que presenta una relación entre el número promedio de grados cursados (grad) y el número de defunciones (def_hab). Los puntos se muestran más dispersos en comparación con la grafica anterior, no obtante, la recta azul muestra de igual manera una relación positiva.'}
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=def_hab))+
   ggplot2::geom_smooth(aes(x=grad,y=def_hab), method = "lm")
@@ -451,7 +451,7 @@ ii) ¿Encuentras algún tipo de asociación entre las variables COVID19 y las ca
 
 Quizá lo que te interese no sólo sea la asociación entre pares de variables, sino el comportamiento individual de cada variable para conocer la forma de su distribución e identificar algunos valores extremos o atípicos (los llamados *ourliers*). Para ello, convendrá un tipo de gráfica que permita representar sólo una variable continúa (casos positivos o defunciones por COVID19), tal como un histograma, una gráfica de densidad o de caja.
 
-```{r,message=FALSE, warning=FALSE}
+```{r,message=FALSE, warning=FALSE, fig.alt= 'Histograma de los casos positivos que muestra un agrupamiento a la izquida de la gráfica, el eje x va de 0 a 25. El numero de casos acumulados va de 0 a 12.5'}
 #Histograma para los casos positivos por cada mil habitantes
 ggplot2::ggplot(covid_zmvm)+
   ggplot2::geom_histogram(aes(x=pos_hab))
@@ -481,7 +481,7 @@ ii) Señalar de un color diferente las observaciones atípicas en el diagrama de
 
 Además, también es posible modificar las etiquetas de los ejes:
 
-```{r warning=FALSE}
+```{r warning=FALSE, fig.alt= 'Representa el mismo histograma que el anterior, solo que se modificaron las etiquetas de los ejes. Eje x es igual a "Casos positivos por cada mil habitantes", y es igual a "Frecuencia"'}
 ggplot2::ggplot(data=covid_zmvm)+
   ggplot2::geom_histogram(aes(x=pos_hab))+
   ggplot2::labs(x="Casos positivos por cada mil habitantes", y="Frecuencia")
@@ -489,12 +489,12 @@ ggplot2::ggplot(data=covid_zmvm)+
 
 Nuestra base de datos contiene una variable de tipo categórico, grado de marginación (`gm_2020`), asociada al índice de marginación (`im`). Para este tipo de variable puede ser conveniente construir un gráfico de barras especialmente diseñado para variables categóricas echando mano de la geometría `geom_bar()`:
 
-```{r}
+```{r, fig.alt= 'Histograma de variable categorica grado de marginación (gm_2020), en el eje x muestra cada categoria; Bajo, Medio, Muy Bajo. Muestra que la mayoria de los casos se encuentran en una categoria muy baja de marginación.'}
 ggplot2::ggplot(covid_zmvm)+
  ggplot2:: geom_bar(aes(x=gm_2020))+
   ggplot2::labs(x="Grado de marginación 2020", y="Frecuencia")
 
-#Si tienes la librería ggplot2 cargada en el enorno de trabajo, alternativamente, puedes escribir:
+#Si tienes la librería ggplot2 cargada en el entorno de trabajo, alternativamente, puedes escribir:
 ggplot(covid_zmvm)+
  geom_bar(aes(x=gm_2020))+
   labs(x="Grado de marginación 2020", y="Frecuencia")
@@ -513,7 +513,7 @@ i. Obtén una gráfica de barras donde se muestre el número de unidades adminis
 
 Ahora bien, ¿será posible incorporar en un plano bidimensional una tercera variable? ¿Cómo añadirías a un diagrama de dispersión, que relaciona dos variables, una tercera? Este instrumento es a veces denominado gráfico de burbujas y si lo piensas con cuidado es una solución muy ingeniosa para añadir información extra sin renunciar a la simpleza. Para hacerlo, basta con añadir el argumento `size=` dentro de los elementos estéticos de la función `geom_point()`:
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.alt= 'Tres gráficos de dispersión que muestran la relación entre casos positivos y defunciones. Se añade una tercera variable a través del tamaño de los circulos, trasparencia de los circulos y tamaño y transparencia.' }
 #Tamaño del circulo dado por los años estudiados
 ggplot2::ggplot(covid_zmvm)+
   ggplot2::geom_point(aes(x=grad,y=pos_hab,size=def_hab))
@@ -554,7 +554,7 @@ library(GGally)
 
 La gráfica que buscamos es una matriz de diagramas de dispersión y la construiremos con la función `ggpairs()` y sólo dos argumentos: la fuente de datos y las variables que deseamos incluir. Veamos:
 
-```{r warning=FALSE}
+```{r warning=FALSE, fig.alt='Gráfica de una matriz de diagramas de dispersión de 4 por 4. Muestra la correlación de diferentes variables en gráficas de dispersión y su coeficiente de correlación.'}
 #Definiendo los nombres de las variables
 GGally::ggpairs(data=covid_zmvm, columns = c("pos_hab","def_hab","im","grad"))
 
@@ -716,7 +716,7 @@ covid_zmvm %>% dplyr::select(cvemun,nom_mun,positivos,pos_hab,ext) %>%
 
 Notarás como la nueva variable aparece al final de la base. Vamos a intentar unir varios de los elementos que hemos aprendido hasta este punto para que veas el potencial de uso de la tubería. Vamos a crear una nueva variable, la misma que hace un momento, luego, tomaremos la base que contiene la nueva variable y construiremos con ella un diagrama de dispersión con la nueva variable y el número de defunciones por cada mil habitantes:
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.alt='Gráfico de dispersión que representa la relación entre la densidad de los casos positivos (pos_den) en el eje x y defunciones por cada mil habitantes (def_hab) en y. La gráfica muestra la mayor agrupación de datos por debajo de 1 en def_hab y 25 en pos_den'}
 covid_zmvm %>% 
   dplyr::mutate(pos_den=positivos/ext) %>% 
   ggplot2::ggplot()+
