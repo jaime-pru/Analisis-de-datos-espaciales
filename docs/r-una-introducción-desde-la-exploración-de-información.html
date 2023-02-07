@@ -111,7 +111,7 @@
 <p>Al abrir RStudio se mostrará una pantalla como la que aparece en la Figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (<em>New file</em>, parte superior izquierda de la pantalla) para que se despliegue.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="recursos%20intro/Figura_1-Entorno.jpg" alt="Texto alternativo" width="100%"><p class="caption">
+<img src="recursos%20intro/Figura_1-Entorno.jpg" alt="El diseño de la pantalla principal de RStudio está organizado en cuatro secciones distintas, cada una con un propósito específico. Fuente u origen, Ambiente/Historial, Consola y Archivo/Paquetes/Ayuda" width="100%"><p class="caption">
 Figura 1.1: Panel principal
 </p>
 </div>
@@ -417,10 +417,10 @@ Figura 1.1: Panel principal
 <h3>
 <span class="header-section-number">1.3.3</span> Cargar bases con la funcionalidad importar<a class="anchor" aria-label="anchor" href="#cargar-bases-con-la-funcionalidad-importar"><i class="fas fa-link"></i></a>
 </h3>
-<p>Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono <em>Import Dataset</em>. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (<em>Update</em>) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (<em>Import</em>), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la Figura 1.3:</p>
+<p>Otra manera de cargar archivos de Excel o de texto (formato CSV) es ubicarnos en la sección de ambiente, ventana superior derecha, y seleccionar el ícono <em>Import Dataset</em>. Se desplegará un menú donde habremos de elegir el tipo de archivo que se desee importar. R no sólo permite importar archivos de texto o Excel, también bases de SPSS o STATA. Siguiendo con la ilustración relativa a libros de Excel, en la ventana que se despliega, habremos de señalar la ruta exacta o directorio donde está nuestro archivo, incluyendo el nombre y extensión de éste. Al pulsar en el botón actulizar (<em>Update</em>) se desplegara una vista previa de la base. Si aparece de forma correcta, seleccionaremos importar (<em>Import</em>), en caso contrario, se deberá modificar las opciones de importación. Después de seleccionar Import Dataset/From Excel y elegir la ubicación del archivo que deseas importar, deberías ver en tu pantalla una imagen como la de la Figura 1.2:</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-32"></span>
-<img src="recursos%20intro/Figura_3-Importar.jpg" alt="Importar datos de excel" width="120%"><p class="caption">
+<img src="recursos%20intro/Figura_3-Importar.jpg" alt="Ventana panel que muestra una vista previa de los datos que se estan importando, incluye además, la opción del nombre que desea importar, la hoja que debe importar, el rango de la tabla, etc." width="120%"><p class="caption">
 Figura 1.2: Importar datos de excel
 </p>
 </div>
@@ -593,12 +593,12 @@ Figura 1.2: Importar datos de excel
 <blockquote>
 <p>ggplot2 se basa en la gramática de los gráficos, la idea de que puedes construir cada gráfico a partir de los mismos componentes: un conjunto de datos, un sistema de coordenadas y “geoms,” es decir, marcas visuales que representan puntos de datos.</p>
 </blockquote>
-<p>Asi pues, se requieren tres elementos para la construcción de una gráfica con <code>ggplot2</code>: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base <code>covid_zmvm</code> pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:</p>
+<p>Así pues, se requieren tres elementos para la construcción de una gráfica con <code>ggplot2</code>: datos, geometría y sistema de coordenadas. Dentro de la geometría se especifican no sólo la o las variables a representar, también algunos elementos estéticos como colores. En nuestro caso, la información está contenida en la base <code>covid_zmvm</code> pero habrá que especificar qué tipo de gráfica deseamos y sus elementos estéticos. Veamos esto en acción:</p>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-38-1.png" alt="Gráfico de dispersión que representa la relación entre los casos positivos (pos_hab) en el eje x y el número promedio de grados cursados (grad) en y. El gráfico muestra la mayor agrupación de dato por debajo de 10 en pos_hab y 12 en grad" width="672"></div>
 <p>Tenemos pues dos enunciados o “capas.” La primera corresponde a la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> donde colocamos (casi siempre) el primer elemento requerido: la base de datos de donde tomaremos la o las variables a graficar, en tanto, el segundo enunciado corresponde a la geometría, <code>geom_</code> cuya parte después del guion bajo se modificará en función del tipo de gráfica a utilizar. Algunos (sólo algunos) tipos de gráficas y su función de geometría asociada en <code>ggplot2</code> aparecen en el cuadro 1.2:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>Cuadro 1.2</caption>
@@ -640,7 +640,7 @@ Figura 1.2: Importar datos de excel
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grad</span>,y<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" alt="Muestra la relación entre el número promedio de grados cursados (grad) y los casos positivos (pos_hab) en la región de Zona Metropolitana del Valle de México.Este gráfico añade una linea de ajuste de color azul que muestra la tendencia general." width="672"></div>
 <p>Puedes ver cómo, al añadir una nueva geometría, fue necesario especificar los elementos estéticos del caso, pero los tres enunciados nos permiten tener una sola gráfica. Observa cómo R en tu consola R indica que estás usando determinado método de suavizamiento, el llamado “loess” que significa <em>locally estimated scatterplot smoothing</em>, por tanto, es fácil deducir que debe haber otros métodos de suavizamiento. Observa las siguientes líneas de código:</p>
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">covid_zmvm</span><span class="op">)</span><span class="op">+</span></span>
@@ -1216,7 +1216,7 @@ Figura 1.2: Importar datos de excel
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-02-06.</p>
+    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-02-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

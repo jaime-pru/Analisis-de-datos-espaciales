@@ -23,7 +23,8 @@ En tanto, RStudio puede ser descargado de [aquí](https://www.rstudio.com/). Ve 
 
 Al abrir RStudio se mostrará una pantalla como la que aparece en la Figura 1.1. La pantalla principal de RStudio está dividida en cuatro partes. En caso de que el recuadro superior izquierdo no aparezca, da clic en el ícono de la hoja en blanco con el signo de más (*New file*, parte superior izquierda de la pantalla) para que se despliegue.
 
-```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Panel principal', fig.alt = ""El diseño de la pantalla principal de RStudio está organizado en cuatro secciones distintas, cada una con un propósito específico. Fuente u origen, Ambiente\Historial, Consola y Archivo\Paquetes\Ayuda"} 
+```{r, echo=FALSE, fig.align='center',out.width='100%',fig.cap='Panel principal', fig.alt = 'El diseño de la pantalla principal de RStudio está organizado en cuatro secciones distintas, cada una con un propósito específico. Fuente u origen, Ambiente/Historial, Consola y Archivo/Paquetes/Ayuda'} 
+
 knitr::include_graphics("recursos intro/Figura_1-Entorno.jpg")
 
 ```
