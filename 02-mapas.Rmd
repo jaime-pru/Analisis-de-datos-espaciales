@@ -107,7 +107,7 @@ A través de diversos programas es posible cambiar el sistema de referencia de c
 
 Usando la función `plot()` que pertenece al paquete `graphics`, es posible elaborar una primera representación de algunas de las variables de nuestra base. Esto es sólo para darnos cuenta de que ahora tratamos con información espacial, es decir, objetos espaciales (unidades adminsitrativas: alcaldías y municipios) a los que se asocian determinados atributos o variables.
 
-```{r}
+```{r, fig.alt= 'Muestra la distribución espacial de las primeras 9 variables de la base de la Zona Metropolitana del Valle de México'}
 graphics::plot(zmvm_cov_sf)
 ```
 
@@ -128,7 +128,7 @@ tmap::tm_shape("capa shp origen de la información")+
 
 Resulta evidente que el segmento de código anterior arrojará un error si lo ejecutas en tu consola, pues hay que especificar los argumentos del caso, sustituyendo las expresiones entrecomilladas. Por ejemplo, para representar nuestra información usando los tres elementos para la variable `pos_hab`, número de casos positivos de COVID19 por cada mil habitantes, tenemos:
 
-```{r}
+```{r, fig.alt= "Mapa tematico de la zona metropolitana que muestra la distribucón de la variable 'pos_hab' en un degradado de color amarillo a marron. El rango de datos de la leyenda va de 0 a 25 en grupos de 5 en 5. La distribución se asevera en el sur de la ciudad de México "}
 tmap::tm_shape(shp=zmvm_cov_sf)+
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab")
@@ -167,7 +167,7 @@ Te recomendamos consultar, además del libro de Víctor Olaya ya comentado previ
 Nos concentraremos ahora en revisar cómo podemos hacer "mapas a la medida", es decir, personalizar prácticamente cada parte del mapa, desde la paleta de colores hasta títulos y leyendas. Comencemos revisando las posibilidades de personalización dentro de la función de relleno, `tm_fill()`. Veremos primero cómo cambiar la paleta de colores de relleno a través del argumento `palette=`. Por defecto, los colores corresponden a una gama cromática de rojos, pero podemos cambiarla a una de color naranja:
 
 
-```{r}
+```{r, fig.alt='En comparación con el mapa anterior, a este se le cambia la escala de color a naranja'}
 tmap::tm_shape(zmvm_cov_sf)+
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab", palette = "Oranges")
@@ -183,7 +183,7 @@ Prueba cambiar el esquema de colores por aquellos que sean de tu gusto, ¿cuále
 
 Una manera alternativa de cambiar la paleta de colores consiste en fijar un color para la clase inicial y uno para la clase final, como si se tratara de colores ancla. Para ello nos servimos de un vector como valor del argumento `palette=`:
 
-```{r}
+```{r, fig.alt= 'En comparación con el mapa anterior, a este se le cambia la escala de color a azul en el rango más bajo (0 a 5) y a rojo en el más alto (20 a 25). En este sentido, en la Ciudad de México predomina el rojo'}
 tmap::tm_shape(zmvm_cov_sf)+
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab", palette = c("blue","red"))
@@ -191,7 +191,7 @@ tmap::tm_shape(zmvm_cov_sf)+
 
 Para tener una paleta divergente insertamos otro color en el centro:
 
-```{r}
+```{r, fig.alt= 'En comparación con el mapa anterior, a este se le cambia la escala de color a azul en el rango más bajo (0 a 5), a color blanco en el rango medio (10 a 15) y a rojo en el más alto (20 a 25). En la zona norte Ciudad de México predomina el blanco'}
 tmap::tm_shape(zmvm_cov_sf)+
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab", palette = c("blue","white", "red"))
@@ -211,13 +211,13 @@ RColorBrewer::brewer.pal(6,"BuGn")
 
 Los códigos hexagesimales resultado de la función anterior poco nos dicen sobre colores, entonces, hay que visualizarlos. Para ello hemos de usar la función `display.brewer.pal()`
 
-```{r}
+```{r, fig.alt='Rectangulo de degradados en 6 etapas de verde. A la izquierda esta el más claro y se va obscurencido a la derecha'}
 RColorBrewer::display.brewer.pal(6,"BuGn")
 ```
 
 Ahora, ya que tenemos una paleta que luce más estética, podemos aplicarla a nuestro mapa:
 
-```{r}
+```{r, fig.alt="Mapa tematico de la zona metropolitana que muestra la distribucón de la variable 'pos_hab' con el degradado de verdes presentado anteriormente. La Ciudad de México se mantiene de color verde mas obscuro"}
 tmap::tm_shape(zmvm_cov_sf)+
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab", palette = "BuGn" )
