@@ -9,3 +9,4 @@ The logic of each chapter integrates three elements: i) explanation of the funda
 The examples and exercises presented in the course are based on a database on the situation of the COVID19 pandemic between March and September 2020 in the Metropolitan Zone of the Valley of Mexico (Zona Metropolitana del Valle de México), the largest metropolitan area in Mexico, made up of 76 local administrative units or municipalities with more than 21 million inhabitants. In addition, the database used provides information on the economic structure at the municipal level and a set of variables of sociodemographic characteristics from the population census.
 
 The book conceived is as a project that can be disseminated and expanded, so it is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+[![DOI](https://zenodo.org/badge/449847797.svg)](https://zenodo.org/badge/latestdoi/449847797)
