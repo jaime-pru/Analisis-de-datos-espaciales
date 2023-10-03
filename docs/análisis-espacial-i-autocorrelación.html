@@ -1,130 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R</title>
-<meta name="author" content="Jaime Alberto Prudencio Vázquez">
-<meta name="generator" content="bookdown 0.30 with bs4_book()">
-<meta property="og:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
-<meta property="og:type" content="book">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R</title>
+  <meta name="description" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Análisis espacial I: autocorrelación | Análisis de datos espaciales con R" />
+  
+  
+  
+
+<meta name="author" content="Jaime Alberto Prudencio Vázquez" />
+
+
+<meta name="date" content="2023-10-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mapas-coropléticos-en-r.html"/>
+<link rel="next" href="modelos-de-regresión-lineal.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.13.0/leaflet-providers_1.13.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.0/leaflet-providers-plugin.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="css/style.css">
-<meta name="description" content="Observa el siguiente mapa. En él, se representa la variable índice de de desarrollo humano que calculó el Programa de Naciones Unidad para el Desarrollo (PNUD) en 2015. ## Reading layer...">
-<meta property="og:description" content="Observa el siguiente mapa. En él, se representa la variable índice de de desarrollo humano que calculó el Programa de Naciones Unidad para el Desarrollo (PNUD) en 2015. ## Reading layer...">
-<meta name="twitter:description" content="Observa el siguiente mapa. En él, se representa la variable índice de de desarrollo humano que calculó el Programa de Naciones Unidad para el Desarrollo (PNUD) en 2015. ## Reading layer...">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="">Análisis de datos espaciales con R</a>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Análisis de datos espaciales con R</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
-<li><a class="" href="r-una-introducci%C3%B3n-desde-la-exploraci%C3%B3n-de-informaci%C3%B3n.html"><span class="header-section-number">1</span> R: Una introducción desde la exploración de información</a></li>
-<li><a class="" href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></li>
-<li><a class="active" href="an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n.html"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="" href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></li>
-<li><a class="" href="an%C3%A1lisis-espacial-ii-modelos-econom%C3%A9tricos-espaciales.html"><span class="header-section-number">5</span> Análisis espacial II: modelos econométricos espaciales</a></li>
-<li><a class="" href="sobre-el-autor.html">Sobre el autor</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Primera Edición</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Análisis de datos espaciales con R</a></li>
+<li class="chapter" data-level="" data-path="prólogo.html"><a href="prólogo.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html"><i class="fa fa-check"></i><b>1</b> R: Una introducción desde la exploración de información</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#r-lenguaje-de-programación-y-plataforma-de-análisis"><i class="fa fa-check"></i><b>1.1</b> R: Lenguaje de programación y plataforma de análisis</a></li>
+<li class="chapter" data-level="1.2" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#códigos-objetos-paquetes"><i class="fa fa-check"></i><b>1.2</b> Códigos, objetos, paquetes</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#código"><i class="fa fa-check"></i><b>1.2.1</b> Código</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#objetos-operadores-y-tipos-de-variables"><i class="fa fa-check"></i><b>1.2.2</b> Objetos, operadores y tipos de variables</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#paquetes"><i class="fa fa-check"></i><b>1.2.3</b> Paquetes</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#solicitar-ayuda-de-un-paquete-o-función-de-r"><i class="fa fa-check"></i><b>1.2.4</b> Solicitar ayuda de un paquete o función de R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#cargar-bases-de-datos"><i class="fa fa-check"></i><b>1.3</b> Cargar bases de datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#cargar-un-archivo-de-excel-xls-xslx"><i class="fa fa-check"></i><b>1.3.1</b> Cargar un archivo de Excel (xls, xslx)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#cargar-archivos-separados-por-comas-csv"><i class="fa fa-check"></i><b>1.3.2</b> Cargar archivos separados por comas (csv)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#cargar-bases-con-la-funcionalidad-importar"><i class="fa fa-check"></i><b>1.3.3</b> Cargar bases con la funcionalidad importar</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#exploración-inicial-a-través-de-gráficos"><i class="fa fa-check"></i><b>1.4</b> Exploración inicial a través de gráficos</a></li>
+<li class="chapter" data-level="1.5" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#manipulación-de-la-información"><i class="fa fa-check"></i><b>1.5</b> Manipulación de la información</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#seleccionar-variables"><i class="fa fa-check"></i><b>1.5.1</b> Seleccionar variables</a></li>
+<li class="chapter" data-level="1.5.2" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#filtrar-seleccionar-casos"><i class="fa fa-check"></i><b>1.5.2</b> Filtrar (seleccionar casos)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#ordenar"><i class="fa fa-check"></i><b>1.5.3</b> Ordenar</a></li>
+<li class="chapter" data-level="1.5.4" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#crear-nuevas-variables"><i class="fa fa-check"></i><b>1.5.4</b> Crear nuevas variables</a></li>
+<li class="chapter" data-level="1.5.5" data-path="r-una-introducción-desde-la-exploración-de-información.html"><a href="r-una-introducción-desde-la-exploración-de-información.html#resúmenes-de-información-y-grupos"><i class="fa fa-check"></i><b>1.5.5</b> Resúmenes de información y grupos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html"><i class="fa fa-check"></i><b>2</b> Mapas coropléticos en R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#datos-y-datos-espaciales"><i class="fa fa-check"></i><b>2.1</b> Datos y datos espaciales</a></li>
+<li class="chapter" data-level="2.2" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#los-paquetes"><i class="fa fa-check"></i><b>2.2</b> Los paquetes</a></li>
+<li class="chapter" data-level="2.3" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#carga-de-la-base-de-datos-geográfica"><i class="fa fa-check"></i><b>2.3</b> Carga de la base de datos geográfica</a></li>
+<li class="chapter" data-level="2.4" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#mapas-coropléticos-básicos"><i class="fa fa-check"></i><b>2.4</b> Mapas coropléticos básicos</a></li>
+<li class="chapter" data-level="2.5" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#personalización"><i class="fa fa-check"></i><b>2.5</b> Personalización</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#argumentos-de-personalización-dentro-de-la-función-de-relleno"><i class="fa fa-check"></i><b>2.5.1</b> Argumentos de personalización dentro de la función de relleno</a></li>
+<li class="chapter" data-level="2.5.2" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#argumentos-de-personalización-del-borde"><i class="fa fa-check"></i><b>2.5.2</b> Argumentos de personalización del borde</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#función-para-elementos-de-diseño-de-salida-tm_layout"><i class="fa fa-check"></i><b>2.6</b> Función para elementos de diseño de salida, <code>tm_layout()</code></a></li>
+<li class="chapter" data-level="2.7" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#mapa-base-interactivo"><i class="fa fa-check"></i><b>2.7</b> Mapa base interactivo</a></li>
+<li class="chapter" data-level="2.8" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#cartograma"><i class="fa fa-check"></i><b>2.8</b> Cartograma</a></li>
+<li class="chapter" data-level="2.9" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#centroides-o-coordenadas-geométricas-punto-medio"><i class="fa fa-check"></i><b>2.9</b> Centroides o coordenadas geométricas (punto medio)</a></li>
+<li class="chapter" data-level="2.10" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#tópico-adicional-mapas-de-clasificación-especial-elementos-de-programación"><i class="fa fa-check"></i><b>2.10</b> Tópico adicional: Mapas de clasificación especial (elementos de programación)</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#una-palabra-de-advertencia"><i class="fa fa-check"></i><b>2.10.1</b> Una palabra de advertencia</a></li>
+<li class="chapter" data-level="2.10.2" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#mapa-de-intervalos-personalizados"><i class="fa fa-check"></i><b>2.10.2</b> Mapa de intervalos personalizados</a></li>
+<li class="chapter" data-level="2.10.3" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#mapas-de-valores-extremos"><i class="fa fa-check"></i><b>2.10.3</b> Mapas de valores extremos</a></li>
+<li class="chapter" data-level="2.10.4" data-path="mapas-coropléticos-en-r.html"><a href="mapas-coropléticos-en-r.html#construcción-de-una-función-personalizada-para-hacer-mapas-de-percentiles"><i class="fa fa-check"></i><b>2.10.4</b> Construcción de una función personalizada para hacer mapas de percentiles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html"><i class="fa fa-check"></i><b>3</b> Análisis espacial I: autocorrelación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#autocorrelación-espacial-y-definición-de-vecindad"><i class="fa fa-check"></i><b>3.1</b> Autocorrelación espacial y definición de vecindad</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#matrices-de-pesos-espaciales-en-r"><i class="fa fa-check"></i><b>3.2</b> Matrices de pesos espaciales en R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#construcción-de-matrices-con-spdep"><i class="fa fa-check"></i><b>3.2.1</b> Construcción de matrices con <code>spdep</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#construcción-de-matrices-con-rgeoda"><i class="fa fa-check"></i><b>3.2.2</b> Construcción de matrices con <code>rgeoda</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#variables-espacialmente-rezagadas"><i class="fa fa-check"></i><b>3.3</b> Variables espacialmente rezagadas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#rezagos-espaciales-con-spdep"><i class="fa fa-check"></i><b>3.3.1</b> Rezagos espaciales con <code>spdep</code></a></li>
+<li class="chapter" data-level="3.3.2" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#rezagos-espaciales-con-rgeoda"><i class="fa fa-check"></i><b>3.3.2</b> Rezagos espaciales con <code>rgeoda</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#coeficiente-de-correlación-espacial-la-i-de-moran"><i class="fa fa-check"></i><b>3.4</b> Coeficiente de correlación espacial: la I de Moran</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#diagrama-de-moran"><i class="fa fa-check"></i><b>3.4.1</b> Diagrama de Moran</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par."><i class="fa fa-check"></i><b>3.5</b> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función <code>par()</code>.</a></li>
+<li class="chapter" data-level="3.6" data-path="análisis-espacial-i-autocorrelación.html"><a href="análisis-espacial-i-autocorrelación.html#índice-de-moran-local-y-mapa-de-clusters"><i class="fa fa-check"></i><b>3.6</b> Índice de Moran local y mapa de clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html"><i class="fa fa-check"></i><b>4</b> Modelos de regresión lineal</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#causalidad-y-correlación-el-alcance-del-análisis-de-regresión"><i class="fa fa-check"></i><b>4.1</b> Causalidad y correlación: el alcance del análisis de regresión</a></li>
+<li class="chapter" data-level="4.2" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#lo-artesanal-de-la-econometría"><i class="fa fa-check"></i><b>4.2</b> Lo “artesanal” de la econometría</a></li>
+<li class="chapter" data-level="4.3" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#qué-buscamos-a-través-de-una-regresión-con-mínimos-cuadrados-ordinarios"><i class="fa fa-check"></i><b>4.3</b> Qué buscamos a través de una regresión (con mínimos cuadrados ordinarios)</a></li>
+<li class="chapter" data-level="4.4" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#modelo-de-regresión-lineal-simple"><i class="fa fa-check"></i><b>4.4</b> Modelo de regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#supuestos-del-módelo-clásico-de-regresión-lineal"><i class="fa fa-check"></i><b>4.4.1</b> Supuestos del módelo clásico de regresión lineal</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#regresión-lineal-simple-en-r"><i class="fa fa-check"></i><b>4.5</b> Regresión lineal simple en R</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#una-exploración-visual-de-los-errores"><i class="fa fa-check"></i><b>4.5.1</b> Una exploración visual de los errores</a></li>
+<li class="chapter" data-level="4.5.2" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#coeficiente-de-determinación"><i class="fa fa-check"></i><b>4.5.2</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="4.5.3" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#una-aproximación-a-la-predicción"><i class="fa fa-check"></i><b>4.5.3</b> Una aproximación a la predicción</a></li>
+<li class="chapter" data-level="4.5.4" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#significancia-individual-de-los-coeficientes-obtenidos"><i class="fa fa-check"></i><b>4.5.4</b> Significancia individual de los coeficientes obtenidos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#algunos-elementos-de-cuidado-con-las-regresiones-lineales"><i class="fa fa-check"></i><b>4.6</b> Algunos elementos de cuidado con las regresiones lineales</a></li>
+<li class="chapter" data-level="4.7" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#regresión-lineal-múltiple-una-propuesta-de-modelo"><i class="fa fa-check"></i><b>4.7</b> Regresión lineal múltiple: una propuesta de modelo</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#significancia-conjunta-de-los-coeficientes-calculados"><i class="fa fa-check"></i><b>4.7.1</b> Significancia conjunta de los coeficientes calculados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="modelos-de-regresión-lineal.html"><a href="modelos-de-regresión-lineal.html#alcance-de-la-regresión-y-en-análisis-causal"><i class="fa fa-check"></i><b>4.8</b> Alcance de la regresión y en análisis causal</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html"><i class="fa fa-check"></i><b>5</b> Análisis espacial II: modelos econométricos espaciales</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#econometría-espacial"><i class="fa fa-check"></i><b>5.1</b> Econometría espacial</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#diversas-alternativas-de-modelos-econométricos"><i class="fa fa-check"></i><b>5.1.1</b> Diversas alternativas de modelos econométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#los-modelos-econométricos-de-error-espacial-y-rezago-espacial"><i class="fa fa-check"></i><b>5.2</b> Los modelos econométricos de error espacial y rezago espacial</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#secuencia-general-para-la-estimación"><i class="fa fa-check"></i><b>5.2.1</b> Secuencia general para la estimación</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#modelos-espaciales-en-r-un-ejemplo-para-el-valle-de-méxico"><i class="fa fa-check"></i><b>5.3</b> Modelos espaciales en R: un ejemplo para el Valle de México</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#recapitulación-la-necesidad-de-un-modelo-espacial"><i class="fa fa-check"></i><b>5.3.1</b> Recapitulación: la necesidad de un modelo espacial</a></li>
+<li class="chapter" data-level="5.3.2" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#estimación-de-los-modelos-espaciales"><i class="fa fa-check"></i><b>5.3.2</b> Estimación de los modelos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="análisis-espacial-ii-modelos-econométricos-espaciales.html"><a href="análisis-espacial-ii-modelos-econométricos-espaciales.html#reflexiones-finales"><i class="fa fa-check"></i><b>5.4</b> Reflexiones finales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sobre-el-autor.html"><a href="sobre-el-autor.html"><i class="fa fa-check"></i>Sobre el autor</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
-        <div class="book-extra">
-          
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análisis-espacial-i-autocorrelación" class="section level1" number="3">
-<h1>
-<span class="header-section-number">3</span> Análisis espacial I: autocorrelación<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis de datos espaciales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-espacial-i-autocorrelación" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Análisis espacial I: autocorrelación<a href="análisis-espacial-i-autocorrelación.html#análisis-espacial-i-autocorrelación" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div style="text-align: justify">
 <p>Observa el siguiente mapa. En él, se representa la variable índice de de desarrollo humano que calculó el Programa de Naciones Unidad para el Desarrollo (PNUD) en 2015.</p>
-<pre><code>## Reading layer `covid_zmvm' from data source 
-##   `C:\Repositorios\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp' 
-##   using driver `ESRI Shapefile'
+<pre><code>## Reading layer `covid_zmvm&#39; from data source 
+##   `C:\repos\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 76 features and 57 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 2745632 ymin: 774927.1 xmax: 2855437 ymax: 899488.5
 ## Projected CRS: Lambert_Conformal_Conic</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672"></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>Figura 3.1. Índice de desarrollo humano para los municipios de la ZMVM, 2015</p>
 <p>¿Notas algún patrón? ¿Detectas cómo los municipios con un valor alto del índice de desarrollo (Benito Juárez, Alvaro Obregón, Miguel Hidalgo, Coyoacán y otros) se encuentran <em>agrupados</em> en la parte centro-sur de la región considerada? Dicho patrón ilustra la posible presencia de <em>autocorrelación espacial</em>, es decir, que los valores de un indicador en una zona estén rodeados por valores muy semejantes o nada semejantes: en ambos casos decimos que hay autocorrelación. Cuando tratamos con datos de una variable georeferenciada hay altas probabilidades de que dicha variable esté autocorrelacionada y esto hace necesario que sean necesarias ciertas técnicas para su tratamiento, es decir, para su representación y modelación. En este capítulo trataremos con el concepto clave de autocorrelación espacial y veremos a través de que instrumentos es posible medirla para, más adelante, incorporar su riqueza informativa a una explicación sustantiva de los fenómenos socioterritoriales analizados.</p>
-<div id="autocorrelación-espacial-y-definición-de-vecindad" class="section level2" number="3.1">
-<h2>
-<span class="header-section-number">3.1</span> Autocorrelación espacial y definición de vecindad<a class="anchor" aria-label="anchor" href="#autocorrelaci%C3%B3n-espacial-y-definici%C3%B3n-de-vecindad"><i class="fas fa-link"></i></a>
-</h2>
+<div id="autocorrelación-espacial-y-definición-de-vecindad" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Autocorrelación espacial y definición de vecindad<a href="análisis-espacial-i-autocorrelación.html#autocorrelación-espacial-y-definición-de-vecindad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div style="text-align: justify">
 
-<p>Una definición sintética de autocorrelación espacial es la que nos brinda Chasco (2003) como “la relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas” <span class="citation">(<a href="references.html#ref-Chasco2003" role="doc-biblioref">Chasco 2003, 49</a>)</span>. Por ejemplo, imagina que el barrio de la ciudad donde vives presenta un alto número de contagios por COVID19 y, además, los barrios vecinos tienen también valores altos: en este caso es probable que tengamos autocorrelación espacial positiva.</p>
+<p>Una definición sintética de autocorrelación espacial es la que nos brinda Chasco (2003) como “la relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas” <span class="citation">(<a href="#ref-Chasco2003">Chasco 2003, 49</a>)</span>. Por ejemplo, imagina que el barrio de la ciudad donde vives presenta un alto número de contagios por COVID19 y, además, los barrios vecinos tienen también valores altos: en este caso es probable que tengamos autocorrelación espacial positiva.</p>
 <p>La identificación de autocorrelación espacial es importante como parte del proceso de análisis del fenómeno socioterritoriales al menos por dos cuestiones, una de carácter técnica durante la modelación econométrica y otra de carácter sustantiva en relación con la explicación del fenómeno. Respecto a la razón técnica, si existe autocorrelación espacial en nuestros datos lo más probable es que la estimación de los parámetros de un modelo con de mínimos cuadrados ordinarios deje de ser válida, en la medida en que no se cumplen los supuestos que requiere dicho procedimiento, específicamente, que los errores o perturbaciones del modelo no estén correlacionados; sobre esto abundaremos en el capítulo siguiente cuando hagamos un repaso de los modelos clásicos de regresión lineal.</p>
 <p>Por otro lado, respecto a la razón sustantiva, emerge la pregunta, ¿qué pude estar ocurriendo que hace que un fenómeno aparezca, por ejemplo, agrupado en el espacio, es decir, que no se distribuya aleatoriamente en el territorio? ¿Por qué se concentra la actividad económica en determinadas ciudades o por qué algunos servicios sólo se brindan en una zona de la ciudad? Esto respecto a fenómenos económicos, pero ¿qué hay con el hecho de que una enfermedad se concentra notoriamente en algunas áreas de la ciudad y no en otras? Dicho en otras palabras, ¿qué hay detrás de la formación de un patrón en la forma en que se distribuye un fenómeno en el espacio y cómo puede ser esto explicado? A eso nos referimos cuando decimos que hay elementos sustantivos para el análisis al hallar evidencia de autocorrelación espacial.</p>
 <p>Regresemos a la definición brindada de autocorrelación y analicémosla con más cuidado:</p>
 <blockquote>
 <p>Relación funcional existente entre los valores que adopta un indicador en una zona del espacio y en zonas vecinas.</p>
 </blockquote>
-<p>La definición se integra por tres elementos clave: i) valor de un indicador, ii) relación funcional y iii) zonas vecinas. Para dar sentido a nuestra definición pensemos en una afirmación como “los casos positivos de COVID19 en la alcaldía Azcapotzalco están asociados en forma directa con los casos positivos de COVID19 en las alcaldías y municipios vecinos que integran la Zona Metropolitana del Valle de México.” Tendríamos entonces que:</p>
+<p>La definición se integra por tres elementos clave: i) valor de un indicador, ii) relación funcional y iii) zonas vecinas. Para dar sentido a nuestra definición pensemos en una afirmación como “los casos positivos de COVID19 en la alcaldía Azcapotzalco están asociados en forma directa con los casos positivos de COVID19 en las alcaldías y municipios vecinos que integran la Zona Metropolitana del Valle de México”. Tendríamos entonces que:</p>
 <ol style="list-style-type: lower-roman">
-<li>Indicador: casos positivos por COVID19.<br>
+<li>Indicador: casos positivos por COVID19.<br />
 </li>
-<li>Relación funcional: asociación positiva o directa.<br>
+<li>Relación funcional: asociación positiva o directa.<br />
 </li>
 <li>Zonas vecinas: alcaldías y municipios vecinos de Azcapotzalco.</li>
 </ol>
 <p>El primer elemento no presenta dificultad alguna puesto que se refiere al valor de una variable en el espacio, tal y como la tenemos en la base de datos que hemos estado utilizando: casos positivos por COVID19 por cada 1 mil habitantes dentro de cuyas observaciones se encuentra Azcapotzalco; en tanto, el segundo elemento de nuestra afirmación es una mera suposición, es decir, que hay una relación positiva; por su parte, el tercer elemento “alcaldías y municipios vecinos” implica un problema: ¿de qué modo es posible establecer qué alcaldías son o no vecinas de Azcapotzalco?</p>
 <p>Hay múltiples maneras que definir si un objeto espacial tiene o no vecinos, por ejemplo, podríamos decir que aquellas alcaldías que compartan límites administrativos con la demarcación territorial de nuestro interés serán sus vecinos (vecindad por adyacencia) o también sería posible establecer que las alcaldías vecinas serán aquellas que estén a menos de 10 km de distancia del centro económico de la alcaldía (vecindad por umbral de distancia) e incluso podríamos decir que las 3 alcaldías o municipios más cercanos serán los vecinos.</p>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>¿Se te ocurre algún otro criterio para establecer vecindad?</p></li>
@@ -132,69 +349,61 @@
 <li><p>¿A partir de qué punto en el espacio será más conveniente medir la distancia, desde el centro económico de la alcaldía o municipio (por ejemplo su zona industrial o comercial) o desde la sede de la administración local?</p></li>
 <li><p>¿La distancia más indicada usada como criterio de vecindad será una distancia lineal o una distancia por carretera?</p></li>
 </ol>
-<hr>
+<hr />
 <p>Una vez que hemos visto que que existen diferentes criterios de vecindad, debemos pensar en una manera de almacenar dicha información. La Zona Metropolitana del Valle de México tiene 76 unidades espaciales, ¿de qué modo podemos apuntar todas las posibles relaciones de vecindad entre ellas? Las personas interesadas en el análisis espacial han propuesto un ingenioso instrumento matemático para captar y sintetizar cómo un objeto se relaciona con otros, es decir, para captar la <em>estructura espacial</em> del área de interés dada por las relaciones de vecindad. Dicho instrumento es denominado <strong>matriz de pesos espaciales</strong>; ilustremos esta idea. Piensa en un vecindario o área de estudio compuesto sólo por seis elementos, tal como se ilustra en la figura 3.2:</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-113"></span>
-<img src="recursos%203/Vecindario%20regular.jpg" alt="Vecindario regular" width="100%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-113"></span>
+<img src="recursos%203/Vecindario%20regular.jpg" alt="Vecindario regular" width="100%" />
+<p class="caption">
 Figura 3.1: Vecindario regular
 </p>
 </div>
-<p>A partir de la disposición de este hipotético vecindario nos interesa construir una matriz de pesos espaciales, el instrumento para captar la estructura espacial de dicho vecindario. De los múltiples criterios de vecindad existentes, comencemos por el de <em>adyacencia</em> o <em>contigüidad</em>. A decir de Anselin (2020) “contigüidad significa que dos unidades espaciales comparten un borde común de longitud distinta de cero. Desde el punto de vista operativo, podemos distinguir entre un criterio de contigüidad de <em>tipo torre</em> y de <em>tipo reina</em>, en analogía con los movimientos permitidos para las piezas así nombradas en un tablero de ajedrez. El criterio de la torre define a los vecinos por la existencia de un borde común entre dos unidades espaciales. El criterio de la reina es algo más amplio y define a los vecinos como unidades espaciales que comparten un borde o un vértice comunes” <span class="citation">(<a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>.</p>
+<p>A partir de la disposición de este hipotético vecindario nos interesa construir una matriz de pesos espaciales, el instrumento para captar la estructura espacial de dicho vecindario. De los múltiples criterios de vecindad existentes, comencemos por el de <em>adyacencia</em> o <em>contigüidad</em>. A decir de Anselin (2020) “contigüidad significa que dos unidades espaciales comparten un borde común de longitud distinta de cero. Desde el punto de vista operativo, podemos distinguir entre un criterio de contigüidad de <em>tipo torre</em> y de <em>tipo reina</em>, en analogía con los movimientos permitidos para las piezas así nombradas en un tablero de ajedrez. El criterio de la torre define a los vecinos por la existencia de un borde común entre dos unidades espaciales. El criterio de la reina es algo más amplio y define a los vecinos como unidades espaciales que comparten un borde o un vértice comunes” <span class="citation">(<a href="#ref-Anselin2020">Anselin 2020</a>)</span>.</p>
 <p>De este modo, del criterio de vecindad por adyacencia tenemos dos tipos: torre y reina. Para construir nuestra matriz de pesos espaciales elijamos el criterio más amplio, de la reina. ¿Cómo podemos plasmar las relaciones de contigüidad entre los seis elementos de la figura 3.2? Pensemos en un cuadro que tiene tantas filas y columnas como objetos espaciales tiene nuestro vecindario, semejante al que aparece en la figura 3.3:</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-114"></span>
-<img src="recursos%203/Matriz%20ejemplo-vac%C3%ADa.jpg" alt="Matriz ejemplo vacía" width="100%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-114"></span>
+<img src="recursos%203/Matriz%20ejemplo-vac%C3%ADa.jpg" alt="Matriz ejemplo vacía" width="100%" />
+<p class="caption">
 Figura 3.2: Matriz ejemplo vacía
 </p>
 </div>
 <p>Dicho cuadro será nuestra matriz de pesos espaciales y contendrá la estructura espacial del vecindario de la figura 3.2. Para un criterio de vecindad por adyacencia de tipo reina, ¿el elemento 1 y 2, son vecinos? Las unidades espaciales 1 y 2 de nuestro vecindario comparten un borde, por tanto, son vecinos y en el elemento (1,2) de nuestra matriz colocaremos un número 1; lo mismo ocurre entre las unidades espaciales 1 y 3 que, al compartir un lado, son vecinos y por tanto el elemento (1,3) de la matriz será también un 1. ¿Qué pasa entre los objetos 1 y 4? En este caso, no hay ni bordes ni vértices en común, por tanto, no hay una relación de vecindad, entonces, en el elemento (1,4) habremos de colocar un 0 que indica ausencia de vecindad. En síntesis, dado determinado criterio de vecindad, si dos objetos espaciales son vecinos, la relación de vecindad se indica mediante un número 1, en tanto, cuando no hay relación de vecindad su ausencia se indica colocando un 0. Hagamos esto para cada celda de la matriz hasta llenarla completamente y obtener algo parecido a lo que aparece en la figura 3.4.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-115"></span>
-<img src="recursos%203/Matriz%20ejemplo-llena.jpg" alt="Matriz ejemplo llena" width="100%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-115"></span>
+<img src="recursos%203/Matriz%20ejemplo-llena.jpg" alt="Matriz ejemplo llena" width="100%" />
+<p class="caption">
 Figura 3.3: Matriz ejemplo llena
 </p>
 </div>
-<p>Resumamos lo dicho hasta este punto. El cuadro que acabamos de llenar es conocido como <em>matriz de pesos espaciales</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;“La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada matriz de pesos, ponderaciones, distancias o contactos espaciales” &lt;span class="citation"&gt;(&lt;a href="references.html#ref-Chasco2003" role="doc-biblioref"&gt;Chasco 2003, 55&lt;/a&gt;)&lt;/span&gt;&lt;/p&gt;'><sup>5</sup></a> y es el instrumento que nos permite sintetizar las relaciones espaciales o estructura de vecindad que corresponde a determinado criterio. Habrá, por tanto, diversos tipos de matrices en función del criterio de vecindad elegido. Esta matriz se denotada por la letra mayúscula <span class="math inline">\(W\)</span> y está integrada por los elementos <span class="math inline">\(w_{ij}\)</span> que toman el valor de 1 cuando el elemento <span class="math inline">\(j\)</span> y el elemento <span class="math inline">\(i\)</span> son vecinos y 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos <em>incorporar al espacio</em> como variable a partir de lo que denominamos “rezago espacial,” como más adelante veremos en este y en el siguiente capítulo. Las características de la matriz de pesos espaciales son:</p>
+<p>Resumamos lo dicho hasta este punto. El cuadro que acabamos de llenar es conocido como <em>matriz de pesos espaciales</em><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> y es el instrumento que nos permite sintetizar las relaciones espaciales o estructura de vecindad que corresponde a determinado criterio. Habrá, por tanto, diversos tipos de matrices en función del criterio de vecindad elegido. Esta matriz se denotada por la letra mayúscula <span class="math inline">\(W\)</span> y está integrada por los elementos <span class="math inline">\(w_{ij}\)</span> que toman el valor de 1 cuando el elemento <span class="math inline">\(j\)</span> y el elemento <span class="math inline">\(i\)</span> son vecinos y 0 (cero) en cualquier otro caso. Este instrumento es uno de los más importantes en econometría espacial ya que permite construir los estadísticos de autocorrelación espacial y es la manera en que podemos <em>incorporar al espacio</em> como variable a partir de lo que denominamos “rezago espacial”, como más adelante veremos en este y en el siguiente capítulo. Las características de la matriz de pesos espaciales son:</p>
 <ul>
-<li>Es una matriz que en la diagonal principal contiene sólo ceros, es decir, se asume que por definición no hay interacciones dentro de un mismo elemento (lo que no necesariamente es cierto y que dependerá de la escala de análisis).<br>
+<li>Es una matriz que en la diagonal principal contiene sólo ceros, es decir, se asume que por definición no hay interacciones dentro de un mismo elemento (lo que no necesariamente es cierto y que dependerá de la escala de análisis).<br />
 </li>
-<li>Es una matriz simétrica, es decir, se asume que hay interacción de “ida y vuelta,” por lo que con un instrumento de estas características no es posible asumir efectos de interacción en un solo sentido.</li>
+<li>Es una matriz simétrica, es decir, se asume que hay interacción de “ida y vuelta”, por lo que con un instrumento de estas características no es posible asumir efectos de interacción en un solo sentido.</li>
 <li>Es una matriz cuadrada, es decir, de dimensiones <span class="math inline">\(n \cdot n\)</span>, donde <span class="math inline">\(n\)</span> es el número de objetos espaciales.</li>
 </ul>
 <p>Acabamos de ilustrar la lógica con la que puede ser construida una matriz de pesos espaciales a partir de una retícula regular con apenas seis elementos. Veamos ahora cómo obtener matrices de pesos espaciales sirviéndonos de R, ya que desarrollar los pasos anteriores para un vecindario compuesto por 76 objetos espaciales que son las alcaldías y municipios que integran el Valle de México es tarea para una máquina, no para nosotros.</p>
 </div>
-<div id="matrices-de-pesos-espaciales-en-r" class="section level2" number="3.2">
-<h2>
-<span class="header-section-number">3.2</span> Matrices de pesos espaciales en R<a class="anchor" aria-label="anchor" href="#matrices-de-pesos-espaciales-en-r"><i class="fas fa-link"></i></a>
-</h2>
+<div id="matrices-de-pesos-espaciales-en-r" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Matrices de pesos espaciales en R<a href="análisis-espacial-i-autocorrelación.html#matrices-de-pesos-espaciales-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div style="text-align: justify">
 
 <p>En R hay muchas rutas para desarrollar la misma tarea. Presentamos en este capítulo dos rutas: la primera se sirve del paquete <code>spdep</code> de <a href="https://en.wikipedia.org/wiki/Roger_Bivand">Roger Bivand</a>, en tanto que la segunda sigue la propuesta de <a href="https://lixun910.github.io/">Xun Li</a> y su paquete <code>rgeoda</code>, una librería para llevar a cabo análisis espacial basado en la funcionalidades del <a href="https://geodacenter.github.io/">software GeoDa</a>.</p>
-<div id="construcción-de-matrices-con-spdep" class="section level3" number="3.2.1">
-<h3>
-<span class="header-section-number">3.2.1</span> Construcción de matrices con <code>spdep</code><a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-matrices-con-spdep"><i class="fas fa-link"></i></a>
-</h3>
-<p>Roger Bivand y un <a href="https://github.com/r-spatial/spdep">equipo de colaboradores</a> desarrollaron el paquete <code>spdep</code> para la construcción de matrices de pesos espaciales y el análisis espacial. En este enfoque la función <code><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb()</a></code> nos permite calcular estructuras espaciales dadas a partir de dos tipos de vecindad por adyacencia, una más estricta (argumento <code>queen=FALSE</code>) y que la otra (argumento <code>queen=TRUE</code>). En la documentación de la función podemos leer que: “si es VERDADERO, <code>TRUE</code>, un solo punto límite compartido cumple la condición de contigüidad; si es FALSO, <code>FALSE</code>, se requiere más de un punto compartido; ten en cuenta que más de un punto límite compartido no significa necesariamente una línea límite compartida.” Además, para cargar la base de datos espacial recurriremos al paquete <code>rgdal</code>.</p>
+<div id="construcción-de-matrices-con-spdep" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Construcción de matrices con <code>spdep</code><a href="análisis-espacial-i-autocorrelación.html#construcción-de-matrices-con-spdep" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Roger Bivand y un <a href="https://github.com/r-spatial/spdep">equipo de colaboradores</a> desarrollaron el paquete <code>spdep</code> para la construcción de matrices de pesos espaciales y el análisis espacial. En este enfoque la función <code>poly2nb()</code> nos permite calcular estructuras espaciales dadas a partir de dos tipos de vecindad por adyacencia, una más estricta (argumento <code>queen=FALSE</code>) y que la otra (argumento <code>queen=TRUE</code>). En la documentación de la función podemos leer que: “si es VERDADERO, <code>TRUE</code>, un solo punto límite compartido cumple la condición de contigüidad; si es FALSO, <code>FALSE</code>, se requiere más de un punto compartido; ten en cuenta que más de un punto límite compartido no significa necesariamente una línea límite compartida”. Además, para cargar la base de datos espacial recurriremos al paquete <code>rgdal</code>.</p>
 <p>Lo dicho en el párrafo anterior es relevante en el sentido de que estos criterios no son exactamente los mismos que definimos antes (contigüidad reina y torre). Procedamos pues a la instalación de los paquetes, en caso de que aún no estén en nuestro sistema:</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spdep"</span>, <span class="st">"rgdal"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="análisis-espacial-i-autocorrelación.html#cb176-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;spdep&quot;</span>, <span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
 <p>Primero, llamemos las librerías y carguemos la base de datos:</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rgdal.r-forge.r-project.org">rgdal</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span></span>
-<span><span class="va">covid_zmvm</span> <span class="op">&lt;-</span><span class="fu">rgdal</span><span class="fu">::</span><span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span><span class="st">"base de datos\\covid_zmvm shp\\covid_zmvm.shp"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="análisis-espacial-i-autocorrelación.html#cb177-1" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb177-2"><a href="análisis-espacial-i-autocorrelación.html#cb177-2" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb177-3"><a href="análisis-espacial-i-autocorrelación.html#cb177-3" tabindex="-1"></a>covid_zmvm <span class="ot">&lt;-</span>rgdal<span class="sc">::</span><span class="fu">readOGR</span>(<span class="st">&quot;base de datos</span><span class="sc">\\</span><span class="st">covid_zmvm shp</span><span class="sc">\\</span><span class="st">covid_zmvm.shp&quot;</span>)</span></code></pre></div>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: "C:\Repositorios\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp", layer: "covid_zmvm"
+## Source: &quot;C:\repos\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp&quot;, layer: &quot;covid_zmvm&quot;
 ## with 76 features
 ## It has 57 fields</code></pre>
-<p>Ahora, construyamos un objeto que llamaremos <code>mTRUE</code>, dicho objeto contendrá los elementos que definen la estructura espacial, es decir, será nuestra matriz de pesos espaciales. Esto lo haremos con la función <code><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb()</a></code>:</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mTRUE</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span></span></code></pre></div>
-<p>El segmento de código anterior genera un objeto de tipo <code>nb</code>. Verifica sus características con <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> y <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> . Además, nota que en la sección de ambiente de trabajo (cuadrante superior derecho, en la pestaña ambiente) aparece el objeto creado. Da clic en la imagen de la lupa para visualizarlo e intenta interpretar el resultado de la ventana.</p>
+<p>Ahora, construyamos un objeto que llamaremos <code>mTRUE</code>, dicho objeto contendrá los elementos que definen la estructura espacial, es decir, será nuestra matriz de pesos espaciales. Esto lo haremos con la función <code>poly2nb()</code>:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="análisis-espacial-i-autocorrelación.html#cb179-1" tabindex="-1"></a>mTRUE <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(covid_zmvm)</span></code></pre></div>
+<p>El segmento de código anterior genera un objeto de tipo <code>nb</code>. Verifica sus características con <code>class()</code> y <code>str()</code> . Además, nota que en la sección de ambiente de trabajo (cuadrante superior derecho, en la pestaña ambiente) aparece el objeto creado. Da clic en la imagen de la lupa para visualizarlo e intenta interpretar el resultado de la ventana.</p>
 <p>Ahora, llama al objeto y presta atención sobre los resultados que aparecen en la consola:</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mTRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="análisis-espacial-i-autocorrelación.html#cb180-1" tabindex="-1"></a>mTRUE</span></code></pre></div>
 <pre><code>## Neighbour list object:
 ## Number of regions: 76 
 ## Number of nonzero links: 384 
@@ -203,106 +412,93 @@ Figura 3.3: Matriz ejemplo llena
 <p>En la consola aparecen los siguientes elementos:</p>
 <p><em>Objeto de lista de vecinos:</em></p>
 <ul>
-<li>Número de regiones: 76. Corresponde al número de alcaldías y municipios que componen la Zona Metropolitana del Valle de México.<br>
+<li>Número de regiones: 76. Corresponde al número de alcaldías y municipios que componen la Zona Metropolitana del Valle de México.<br />
 </li>
-<li>Número de enlaces distintos de cero: 380. Es el número de elementos de una matriz de 76x76 que registran relación de vecindad, dicho en otras palabras, es el total de números uno de la matriz.<br>
+<li>Número de enlaces distintos de cero: 380. Es el número de elementos de una matriz de 76x76 que registran relación de vecindad, dicho en otras palabras, es el total de números uno de la matriz.<br />
 </li>
-<li>Porcentaje de pesos distintos de cero: 6.57. Resultado de dividir 380 entre (76x76).<br>
+<li>Porcentaje de pesos distintos de cero: 6.57. Resultado de dividir 380 entre (76x76).<br />
 </li>
 <li>Número promedio de vínculos: 5. Número de vecinos que en promedio tiene cada municipio o alcaldía.</li>
 </ul>
 <p>Ahora bien, para construir una lista de vecindad con base en un criterio más estricto, es decir, <code>queen = FALSE</code>, procedemos como:</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mFALSE</span><span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, queen <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="análisis-espacial-i-autocorrelación.html#cb182-1" tabindex="-1"></a>mFALSE<span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(covid_zmvm, <span class="at">queen =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Ahora, llama dicho objeto y contrasta con los resultados anteriores.</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mFALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="análisis-espacial-i-autocorrelación.html#cb183-1" tabindex="-1"></a>mFALSE</span></code></pre></div>
 <pre><code>## Neighbour list object:
 ## Number of regions: 76 
 ## Number of nonzero links: 372 
 ## Percentage nonzero weights: 6.440443 
 ## Average number of links: 4.894737</code></pre>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>¿Qué objeto, <code>mTRUE</code> o <code>mFALSE</code>, tiene el mayor número de vínculos diferentes de cero?</p></li>
 <li><p>¿Por qué crees que esto es así?</p></li>
 </ol>
-<hr>
+<hr />
 <p>Estas listas, que contienen nuestras estructuras espaciales almacenadas en los objeto de tipo <code>nb</code> llamados <code>mTRUE</code> y <code>mFALSE</code>, pueden representarse visualmente a través de un <em>gráfico de conectividad</em> que representa la estructura espacial definida por cada criterio a través de líneas que unen a los municipios considerados vecinos.</p>
-<p>Para visualizar el mapa de conectividad recurriremos a la función <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> y se superpondran dos gráficas: una sólo con los bordes o límites a nivel municipal y otra con los centroides y la estructura espacial. Aquí se muestra el mapa de conectividad resultado de la matriz <code>mTRUE</code></p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightblue'</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="672"></div>
+<p>Para visualizar el mapa de conectividad recurriremos a la función <code>plot()</code> y se superpondran dos gráficas: una sólo con los bordes o límites a nivel municipal y otra con los centroides y la estructura espacial. Aquí se muestra el mapa de conectividad resultado de la matriz <code>mTRUE</code></p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="análisis-espacial-i-autocorrelación.html#cb185-1" tabindex="-1"></a><span class="fu">plot</span>(covid_zmvm, <span class="at">border =</span> <span class="st">&#39;lightgrey&#39;</span>)</span>
+<span id="cb185-2"><a href="análisis-espacial-i-autocorrelación.html#cb185-2" tabindex="-1"></a><span class="fu">plot</span>(mTRUE, <span class="fu">coordinates</span>(covid_zmvm), <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p>Para comparar ambas estructuras espaciales, <code>mTRUE</code> y <code>mFALSE</code> podemos superponer las dos gráficas y asignar colores diferentes:</p>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">covid_zmvm</span>, border <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mTRUE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mFALSE</span>, <span class="fu"><a href="https://rdrr.io/pkg/sp/man/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">'lightgreen'</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672"></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="análisis-espacial-i-autocorrelación.html#cb186-1" tabindex="-1"></a><span class="fu">plot</span>(covid_zmvm, <span class="at">border =</span> <span class="st">&#39;lightgrey&#39;</span>)</span>
+<span id="cb186-2"><a href="análisis-espacial-i-autocorrelación.html#cb186-2" tabindex="-1"></a><span class="fu">plot</span>(mTRUE, <span class="fu">coordinates</span>(covid_zmvm), <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb186-3"><a href="análisis-espacial-i-autocorrelación.html#cb186-3" tabindex="-1"></a><span class="fu">plot</span>(mFALSE, <span class="fu">coordinates</span>(covid_zmvm), <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;lightgreen&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 <p>Como puedes observar, son estructuras muy parecidas, aunque aun así es posible notar sus diferencias.</p>
 </div>
-<div id="construcción-de-matrices-con-rgeoda" class="section level3" number="3.2.2">
-<h3>
-<span class="header-section-number">3.2.2</span> Construcción de matrices con <code>rgeoda</code><a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-de-matrices-con-rgeoda"><i class="fas fa-link"></i></a>
-</h3>
+<div id="construcción-de-matrices-con-rgeoda" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Construcción de matrices con <code>rgeoda</code><a href="análisis-espacial-i-autocorrelación.html#construcción-de-matrices-con-rgeoda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A diferencia del enfoque previo, con el paquete <code>rgeoda</code> es necesario cargar la base de datos espacial a través del paquete <code>sf</code>. Si no los has instalado:</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rgeoda"</span>, <span class="st">"sf"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="análisis-espacial-i-autocorrelación.html#cb187-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;rgeoda&quot;</span>, <span class="st">&quot;sf&quot;</span>))</span></code></pre></div>
 <p>Para cargarlos:</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/geodacenter/rgeoda/">rgeoda</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="análisis-espacial-i-autocorrelación.html#cb188-1" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb188-2"><a href="análisis-espacial-i-autocorrelación.html#cb188-2" tabindex="-1"></a><span class="fu">library</span>(rgeoda)</span></code></pre></div>
 <p>Ahora bien, carguemos la base de datos espacial con <code>sf</code>:</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">covid_zmvm_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"base de datos/covid_zmvm shp/covid_zmvm.shp"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Reading layer `covid_zmvm' from data source 
-##   `C:\Repositorios\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp' 
-##   using driver `ESRI Shapefile'
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="análisis-espacial-i-autocorrelación.html#cb189-1" tabindex="-1"></a>covid_zmvm_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">&quot;base de datos/covid_zmvm shp/covid_zmvm.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `covid_zmvm&#39; from data source 
+##   `C:\repos\Analisis-de-datos-espaciales\base de datos\covid_zmvm shp\covid_zmvm.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 76 features and 57 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 2745632 ymin: 774927.1 xmax: 2855437 ymax: 899488.5
 ## Projected CRS: Lambert_Conformal_Conic</code></pre>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>Observa tu ambiente de trabajo (ventana superior derecha, en la pestaña “ambiente”). ¿De qué tipo es el objeto <code>covid_zmvm_sf</code> y de cuál <code>covid_zmvm</code>?</p></li>
 <li><p>¿A qué crees que se deban dichas diferencias?</p></li>
 </ol>
-<hr>
+<hr />
 <p>A través del paquete <code>rgeoda</code> es posible construir, como en <a href="https://geodacenter.github.io/workbook/4b_dist_weights/lab4b.html">GeoDa</a>, cuatro tipos de matrices de pesos:</p>
 <ul>
-<li>Matrices basadas contigüidad<br>
+<li>Matrices basadas contigüidad<br />
 </li>
-<li>Matrices basadas en distancia<br>
+<li>Matrices basadas en distancia<br />
 </li>
-<li>Matrices de k-vecinos más cercanos<br>
+<li>Matrices de k-vecinos más cercanos<br />
 </li>
 <li>Matrices de pesos por kernel</li>
 </ul>
 <p>De ellas, aquí construiremos sólo las tres primeras.</p>
-<div id="matrices-basadas-en-contigüidad" class="section level4" number="3.2.2.1">
-<h4>
-<span class="header-section-number">3.2.2.1</span> Matrices basadas en contigüidad<a class="anchor" aria-label="anchor" href="#matrices-basadas-en-contig%C3%BCidad"><i class="fas fa-link"></i></a>
-</h4>
-<p>En <code>rgeoda</code> hay dos matrices de pesos espaciales basadas en contigüidad, tal y como lo expisimos en la primera sección de este capítulo, las de tipo reina y las de tipo torre. Para construir una matriz de tipo reina recurrimos a la función <code>queen_weight()</code> y para una de tipo torre usamos <code><a href="https://geodacenter.github.io/rgeoda/reference/rook_weights.html">rook_weights()</a></code>, ambas funciones tienen cuatro argumentos:</p>
+<div id="matrices-basadas-en-contigüidad" class="section level4 hasAnchor" number="3.2.2.1">
+<h4><span class="header-section-number">3.2.2.1</span> Matrices basadas en contigüidad<a href="análisis-espacial-i-autocorrelación.html#matrices-basadas-en-contigüidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En <code>rgeoda</code> hay dos matrices de pesos espaciales basadas en contigüidad, tal y como lo expisimos en la primera sección de este capítulo, las de tipo reina y las de tipo torre. Para construir una matriz de tipo reina recurrimos a la función <code>queen_weight()</code> y para una de tipo torre usamos <code>rook_weights()</code>, ambas funciones tienen cuatro argumentos:</p>
 <ul>
-<li>
-<code>sf_obj=</code>: nuestra cartografía en formato sf, tal y como la hemos ya cargado.<br>
+<li><code>sf_obj=</code>: nuestra cartografía en formato sf, tal y como la hemos ya cargado.<br />
 </li>
-<li>
-<code>order=</code>: orden de contigüidad, donde si es igual a 1 se indica que sólo los objetos espaciales inmediatos serán vecinos y si es mayor que uno indicará una vecindad de orden superior (si es 2 indica que los vecinos de mis vecinos serán mis vecinos, si es tres los vecinos de mis vecinos de mis vecinos serán mis propios vecinos, y así sucesivamente).<br>
+<li><code>order=</code>: orden de contigüidad, donde si es igual a 1 se indica que sólo los objetos espaciales inmediatos serán vecinos y si es mayor que uno indicará una vecindad de orden superior (si es 2 indica que los vecinos de mis vecinos serán mis vecinos, si es tres los vecinos de mis vecinos de mis vecinos serán mis propios vecinos, y así sucesivamente).<br />
 </li>
-<li>
-<code>include_lower_order=</code>: indica si los vecinos de ordenes inferiores incluidos en la estructura de vecindad.<br>
+<li><code>include_lower_order=</code>: indica si los vecinos de ordenes inferiores incluidos en la estructura de vecindad.<br />
 </li>
-<li>
-<code>precision_threshold=</code>: este argumento modifica la precisión de la geometría y se usará en caso de que, no habiendo observaciones aisladas, se detecte que algún objeto no tiene vecinos.</li>
+<li><code>precision_threshold=</code>: este argumento modifica la precisión de la geometría y se usará en caso de que, no habiendo observaciones aisladas, se detecte que algún objeto no tiene vecinos.</li>
 </ul>
-<div class="inline-table"><table class="table table-sm">
-<colgroup><col width="100%"></colgroup>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Ejercicio</strong></td>
@@ -315,43 +511,38 @@ Figura 3.3: Matriz ejemplo llena
 ii. ¿Cuáles opcionales?</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Así, para construir la matriz de tipo reina:</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">queen_w</span> <span class="op">&lt;-</span> <span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/queen_weights.html">queen_weights</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="análisis-espacial-i-autocorrelación.html#cb191-1" tabindex="-1"></a>queen_w <span class="ot">&lt;-</span> rgeoda<span class="sc">::</span><span class="fu">queen_weights</span>(covid_zmvm_sf)</span></code></pre></div>
 <p>En tanto, una matriz de contigüidad con el criterio de tipo torre::</p>
-<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">rook_w</span> <span class="op">&lt;-</span> <span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/rook_weights.html">rook_weights</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span></span></code></pre></div>
-<p>Los objetos recién creados y que contienen las estructuras de vecindad pueden ser grabadas en un archivo fuera del ambiente del trabajo, para hacerlas permanentes. Para ello usamos la función <code><a href="https://geodacenter.github.io/rgeoda/reference/save_weights.html">save_weights()</a></code>, esta función tiene cuatro argumentos obligatorios: nombre de la matriz a hacerse permanente (<code>gda_w=</code>), el identificador único para cada objeto espacial (<code>id_variable=</code>), la ruta donde se almacenará el archivo de salida y el nombre del archivo (<code>out_path=</code>) y el nombre de la capa de entrada (<code>layer_name=</code>):</p>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Para la matriz reina</span></span>
-<span><span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/save_weights.html">save_weights</a></span><span class="op">(</span>gda_w<span class="op">=</span><span class="va">queen_w</span>,</span>
-<span>             id_variable<span class="op">=</span><span class="va">covid_zmvm_sf</span><span class="op">[</span><span class="st">'cvemun'</span><span class="op">]</span>,</span>
-<span>             out_path <span class="op">=</span> <span class="st">'base de datos/covid_zmvm shp/q_1.gal'</span>,</span>
-<span>             layer_name <span class="op">=</span> <span class="st">'covid_zmvm_sf'</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="análisis-espacial-i-autocorrelación.html#cb192-1" tabindex="-1"></a>rook_w <span class="ot">&lt;-</span> rgeoda<span class="sc">::</span><span class="fu">rook_weights</span>(covid_zmvm_sf)</span></code></pre></div>
+<p>Los objetos recién creados y que contienen las estructuras de vecindad pueden ser grabadas en un archivo fuera del ambiente del trabajo, para hacerlas permanentes. Para ello usamos la función <code>save_weights()</code>, esta función tiene cuatro argumentos obligatorios: nombre de la matriz a hacerse permanente (<code>gda_w=</code>), el identificador único para cada objeto espacial (<code>id_variable=</code>), la ruta donde se almacenará el archivo de salida y el nombre del archivo (<code>out_path=</code>) y el nombre de la capa de entrada (<code>layer_name=</code>):</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="análisis-espacial-i-autocorrelación.html#cb193-1" tabindex="-1"></a><span class="co">#Para la matriz reina</span></span>
+<span id="cb193-2"><a href="análisis-espacial-i-autocorrelación.html#cb193-2" tabindex="-1"></a>rgeoda<span class="sc">::</span><span class="fu">save_weights</span>(<span class="at">gda_w=</span>queen_w,</span>
+<span id="cb193-3"><a href="análisis-espacial-i-autocorrelación.html#cb193-3" tabindex="-1"></a>             <span class="at">id_variable=</span>covid_zmvm_sf[<span class="st">&#39;cvemun&#39;</span>],</span>
+<span id="cb193-4"><a href="análisis-espacial-i-autocorrelación.html#cb193-4" tabindex="-1"></a>             <span class="at">out_path =</span> <span class="st">&#39;base de datos/covid_zmvm shp/q_1.gal&#39;</span>,</span>
+<span id="cb193-5"><a href="análisis-espacial-i-autocorrelación.html#cb193-5" tabindex="-1"></a>             <span class="at">layer_name =</span> <span class="st">&#39;covid_zmvm_sf&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Para la matriz toree</span></span>
-<span><span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/save_weights.html">save_weights</a></span><span class="op">(</span><span class="va">rook_w</span>,</span>
-<span>             <span class="va">covid_zmvm_sf</span><span class="op">[</span><span class="st">'cvemun'</span><span class="op">]</span>,</span>
-<span>             out_path <span class="op">=</span> <span class="st">'base de datos/covid_zmvm shp/r_1.gal'</span>, </span>
-<span>             layer_name <span class="op">=</span> <span class="st">'covid_zmvm_sf'</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="análisis-espacial-i-autocorrelación.html#cb195-1" tabindex="-1"></a><span class="co">#Para la matriz toree</span></span>
+<span id="cb195-2"><a href="análisis-espacial-i-autocorrelación.html#cb195-2" tabindex="-1"></a>rgeoda<span class="sc">::</span><span class="fu">save_weights</span>(rook_w,</span>
+<span id="cb195-3"><a href="análisis-espacial-i-autocorrelación.html#cb195-3" tabindex="-1"></a>             covid_zmvm_sf[<span class="st">&#39;cvemun&#39;</span>],</span>
+<span id="cb195-4"><a href="análisis-espacial-i-autocorrelación.html#cb195-4" tabindex="-1"></a>             <span class="at">out_path =</span> <span class="st">&#39;base de datos/covid_zmvm shp/r_1.gal&#39;</span>, </span>
+<span id="cb195-5"><a href="análisis-espacial-i-autocorrelación.html#cb195-5" tabindex="-1"></a>             <span class="at">layer_name =</span> <span class="st">&#39;covid_zmvm_sf&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Si bien se dijo antes, en la sección dedicada a comentar qué es una matriz de pesos espaciales, que se definía la estructura espacial a través de una matriz, computacionalmente esto no es así, como seguro habrás notado al tratar de leer las matrices construidas con <code>spdep</code> en la sección anterior. Identifica los archivos creados con las funciones previas, en la sección de archivos en la sección inferior derecha (pestaña <em>files</em>) y selecciona <code>q_1.gal</code>. Notarás que, en efecto, el archivo no es una matriz, sino una lista. El hecho de que se usen listas y no matrices para el proceso de cómputo de las estructuras espaciales es porque las listas son más conveniente en términos de la cantidad ocupada de recursos del sistema. La razón detrás de ello es que las matrices de pesos espaciales son <em>matrices dispersas</em>, es decir, matrices que contienen muchos elementos que son cero.</p>
 <p>Del archivo que acabas de abrir, <code>q_1.gal</code>, veámos con detenimiento su contenido para comprender mejor cómo se almacena la información. Reproducimos en seguida las tres primeras líneas:</p>
-<div class="line-block">0 76 | covid_zmvm_sf | cvemun | | |<br>
-09010 | 5 | | | |<br>
+<div class="line-block">0 76 | covid_zmvm_sf | cvemun | | |<br />
+09010 | 5 | | | |<br />
 09014 | 09008 | 09016 | 09003 | 09012 |</div>
 <ul>
-<li>Línea 1: en la primera columna aparece el número de objetos espaciales (76), en la segunda columna el nombre del archivo del que proviene la estructura (covid_zmvm_sf) y en la tercera la clave de identificación única para cada objeto (cvemun).<br>
+<li>Línea 1: en la primera columna aparece el número de objetos espaciales (76), en la segunda columna el nombre del archivo del que proviene la estructura (covid_zmvm_sf) y en la tercera la clave de identificación única para cada objeto (cvemun).<br />
 </li>
-<li>Línea 2: en la primera columna se indica el objeto espacial su clave (09010), mientras que en la segunda columna se indica el número de vecinos que dicho objeto tiene, en este caso, cinco.<br>
+<li>Línea 2: en la primera columna se indica el objeto espacial su clave (09010), mientras que en la segunda columna se indica el número de vecinos que dicho objeto tiene, en este caso, cinco.<br />
 </li>
 <li>Línea 3: en esta fila aparece, para cada columna, la clave de identificación de los cinco vecinos de 09010: 09014 09008 09016 09003 09012.</li>
 </ul>
 <p>El resto de las líneas tiene la misma interpretación que las líneas 2 y 3: número de vecinos del objeto listado e identificación de los vecinos. Una vez que hemos comprendido la estructura de dicho archivo, pidamos un resumen del objeto <code>queen_w</code>:</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">queen_w</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="análisis-espacial-i-autocorrelación.html#cb197-1" tabindex="-1"></a><span class="fu">summary</span>(queen_w)</span></code></pre></div>
 <pre><code>##                      name              value
 ## 1 number of observations:                 76
 ## 2          is symmetric:                TRUE
@@ -363,25 +554,19 @@ ii. ¿Cuáles opcionales?</td>
 ## 8           has isolates:              FALSE</code></pre>
 <p>De dicho resumen es posible apuntar que: nuestro vecindario, la Zona Metropolitana del Valle de México, tiene 76 unidades espaciales (<em>number of observations</em>), la matriz construida es simétrica (<code>is symmetric: TRUE</code>), los municipios y alcaldías tienen al menos un vecino (<code># min neighbors: 1</code>), el número máximo de vecinos es de 9 (<code># max neighbors: 9</code>), la media de 4.68 (<code># mean neighbors</code>), la mediana de 4 (<code># median neighbors</code>) y que no hay observaciones sin vecinos (<code>has isolates: FALSE</code>). El elemento que no hemos indicado es <code>sparsity:</code> que tiene un valor de 0.0616. Dicho valor corresponde a la proporción de elementos diferentes a cero en una matriz de 76x76 objetos, es decir, nuestra matriz sólo tiene 6.16% son diferentes de cero.</p>
 </div>
-<div id="matrices-basadas-en-distancia" class="section level4" number="3.2.2.2">
-<h4>
-<span class="header-section-number">3.2.2.2</span> Matrices basadas en distancia<a class="anchor" aria-label="anchor" href="#matrices-basadas-en-distancia"><i class="fas fa-link"></i></a>
-</h4>
+<div id="matrices-basadas-en-distancia" class="section level4 hasAnchor" number="3.2.2.2">
+<h4><span class="header-section-number">3.2.2.2</span> Matrices basadas en distancia<a href="análisis-espacial-i-autocorrelación.html#matrices-basadas-en-distancia" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>En `rgeoda`` hay dos tipos de matrices que recurren a la distancia: la matriz de úmbral de distancia mínima y la matriz de k-vecinos más cercanos. Para el caso de la matriz de umbral, se considera que dos objetos espaciales, en el caso aquí analizado, dos municipios o alcaldías, son vecinos siempre que estén dentro de cierto umbral de distancia dado. Para el caso de la matriz de k-vecinos más cercanos, la idea es que un objeto espacial tendrá como vecinos a los k-objetos más cercanos.</p>
-<div id="matriz-basada-en-umbral-distancia" class="section level5" number="3.2.2.2.1">
-<h5>
-<span class="header-section-number">3.2.2.2.1</span> Matriz basada en umbral distancia<a class="anchor" aria-label="anchor" href="#matriz-basada-en-umbral-distancia"><i class="fas fa-link"></i></a>
-</h5>
+<div id="matriz-basada-en-umbral-distancia" class="section level5 hasAnchor" number="3.2.2.2.1">
+<h5><span class="header-section-number">3.2.2.2.1</span> Matriz basada en umbral distancia<a href="análisis-espacial-i-autocorrelación.html#matriz-basada-en-umbral-distancia" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Para construir una matriz de pesos espaciales basada este criterio tenemos proceder en dos pasos: i) definir un umbral de distancia mínimo en el cual todas las unidades espaciales tienen al menos un vecino, ii) usar dicho umbral para hallar cada uno de los vecinos, dado ese umbral.</p>
-<p>Para definir el umbral usamos la función <code><a href="https://geodacenter.github.io/rgeoda/reference/min_distthreshold.html">min_distthreshold()</a></code> del paquete `rgeoda``:</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">umbral</span> <span class="op">&lt;-</span> <span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/min_distthreshold.html">min_distthreshold</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span></span>
-<span><span class="va">umbral</span></span></code></pre></div>
+<p>Para definir el umbral usamos la función <code>min_distthreshold()</code> del paquete `rgeoda``:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="análisis-espacial-i-autocorrelación.html#cb199-1" tabindex="-1"></a>umbral <span class="ot">&lt;-</span> rgeoda<span class="sc">::</span><span class="fu">min_distthreshold</span>(covid_zmvm_sf)</span>
+<span id="cb199-2"><a href="análisis-espacial-i-autocorrelación.html#cb199-2" tabindex="-1"></a>umbral</span></code></pre></div>
 <pre><code>## [1] 13943.63</code></pre>
 <p>La distancia mínima para que cada uno de los 76 municipios y alcaldías tenga un vecino es 13,943.63 metros. Sabemos que las unidades del resultado anterior son metros puesto que en el archivo con extensión .prj (el archivo que contiene la información sobre la proyección cartográfica utilizada) así se indica. Ahora bien, definido el umbral ya podemos construir la matriz:</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dist_w</span> <span class="op">&lt;-</span> <span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/distance_weights.html">distance_weights</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span>, <span class="va">umbral</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dist_w</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="análisis-espacial-i-autocorrelación.html#cb201-1" tabindex="-1"></a>dist_w <span class="ot">&lt;-</span> rgeoda<span class="sc">::</span><span class="fu">distance_weights</span>(covid_zmvm_sf, umbral)</span>
+<span id="cb201-2"><a href="análisis-espacial-i-autocorrelación.html#cb201-2" tabindex="-1"></a><span class="fu">summary</span>(dist_w)</span></code></pre></div>
 <pre><code>##                      name              value
 ## 1 number of observations:                 76
 ## 2          is symmetric:                TRUE
@@ -392,14 +577,11 @@ ii. ¿Cuáles opcionales?</td>
 ## 7     # median neighbors:                5.5
 ## 8           has isolates:              FALSE</code></pre>
 </div>
-<div id="matriz-de-k-vecinos-más-cercanos" class="section level5" number="3.2.2.2.2">
-<h5>
-<span class="header-section-number">3.2.2.2.2</span> Matriz de k-vecinos más cercanos<a class="anchor" aria-label="anchor" href="#matriz-de-k-vecinos-m%C3%A1s-cercanos"><i class="fas fa-link"></i></a>
-</h5>
-<p>Cuando decimos k-vecinos más cercanos, con ello queremos decir que se identificará determinado número “k” de vecinos más cercanos: los 2 más cercanos (k=2), los 8 más cercanos (k=8), etcétera. Para ello nos servimos de la función <code><a href="https://geodacenter.github.io/rgeoda/reference/knn_weights.html">knn_weights()</a></code>. Si quiseramos una matriz con los 4 vecinos más cercanos, tenemos que:</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">k4_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/knn_weights.html">knn_weights</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">k4_w</span><span class="op">)</span></span></code></pre></div>
+<div id="matriz-de-k-vecinos-más-cercanos" class="section level5 hasAnchor" number="3.2.2.2.2">
+<h5><span class="header-section-number">3.2.2.2.2</span> Matriz de k-vecinos más cercanos<a href="análisis-espacial-i-autocorrelación.html#matriz-de-k-vecinos-más-cercanos" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Cuando decimos k-vecinos más cercanos, con ello queremos decir que se identificará determinado número “k” de vecinos más cercanos: los 2 más cercanos (k=2), los 8 más cercanos (k=8), etcétera. Para ello nos servimos de la función <code>knn_weights()</code>. Si quiseramos una matriz con los 4 vecinos más cercanos, tenemos que:</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="análisis-espacial-i-autocorrelación.html#cb203-1" tabindex="-1"></a>k4_w <span class="ot">&lt;-</span> <span class="fu">knn_weights</span>(covid_zmvm_sf, <span class="dv">4</span>)</span>
+<span id="cb203-2"><a href="análisis-espacial-i-autocorrelación.html#cb203-2" tabindex="-1"></a><span class="fu">summary</span>(k4_w)</span></code></pre></div>
 <pre><code>##                      name              value
 ## 1 number of observations:                 76
 ## 2          is symmetric:               FALSE
@@ -414,10 +596,8 @@ ii. ¿Cuáles opcionales?</td>
 </div>
 </div>
 </div>
-<div id="variables-espacialmente-rezagadas" class="section level2" number="3.3">
-<h2>
-<span class="header-section-number">3.3</span> Variables espacialmente rezagadas<a class="anchor" aria-label="anchor" href="#variables-espacialmente-rezagadas"><i class="fas fa-link"></i></a>
-</h2>
+<div id="variables-espacialmente-rezagadas" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Variables espacialmente rezagadas<a href="análisis-espacial-i-autocorrelación.html#variables-espacialmente-rezagadas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div style="text-align: justify">
 
 <p>La construcción de un rezago espacial, también llamada variable espacialmente rezagada, es un elemento clave para poder operacionalizar y, por tanto, medir la autocorrelación. Pero, ¿qué es un rezago espacial? Imagina que vives en un barrio de la Ciudad de México que tiene 8 barrios vecinos, mismos que calculaste con alguno de los criterios de que vimos antes y que apuntaste en una matriz de pesos espaciales. Supón ahora que tu barrio tiene 5 casos de COVID19 y quieres comparar dicho dato con el de los 8 barrios vecinos, ¿cómo lo harías? Una alternativa útil es sintetizar la información de los ocho barrios en un sólo indicador que sume y pondere los datos de los casos positivos de los vecinos.</p>
@@ -439,7 +619,7 @@ w_{11(s)} + w_{12(s)} + + w_{1n(s)}= 1\
 w_{21(s)} + w_{22(s)} + + w_{2n(s)}=1\
 w_{n1(s)} + w_{n2(s)} + + w_{nn(s)}=1</p>
 <p>$$</p>
-<p>Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio con <em>respecto al valor de sus zonas vecinas</em>, dicho valor es lo que llamamos <em>rezago espacial</em>. Así pues, un rezago espacial es definido como el promedio ponderado del valor de la variable de los vecinos <span class="citation">(<a href="references.html#ref-Chasco2003" role="doc-biblioref">Chasco 2003, 61</a>; <a href="references.html#ref-Anselin2020" role="doc-biblioref">Anselin 2020</a>)</span>. Siguiendo a Anselin (2020), “el rezago espacial de <span class="math inline">\(y\)</span> del objeto espacial <span class="math inline">\(i\)</span> es expresado como <span class="math inline">\(Wy_{i}\)</span>:</p>
+<p>Regresemos a nuestra definición sobre la autocorrelación espacial: relación funcional existente entre los valores que adopta un indicador en una zona del espacio con <em>respecto al valor de sus zonas vecinas</em>, dicho valor es lo que llamamos <em>rezago espacial</em>. Así pues, un rezago espacial es definido como el promedio ponderado del valor de la variable de los vecinos <span class="citation">(<a href="#ref-Chasco2003">Chasco 2003, 61</a>; <a href="#ref-Anselin2020">Anselin 2020</a>)</span>. Siguiendo a Anselin (2020), “el rezago espacial de <span class="math inline">\(y\)</span> del objeto espacial <span class="math inline">\(i\)</span> es expresado como <span class="math inline">\(Wy_{i}\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 Wy_i &amp;=  w_{i1(s)}y_1+w_{i2(s)}y_2+...+w_{in(s)}y_n \\
@@ -448,14 +628,11 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 \]</span></p>
 <p>Donde <span class="math inline">\(w_{ij(s)}\)</span> es cada uno de los elementos de la matriz de pesos estandarizada por fila y <span class="math inline">\(y_n\)</span> es el valor de la variable de interés. Así pues, el rezago espacial pondera la variable de interés a través del número de vecinos que cada unidad espacial posee.</p>
 <p>De nueva cuenta, es posible construir rezagos espaciales ya sea con el paquete <code>spded</code> o <code>rgeoda</code>. Primero ilustraremos la alternativa con <code>spdep</code> y en seguida con <code>rgeoda</code>.</p>
-<div id="rezagos-espaciales-con-spdep" class="section level3" number="3.3.1">
-<h3>
-<span class="header-section-number">3.3.1</span> Rezagos espaciales con <code>spdep</code><a class="anchor" aria-label="anchor" href="#rezagos-espaciales-con-spdep"><i class="fas fa-link"></i></a>
-</h3>
-<p>Para construir con <code>spdep</code> el rezago espacial de una variable, digamos de los casos positivos por COVID19, debemos primero estandarizar los objetos que contienen las estructuras espaciales que previamente construimos: <code>mTRUE</code> y <code>mFALSE</code>. Este proceso corre a cuenta de la función <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code> del paquete <code>spdep</code>:</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mTRUE.est</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mTRUE</span><span class="op">)</span></span>
-<span><span class="va">mTRUE.est</span></span></code></pre></div>
+<div id="rezagos-espaciales-con-spdep" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Rezagos espaciales con <code>spdep</code><a href="análisis-espacial-i-autocorrelación.html#rezagos-espaciales-con-spdep" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para construir con <code>spdep</code> el rezago espacial de una variable, digamos de los casos positivos por COVID19, debemos primero estandarizar los objetos que contienen las estructuras espaciales que previamente construimos: <code>mTRUE</code> y <code>mFALSE</code>. Este proceso corre a cuenta de la función <code>nb2listw()</code> del paquete <code>spdep</code>:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="análisis-espacial-i-autocorrelación.html#cb205-1" tabindex="-1"></a>mTRUE.est <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(mTRUE)</span>
+<span id="cb205-2"><a href="análisis-espacial-i-autocorrelación.html#cb205-2" tabindex="-1"></a>mTRUE.est</span></code></pre></div>
 <pre><code>## Characteristics of weights list object:
 ## Neighbour list object:
 ## Number of regions: 76 
@@ -467,9 +644,8 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 ## Weights constants summary:
 ##    n   nn S0       S1       S2
 ## W 76 5776 76 35.56142 319.6623</code></pre>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mFALSE.est</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">mFALSE</span><span class="op">)</span></span>
-<span><span class="va">mFALSE.est</span></span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="análisis-espacial-i-autocorrelación.html#cb207-1" tabindex="-1"></a>mFALSE.est <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(mFALSE)</span>
+<span id="cb207-2"><a href="análisis-espacial-i-autocorrelación.html#cb207-2" tabindex="-1"></a>mFALSE.est</span></code></pre></div>
 <pre><code>## Characteristics of weights list object:
 ## Neighbour list object:
 ## Number of regions: 76 
@@ -482,31 +658,31 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 ##    n   nn S0       S1       S2
 ## W 76 5776 76 36.56499 319.6716</code></pre>
 <p>Notaras cómo en el ambiente de trabajo se ha creado un objeto nuevo de tipo <code>listw</code>. Ábrelo y observa su contenido.</p>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>¿Explica por qué se le denomina matriz (lista) estandarizada?</p></li>
 <li><p>¿A cuanto es igual la suma de cada renglón de la lista?</p></li>
 <li><p>¿Cómo se relaciona la forma en que aparecen enlistados los elementos con el número de vecinos que tiene cada objeto espacial?</p></li>
 </ol>
-<hr>
-<p>Construiremos un rezago espacial de la variable <code>pos_hab</code>, número de casos positivos por COVID19, con ayuda de la función <code><a href="https://r-spatial.github.io/spdep/reference/lag.listw.html">lag.listw()</a></code> del paquete <code>spdep</code>. Indicamos dos argumentos en la función: la estructura espacial dada por la matriz estandarizada, <code>mTRUE.est</code>, y la variable de la que deseamos el rezago espacial, <code>pos_hab</code>, esto es guardado en un nuevo objeto, <code>lag_poshab</code>, tal y como se muestra en el siguiente segmento de código:</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lag_poshab</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lag.listw.html">lag.listw</a></span><span class="op">(</span><span class="va">mTRUE.est</span>, <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span></span></code></pre></div>
-<p>Para lograr apreciar mejor el rezago espacial, construiremos una tabla de dos columnas que almacenaremos en el objeto <code>df</code>, la primera contendrá la variable original y la segunda el rezago espacial, luego pediremos que nos muestre los primeros registros de la tabla con la función <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> en un formato estilizado a través de la función <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> del paquete <code>knitr</code>:</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Crea un nuevo arreglo de datos donde se almacena la variable original y el rezago espacial</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pos_hab <span class="op">=</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">lag_poshab</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#Coloca los primeros valores de ambas variables en una tabla, requiere instalación y carga del paquete  knitr</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
+<hr />
+<p>Construiremos un rezago espacial de la variable <code>pos_hab</code>, número de casos positivos por COVID19, con ayuda de la función <code>lag.listw()</code> del paquete <code>spdep</code>. Indicamos dos argumentos en la función: la estructura espacial dada por la matriz estandarizada, <code>mTRUE.est</code>, y la variable de la que deseamos el rezago espacial, <code>pos_hab</code>, esto es guardado en un nuevo objeto, <code>lag_poshab</code>, tal y como se muestra en el siguiente segmento de código:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="análisis-espacial-i-autocorrelación.html#cb209-1" tabindex="-1"></a>lag_poshab <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">lag.listw</span>(mTRUE.est, covid_zmvm<span class="sc">$</span>pos_hab)</span></code></pre></div>
+<p>Para lograr apreciar mejor el rezago espacial, construiremos una tabla de dos columnas que almacenaremos en el objeto <code>df</code>, la primera contendrá la variable original y la segunda el rezago espacial, luego pediremos que nos muestre los primeros registros de la tabla con la función <code>head()</code> en un formato estilizado a través de la función <code>kable()</code> del paquete <code>knitr</code>:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="análisis-espacial-i-autocorrelación.html#cb210-1" tabindex="-1"></a><span class="co">#Crea un nuevo arreglo de datos donde se almacena la variable original y el rezago espacial</span></span>
+<span id="cb210-2"><a href="análisis-espacial-i-autocorrelación.html#cb210-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">data.frame</span>(<span class="at">pos_hab =</span> covid_zmvm<span class="sc">$</span>pos_hab, lag_poshab)</span>
+<span id="cb210-3"><a href="análisis-espacial-i-autocorrelación.html#cb210-3" tabindex="-1"></a></span>
+<span id="cb210-4"><a href="análisis-espacial-i-autocorrelación.html#cb210-4" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb210-5"><a href="análisis-espacial-i-autocorrelación.html#cb210-5" tabindex="-1"></a></span>
+<span id="cb210-6"><a href="análisis-espacial-i-autocorrelación.html#cb210-6" tabindex="-1"></a><span class="co">#Coloca los primeros valores de ambas variables en una tabla, requiere instalación y carga del paquete  knitr</span></span>
+<span id="cb210-7"><a href="análisis-espacial-i-autocorrelación.html#cb210-7" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
 <th align="right">pos_hab</th>
 <th align="right">lag_poshab</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="right">14.36500</td>
@@ -533,32 +709,31 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 <td align="right">11.97155</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>El valor de la segunda columna, <code>lag_poshab</code>, es el rezago espacial. ¿Cómo interpretamos dicho valor? Veamos con cuidado. El primer valor listado de <code>pos_hab</code>, 14.365, es el número de casos positivos de COVID19 por cada 1 mil habitantes y dicho valor pertenece a la alcaldía Álvaro Obregón, en tanto, el primer valor listado en la columna <code>lag_poshab</code> es el rezago espacial y asciende a 15.992, este valor es el promedio ponderado de casos positivos por COVID19 en los vecinos Álvaro Obregón.</p>
 <p>Para identificar a los vecinos de cada objeto espacial (municipio o alcaldía), así como el respectivo valor del rezago espacial hay que extraer dicha información utilizando una notación de dobles corchetes. Vayamos por pasos. Primero, para conocer cual es el primer elemento u objeto espacial de nuestra base usamos la notación del doble corchete sobre el objeto <code>covid_zmvm</code>:</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">nom_mun</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co">#Devuelve el nombre del municipio identificado con el número 1</span></span></code></pre></div>
-<pre><code>## [1] "Álvaro Obregón"</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="análisis-espacial-i-autocorrelación.html#cb211-1" tabindex="-1"></a>covid_zmvm<span class="sc">$</span>nom_mun[[<span class="dv">1</span>]] <span class="co">#Devuelve el nombre del municipio identificado con el número 1</span></span></code></pre></div>
+<pre><code>## [1] &quot;Álvaro Obregón&quot;</code></pre>
 <p>Una vez que sabemos que dicho objeto es la alcaldía llamada Álvaro Obregón, pidamos a R que nos muestre cuáles son sus vecinos. Para ello, usando de nuevo la notación de doble corchete sobre la estructura espacial, el objeto <code>mTRUE</code>:</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="co">#Devuelve los números de identificación de los municipios y alcaldías vecinas del Álvaro Obregón, la observación identificada con el número 1.</span></span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="análisis-espacial-i-autocorrelación.html#cb213-1" tabindex="-1"></a>mTRUE[[<span class="dv">1</span>]]<span class="co">#Devuelve los números de identificación de los municipios y alcaldías vecinas del Álvaro Obregón, la observación identificada con el número 1.</span></span></code></pre></div>
 <pre><code>## [1]  2  7  9 10 11 15</code></pre>
 <p>Los números anteriores corresponden a los vecinos de Álvaro Obregón, pero, ¿cómo saber su nombre y el número de casos positivos de cada uno? El siguiente segmento de código nos dará los nombres de los vecinos y el número de casos positivos en cada uno.</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Crea un objeto que contiene el nombre de las alcaldías y municipios vecinos de Álvaro Obregón</span></span>
-<span><span class="va">Alcaldías</span> <span class="op">&lt;-</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">nom_mun</span><span class="op">[</span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co">#Crea un objeto que contiene el valor de la variable pos_hab (casos positivos por mil habitantes) para cada observación vecina de Álvaro Obregón</span></span>
-<span><span class="va">Casos_covid</span> <span class="op">&lt;-</span> <span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">[</span><span class="va">mTRUE</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Guarda los dos objetos anteriores en un dataframe y lo muestra en una tabla</span></span>
-<span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">Alcaldías</span>, <span class="va">Casos_covid</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="análisis-espacial-i-autocorrelación.html#cb215-1" tabindex="-1"></a><span class="co">#Crea un objeto que contiene el nombre de las alcaldías y municipios vecinos de Álvaro Obregón</span></span>
+<span id="cb215-2"><a href="análisis-espacial-i-autocorrelación.html#cb215-2" tabindex="-1"></a>Alcaldías <span class="ot">&lt;-</span> covid_zmvm<span class="sc">$</span>nom_mun[mTRUE[[<span class="dv">1</span>]]]</span>
+<span id="cb215-3"><a href="análisis-espacial-i-autocorrelación.html#cb215-3" tabindex="-1"></a></span>
+<span id="cb215-4"><a href="análisis-espacial-i-autocorrelación.html#cb215-4" tabindex="-1"></a><span class="co">#Crea un objeto que contiene el valor de la variable pos_hab (casos positivos por mil habitantes) para cada observación vecina de Álvaro Obregón</span></span>
+<span id="cb215-5"><a href="análisis-espacial-i-autocorrelación.html#cb215-5" tabindex="-1"></a>Casos_covid <span class="ot">&lt;-</span> covid_zmvm<span class="sc">$</span>pos_hab[mTRUE[[<span class="dv">1</span>]]]</span>
+<span id="cb215-6"><a href="análisis-espacial-i-autocorrelación.html#cb215-6" tabindex="-1"></a></span>
+<span id="cb215-7"><a href="análisis-espacial-i-autocorrelación.html#cb215-7" tabindex="-1"></a><span class="co"># Guarda los dos objetos anteriores en un dataframe y lo muestra en una tabla</span></span>
+<span id="cb215-8"><a href="análisis-espacial-i-autocorrelación.html#cb215-8" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Alcaldías, Casos_covid)</span>
+<span id="cb215-9"><a href="análisis-espacial-i-autocorrelación.html#cb215-9" tabindex="-1"></a><span class="fu">kable</span>(db)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
 <th align="left">Alcaldías</th>
 <th align="right">Casos_covid</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left">Tlalpan</td>
@@ -585,25 +760,22 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 <td align="right">11.08826</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Los valores previamente listados corresponden tanto al nombre como al número de casos positivos de los vecinos de Álvaro Obregón. Así, el rezago espacial de Álvaro Obregón es el resultado de sumar los valores de la tabla anterior y multiplicarlos por <span class="math inline">\(\frac {1}{6}\)</span>, es decir, 15.99.</p>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>¿Por que para el caso de Álvaro Obregón hubo que multiplicar por un sexto?</p></li>
 <li><p>Obtén un cuadro con las lista de vecinos y los valores de casos positivos para el objeto espacial 35</p></li>
 </ol>
-<hr>
+<hr />
 </div>
-<div id="rezagos-espaciales-con-rgeoda" class="section level3" number="3.3.2">
-<h3>
-<span class="header-section-number">3.3.2</span> Rezagos espaciales con <code>rgeoda</code><a class="anchor" aria-label="anchor" href="#rezagos-espaciales-con-rgeoda"><i class="fas fa-link"></i></a>
-</h3>
-<p>Con el paquete <code>rgeoda</code> calcular rezagos espaciales es sencillo con la función <code><a href="https://geodacenter.github.io/rgeoda/reference/spatial_lag.html">spatial_lag()</a></code>, en la que hay que especificar dos argumentos: <code>gda_w=</code> la matriz de pesos espaciales y <code>df=</code> la variable sobre la que se desea el rezago espacial, que proviene del objeto de tipo <code>sf</code>. Por ejemplo, para la variable casos positivos, <code>pos_hab</code> y con una matriz de tipo reina, <code>queen_w</code>:</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lag</span> <span class="op">&lt;-</span> <span class="fu">rgeoda</span><span class="fu">::</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/spatial_lag.html">spatial_lag</a></span><span class="op">(</span><span class="va">queen_w</span>,</span>
-<span>                   <span class="va">covid_zmvm_sf</span><span class="op">[</span><span class="st">'pos_hab'</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lag</span><span class="op">)</span></span></code></pre></div>
+<div id="rezagos-espaciales-con-rgeoda" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Rezagos espaciales con <code>rgeoda</code><a href="análisis-espacial-i-autocorrelación.html#rezagos-espaciales-con-rgeoda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Con el paquete <code>rgeoda</code> calcular rezagos espaciales es sencillo con la función <code>spatial_lag()</code>, en la que hay que especificar dos argumentos: <code>gda_w=</code> la matriz de pesos espaciales y <code>df=</code> la variable sobre la que se desea el rezago espacial, que proviene del objeto de tipo <code>sf</code>. Por ejemplo, para la variable casos positivos, <code>pos_hab</code> y con una matriz de tipo reina, <code>queen_w</code>:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="análisis-espacial-i-autocorrelación.html#cb216-1" tabindex="-1"></a>lag <span class="ot">&lt;-</span> rgeoda<span class="sc">::</span><span class="fu">spatial_lag</span>(queen_w,</span>
+<span id="cb216-2"><a href="análisis-espacial-i-autocorrelación.html#cb216-2" tabindex="-1"></a>                   covid_zmvm_sf[<span class="st">&#39;pos_hab&#39;</span>])</span>
+<span id="cb216-3"><a href="análisis-espacial-i-autocorrelación.html#cb216-3" tabindex="-1"></a><span class="fu">head</span>(lag)</span></code></pre></div>
 <pre><code>##   Spatial.Lag
 ## 1    15.45044
 ## 2    15.57109
@@ -612,14 +784,15 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 ## 5    13.20082
 ## 6    11.51118</code></pre>
 <p>Para mejor mirar el rezago espacial, incorporémoslo a un nuevo <code>dataframe</code> con la variable <code>pos_hab</code>, de forma emejante a como lo hicimos antes:</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pos_hab <span class="op">=</span> <span class="va">covid_zmvm_sf</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">lag</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="análisis-espacial-i-autocorrelación.html#cb218-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">data.frame</span>(<span class="at">pos_hab =</span> covid_zmvm_sf<span class="sc">$</span>pos_hab, lag)</span>
+<span id="cb218-2"><a href="análisis-espacial-i-autocorrelación.html#cb218-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
 <th align="right">pos_hab</th>
 <th align="right">Spatial.Lag</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="right">14.36500</td>
@@ -646,37 +819,34 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 <td align="right">11.51118</td>
 </tr>
 </tbody>
-</table></div>
-<hr>
+</table>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
 <li><p>Con el paquete <code>rgeoda</code>, construye rezagos espaciales con las otras estructuras espaciales: torre, distancia mínima, k-vecinos.</p></li>
 <li><p>¿Por qué en cada caso es diferente el valor rezago?</p></li>
 </ol>
-<hr>
+<hr />
 </div>
 </div>
-<div id="coeficiente-de-correlación-espacial-la-i-de-moran" class="section level2" number="3.4">
-<h2>
-<span class="header-section-number">3.4</span> Coeficiente de correlación espacial: la I de Moran<a class="anchor" aria-label="anchor" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><i class="fas fa-link"></i></a>
-</h2>
+<div id="coeficiente-de-correlación-espacial-la-i-de-moran" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Coeficiente de correlación espacial: la I de Moran<a href="análisis-espacial-i-autocorrelación.html#coeficiente-de-correlación-espacial-la-i-de-moran" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Una vez que hemos abordado y resuelto el problema de cómo definir vecindad a partir de la matriz de pesos espaciales y que hemos operacionalizado la definición de valor de la variable en los vecinos a través de la noción de rezago espacial, tenemos todos los elementos que integran la definición de autocorrelación espacial: i) relación funcional, ii) valor de una variable y iii) relación de vecindad.</p>
 <p>Ahora bien, ¿cómo medimos la autocorrelación? Es decir, cómo sabemos si, por ejemplo, la variable casos positivos por COVID19 está autocorrelacionada. Al principio de este capítulo dijimos que apreciar ciertos patrones de agrupamiento en un mapa, como el del índice de desarrollo humano, era un posible indicio de autocorrelación espacial. Es momento de formalizar dicho indicio a través de un indicador apropiado. Debemos pues construir un estadístico, un estadístico de autocorrelación espacial.</p>
-<p>El estadístico de asociación espacial más socorrido es el propuesto por <a href="https://en.wikipedia.org/wiki/P._A._P._Moran">Patrick Moran</a>: la I de Moran. La I de Moran es un coeficiente de correlación lineal que “incorpora al espacio,” es decir, mide la asociación lineal entre una variable (digamos casos positivos por COVID19) y su rezago espacial (el valor promedio de los casos positivos de los vecinos). Como todo coeficiente de asociación, el valor de la I de Moran se encuentra entre -1 y 1.</p>
+<p>El estadístico de asociación espacial más socorrido es el propuesto por <a href="https://en.wikipedia.org/wiki/P._A._P._Moran">Patrick Moran</a>: la I de Moran. La I de Moran es un coeficiente de correlación lineal que “incorpora al espacio”, es decir, mide la asociación lineal entre una variable (digamos casos positivos por COVID19) y su rezago espacial (el valor promedio de los casos positivos de los vecinos). Como todo coeficiente de asociación, el valor de la I de Moran se encuentra entre -1 y 1.</p>
 <p>Si el valor de la I de Moran es positivo decimos que hay signos de concentración o patrones de aglomeración pues existe autocorrelación espacial positiva, por lo que existen unidades espaciales (alcaldías, municipios) que tienen valores altos en la variable medida que están rodeadas por otras unidades espaciales que tienen valores también altos. Decir que existe autocorrelación espacial positiva también implica afirmar que hay unidades espaciales con valores bajos rodeadas de otras que tienen también valores bajos.</p>
 <p>Por otro lado, si la I de Moran es negativa esto es evidencia de otro tipo de patrones, ya no de aglomeración sun ode dispersión o repulsión: una alcaldía o municipio que tiene valores altos está rodeada de vecinos con valores bajos y viceversa.</p>
 <p>Hasta donde sabemos, el paquete <code>rgeoda</code> aún no incorpora una función para construir automáticamente la I de Moran, por lo que el enfoque aquí presentado corresponde, para simplificar, al del paquete <code>spdep</code>.</p>
-<p>Para calcular en R el coeficiente o estadístico de Moran necesitamos recurrir a la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test()</a></code> del paquete <code>spdep</code>. Los argumentos de la función deben especificar el nombre de la variable y el tipo de estructura espacial dado por la matriz de pesos usada; adicionalmente, se puede indicar qué hacer en caso de que existan islas (objetos espaciales sin vecinos) con el argumento <code>zero.policy</code>.</p>
-<hr>
+<p>Para calcular en R el coeficiente o estadístico de Moran necesitamos recurrir a la función <code>moran.test()</code> del paquete <code>spdep</code>. Los argumentos de la función deben especificar el nombre de la variable y el tipo de estructura espacial dado por la matriz de pesos usada; adicionalmente, se puede indicar qué hacer en caso de que existan islas (objetos espaciales sin vecinos) con el argumento <code>zero.policy</code>.</p>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: lower-roman">
-<li><p>Solicita ayuda del paquete <code>spdep</code> y responde, ¿para qué sirve el argumento <code>randomization</code> de la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test()</a></code>?</p></li>
+<li><p>Solicita ayuda del paquete <code>spdep</code> y responde, ¿para qué sirve el argumento <code>randomization</code> de la función <code>moran.test()</code>?</p></li>
 <li><p>De nuevo, en la ayuda de la función, ¿con cuál de los argumentos es posible cambiar la hipótesis alternativa de la evaluación de autocorrelación espacial en la prueba de Moran?</p></li>
 </ol>
-<hr>
+<hr />
 <p>Construyamos el estadístico de Moran para la variable <code>pos_hab</code> usando la estructura espacial llamada <code>mTRUE.est</code>:</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span>, <span class="va">mTRUE.est</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="análisis-espacial-i-autocorrelación.html#cb219-1" tabindex="-1"></a>spdep<span class="sc">::</span><span class="fu">moran.test</span>(covid_zmvm<span class="sc">$</span>pos_hab, mTRUE.est)</span></code></pre></div>
 <pre><code>## 
 ##  Moran I test under randomisation
 ## 
@@ -689,23 +859,21 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 ## Moran I statistic       Expectation          Variance 
 ##       0.656334129      -0.013333333       0.005709563</code></pre>
 <p>Del indicador obtenido nos interesan tres elementos, como es usual: la magnitud del coeficiente, su sentido y su significancia estadística. En los resultados que aparecen en tu consola identifica cada uno de ellos y responde:</p>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>¿A cuánto asciende el coeficiente estimado? ¿Podría decirse que es alto o bajo?</p></li>
 <li><p>¿La relación identificada es positiva o negativa?</p></li>
 </ol>
-<hr>
+<hr />
 <p>Un coeficiente como el obtenido, de 0.656, indica que hay una relación positiva entre los valores de los casos positivos de COVID19 y los valores de los casos positivos por COVID19 en los entornos vecinos (sentido de la asociación), además, podríamos decir que es relativamente alto en la medida en que está más próximo a uno que a cero (magnitud de la relación). Ahora, ¿qué hay con su significancia estadística? ¿Cómo podemos saber que dicho resultado,. el 0.656, no es producto de una coincidencia sino un resultado sistemático o consistente? Para ello, evaluaremos el siguiente juego de hipótesis sobre el índice de Moran:</p>
 <ul>
-<li>
-<span class="math inline">\(Ho: I=0\)</span>, es decir, ausencia de autocorrelación o, de forma equivalente, distribución espacial aleatoria.<br>
+<li><span class="math inline">\(Ho: I=0\)</span>, es decir, ausencia de autocorrelación o, de forma equivalente, distribución espacial aleatoria.<br />
 </li>
-<li>
-<span class="math inline">\(Ha:I \neq 0\)</span>, es decir, presencia de autocorrelación o, de forma equivalente, distribución espacial no aleatoria.</li>
+<li><span class="math inline">\(Ha:I \neq 0\)</span>, es decir, presencia de autocorrelación o, de forma equivalente, distribución espacial no aleatoria.</li>
 </ul>
 <p>Con la información disponible evaluamos dichas hipótesis. Observa como el p-valor obtenido en extremadamente pequeño (p-value &lt; 2.2e-16); si fijamos un nivel de significancia, <span class="math inline">\(\alpha=0.05\)</span>, se rechaza la hipótesis nula en favor de la hipótesis alternativa, por tanto, la variable no se distribuye de forma aleatoria en el espacio, sino que muestra indicios de autocorrelación espacial positiva relativamente alta (0.656).</p>
-<hr>
+<hr />
 <p><strong>Ejercicio</strong></p>
 <p>Construya una I de Moran con la estructura espacial dada por la matriz donde <code>queen=FALSE</code> responda:</p>
 <ol style="list-style-type: lower-roman">
@@ -713,56 +881,49 @@ Wy_i &amp;=  \sum_{j=1}^nw_{ij(s)}y_j \\
 <li><p>¿Consideras que es alta o baja?</p></li>
 <li><p>¿Dirías que dicha relación es producto del azar o que existe un comportamiento sistemático?</p></li>
 </ol>
-<hr>
-<div id="diagrama-de-moran" class="section level3" number="3.4.1">
-<h3>
-<span class="header-section-number">3.4.1</span> Diagrama de Moran<a class="anchor" aria-label="anchor" href="#diagrama-de-moran"><i class="fas fa-link"></i></a>
-</h3>
+<hr />
+<div id="diagrama-de-moran" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Diagrama de Moran<a href="análisis-espacial-i-autocorrelación.html#diagrama-de-moran" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Una forma creativa de expresar gráficamente la autocorrelación es a través de un diagrama de dispersión cuyo eje <span class="math inline">\(x\)</span> corresponde a la variable de interés, casos positivos de COVID19 por cada 1 mil habitantes, y el eje <span class="math inline">\(y\)</span> a su rezago espacial; además, al agregar una recta de ajuste sobre los datos estandarizados lograremos que la pendiente de dicha recta corresponda exactamente al valor de la I de Moran. Una de las características del diagrama de Moran es que se descompone en cuatro cuadrantes, tal como aparece en la figura 3.5.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-143"></span>
-<img src="recursos%203/Diagrama%20de%20Moran.jpg" alt="Diagrama de dispersión de Moran" width="100%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-143"></span>
+<img src="recursos%203/Diagrama%20de%20Moran.jpg" alt="Diagrama de dispersión de Moran" width="100%" />
+<p class="caption">
 Figura 3.4: Diagrama de dispersión de Moran
 </p>
 </div>
-<p>Para representar el diagrama de Moran recurrimos a la función <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> del paquete <code>spdep</code> que para una matriz de tipo reina con el argumento <code>queen=TRUE</code> y la base de datos de tipo <code>SpatialPolygonsDataFrame</code>:</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">covid_zmvm</span><span class="op">$</span><span class="va">pos_hab</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                  listw <span class="op">=</span> <span class="va">mTRUE.est</span>, </span>
-<span>                  xlab<span class="op">=</span><span class="st">"Casos positivos"</span>,</span>
-<span>                  ylab<span class="op">=</span><span class="st">"Rezago espacial de los casos positivos"</span>,</span>
-<span>                  main<span class="op">=</span><span class="st">"Diagrama de Moran para casos positivos"</span>,</span>
-<span>                  col<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672"></div>
-<p>En el diagrama de Moran recién construido notamos varias cosas:<br>
-i) Una parte importante de las observaciones caen en el cuadrante I y III, por lo que la relación funcional que predomina entre el conjunto de puntos es positiva.<br>
+<p>Para representar el diagrama de Moran recurrimos a la función <code>moran.plot()</code> del paquete <code>spdep</code> que para una matriz de tipo reina con el argumento <code>queen=TRUE</code> y la base de datos de tipo <code>SpatialPolygonsDataFrame</code>:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="análisis-espacial-i-autocorrelación.html#cb221-1" tabindex="-1"></a>spdep<span class="sc">::</span><span class="fu">moran.plot</span>(((covid_zmvm<span class="sc">$</span>pos_hab)<span class="sc">-</span><span class="fu">mean</span>(covid_zmvm<span class="sc">$</span>pos_hab))<span class="sc">/</span>(<span class="fu">sd</span>(covid_zmvm<span class="sc">$</span>pos_hab)),</span>
+<span id="cb221-2"><a href="análisis-espacial-i-autocorrelación.html#cb221-2" tabindex="-1"></a>                  <span class="at">listw =</span> mTRUE.est, </span>
+<span id="cb221-3"><a href="análisis-espacial-i-autocorrelación.html#cb221-3" tabindex="-1"></a>                  <span class="at">xlab=</span><span class="st">&quot;Casos positivos&quot;</span>,</span>
+<span id="cb221-4"><a href="análisis-espacial-i-autocorrelación.html#cb221-4" tabindex="-1"></a>                  <span class="at">ylab=</span><span class="st">&quot;Rezago espacial de los casos positivos&quot;</span>,</span>
+<span id="cb221-5"><a href="análisis-espacial-i-autocorrelación.html#cb221-5" tabindex="-1"></a>                  <span class="at">main=</span><span class="st">&quot;Diagrama de Moran para casos positivos&quot;</span>,</span>
+<span id="cb221-6"><a href="análisis-espacial-i-autocorrelación.html#cb221-6" tabindex="-1"></a>                  <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p>En el diagrama de Moran recién construido notamos varias cosas:<br />
+i) Una parte importante de las observaciones caen en el cuadrante I y III, por lo que la relación funcional que predomina entre el conjunto de puntos es positiva.<br />
 ii) Que la relación funcional dominante sea positiva no implica que no haya observaciones en los cuadrantes II y IV.</p>
 </div>
 </div>
-<div id="múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par." class="section level2" number="3.5">
-<h2>
-<span class="header-section-number">3.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función <code>par()</code>.<a class="anchor" aria-label="anchor" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><i class="fas fa-link"></i></a>
-</h2>
+<div id="múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par." class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función <code>par()</code>.<a href="análisis-espacial-i-autocorrelación.html#múltiples-elementos-de-personalización-de-ésta-y-otras-gráficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentación-de-la-función-par." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Ejercicio</strong></p>
 <p>¿Es posible construir un diagrama de Moran usando el paquete ggplot2? De ser así, ¿cómo lo harías?</p>
-<hr>
+<hr />
 </div>
-<div id="índice-de-moran-local-y-mapa-de-clusters" class="section level2" number="3.6">
-<h2>
-<span class="header-section-number">3.6</span> Índice de Moran local y mapa de clusters<a class="anchor" aria-label="anchor" href="#%C3%ADndice-de-moran-local-y-mapa-de-clusters"><i class="fas fa-link"></i></a>
-</h2>
+<div id="índice-de-moran-local-y-mapa-de-clusters" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Índice de Moran local y mapa de clusters<a href="análisis-espacial-i-autocorrelación.html#índice-de-moran-local-y-mapa-de-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div style="text-align: justify">
 <p>El índice de Moran que recién hemos calculado permite evaluar la existencia de un patrón espacial completo o global, es decir, para el conjunto de todas las observaciones. Por ello, no proporciona información de la ubicación de las agrupaciones o clusters de alcaldías y municipios. Por ello se dice que la I de Moran es una medida de autocorrelación espacial global: nos dice que hay patrones de concentración o dispersión pero no nos dice a qué municipios o alcaldías específicos es posible atribuir dichas fuerzas de aglomeración.</p>
-<p>Para subsanar esta situación, Anselin <span class="citation">(<a href="references.html#ref-Anselin1995" role="doc-biblioref">1995</a>)</span> propuso la versión local de la I de Moran: el indicador local de asociación espacial o LISA (<em>local indicator of spatial association</em>).</p>
+<p>Para subsanar esta situación, Anselin <span class="citation">(<a href="#ref-Anselin1995">1995</a>)</span> propuso la versión local de la I de Moran: el indicador local de asociación espacial o LISA (<em>local indicator of spatial association</em>).</p>
 <p>El LISA:</p>
 <ul>
-<li>Proporciona un estadístico para cada ubicación con un nivel de significancia y<br>
+<li>Proporciona un estadístico para cada ubicación con un nivel de significancia y<br />
 </li>
 <li>Establece una relación proporcional entre el estadístico local y el global.</li>
 </ul>
 <p>Es decir, nos permite identificar a que unidades espaciales (alcaldías o municipios) es posible atribuir la autocorrelación espacial de forma específica y con qué intensidad, en relación con el indicador global. La representación del LISA se hace con arreglo a dos mapas:</p>
 <ol style="list-style-type: lower-roman">
-<li>El <strong>mapa de cluster</strong> o mapa de agrupaciones que permite clasificar las áreas (alcaldías y municipios) con presencia de autocorrelación espacial según el tipo de asociación identificada. Este mapa permite la clasificación de las áreas estadísticamente significativas en clusters o agrupamientos (alto-alto y bajo-bajo) y de áreas que se constituyen como observaciones espaciales atípicas o <em>spatial outliers</em> (agrupamientos bajo-alto y alto-bajo).<br>
+<li>El <strong>mapa de cluster</strong> o mapa de agrupaciones que permite clasificar las áreas (alcaldías y municipios) con presencia de autocorrelación espacial según el tipo de asociación identificada. Este mapa permite la clasificación de las áreas estadísticamente significativas en clusters o agrupamientos (alto-alto y bajo-bajo) y de áreas que se constituyen como observaciones espaciales atípicas o <em>spatial outliers</em> (agrupamientos bajo-alto y alto-bajo).<br />
 </li>
 <li>El <strong>mapa de significancia</strong>: muestra las ubicaciones con la I de Moran local que son representativas en diferentes niveles de significancia.</li>
 </ol>
@@ -773,81 +934,69 @@ Donde:</p>
 S_i^2= \frac{\sum_{j=1,j \neq i}^{n}(x_j-\bar{X}) ^2}{n-1}
 \]</span>
 Además, <span class="math inline">\(x_i\)</span> es el valor de la variable de interés, <span class="math inline">\(\bar{X}\)</span> es el promedio de dicha variable, <span class="math inline">\(w_{ij}\)</span> es cada uno de los elementos de la matriz de pesos espaciales y <span class="math inline">\(n\)</span> es el número de objetos espaciales.</p>
-<p>Para calcular un índice de Moran local en R usamos el paquete <code>rgeoda</code>, que es el enfoque más sencillo de ejecutar. Echaremos mano de la función <code><a href="https://geodacenter.github.io/rgeoda/reference/local_moran.html">local_moran()</a></code>, que requiere dos argumentos forzosos: la estructura espacial(<code>w=</code>) y la variable para la que se desea el LISA (<code>df=</code>). Primero, guardemos la variable de la que deseamos un LISA en un objeto independiente:</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pos_hab</span><span class="op">=</span><span class="va">covid_zmvm_sf</span><span class="op">[</span><span class="st">"pos_hab"</span><span class="op">]</span></span></code></pre></div>
+<p>Para calcular un índice de Moran local en R usamos el paquete <code>rgeoda</code>, que es el enfoque más sencillo de ejecutar. Echaremos mano de la función <code>local_moran()</code>, que requiere dos argumentos forzosos: la estructura espacial(<code>w=</code>) y la variable para la que se desea el LISA (<code>df=</code>). Primero, guardemos la variable de la que deseamos un LISA en un objeto independiente:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="análisis-espacial-i-autocorrelación.html#cb222-1" tabindex="-1"></a>pos_hab<span class="ot">=</span>covid_zmvm_sf[<span class="st">&quot;pos_hab&quot;</span>]</span></code></pre></div>
 <p>Luego, usemos dicha variable para construir el LISA:</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lisa_poshab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/local_moran.html">local_moran</a></span><span class="op">(</span>w<span class="op">=</span><span class="va">queen_w</span>,</span>
-<span>                           df<span class="op">=</span><span class="va">pos_hab</span><span class="op">)</span></span></code></pre></div>
-<p>Dentro del objeto <code>lisa_poshab</code> hay múltiples elementos, que serán útiles más adelante. De momento, llamemos los valores del indicador local de asociación espacial a través de la función <code><a href="https://geodacenter.github.io/rgeoda/reference/lisa_values.html">lisa_values()</a></code>, es decir, los valores del índice computado para cada uno de los 76 municipios y alcaldías que componen la ZMVM:</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lisaval_poshab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/lisa_values.html">lisa_values</a></span><span class="op">(</span><span class="va">lisa_poshab</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="análisis-espacial-i-autocorrelación.html#cb223-1" tabindex="-1"></a>lisa_poshab <span class="ot">&lt;-</span> <span class="fu">local_moran</span>(<span class="at">w=</span>queen_w,</span>
+<span id="cb223-2"><a href="análisis-espacial-i-autocorrelación.html#cb223-2" tabindex="-1"></a>                           <span class="at">df=</span>pos_hab)</span></code></pre></div>
+<p>Dentro del objeto <code>lisa_poshab</code> hay múltiples elementos, que serán útiles más adelante. De momento, llamemos los valores del indicador local de asociación espacial a través de la función <code>lisa_values()</code>, es decir, los valores del índice computado para cada uno de los 76 municipios y alcaldías que componen la ZMVM:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="análisis-espacial-i-autocorrelación.html#cb224-1" tabindex="-1"></a>lisaval_poshab <span class="ot">&lt;-</span> <span class="fu">lisa_values</span>(lisa_poshab)</span></code></pre></div>
 <p>Para representar en un mapa los valores del LISA, es necesario añadirlos a la base de datos original en formato <code>sf</code>:</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mapa.lisa</span> <span class="op">&lt;-</span> <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span>, <span class="va">lisaval_poshab</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="análisis-espacial-i-autocorrelación.html#cb225-1" tabindex="-1"></a>mapa.lisa <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">cbind</span>(covid_zmvm_sf, lisaval_poshab)</span></code></pre></div>
 <p>Luego, con las funciones aprendidas en el capítulo anterior, podemos presentar un mapa de quintiles que represente el valor del indicador local de asociación espacial:</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">mapa.lisa</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"lisaval_poshab"</span>, style <span class="op">=</span> <span class="st">"quantile"</span>,</span>
-<span>                palette <span class="op">=</span> <span class="st">"Spectral"</span>, midpoint<span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>                title <span class="op">=</span> <span class="st">"I de Moran local"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">tmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672"></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="análisis-espacial-i-autocorrelación.html#cb226-1" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(mapa.lisa) <span class="sc">+</span></span>
+<span id="cb226-2"><a href="análisis-espacial-i-autocorrelación.html#cb226-2" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_fill</span>(<span class="at">col =</span> <span class="st">&quot;lisaval_poshab&quot;</span>, <span class="at">style =</span> <span class="st">&quot;quantile&quot;</span>,</span>
+<span id="cb226-3"><a href="análisis-espacial-i-autocorrelación.html#cb226-3" tabindex="-1"></a>                <span class="at">palette =</span> <span class="st">&quot;Spectral&quot;</span>, <span class="at">midpoint=</span> <span class="cn">NA</span>,</span>
+<span id="cb226-4"><a href="análisis-espacial-i-autocorrelación.html#cb226-4" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;I de Moran local&quot;</span>) <span class="sc">+</span></span>
+<span id="cb226-5"><a href="análisis-espacial-i-autocorrelación.html#cb226-5" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
 <p>El mapa permite observar la manera en que varía la correlación espacial a nivel local para la variable <code>pos_hab</code>, casos positivos por COVID19 por cada 1 mil habitantes, pues proporciona un valor de correlación para cada municipio y alcaldía: es claro que la mayor parte de los valores altos del LISA se encuentran en la Ciudad de México (tonos en azul).</p>
 <p>Necesitamos otros instrumentos que nos permitan identificar si los valores de la I de Moran local son o no significativos, lo que haremos a través del mapa de cluster y su respectivo mapa de significancia. Esto nos permitirá identificar agrupaciones o núcleos de cluster significativos, así como observaciones espaciales atípicas.</p>
 <p>Dentro del objeto creado, <code>lisa_poshab</code>, hay múltiples elementos, mismos que pueden ser llamados por funciones específicas, entre las que se encuentran:</p>
 <ul>
-<li>
-<code><a href="https://geodacenter.github.io/rgeoda/reference/lisa_clusters.html">lisa_clusters()</a></code>: que los valores de clasificación de cada cluster.<br>
+<li><code>lisa_clusters()</code>: que los valores de clasificación de cada cluster.<br />
 </li>
-<li>
-<code><a href="https://geodacenter.github.io/rgeoda/reference/lisa_colors.html">lisa_colors()</a></code>: brinda los colores asociados a cada uno de los clusters computados.<br>
+<li><code>lisa_colors()</code>: brinda los colores asociados a cada uno de los clusters computados.<br />
 </li>
-<li>
-<code><a href="https://geodacenter.github.io/rgeoda/reference/lisa_labels.html">lisa_labels()</a></code>: proporciona las etiquetas de los clusters computados.</li>
+<li><code>lisa_labels()</code>: proporciona las etiquetas de los clusters computados.</li>
 </ul>
 <p>Así pues, el mapa los construimos en dos pasos: i) primero obtendremos algunos elementos preliminares para construir el mapa (colores, etiquetas y valores de agrupamiento) y ii) construiremos el mapa con las funciones básicas de R_</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Elementos preliminares</span></span>
-<span><span class="va">lisa_colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/lisa_colors.html">lisa_colors</a></span><span class="op">(</span><span class="va">lisa_poshab</span><span class="op">)</span></span>
-<span><span class="va">lisa_etiq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No significativo"</span>, <span class="st">"Alto-Alto"</span>, <span class="st">"Bajo-Bajo"</span>, <span class="st">"Bajo-Alto"</span>, <span class="st">"Alto-Bajo"</span>, <span class="st">"No definido"</span>, <span class="st">"Aislado"</span><span class="op">)</span></span>
-<span><span class="va">lisa_clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/lisa_clusters.html">lisa_clusters</a></span><span class="op">(</span><span class="va">lisa_poshab</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="análisis-espacial-i-autocorrelación.html#cb227-1" tabindex="-1"></a><span class="co">#Elementos preliminares</span></span>
+<span id="cb227-2"><a href="análisis-espacial-i-autocorrelación.html#cb227-2" tabindex="-1"></a>lisa_colores <span class="ot">&lt;-</span> <span class="fu">lisa_colors</span>(lisa_poshab)</span>
+<span id="cb227-3"><a href="análisis-espacial-i-autocorrelación.html#cb227-3" tabindex="-1"></a>lisa_etiq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;No significativo&quot;</span>, <span class="st">&quot;Alto-Alto&quot;</span>, <span class="st">&quot;Bajo-Bajo&quot;</span>, <span class="st">&quot;Bajo-Alto&quot;</span>, <span class="st">&quot;Alto-Bajo&quot;</span>, <span class="st">&quot;No definido&quot;</span>, <span class="st">&quot;Aislado&quot;</span>)</span>
+<span id="cb227-4"><a href="análisis-espacial-i-autocorrelación.html#cb227-4" tabindex="-1"></a>lisa_clusters <span class="ot">&lt;-</span> <span class="fu">lisa_clusters</span>(lisa_poshab)</span></code></pre></div>
 <p>Ahora, con dichos elementos auxiliares, construimos el mapa de cluster:</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Mapa de cluster</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span>, </span>
-<span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">lisa_clusters</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">lisa_colores</span><span class="op">[[</span><span class="va">x</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>, </span>
-<span>     border <span class="op">=</span> <span class="st">"#333333"</span>, lwd<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Moran Local de pos_hab"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'bottomleft'</span>, legend <span class="op">=</span> <span class="va">lisa_etiq</span>, fill <span class="op">=</span> <span class="va">lisa_colores</span>, border <span class="op">=</span> <span class="st">"#eeeeee"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672"></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="análisis-espacial-i-autocorrelación.html#cb228-1" tabindex="-1"></a><span class="co">#Mapa de cluster</span></span>
+<span id="cb228-2"><a href="análisis-espacial-i-autocorrelación.html#cb228-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(covid_zmvm_sf), </span>
+<span id="cb228-3"><a href="análisis-espacial-i-autocorrelación.html#cb228-3" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">sapply</span>(lisa_clusters, <span class="cf">function</span>(x){<span class="fu">return</span>(lisa_colores[[x<span class="sc">+</span><span class="dv">1</span>]])}), </span>
+<span id="cb228-4"><a href="análisis-espacial-i-autocorrelación.html#cb228-4" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;#333333&quot;</span>, <span class="at">lwd=</span><span class="fl">0.2</span>)</span>
+<span id="cb228-5"><a href="análisis-espacial-i-autocorrelación.html#cb228-5" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;Moran Local de pos_hab&quot;</span>)</span>
+<span id="cb228-6"><a href="análisis-espacial-i-autocorrelación.html#cb228-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;bottomleft&#39;</span>, <span class="at">legend =</span> lisa_etiq, <span class="at">fill =</span> lisa_colores, <span class="at">border =</span> <span class="st">&quot;#eeeeee&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
 <p>Junto con el mapa anterior es común presentar el mapa de significancia, un tipo de representación que indica el nivel de significancia inividual para cada una de las observaciones (municipios y alcaldías). Para ello, también diviimos el procedimiento en dos partes:</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Elementos preliminares</span></span>
-<span><span class="va">lisa_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/lisa_pvalues.html">lisa_pvalues</a></span><span class="op">(</span><span class="va">lisa_poshab</span><span class="op">)</span></span>
-<span><span class="va">p_etiq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No significativo"</span>, <span class="st">"p &lt;= 0.05"</span>, <span class="st">"p &lt;= 0.01"</span>, <span class="st">"p &lt;= 0.001"</span><span class="op">)</span></span>
-<span><span class="va">p_colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#eeeeee"</span>, <span class="st">"#84f576"</span>, <span class="st">"#53c53c"</span>, <span class="st">"#348124"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Mapa de significancia</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">covid_zmvm_sf</span><span class="op">)</span>, </span>
-<span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">lisa_p</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span>       <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">p_colores</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
-<span>       <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">0.01</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">p_colores</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
-<span>       <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="va">p_colores</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
-<span>       <span class="kw">else</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">p_colores</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span>       <span class="op">}</span><span class="op">)</span>, </span>
-<span>     border <span class="op">=</span> <span class="st">"#333333"</span>, lwd<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Mapa de significancia de los casos positivos"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'bottomleft'</span>, legend <span class="op">=</span> <span class="va">p_etiq</span>, fill <span class="op">=</span> <span class="va">p_colores</span>, border <span class="op">=</span> <span class="st">"#eeeeee"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672"></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="análisis-espacial-i-autocorrelación.html#cb229-1" tabindex="-1"></a><span class="co">#Elementos preliminares</span></span>
+<span id="cb229-2"><a href="análisis-espacial-i-autocorrelación.html#cb229-2" tabindex="-1"></a>lisa_p <span class="ot">&lt;-</span> <span class="fu">lisa_pvalues</span>(lisa_poshab)</span>
+<span id="cb229-3"><a href="análisis-espacial-i-autocorrelación.html#cb229-3" tabindex="-1"></a>p_etiq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;No significativo&quot;</span>, <span class="st">&quot;p &lt;= 0.05&quot;</span>, <span class="st">&quot;p &lt;= 0.01&quot;</span>, <span class="st">&quot;p &lt;= 0.001&quot;</span>)</span>
+<span id="cb229-4"><a href="análisis-espacial-i-autocorrelación.html#cb229-4" tabindex="-1"></a>p_colores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#eeeeee&quot;</span>, <span class="st">&quot;#84f576&quot;</span>, <span class="st">&quot;#53c53c&quot;</span>, <span class="st">&quot;#348124&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="análisis-espacial-i-autocorrelación.html#cb230-1" tabindex="-1"></a><span class="co">#Mapa de significancia</span></span>
+<span id="cb230-2"><a href="análisis-espacial-i-autocorrelación.html#cb230-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(covid_zmvm_sf), </span>
+<span id="cb230-3"><a href="análisis-espacial-i-autocorrelación.html#cb230-3" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">sapply</span>(lisa_p, <span class="cf">function</span>(x){</span>
+<span id="cb230-4"><a href="análisis-espacial-i-autocorrelación.html#cb230-4" tabindex="-1"></a>       <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="fl">0.001</span>) <span class="fu">return</span>(p_colores[<span class="dv">4</span>])</span>
+<span id="cb230-5"><a href="análisis-espacial-i-autocorrelación.html#cb230-5" tabindex="-1"></a>       <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="fl">0.01</span>) <span class="fu">return</span>(p_colores[<span class="dv">3</span>])</span>
+<span id="cb230-6"><a href="análisis-espacial-i-autocorrelación.html#cb230-6" tabindex="-1"></a>       <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="fu">return</span> (p_colores[<span class="dv">2</span>])</span>
+<span id="cb230-7"><a href="análisis-espacial-i-autocorrelación.html#cb230-7" tabindex="-1"></a>       <span class="cf">else</span> <span class="fu">return</span>(p_colores[<span class="dv">1</span>])</span>
+<span id="cb230-8"><a href="análisis-espacial-i-autocorrelación.html#cb230-8" tabindex="-1"></a>       }), </span>
+<span id="cb230-9"><a href="análisis-espacial-i-autocorrelación.html#cb230-9" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;#333333&quot;</span>, <span class="at">lwd=</span><span class="fl">0.2</span>)</span>
+<span id="cb230-10"><a href="análisis-espacial-i-autocorrelación.html#cb230-10" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;Mapa de significancia de los casos positivos&quot;</span>)</span>
+<span id="cb230-11"><a href="análisis-espacial-i-autocorrelación.html#cb230-11" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;bottomleft&#39;</span>, <span class="at">legend =</span> p_etiq, <span class="at">fill =</span> p_colores, <span class="at">border =</span> <span class="st">&quot;#eeeeee&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 <p>El par de mapas anteriores permiten identificar agrupamientos de valores significativos al 5% o menos, es decid, núcleos de cluster que muestran municipios y alcaldías con valores altos de tasas positivas de COVID19 rodeados de vecinos con valores altos (agrupamiento Alto-Alto), así como agrupamientos de valores bajos (cuadrante Bajo-Bajo), además de observaciones espaciales atípicas (cuadrante Alto-bajo y Bajo-Alto).</p>
 <p>En síntesis, hasta este punto hemos visto en este capítulo:</p>
 <ol style="list-style-type: lower-roman">
-<li>Cómo definir estructuras de relación espacial a través de diversos criterios,<br>
+<li>Cómo definir estructuras de relación espacial a través de diversos criterios,<br />
 </li>
 <li>Cómo identificar autocorrelación espacial global a través de la I de Moran,</li>
-<li>Cómo evaluar la significancia estadística de la I de Moran,<br>
+<li>Cómo evaluar la significancia estadística de la I de Moran,<br />
 </li>
 <li>Cómo identificar agrupaciones locales a través del indicador LISA.</li>
 </ol>
@@ -855,26 +1004,86 @@ Además, <span class="math inline">\(x_i\)</span> es el valor de la variable de 
 
 </div>
 </div>
-
-  
-
-  
-
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Anselin1995" class="csl-entry">
+Anselin, Luc. 1995. <span>“Local Indicators of Spatial Association-LISA.”</span> <em>Geographical Analysis</em> 27. <a href="https://doi.org/10.1111/j.1538-4632.1995.tb00338.x">https://doi.org/10.1111/j.1538-4632.1995.tb00338.x</a>.
 </div>
-</div> <!-- .container -->
+<div id="ref-Anselin2020" class="csl-entry">
+———. 2020. <span>“Contiguity-Based Spatial Weights.”</span> <em>GeoDa Workbook.</em> <a href="https://geodacenter.github.io/workbook/4a_contig_weights/lab4a.html#principle">https://geodacenter.github.io/workbook/4a_contig_weights/lab4a.html#principle</a>.
+</div>
+<div id="ref-Chasco2003" class="csl-entry">
+Chasco, Coro Yrigoyen. 2003. <span>“Econometría Espacial Aplicada a La Predicción-Extrapolación de Datos Microterritoriales.”</span> <em>Consejería de Economía e Innovación Tecnológica</em>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>“La estructura espacial suele expresarse formalmente a través de una matriz de interacciones espaciales, también llamada matriz de pesos, ponderaciones, distancias o contactos espaciales” <span class="citation">(<a href="#ref-Chasco2003">Chasco 2003, 55</a>)</span><a href="análisis-espacial-i-autocorrelación.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Análisis de datos espaciales con R</strong>" was written by Jaime Alberto Prudencio Vázquez. It was last built on 2023-02-07.</p>
+          </div>
+        </div>
+      </div>
+<a href="mapas-coropléticos-en-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-de-regresión-lineal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-analisis-espacial-I-rgeoda.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -886,61 +1095,7 @@ Además, <span class="math inline">\(x_i\)</span> es el valor de la variable de 
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
-</div>
-</div>
-</div>
-<div class="chapter-nav">
-<div class="prev"><a href="mapas-coropl%C3%A9ticos-en-r.html"><span class="header-section-number">2</span> Mapas coropléticos en R</a></div>
-<div class="next"><a href="modelos-de-regresi%C3%B3n-lineal.html"><span class="header-section-number">4</span> Modelos de regresión lineal</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#an%C3%A1lisis-espacial-i-autocorrelaci%C3%B3n"><span class="header-section-number">3</span> Análisis espacial I: autocorrelación</a></li>
-<li><a class="nav-link" href="#autocorrelaci%C3%B3n-espacial-y-definici%C3%B3n-de-vecindad"><span class="header-section-number">3.1</span> Autocorrelación espacial y definición de vecindad</a></li>
-<li>
-<a class="nav-link" href="#matrices-de-pesos-espaciales-en-r"><span class="header-section-number">3.2</span> Matrices de pesos espaciales en R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#construcci%C3%B3n-de-matrices-con-spdep"><span class="header-section-number">3.2.1</span> Construcción de matrices con spdep</a></li>
-<li><a class="nav-link" href="#construcci%C3%B3n-de-matrices-con-rgeoda"><span class="header-section-number">3.2.2</span> Construcción de matrices con rgeoda</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#variables-espacialmente-rezagadas"><span class="header-section-number">3.3</span> Variables espacialmente rezagadas</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rezagos-espaciales-con-spdep"><span class="header-section-number">3.3.1</span> Rezagos espaciales con spdep</a></li>
-<li><a class="nav-link" href="#rezagos-espaciales-con-rgeoda"><span class="header-section-number">3.3.2</span> Rezagos espaciales con rgeoda</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#coeficiente-de-correlaci%C3%B3n-espacial-la-i-de-moran"><span class="header-section-number">3.4</span> Coeficiente de correlación espacial: la I de Moran</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#diagrama-de-moran"><span class="header-section-number">3.4.1</span> Diagrama de Moran</a></li></ul>
-</li>
-<li><a class="nav-link" href="#m%C3%BAltiples-elementos-de-personalizaci%C3%B3n-de-%C3%A9sta-y-otras-gr%C3%A1ficas-asociadas-al-paquete-base-de-r-pueden-revisarse-en-la-documentaci%C3%B3n-de-la-funci%C3%B3n-par."><span class="header-section-number">3.5</span> Múltiples elementos de personalización de ésta y otras gráficas asociadas al paquete base de R pueden revisarse en la documentación de la función par().</a></li>
-<li><a class="nav-link" href="#%C3%ADndice-de-moran-local-y-mapa-de-clusters"><span class="header-section-number">3.6</span> Índice de Moran local y mapa de clusters</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-          
-        </ul>
-</div>
-    </nav>
-</div>
-</div>
-</div>
 </body>
+
 </html>

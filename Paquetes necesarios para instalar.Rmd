@@ -19,4 +19,5 @@ library(manipulate)
 library(UsingR)
 library(spatialreg)
 library(sp)
+library(rgeoda)
 ```

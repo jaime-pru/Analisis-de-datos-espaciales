@@ -26,13 +26,13 @@ u &=\lambda Wu+\epsilon  \\
 \end{aligned}
 $$
 
-Siguiendo a Elhorst [-@Elhorst2006: 10], se le denomina modelo general justamente por le hecho de que incorporara todos los tipos de efectos espaciales posibles. Veamos con cuidado la expresión anterior para distinguir cada uno de sus términos y ver con claridad los diferentes tipos de efectos espaciales.
+Siguiendo a Elhorst [-@Elhorst2006: 10], se le denomina modelo general justamente por el hecho de que incorporara todos los tipos de efectos espaciales posibles. Veamos con cuidado la expresión anterior para distinguir cada uno de sus términos y ver con claridad los diferentes tipos de efectos espaciales.
 
 El término identificado como $Y$ no es otro que el vector que contiene la variable dependiente de nuestro modelo, por ejemplo, el número de casos positivos por COVID19; $X$ corresponde a la matriz de variables independientes que pueden ser, por ejemplo, el acceso a los servicios de salud y la proporción promedio de ocupantes por vivienda; el término $\beta$ corresponde al conjunto de parámetros a ser estimados, además, seguro que te resulta familiar el término $W$ que no es otra cosa que la estructura espacial definida a partir de la matriz de pesos espaciales; finalmente, listemos los diferentes efectos espaciales que aparecen en la expresión:
 
-i) efectos de interacción endógenos, es decir, cuando la variable dependiente reaparece como independiente pero a través de su rezago espacial ($WY$), aquí el sentido y magnitud de la interacción está dado por el parámetro $\rho$, llamado coeficiente autoregresivo espacial;  
-ii) efectos de interacción exógenos, es decir, cuando las variables independientes son incluidas en forma de sus rezagos espaciales ($WX$) en la que la relación es captada por $\theta$, también un parámetro a estimar;  
-iii) efectos de interacción dados por los términos de error de la regresión ($Wu$) e interesa el sentido y magnitud de $\lambda$, el coeficiente a estimar, que es llamado coeficiente de autocorrelación espacial.  
+i) Efectos de interacción endógenos, es decir, cuando la variable dependiente reaparece como independiente pero a través de su rezago espacial ($WY$), aquí el sentido y magnitud de la interacción está dado por el parámetro $\rho$, llamado coeficiente autoregresivo espacial;  
+ii) Efectos de interacción exógenos, es decir, cuando las variables independientes son incluidas en forma de sus rezagos espaciales ($WX$) en la que la relación es captada por $\theta$, también un parámetro o parámetros a estimar;  
+iii) Efectos de interacción dados por los términos de error de la regresión ($Wu$) y de ellos interesa el sentido y magnitud de $\lambda$, el coeficiente a estimar, que es llamado coeficiente de autocorrelación espacial.  
 
 A partir del modelo general es posible derivar otros, más simples, si se suponen determinados valores para los coeficientes $\rho$, $\theta$ y $\lambda$. Toda la constelación de modelos econométricos espaciales aparece en la figura 5.1 [@Elhorst2006,p. 7]. Por ejemplo, si partiendo del modelo general se asume que $\lambda=0$, se obtiene el denominado modelo espacial de Durbin; en tanto si $\rho=\theta=\lambda=0$, llegamos al conocido modelo clásico de regresión lineal (MCO). Observa con cuidado cada una de las diferentes alternativas de modelación econométrica espacial y trata de reflexionar sobre sus diferencias.
 
@@ -42,7 +42,7 @@ knitr::include_graphics("recursos 5/figura 1.jpg")
 
 Cada uno de los modelos econométricos espaciales de la figura buscan responder diferentes preguntas en relación a cómo la variable de interés, nuestra variable dependiente, se ve afectada por las interacciones espaciales que hemos mencionado. Por ejemplo, quizá como parte de la exploración de la pandemia por COVID19 nos dimos cuenta de que el número de casos positivos por este mal está asociado con el acceso a los servicios de salud _en los municipios vecinos_, es decir, el rezago espacial de la población con acceso a servicios de salud, tal como se aprecia en el siguiente diagrama de dispersión:
 
-```{r message=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 #Paquetes recien instalados
 library(spdep)
 library(spatialreg)
@@ -91,7 +91,7 @@ knitr::include_graphics("recursos 5/figura 2.jpg")
 
 ### Secuencia general para la estimación
 
-La estimación de un modelo econométrico de error o rezago espacial, siguiendo a Anselin y a Rey (2014), puede ser dividida en los siguientes pasos:
+La estimación de un modelo econométrico de error o rezago espacial, siguiendo a Anselin y Rey (2014), puede ser dividida en los siguientes pasos:
 
 i) Estimar un modelo clásico de regresión lineal con mínimos cuadrados ordinarios.  
 ii) Evaluar la presencia de autocorrelación espacial en los errores del modelo.  
@@ -100,9 +100,9 @@ iv) Estimar el modelo de rezago y de error espacial y apuntar cuál de ellos cap
 
 El punto i ha sido abordado en el capítulo previo, sin embargo regresaremos a ello más adelante de forma práctica para describir la secuencia general. Sobre el punto ii nos detendremos un momento para explicarlo con más detalle. Bien podrías pensar que la evaluación de la autocorrelación ha quedado plenamente cubierta en el capítulo 3 cuando nos referimos al análisis exploratorio de datos espaciales y usamos la I de Moran; sin embargo, es necesario distinguir entre autocorrelación en la variable de interés y autocorrelación en los errores del modelo, lo primero lo hicimos en el citado capítulo, mientras que lo segundo corresponde a la secuencia para la selección del modelo econométrico espacial.
 
-Si se ha encontrado evidencia de autocorrelación en la variable a través de los instrumentos de exploración, como los diversos mapas y la I de Moran, estos elementos nos llevan a pesar que al usar dicha variable en un modelo econométrico lineal simple estimado con MCO, muy probablemente los términos de error estén correlacionados y, por tanto, se violaría dicho supuesto. Para verificarlo, ahora estimaremos la I de Moran sobre los errores del modelo: en esto justamente consiste el paso ii.
+Si se ha encontrado evidencia de autocorrelación en la variable a través de los instrumentos de exploración, como los diversos mapas y la I de Moran, estos elementos nos llevan a pesar que al usar dicha variable en un modelo econométrico lineal simple estimado con MCO, muy probablemente los términos de error estén correlacionados y, por tanto, se violaría dicho supuesto. Para verificarlo, _ahora estimaremos la I de Moran sobre los errores del modelo_: en esto justamente consiste el paso ii.
 
-Ahora bien, si hallamos evidencia de que los errores del modelo lineal están autocorrelacionadaso, sabremos que lo mejor es estimar un modelo econométrico espacial. Pero, ¿cuál es mejor, el modelo de error espacial o el de rezago? Para ello recurriremos a un estadístico denominado Prueba de los Multiplicadores de Lagrange o Prueba de Puntaje de Rao (*Rao score test*), que fue desarrollada por Anselin a finales de la década de los ochenta del siglo pasado [@Anselin2014: 105]. Las pruebas nos permitirán decidir qué modelo es mejor, evaluando entre el modelo lineal y el de rezago, por un lado, y el modelo lineal y el de error, por otro.
+Ahora bien, si hallamos evidencia de que los errores del modelo lineal están autocorrelacionados, sabremos que lo mejor es estimar un modelo econométrico espacial. Pero, ¿cuál es mejor, el modelo de error espacial o el de rezago? Para ello recurriremos a un estadístico denominado Prueba de los Multiplicadores de Lagrange o Prueba de Puntaje de Rao (*Rao score test*), que fue desarrollada por Anselin a finales de la década de los ochenta del siglo pasado [@Anselin2014: 105]. Las pruebas nos permitirán decidir qué modelo es mejor, evaluando entre el modelo lineal y el de rezago, por un lado, y el modelo lineal y el de error, por otro.
 
 Así, cuando se evalúa entre el modelo lineal y el modelo de rezago lo que en el fondo hacemos es probar estadísticamente si $\rho$, el coeficiente autoregresivo espacial, realmente está presente en la relación propuesta. Recordemos la estructura del modelo de rezago:
 
@@ -141,13 +141,13 @@ $$
 
 Igualmente, el estadístico usado para evaluar nuestras hipótesis es el multiplicador de Lagrange y que, dado determinado nivel de significancia, rechazar la hipótesis nula significa que, entre el modelo lineal y el modelo de error, el mejor modelo es uno de error espacial.  
 
-Pero, ¿qué ocurre cuando en las pruebas anteriores no son concluyentes? Es decir, cuando tanto la prueba sobre la versión de rezago y de error han resultado ambas significativas? Sin abudar en los detalles técnicos de esta situación, esto podría pasar porque el estadístico del multiplicador de Lagrange sobre el modelo de rezago, $LM_{\rho}$, es sensible a la presencia autocorrelación espacial en el término de error, lo mismo que el estadístico del multiplicador de Lagrange sobre el modelo de error, $LM_{\lambda}$ que es sensible a la presencia autocorrelación espacial en el rezago. Para decirlo de forma hipersimplificada, estas pruebas podrían dar un "falso positivo".
+Pero, ¿qué ocurre cuando en las pruebas anteriores no son concluyentes? Es decir, cuando tanto la prueba sobre la versión de rezago y de error han resultado ambas significativas? Sin abudar en los detalles técnicos del caso, esto podría pasar porque el estadístico del multiplicador de Lagrange sobre el modelo de rezago, $LM_{\rho}$, es sensible a la presencia autocorrelación espacial en el término de error, lo mismo que el estadístico del multiplicador de Lagrange sobre el modelo de error, $LM_{\lambda}$ que es sensible a la presencia autocorrelación espacial en el rezago. Para decirlo de forma hipersimplificada, estas pruebas podrían dar un "falso positivo".
 
-Exclusivamente cuando en ambos casos se rechazan las respectivas hipótesis nulas, es decir que $\lambda\not=0$ y $\rho\not=0$, habremos de recurrir a las llamadas "versiones robustas" del multiplicador de Lagrange. Las versiones robustas de dichos indicadores implican "que el estadístico original es corregido mediante la influencia potencial de 'otras' alternativas" (Anselin y Rey, 2014: 105). Usar la versión robusta del multiplicador de Lagrange que evalúa entre la alternativa del modelo lineal y el modelo de rezago implica que dicha prueba determina con mayor precisión si hay presencia de autocorrelación y esta es captada a través del coeficiente autoregresivo espacial, _excluyendo_ los efectos que podrían estar dados por el coeficiente de autocorrelación espacial; reciprocamente para la prueba en su versión robusta del multiplicador de Lagrange sobre la alternativa del modelo lineal respecto al modelo de error.
+Exclusivamente cuando en ambos casos se rechazan las respectivas hipótesis nulas, es decir que $\lambda\not=0$ y $\rho\not=0$, habremos de recurrir a las llamadas "versiones robustas" del multiplicador de Lagrange. Las versiones robustas de dichos indicadores implican "que el estadístico original es corregido mediante la influencia potencial de 'otras' alternativas" (Anselin y Rey, 2014: 105). Usar la versión robusta del multiplicador de Lagrange que evalúa entre la alternativa del modelo lineal y el modelo de rezago implica que dicha prueba determina con mayor precisión si hay presencia de autocorrelación y esta es captada a través del coeficiente autoregresivo espacial, _excluyendo_ los efectos que podrían estar dados por el coeficiente de autocorrelación espacial; reciprocamente para la prueba en la versión robusta del multiplicador de Lagrange sobre la alternativa del modelo lineal respecto al modelo de error.
 
 Usemos una analogía para mejor comprender lo anterior. Imagina que intentas pasar por un colador un poco de harina que tiene algunos terrones porque ha estado algún tiempo en la despensa. Si los orificios del colador son demasiado grandes dejarán pasar los terrones y pensaríamos que nuestra harina estaba libre de terrones. No obstante, si usamos un colador con orificios más finos, los terrones no pasarán y sabremos que la harina, en efecto, tenía terrones. Algo semejante ocurre con los multiplicadores de Lagrange en sus versiones estándar y  robustas: los orificios del colador en las pruebas robustas son más finos, permitiéndonos discriminar con mayor seguridad entre uno y otro modelo, para tener evidencia concluyente.
 
-Así, por ejemplo, si el multiplicador de Lagrange en su versión robusta que evalúa entre un modelo lineal y un modelo de rezago sostiene que el mejor modelo es el modelo de rezago, mientras que el multipilcador de Lagrange en su versión robusta que evalúa entre un modelo lineal y un modelo de rezago sostiene que el mejor modelo es el modelo lineal, la conclusión a la que arribamos, a la luz ofrecida por ambas pruebas, es que el mejor modelo es el modelo de rezago espacial. Para simplificar, basta recordar lo recomendado por Anselin [-@Anselin2005, p. 197]: "lo importante a recordar (en la selección entre modelos espaciales) es considerar las versiones robustas de los estadísticos (los multiplicadores de Lagrange) sólo cuando las versiones estándar son ambas significativas.
+Así, por ejemplo, si el multiplicador de Lagrange en la versión robusta que evalúa entre un modelo lineal y un modelo de rezago sostiene que el mejor modelo es el modelo de rezago, mientras que el multipilcador de Lagrange en su versión robusta que evalúa entre un modelo lineal y un modelo de rezago sostiene que el mejor modelo es el modelo lineal, la conclusión a la que arribamos, a la luz ofrecida por ambas pruebas, es que el mejor modelo es el modelo de rezago espacial. Para simplificar, basta recordar lo recomendado por Anselin [-@Anselin2005, p. 197]: "lo importante a recordar (en la selección entre modelos espaciales) es considerar las versiones robustas de los estadísticos (los multiplicadores de Lagrange) sólo cuando las versiones estándar son ambas significativas.
 
 Finalmente, ya que tenemos claro qué modelo capta mejor la relación propuesta, procederemos a estimar y analizar dicho modelo. Todos los pasos que hemos tratado de describir hasta aquí, son sintetizados por Anselin y Rey (2014) en el siguiente esquema:
 
@@ -170,7 +170,7 @@ Hemos estado analizando un conjunto de variables sociodemográficas y económica
 
 En el primer capítulo de este material expusimos una serie de herramientas para tener una primera aproximación con el conjunto de datos. Esas herramientas, entre otros aspectos, integran un enfoque denominado Análisis Exploratorio de Datos (EDA) y tiene por objeto, antes de proponer cualquier modelo, conocer la estructura subyacente de la información e indagar en la asociación entre variables para responder y plantear algunas preguntas de carácter preliminar en torno al objeto de estudio construido.
 
-Por ejemplo, a través de un diagrama de caja del número de casos positivos es posible observar la distribución de la variable e identificar observaciones a típicas, es decir, valores extremadamente altos o bajos:
+Por ejemplo, a través de un diagrama de caja del número de casos positivos es posibleidentificar observaciones a típicas, es decir, valores extremadamente altos o bajos:
 
 ```{r echo=FALSE}
 library(readxl)
@@ -213,7 +213,7 @@ library(sf)
 base <-sf::st_read("base de datos\\covid_zmvm shp\\covid_zmvm.shp")
 ```
 
-```{r}
+```{r echo=FALSE}
 tmap::tm_shape(base) +
   tmap::tm_borders()+
   tmap::tm_fill("pos_hab", 
@@ -234,13 +234,13 @@ moran.test(covid_zmvm$pos_hab, mTRUE.pesos)
 ```
 
 ```{r echo=FALSE}
-spdep::moran.plot((covid_zmvm$pos_hab-mean(covid_zmvm$pos_hab))/sd(covid_zmvm$pos_hab), listw = mTRUE.pesos, xlab="Casos positivos por cada 100 mil habitab¿ntes", ylab="Promedio de casos positivos en regiones vecinas", main="Diagrama de Moran de los casos positivos en el Valle de México", col="blue")
+spdep::moran.plot((covid_zmvm$pos_hab-mean(covid_zmvm$pos_hab))/sd(covid_zmvm$pos_hab), listw = mTRUE.pesos, xlab="Casos positivos por cada 100 mil habitantes", ylab="Promedio de casos positivos en regiones vecinas", main="Diagrama de Moran de los casos positivos en el Valle de México", col="blue")
 ```
 
 
 La información que nos proporciona la I de Moran indica que los casos positivos por COVID19 en el Valle de México muestran un patrón de agrupamiento sistemático en las unidades territoriales analizadas: el coeficiente es positivo, relativamente alto y estadisticamente significativo. Así pues, a un nivel aún exploratorio, tanto el mapa como la I de Moran dan cuenta de que la variable a explicar presenta autocorrelación espacial.
 
-Hay varios elementos interesantes respecto a la evidencia anterior. El primero es que lo más probable es que, si estimamos un modelo econométrico lineal buscando explicar los casos positivos, se violaría el supuesto de independencia en los términos de error de la regresión que exige un modelo lineal clásico, por lo no sería el más apropiado para explicar dicho fenómeno. El segundo, y quizá el más interesante, es que debemos reflexionar sobre el hecho de que la variable a explicar presenta patrones de asociación en el espacio: ¿por qué los casos positivos de COVID19 son más altos en algunos grupos de municipios de la ciudad que en otros?
+Hay varios elementos interesantes respecto a la evidencia anterior. Primero, si estimamos un modelo econométrico lineal buscando explicar los casos positivos, lo más probable es que se violaría el supuesto de independencia en los términos de error de la regresión que exige un modelo lineal clásico, por lo no sería el más apropiado para explicar dicho fenómeno. Segundo, y quizá lo más interesante, es que debemos reflexionar sobre el hecho de que la variable a explicar presenta patrones de asociación en el espacio: ¿por qué los casos positivos de COVID19 son más altos en algunos grupos de municipios de la ciudad que en otros?
 
 La respuesta a esta pregunta es compleja y, desde luego, requiere una reflexión cuidadosa sobre las teorías y trabajos previos de especialistas en el tema que han tratado sobre los patrones espaciales en la transmisión de una enfermedad, como el clásico trabajo de Cliff y sus colaboradores [@Cliff1981] sobre la dinámica espacial de las pandemias en Islandia, aunque ciertamente se ha aceptado que las epidemias pueden y deben analizarse desde una perspectiva espacial [@Rezaeian2007].
 
