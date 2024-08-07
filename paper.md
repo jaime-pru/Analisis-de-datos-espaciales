@@ -26,7 +26,7 @@ bibliography: paper.bib
 
 # Summary
 
-Spatial Analysis with R: wrangling, visualization and econometric models (Análisis Espacial con R: manejo, visualización y modelos econométricos)is a [full open course](https://github.com/jaime-pru/Analisis-de-datos-espaciales) in Spanish for the analysis of spatial information in R software. The course is intended for Spanish-speaking economics undergraduate students interested in acquiring technical skills for quantitative analysis required by the regional sciences [@Fischer2014] and the spatial approach to economics [@Fujita2000], but it could be useful for other students of social sciences attracted by the topic.  
+Spatial Analysis with R: wrangling, visualization and econometric models (Análisis Espacial con R: manejo, visualización y modelos econométricos) is a [full open course](https://github.com/jaime-pru/Analisis-de-datos-espaciales) in Spanish for the analysis of spatial information in R software. The course is intended for Spanish-speaking economics undergraduate students interested in acquiring technical skills for quantitative analysis required by the regional sciences [@Fischer2014] and the spatial approach to economics [@Fujita2000], but it could be useful for other students of social sciences attracted by the topic.  
 
 The objective of the book is to guide the student, from a basic practical approach, in the knowledge and handling of spatial information exploration, analysis and modeling techniques through the use of R [@RSoftware] and RStudio, which are, respectively, a program computer science and programming language focused on statistical analysis and information visualization, on the one hand, and an integrated development environment (IDE), on the other.  
 
@@ -34,7 +34,7 @@ The course is presented in the form of an electronic book and it is structured i
 
 The logic of each chapter integrates three elements: i) explanation of the fundamental concepts covered, ii) the use of real information in the software that serves to illustrate the highlighted concepts, iii) exercises proposed for the student to delve into the topics exposed.  
 
-The examples and exercises presented in the course are based on a database on the situation of the COVID19 pandemic between March and September 2020 in the Metropolitan Zone of the Valley of Mexico (Zona Metropolitana del Valle de México), the largest metropolitan area in Mexico, made up of 76 local administrative units or municipalities with more than 21 million inhabitants. In addition, the database used provides information on the economic structure at the municipal level and a set of variables of sociodemographic characteristics from the population census.  
+The examples and exercises presented in the course are based on a database on the situation of the COVID19 pandemic between March and September 2020 in the Metropolitan Zone of the Valley of Mexico (Zona Metropolitana del Valle de México), the largest metropolitan area in Mexico, composed by 76 local administrative units or municipalities with more than 21 million inhabitants. In addition, the database used provides information on the economic structure at the municipal level and a set of variables of sociodemographic characteristics from the population census.  
 
 # Story of the project
 
@@ -60,7 +60,7 @@ Each chapter contains both theoretical and practical elements related to the tre
 
 The suggested way to follow the course is through the sequence proposed by the structure of the book, from chapter 1 to 5, since the tools are exposed gradually, trying to ensure adequate assimilation. However, if the student feels already comfortable with handling one topic, she can move on to the next one without difficulty.  
 
-Experience in the use of this material indicates that it can be covered in 5 or 6 weeks, spending between 4.5 and 5 hours per week of study. Chapter 1 can be covered in approximately 4.5 hours, however if the student is not familiar with R and RStudio it could take a bit longer. The choropleth mapping section would be smoothly covered in about 3 hours. Meanwhile, Chapter 3 on the exploratory analysis of spatial data, one of the central parts of the book, may require at least 6 hours of study. Chapter 4, dedicated to the elementary review of linear regression, can be covered in 3 hours of study, since some previous knowledge on the subject is assumed, however, more could be required if the student needs to review these topics in greater depth. Finally, Chapter 5, also central to this material, would require around 6 hours of study.
+Experience in the use of this material indicates that it can be covered in 5 or 6 weeks, spending between 4.5 and 5 hours per week of study. Chapter 1 can be covered in approximately 4.5 hours, however if the student is not familiar with R and RStudio it could take a bit longer. The choropleth mapping section would be smoothly covered in about 3 hours. Meanwhile, Chapter 3 on the exploratory analysis of spatial data, one of the central parts of the book, may require at least 6 hours of study. Chapter 4, dedicated to the elementary review of linear regression, can be covered in 3 hours of study, since some previous knowledge on the subject is assumed, however, more time could be required if the student needs to review these topics in greater depth. Finally, Chapter 5, also central to this material, would require around 6 hours of study.
 
 # Contributions
 
@@ -68,7 +68,7 @@ This book is, to some extent, an effort to compile and systematize multiple mate
 
 I believe that this is how knowledge should always be: free, open and collaborative, like the software that is used here. Thus, this project is a living one, in permanent construction and modification, so all comments and observations will be welcome, both from the students who have used it, and from the teachers who consider it appropriate to include it in their reference materials.
 
-A guide on how to contribute to this project can be found in the GitHub repository at https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/How_to_contribute.md. Interested people can also contact directly via e-mail (japv@azc.uam.mx) or even in social media on [twitter](https://twitter.com/jaime_pru). All comments are welcome.
+A guide on how to contribute to this project can be found in the GitHub repository at https://github.com/jaime-pru/Analisis-de-datos-espaciales/blob/main/How_to_contribute.md. Interested people can also contact directly via e-mail (japv@azc.uam.mx) or even in social media on [X](https://x.com/jaime_pru). All comments are welcome.
 
 # Acknowledgements
 
