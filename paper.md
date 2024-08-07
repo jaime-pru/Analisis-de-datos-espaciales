@@ -1,27 +1,18 @@
 ---
 title: 'Spatial data analysis with R: wrangling, visualization and econometric models '
-
-tags:
- -R software
- -Rstats
- -regional science
- -data visualization
- -spatial autocorrelation
- -spatial econometrics
-
+tags: "-R software -Rstats -regional science -data visualization -spatial autocorrelation
+  -spatial econometrics"
+date: "1 March 2022"
+output: pdf_document
 authors:
- - name: Jaime A. Prudencio-Vázquez 
-   orcid: 0000-0001-5866-1280
-   affiliation: 1
-
-affiliations:
- - name: Economics Department, Universidad Autónoma Metropolitana, Unidad Azcapotzalco, CDMX, México.  
-   index: 1
-
-date: 1 March 2022
-
+- name: "Jaime A. Prudencio-Vázquez"
+  orcid: "0000-0001-5866-1280"
+  affiliation: 1
 bibliography: paper.bib
-
+affiliations:
+- name: Economics Department, Universidad Autónoma Metropolitana, Unidad Azcapotzalco,
+    CDMX, México.
+  index: 1
 ---
 
 # Summary
@@ -30,7 +21,7 @@ Spatial Analysis with R: wrangling, visualization and econometric models (Análi
 
 The objective of the book is to guide the student, from a basic practical approach, in the knowledge and handling of spatial information exploration, analysis and modeling techniques through the use of R [@RSoftware] and RStudio, which are, respectively, a program computer science and programming language focused on statistical analysis and information visualization, on the one hand, and an integrated development environment (IDE), on the other.  
 
-The course is presented in the form of an electronic book and it is structured in five chapters of gradual learning. In Chapter 1, the basics of R and RStudio are introduced using the exploratory data analysis approach [@HSM2014] not only with the basic R package, but also with the popular set of tools provided by tidyverse [@tidyverse], that is, the student is completely introduced to the use of the software to propose and solve questions related to the information structure. Chapter 2 shows how to create various types of choropleth maps and the enormous styling customization flexibility for this purpose via the tmap [@tmap] package. Chapter 3 presents how to carry out an exploratory analysis of spatial data where the student will find how to define the interrelationships that take place in space through the construction of spatial weight matrices and she will learn about spatial autocorrelation and its implications in the information analysis, through various packages such as spdep [@spdep] and rgeoda [@rgeoda]. Meanwhile, in Chapter 4, a very brief review of simple regression models is presented, emphasizing the autocorrelation problem that could occur when estimating a linear model with spatial data. Finally, in Chapter 5, two of the different spatial econometric modeling alternatives available in R it is shown, with spatialreg [@spatialreg].  
+The course is presented in the form of an electronic book and it is structured in five chapters of gradual learning. In Chapter 1, the basics of R and RStudio are introduced using the exploratory data analysis approach [@HSM2014] not only with the basic R package, but also with the popular set of tools provided by tidyverse [@tidyverse], that is, the student is completely introduced to the use of the software to propose and solve questions related to the information structure. Chapter 2 shows how to create various types of choropleth maps and the enormous styling customization flexibility for this purpose via the tmap [@tmap] package. Chapter 3 presents how to carry out an exploratory analysis of spatial data where the student will find how to define the interrelationships that take place in space through the construction of spatial weight matrices and she will learn about spatial autocorrelation and its implications in the information analysis, through various packages such as spdep [@spdep] and rgeoda [@rgeoda]. Meanwhile, in Chapter 4, a synthetic review of simple regression models is presented, emphasizing the autocorrelation problem that could occur when estimating a linear model with spatial data. Finally, in Chapter 5, two of the different spatial econometric modeling alternatives available in R it is shown, with spatialreg [@spatialreg].  
 
 The logic of each chapter integrates three elements: i) explanation of the fundamental concepts covered, ii) the use of real information in the software that serves to illustrate the highlighted concepts, iii) exercises proposed for the student to delve into the topics exposed.  
 
