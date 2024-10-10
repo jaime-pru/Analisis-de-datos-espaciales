@@ -1,7 +1,12 @@
 ---
 title: 'Spatial data analysis with R: wrangling, visualization and econometric models '
-tags: "-R software -Rstats -regional science -data visualization -spatial autocorrelation
-  -spatial econometrics"
+tags: 
+  - R software 
+  - Rstats
+  - regional science
+  - data visualization
+  - spatial autocorrelation
+  - spatial econometrics"
 date: "1 March 2022"
 output: pdf_document
 authors:
